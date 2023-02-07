@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+        xmlns="http://www.springframework.org/schema/security"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <http auto-config="true">
+        <intercept-url pattern="/user/**"
+                       access="hasAnyRole('ROLE_CUSTOMER','ROLE_ADMIN')" />
+        <intercept-url pattern="/owner/**"
+                       access="hasAnyRole('ROLE_OWNER','ROLE_ADMIN')" />
+        <intercept-url pattern="/employee/**"
+                       access="hasAnyRole('ROLE_EMPLOYEE','ROLE_ADMIN')" />
+        <intercept-url pattern="/hlv/**"
+                       access="hasAnyRole('ROLE_HLV','ROLE_ADMIN')" />
+        <intercept-url pattern="/admin/**"
+                       access="hasRole('ROLE_ADMIN')" />
+
+        <access-denied-handler
+                error-page="/access_denied?message=authorization_error" />
+
+        <form-login login-page="/dang-nhap"
+                    login-processing-url="/j_spring_security_login"
+                    default-target-url="/kiem-tra-tai-khoan"
+                    authentication-failure-url="/dang-nhap?message=account_error"
+                    username-parameter="username" password-parameter="password" />
+
+        <logout logout-url="/j_spring_security_logout"
+                logout-success-url="/dang-nhap?message=logout"
+                delete-cookies="JSESSIONID" />
+
+        <session-management
+                session-fixation-protection="newSession"
+                invalid-session-url="/dang-nhap?error=sessionExpired"
+                session-authentication-error-url="/dang-nhap?auth_error=BadCredencials">
+            <concurrency-control max-sessions="2" />
+        </session-management>
+    </http>
+
+    <authentication-manager>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="SELECT email, password, enabled FROM users WHERE email=?"
+                               authorities-by-username-query="SELECT users.email, roles.code FROM users, roles, users_roles WHERE users.email =? AND users.id_u = users_roles.u_id AND users_roles.r_id = roles.id_r; " />
+            <password-encoder ref="encoder" />
+        </authentication-provider>
+    </authentication-manager>
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <beans:constructor-arg name="strength" value="10" />
+    </beans:bean>
+</beans:beans>
