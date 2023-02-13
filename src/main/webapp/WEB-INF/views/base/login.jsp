@@ -46,8 +46,10 @@
                                     <hr>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 </form>
-                                <div class="text-center"><a class="small" href="forgot-password.html">Forgot Password?</a></div>
-                                <div class="text-center"><a class="small" href="register.html">Create an Account!</a></div>
+                                <div class="text-center"><a class="small" href="<c:url value='/quen-mat-khau'/>">Forgot
+                                    Password?</a></div>
+                                <div class="text-center"><a class="small" href="<c:url value='/dang-ky'/>">Create an
+                                    Account!</a></div>
                             </div>
                         </div>
                     </div>

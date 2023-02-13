@@ -62,11 +62,6 @@ public class LoginController {
     }
 
 
-    @RequestMapping(value = "owner/dashboard", method = RequestMethod.GET)
-    public String goDashboardOwner() {
-        return "owner/dashboard_owner";
-    }
-
     @RequestMapping(value = "/dashboard-employee", method = RequestMethod.GET)
     public String goDashboardEmployee() {
         return "employee/dashboard_employee";
