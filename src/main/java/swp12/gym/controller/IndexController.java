@@ -25,7 +25,6 @@ public class IndexController {
                 model.addAttribute("message", "Some thing wrong when you logging!");
             }
         }
-        System.out.println("den day");
         return "base/login";
     }
 

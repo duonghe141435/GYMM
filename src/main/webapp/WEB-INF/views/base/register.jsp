@@ -58,9 +58,7 @@
                             </button>
                             <hr>
                             <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i
-                                    class="fab fa-google"></i>&nbsp; Register with Google</a><a
-                                class="btn btn-primary d-block btn-facebook btn-user w-100" role="button"><i
-                                class="fab fa-facebook-f"></i>&nbsp; Register with Facebook</a>
+                                    class="fab fa-google"></i>&nbsp; Register with Google</a>
                             <hr>
                         </form>
                         <div class="text-center"><a class="small" href="<c:url value='/quen-mat-khau'/>">Forgot

@@ -11,9 +11,13 @@ import java.util.List;
 @Repository
 public class UsersDao {
 
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
     private String sql;
+
+    @Autowired
+    public UsersDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     public List<Users> findAllUsers() {
         sql = "SELECT * FROM users";
