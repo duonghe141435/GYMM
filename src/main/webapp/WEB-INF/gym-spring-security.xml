@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true">
-        <intercept-url pattern="/user/**"
+        <intercept-url pattern="/customer/**"
                        access="hasAnyRole('ROLE_CUSTOMER','ROLE_ADMIN')" />
         <intercept-url pattern="/owner/**"
                        access="hasAnyRole('ROLE_OWNER','ROLE_ADMIN')" />
@@ -25,7 +25,7 @@
                     login-processing-url="/j_spring_security_login"
                     default-target-url="/kiem-tra-tai-khoan"
                     authentication-failure-url="/dang-nhap?message=account_error"
-                    username-parameter="username" password-parameter="password" />
+                    username-parameter="email" password-parameter="password" />
 
         <logout logout-url="/j_spring_security_logout"
                 logout-success-url="/dang-nhap?message=logout"
