@@ -25,14 +25,14 @@ public class UsersDao {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
-    public Users findById(long id){
+    public Users findById(long id) {
         sql = "SELECT * FROM users WHERE id_u = ?;";
-        return jdbcTemplate.queryForObject(sql, new UserMapper(),id);
+        return jdbcTemplate.queryForObject(sql, new UserMapper(), id);
     }
 
-    public void saveUser(Users user){
+    public void saveUser(Users user) {
         sql = "INSERT INTO users (id_u,name,email,password,enabled) VALUES (?,?,?,?,?)";
-        jdbcTemplate.update(sql,user.getId(),user.getUsername(), user.getEmail(),
-                user.getPassword(),user.getEnable());
+        jdbcTemplate.update(sql, user.getId(), user.getUsername(), user.getEmail(),
+                user.getPassword(), user.getEnable());
     }
 }
