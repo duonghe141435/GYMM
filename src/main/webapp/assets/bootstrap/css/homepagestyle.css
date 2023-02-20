@@ -1,0 +1,64 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav .container img{
+    width: 200px;
+    height: 150px;
+}
+
+header{
+    height: 100vh;
+    background-image: url("/assets/img/images/2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    image-rendering: crisp-edges;
+}
+
+header div.container{
+    position: relative;
+    right: 10%;
+    top: 40%;
+}
+
+section.navbar-brand{
+    background-color: rgb(16, 240, 248);
+    height: 15vh;
+}
+
+section.py-4{
+    background-image: url("/assets/img/images/5.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    image-rendering: crisp-edges;
+    height: 70vh;
+}
+
+section.py-4 div.pt-4{
+    position: relative;
+    right: 10%;
+    top: 25%;
+}
+
+section.hlv img{
+    width: 300px;
+    height: 300px;
+}
+
+footer img{
+    width: 200px;
+    height: 100px;
+    margin-left: 40px;
+}
+
+footer{
+    width: 100%;
+}
+
+hr{
+    color: white;
+}
