@@ -1,0 +1,23 @@
+
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif
+}
+
+
+.crtTicket{
+    margin-top: 100px;
+    background: whitesmoke;
+    font-weight: normal;
+    width: 80vw;
+    margin-left: 150px;
+}
+
+.form-group{
+    margin: 20px;
+}
+
+
