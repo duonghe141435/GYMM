@@ -62,3 +62,20 @@ footer{
 hr{
     color: white;
 }
+
+#mainNav{
+    background-color: rgb(142, 243, 247) !important;
+}
+
+li.nav-item div.nav-item img{
+    width: 60px;
+}
+
+.container-fluid{
+    margin-left: 20rem;
+}
+
+div.container a.navbar-brand img{
+    margin-left: -10rem;
+    margin-right: 20rem;
+}

@@ -12,6 +12,7 @@
     <title>Trang chủ</title>
     <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/homepagestyle.css'/>">
+    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
 </head>
 <body>
 <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
@@ -23,7 +24,29 @@
                 <li class="nav-item"><a class="nav-link" href="#">Sản Phẩm</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Lịch Tập</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Dịch vụ</a></li>
-            </ul><a class="btn btn-primary shadow" role="button" href="<c:url value='/dang-ky'/>">Sign up</a>
+            </ul>
+        </div>
+        <div class="container-fluid">
+            <ul class="navbar-nav flex-nowrap ms-auto">
+                <div class="d-none d-sm-block topbar-divider"></div>
+                <li class="nav-item dropdown no-arrow">
+                    <div class="nav-item dropdown no-arrow">
+                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                            <span class="d-none d-lg-inline me-2 text-gray-600 small">Đức Lương</span>
+                            <img class="border rounded-circle img-profile" src="/assets/img/avatars/avatar5.jpeg" />
+                        </a>
+                        <div class="dropdown-menu shadow dropdown-menu-end animated-grow-in">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-sw me-2 text-gray-400"> Profile</i>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"> Log out</i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
