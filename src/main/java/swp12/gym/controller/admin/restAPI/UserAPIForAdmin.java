@@ -4,6 +4,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import swp12.gym.model.Entity.Users;
 import swp12.gym.service.UserService;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@Secured("ROLE_ADMIN")
 public class UserAPIForAdmin {
 
     @Autowired
