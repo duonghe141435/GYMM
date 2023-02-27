@@ -45,8 +45,48 @@
                         <p class="text-muted mb-1">Full Stack Developer</p>
                         <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                         <div class="d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary">Update</button>
-
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="exampleModal" data-bs-whatever="@Profile">Update</button>
+                        </div>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Update Profile</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="name" class="col-form-label">Name:</label>
+                                                <input type="text" class="form-control" id="name">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="col-form-label">Email:</label>
+                                                <input type="email" class="form-control" id="email">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="phone" class="col-form-label">Phone:</label>
+                                                <input type="number" class="form-control" id="phone">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="dob" class="col-form-label">Date of Birth:</label>
+                                                <input type="date" class="form-control" id="dob">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="address" class="col-form-label">Address:</label>
+                                                <textarea class="form-control" id="address"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -216,5 +256,6 @@
 <script src="<c:url value='/assets/js/bs-init.js'/>"></script>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
 <script src="<c:url value='/assets/js/startup-modern.js'/>"></script>
+<script src="<c:url value='/assets/js/updateProfile-form.js'/>"></script>
 </body>
 </html>
