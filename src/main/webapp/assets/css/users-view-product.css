@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav .container img{
+    width: 100px;
+    height: 80px;
+}
+nav ul.navbar-nav{
+    width: 30rem;
+    padding-left: 3rem;
+}
+
+header{
+    height: 100vh;
+    background-image: url("/assets/img/dogs/6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    image-rendering: crisp-edges;
+}
+
+header div.container{
+    position: relative;
+    right: 10%;
+    top: 40%;
+}
+
+section.navbar-brand{
+    background-color: rgb(16, 240, 248);
+    height: 15vh;
+}
+
+
+footer img{
+    width: 200px;
+    height: 100px;
+    margin-left: 40px;
+}
+
+footer{
+    width: 100%;
+}
+
+hr{
+    color: white;
+}
+
+#mainNav{
+    background-color: rgb(142, 243, 247) !important;
+}
+
+li.nav-item div.nav-item img{
+    width: 60px;
+}
+
+.container-fluid{
+    margin-left: 8rem;
+}
+
+
+nav div.container a.navbar-brand img{
+    margin-left: 5rem;
+    margin-right: 9rem;
+}
+
