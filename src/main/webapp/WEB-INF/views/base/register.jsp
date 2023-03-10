@@ -34,6 +34,7 @@
                         <div class="text-center">
                             <h4 class="text-dark mb-4">Tạo tài khoản!</h4>
                         </div>
+
                         <form:form name="register" id="register" action="/register/create_user" method="POST" modelAttribute="new_users">
                             <small id="title"></small>
                             <div class="form-field">
