@@ -1,17 +1,38 @@
 package swp12.gym.service;
 
+import swp12.gym.model.entity.Ticket;
 import org.springframework.stereotype.Service;
-import swp12.gym.model.Entity.Tickets;
 
 import java.util.List;
 
 @Service
 public interface TicketService {
-    Tickets findById(long id);
-    Tickets findByName(String name);
-    void createTicket(Tickets ticket);
-    void updateTicket(Tickets ticket);
-    void deleteTicket(long id);
-    List<Tickets> findAllTicketIsActive();
-    int getNumberUserInSystem();
+
+    //===============One Object===============//
+
+    //Get an tickets
+    public Ticket findAnTicket(int id);
+
+    //Create an tickets
+    public void createTicket(Ticket ticket);
+
+    //Update an tickets
+    public void updateTickets(Ticket ticket);
+
+    //Delete an Tickets (Lock tickets)
+    public void deleteTickets(int id_t);
+
+    //===============Many Object===============//
+
+    //Get all tickets
+    public List<Ticket> findAll();
+
+    //Get all tickets for something
+    public List<Ticket> findAllForAttribute();
+
+    //Create many tickets for ...
+    public void createManyTickets();
+
+    //Delete many tickets for ...
+    public int deleteManyTickets();
 }

@@ -1,7 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%--
   Created by IntelliJ IDEA.
-  User: HongWung
+  User: hieuhm
   Date: 2/7/2023
   Time: 5:38 PM
   To change this template use File | Settings | File Templates.
@@ -15,8 +16,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Register - Brand</title>
     <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
-    <%--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">--%>
     <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/assets/css/register-style.css'/> ">
 </head>
 
 <body class="bg-gradient-primary">
@@ -31,40 +32,57 @@
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h4 class="text-dark mb-4">Create an Account!</h4>
+                            <h4 class="text-dark mb-4">Tạo tài khoản!</h4>
                         </div>
-                        <form class="user">
-                            <div class="row mb-3">
-                                <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user"
-                                                                          type="text" id="exampleFirstName"
-                                                                          placeholder="First Name" name="first_name">
-                                </div>
-                                <div class="col-sm-6"><input class="form-control form-control-user" type="text"
-                                                             id="exampleLastName" placeholder="Last Name"
-                                                             name="last_name"></div>
+                        <form:form name="register" id="register" action="/register/create_user" method="POST" modelAttribute="new_users">
+                            <small id="title"></small>
+                            <div class="form-field">
+                                <label for="user-name">Name:</label>
+                                <small style="font-size: 15px"></small>
+                                <form:input class="form-control form-control-user"
+                                            path="u_full_name" type="text" id="user-name"
+                                            placeholder="Your Name" name="name" />
                             </div>
-                            <div class="mb-3"><input class="form-control form-control-user" type="email"
-                                                     id="exampleInputEmail" aria-describedby="emailHelp"
-                                                     placeholder="Email Address" name="email"></div>
-                            <div class="row mb-3">
-                                <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user"
-                                                                          type="password" id="examplePasswordInput"
-                                                                          placeholder="Password" name="password"></div>
-                                <div class="col-sm-6"><input class="form-control form-control-user" type="password"
-                                                             id="exampleRepeatPasswordInput"
-                                                             placeholder="Repeat Password" name="password_repeat"></div>
+                            <div class="form-field">
+                                <label for="user-phone">PhoneNumber:</label>
+                                <small style="font-size: 15px"></small>
+                                <form:input class="form-control form-control-user" type="text"
+                                             path="u_phone_number"
+                                             id="user-phone" placeholder="Phone Number"
+                                             name="phoneNumber" />
                             </div>
-                            <button class="btn btn-primary d-block btn-user w-100" type="submit">Register Account
+                            <div class="form-field">
+                                <label for="exampleInputEmail">Email:</label>
+                                <small style="font-size: 15px"></small>
+                                <form:input class="form-control form-control-user" type="email"
+                                       path="u_email"
+                                       id="exampleInputEmail" aria-describedby="emailHelp"
+                                       placeholder="Email Address" name="email" />
+                            </div>
+                            <div class="form-field">
+                                <label for="examplePasswordInput">Password:</label>
+                                <small style="font-size: 15px"></small>
+                                <form:input class="form-control form-control-user"
+                                            path="u_password"
+                                            type="password" id="examplePasswordInput"
+                                            placeholder="Password" name="password" />
+                            </div>
+                            <div class="form-field">
+                                <label for="exampleRepeatPasswordInput">Confirm-password:</label>
+                                <small style="font-size: 15px"></small>
+                                <input class="form-control form-control-user" type="password"
+                                       id="exampleRepeatPasswordInput"
+                                       placeholder="Confirm Password" name="password_repeat">
+                            </div>
+                            <button class="btn btn-primary d-block btn-user w-100" id="btn-register" type="submit">Register Account
                             </button>
                             <hr>
                             <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i
                                     class="fab fa-google"></i>&nbsp; Register with Google</a>
                             <hr>
-                        </form>
-                        <div class="text-center"><a class="small" href="<c:url value='/quen-mat-khau'/>">Forgot
-                            Password?</a></div>
-                        <div class="text-center"><a class="small" href="<c:url value='/dang-nhap'/>">Already have an
-                            account? Login!</a></div>
+                        </form:form>
+                        <div class="text-center"><a class="small" href="<c:url value='/forgot-password'/>">Bạn đã quên mật khẩu?</a></div>
+                        <div class="text-center"><a class="small" href="<c:url value='/login'/>">Bạn đã có tài khoản rồi? Hay đăng nhập!</a></div>
                     </div>
                 </div>
             </div>
@@ -75,6 +93,7 @@
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="<c:url value='/assets/js/bs-init.js'/>"></script>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
+<script src="<c:url value='/assets/js/register-validate.js'/>"></script>
 </body>
 
 </html>

@@ -1,19 +1,22 @@
-package swp12.gym.model.Mapper;
+package swp12.gym.model.mapper;
 
+import swp12.gym.model.entity.Ticket;
 import org.springframework.jdbc.core.RowMapper;
-import swp12.gym.model.Entity.Tickets;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TicketMapper implements RowMapper<Tickets> {
-    public Tickets mapRow(ResultSet rs, int i) throws SQLException {
-        Tickets tickets = new Tickets();
-        tickets.setId(rs.getLong("ticket_id"));
-        tickets.setName_ticket(rs.getString("type"));
-        tickets.setPrice(rs.getFloat("price"));
-        tickets.setTotal_days(rs.getInt("total_days"));
-        tickets.setStatus(rs.getInt("status") == 1 ? true:false);
-        return tickets;
+public class TicketMapper implements RowMapper<Ticket> {
+    public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
+        Ticket ticket = new Ticket();
+        ticket.setT_id(resultSet.getInt("id_t"));
+        ticket.setT_name(resultSet.getString("name"));
+        ticket.setTt_id(resultSet.getInt("tt_id"));
+        ticket.setT_note(resultSet.getString("note"));
+        ticket.setT_status(resultSet.getBoolean("status"));
+        ticket.setT_price(resultSet.getInt("price"));
+        ticket.setT_total_days(resultSet.getInt("total_days"));
+        ticket.setCreate_date(resultSet.getString("create_date"));
+        return ticket;
     }
 }

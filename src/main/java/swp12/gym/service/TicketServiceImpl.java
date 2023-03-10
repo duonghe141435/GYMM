@@ -1,44 +1,55 @@
 package swp12.gym.service;
 
+import swp12.gym.dao.TicketDao;
+import swp12.gym.model.entity.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import swp12.gym.dao.TicketDao;
-import swp12.gym.model.Entity.Tickets;
 
 import java.util.List;
 
 @Service
-public class TicketServiceImpl implements TicketService{
+public class TicketServiceImpl implements TicketService {
 
     @Autowired
-    TicketDao ticketDao;
+    private TicketDao ticketDao;
 
-    public Tickets findById(long id) {
-        return ticketDao.findById(id);
+    public Ticket findAnTicket(int id) {
+        return ticketDao.findAnTickets(id);
     }
 
-    public Tickets findByName(String name) {
-        return ticketDao.findByName(name);
-    }
-
-    public void createTicket(Tickets ticket) {
+    public void createTicket(Ticket ticket) {
         ticketDao.createTicket(ticket);
     }
 
-    public void updateTicket(Tickets ticket) {
-        ticketDao.updateTicket(ticket);
+    public void updateTickets(Ticket ticket) {
+
     }
 
-    public void deleteTicket(long id) {
-        ticketDao.deleteTicket(id);
+    public void deleteTickets(int id_t) {
+        ticketDao.deleteAnTicket(id_t);
     }
 
-    public List<Tickets> findAllTicketIsActive() {
-        return ticketDao.findAllTicketIsActive();
+    public List<Ticket> findAll() {
+      return ticketDao.findAllTickets();
     }
 
+    public List<Ticket> findAllForAttribute() {
+        return null;
+    }
 
-    public int getNumberUserInSystem() {
+    public void createManyTickets() {
+
+    }
+
+    public int deleteManyTickets() {
         return 0;
+    }
+
+    public Ticket find() {
+        return null;
+    }
+
+    public void createNewTicket(Ticket ticket) {
+
     }
 }

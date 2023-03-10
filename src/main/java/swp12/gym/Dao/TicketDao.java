@@ -1,50 +1,50 @@
 package swp12.gym.dao;
 
+import swp12.gym.model.entity.Ticket;
+import swp12.gym.model.mapper.TicketMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import swp12.gym.model.Entity.Tickets;
-import swp12.gym.model.Mapper.TicketMapper;
 
 import java.util.List;
 
 @Repository
 public class TicketDao {
+// lich tap cua trainer - co dinh hay ko co dinh, neu co dinh, thif co dinh theo gif ngay thang nam, thoi gian cong viec
+    //tao 1 bang lich taapj - khoa sat lai - xep lich mk;`
+    // 2 - 3 loai giao dich, tuy thuoc ve vao pt co la
+
+    //product - spma phan loai
+    //check auto =>  dua ra canh check ntn button check in ve
+    //ai la nguoi xem danh sach nhan vien o trong may
+
+    //check in, check out
+    //quan ly san pham - ai se lam, ai se mua
+
+    //phan tich nghiep vu
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
-    String sql;
+    private JdbcTemplate jdbcTemplate;
+    private String sql;
 
-    public List<Tickets> findAllTicketIsActive() {
+    public List<Ticket> findAllTickets(){
         sql = "SELECT * FROM ticket WHERE status = 1";
         return jdbcTemplate.query(sql, new TicketMapper());
     }
 
-    public void createTicket(Tickets ticket) {
-        sql = "INSERT INTO ticket VALUES (?,?,?,?,?,?)";
-        jdbcTemplate.update(sql,ticket.getId(),ticket.getName_ticket(),
-                ticket.getPrice(), ticket.getNote(),ticket.getTotal_days(),
-                1);
+    public Ticket findAnTickets(int id){
+        sql = "SELECT * FROM ticket WHERE id_t = ? AND status = 1";
+        return jdbcTemplate.queryForObject(sql, new TicketMapper(), id);
     }
 
-    public Tickets findById(long id) {
-        sql = "SELECT * FROM ticket WHERE ticket_id = ? AND  status = 1";
-        return jdbcTemplate.queryForObject(sql,new TicketMapper(),id);
+    public void createTicket(Ticket ticket) {
+        sql = "INSERT INTO ticket (id_t, tt_id, price, note, total_days, status, name) VALUES (?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql,ticket.getT_id(),ticket.getTt_id(),ticket.getT_price(),
+                ticket.getT_note(),ticket.getT_total_days(),1,ticket.getT_name());
     }
 
-    public Tickets findByName(String name) {
-        sql = "SELECT * FROM ticket WHERE type = ? AND  status = 1";
-        return jdbcTemplate.queryForObject(sql,new TicketMapper(),name);
-    }
-
-    public void updateTicket(Tickets ticket) {
-        sql = "UPDATE ticket SET type = ?, price = ?, note = ?, total_days = ?";
-        jdbcTemplate.update(sql,ticket.getName_ticket(), ticket.getPrice(), ticket.getNote(),
-                ticket.getTotal_days());
-    }
-
-    public void deleteTicket(long id) {
-        sql = "DELETE FROM ticket WHERE ticket_id = ?";
-        jdbcTemplate.update(sql,id);
+    public void deleteAnTicket(int id_t){
+        sql = "UPDATE ticket SET status = 0 WHERE id_t = ?";
+        jdbcTemplate.update(sql,id_t);
     }
 }
