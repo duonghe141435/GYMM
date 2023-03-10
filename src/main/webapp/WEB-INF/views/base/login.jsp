@@ -14,8 +14,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Login - Brand</title>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/> ">
 </head>
 
 <body class="bg-gradient-primary">
@@ -33,7 +33,7 @@
                                 <div class="text-center">
                                     <h4 class="text-dark mb-4">Welcome Back!</h4>
                                 </div>
-                                <form class="user">
+                                <form class="user" id="login" onsubmit="validateForm()">
                                     <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email"></div>
                                     <div class="mb-3"><input class="form-control form-control-user" type="password" id="exampleInputPassword" placeholder="Password" name="password"></div>
                                     <div class="mb-3">
@@ -54,9 +54,10 @@
         </div>
     </div>
 </div>
-<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/js/bs-init.js"></script>
-<script src="/assets/js/theme.js"></script>
+<script src="<c:url value="/assets/bootstrap/js/bootstrap.min.js"/> "></script>
+<script src="<c:url value='/assets/js/bs-init.js'/> "></script>
+<script src="<c:url value='/assets/js/theme.js'/> "></script>
+<script src="<c:url value='/assets/js/loginValidate.js'/> "></script>
 </body>
 
 </html>
