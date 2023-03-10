@@ -5,13 +5,17 @@
 }
 
 nav .container img{
-    width: 200px;
-    height: 150px;
+    width: 100px;
+    height: 80px;
+}
+nav ul.navbar-nav{
+    width: 30rem;
+    padding-left: 3rem;
 }
 
 header{
     height: 100vh;
-    background-image: url("/assets/img/images/2.jpg");
+    background-image: url("/assets/img/dogs/6.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -30,7 +34,7 @@ section.navbar-brand{
 }
 
 section.py-4{
-    background-image: url("/assets/img/images/5.jpg");
+    background-image: url("/assets/img/dogs/5.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -72,23 +76,11 @@ li.nav-item div.nav-item img{
 }
 
 .container-fluid{
-    margin-left: 20rem;
+    margin-left: 1rem;
 }
 
 div.container a.navbar-brand img{
-    margin-left: -10rem;
-    margin-right: 20rem;
-}
-
-.crtTicket{
-    margin-top: 100px;
-    background: whitesmoke;
-    font-weight: normal;
-    width: 80vw;
-    margin-left: 150px;
-}
-
-.form-group{
-    margin: 20px;
+    margin-left: 5rem;
+    margin-right: 5rem;
 }
 

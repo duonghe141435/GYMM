@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: hieuhm
@@ -24,7 +24,7 @@
 </head>
 <body>
 <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
-    <div class="container"><a class="navbar-brand d-flex align-items-center" href="homepage.jsp"><img src="/assets/img/logo/logo.png"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"><a class="navbar-brand d-flex align-items-center" href="homepage.jsp"><img src="/assets/img/dogs/logo.png"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item"><a class="nav-link active" href="homepage.jsp">Home</a></li>
@@ -33,6 +33,9 @@
                 <li class="nav-item"><a class="nav-link" href="#">Lịch Tập</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">Dịch vụ</a></li>
             </ul>
+            <button class="btn btn-dark" onclick="checkIn()" style="width: 135px;">
+                Check In <span class="tick">&#10004;</span>
+            </button>
         </div>
         <div class="container-fluid">
             <ul class="navbar-nav flex-nowrap ms-auto">
@@ -67,7 +70,7 @@
     </div>
 </header>
 <section class="navbar-brand">
-    <div class="container py-4 py-xl-5">
+    <div class="container py-4">
         <div class="py-1">
             <p class="text-dark float-start" style="font-size: 30px;">NHIỀU GÓI COMBO HẤP DẪN</p>
             <button class="btn btn-primary float-end">Đến ngay</button>
@@ -214,7 +217,7 @@
             <div class="col">
                 <div class="d-flex justify-content-between p-4">
                     <div class="pb-4">
-                        <img class="img-fluid" src="/assets/img/images/hlv1.jpg">
+                        <img class="img-fluid" src="/assets/img/dogs/hlv1.jpg">
                         <h6 class="fw-bold text-light text-center text-bg-info py-2">Hoàng Hiếu</h6>
                     </div>
                 </div>
@@ -222,7 +225,7 @@
             <div class="col">
                 <div class="d-flex justify-content-between p-4">
                     <div class="pb-4">
-                        <img class="img-fluid" src="/assets/img/images/hlv2.jpg">
+                        <img class="img-fluid" src="/assets/img/dogs/hlv2.jpg">
                         <h6 class="fw-bold text-light text-center text-bg-info py-2">Đức Lương</h6>
                     </div>
                 </div>
@@ -230,7 +233,7 @@
             <div class="col">
                 <div class="d-flex justify-content-between p-4">
                     <div class="pb-4">
-                        <img class="img-fluid mx-auto" src="/assets/img/images/hlv3.jpg">
+                        <img class="img-fluid mx-auto" src="/assets/img/dogs/hlv3.jpg">
                         <h6 class="fw-bold text-light text-center text-bg-info py-2">Đại Dương</h6>
                     </div>
                 </div>
@@ -242,7 +245,7 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-4">
-                <img src="/assets/img/logo/logo.png">
+                <img src="/assets/img/dogs/logo.png">
                 <p class="text-light text-start h5 mt-3">Chúng tôi cung cấp khả năng thực hiện các hoạt động thể thao: Crossfit, Gym và các hoạt động khác
                     , nhằm cải thiện sức khỏe và sức đề kháng thể chất của bạn, thông qua hệ thống đào tạo chuyên nghiệp 100%.
                 </p>
@@ -271,7 +274,16 @@
         </div>
     </div>
 </footer>
+<script>
+    function checkIn() {
+        // Lấy thời gian hiện tại
+        var now = new Date();
 
+        // Hiển thị thông báo check in thành công và thời gian check in
+        alert("Check in thành công! Thời gian check in là: " + now)
+    }
+
+</script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="<c:url value='/assets/js/startup-modern.js'/> "></script>
 </body>
