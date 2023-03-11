@@ -23,6 +23,11 @@
     <title>Table - Brand</title>
     <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <style>
+        .modal input, select{
+            margin-top: 13px;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -199,7 +204,7 @@
             <div class="container-fluid">
 
                 <div class="card shadow">
-                    <div class="card-header py-3">
+                    <div class="card-header py-5" >
                         <p class="text-primary m-0 fw-bold">Ticket Info</p>
                     </div>
                     <div class="card-body">
@@ -302,7 +307,7 @@
         </div>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div style="max-width: 950px;">
+            <div style="max-width: 950px; margin-left: 80px">
                 <div class="modal-dialog text-center">
                     <div style="width: 750px;">
                         <div class="modal-content">
@@ -317,7 +322,7 @@
                                     <div id="addNewTicketForm">
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2" for="ticketName">Tên vé:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="ticketName">Tên vé:</label>
                                                 <div class="col-sm-6">
                                                     <input type="text" class="form-control" id="ticketName" name=""/>
                                                 </div>
@@ -326,7 +331,7 @@
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2" for="tickeType">Loại vé:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="tickeType">Loại vé:</label>
                                                 <div class="col-sm-6">
                                                     <select id="tickeType" class="form-select">
 
@@ -342,7 +347,7 @@
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2" for="ticketPrice">Giá vé:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="ticketPrice">Giá vé:</label>
                                                 <div class="col-sm-6">
                                                     <input type="text"  min="0" class="form-control"
                                                            id="ticketPrice" name=""/>
@@ -352,7 +357,7 @@
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2" for="t_time">Hạn sử dụng:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="t_time">Hạn sử dụng:</label>
                                                 <div class="col-sm-6">
                                                     <input type="number" min="1" max="365"
                                                            placeholder="Total day" class="form-control" id="t_time"
@@ -364,7 +369,7 @@
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2" for="createDate">Ngày tạo:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="createDate">Ngày tạo:</label>
                                                 <div class="col-sm-6">
                                                     <input type="date" class="form-control" id="createDate" name=""/>
                                                 </div>
