@@ -51,8 +51,8 @@
                                     data-bs-target="#updateProfileModal" data-bs-whatever="@Profile">Update</button>
                         </div>
                         <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
+                            <div class="modal-dialog bd-example-modal-lg">
+                                <div class="modal-content model-lg">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="updateProfileModalLabel">Update Profile</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -61,24 +61,43 @@
                                     </div>
                                     <div class="modal-body">
                                         <form>
-                                            <div class="mb-3">
-                                                <label for="name" class="col-form-label">Name:</label>
-                                                <input type="text" class="form-control" id="name">
+                                            <div class="form-group mb-3">
+                                                <div class="row d-flex justify-content-center">
+                                                    <label class="form-label col-sm-2" for="name">Tên:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" id="name">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <div class="row d-flex justify-content-center">
+                                                    <label class="form-label col-sm-2" for="email">Email:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control" id="email">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <div class="row d-flex justify-content-center">
+                                                    <label class="form-label col-sm-2" for="sdt">SDT:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="number" class="form-control" id="sdt">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group mb-3">
+                                                <div class="row d-flex justify-content-center">
+                                                    <label class="form-label col-sm-2" for="dob">Ngày sinh:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="date" class="form-control" id="dob">
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="email" class="col-form-label">Email:</label>
-                                                <input type="email" class="form-control" id="email">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="phone" class="col-form-label">Phone:</label>
-                                                <input type="number" class="form-control" id="phone">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="dob" class="col-form-label">Date of Birth:</label>
-                                                <input type="date" class="form-control" id="dob">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="address" class="col-form-label">Address:</label>
+                                                <label for="address" class="col-form-label">Địa chỉ:</label>
                                                 <textarea class="form-control" id="address"></textarea>
                                             </div>
                                         </form>
