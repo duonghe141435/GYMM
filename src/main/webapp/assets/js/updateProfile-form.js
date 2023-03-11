@@ -1,4 +1,5 @@
 const exampleModal = document.getElementById('updateProfileModal');
+const email = document.getElementById('email').readOnly = true;
 exampleModal.addEventListener('show.bs.modal', event => {
     // Button that triggered the modal
     const button = event.relatedTarget;

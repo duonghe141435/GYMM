@@ -51,54 +51,45 @@
                                     data-bs-target="#updateProfileModal" data-bs-whatever="@Profile">Update</button>
                         </div>
                         <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModalLabel" aria-hidden="true">
-                            <div class="modal-dialog bd-example-modal-lg">
-                                <div class="modal-content model-lg">
+                            <div class="modal-dialog" style="max-width: 650px">
+                                <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="updateProfileModalLabel">Update Profile</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body d-inline-block">
                                         <form>
-                                            <div class="form-group mb-3">
-                                                <div class="row d-flex justify-content-center">
-                                                    <label class="form-label col-sm-2" for="name">Tên:</label>
-                                                    <div class="col-sm-6">
-                                                        <input type="text" class="form-control" id="name">
-                                                    </div>
+                                            <div class="mb-3 row">
+                                                <label for="name" class="col-form-label col-md-3">Name:</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" id="name">
                                                 </div>
                                             </div>
-
-                                            <div class="form-group mb-3">
-                                                <div class="row d-flex justify-content-center">
-                                                    <label class="form-label col-sm-2" for="email">Email:</label>
-                                                    <div class="col-sm-6">
-                                                        <input type="text" class="form-control" id="email">
-                                                    </div>
+                                            <div class="mb-3 row">
+                                                <label for="email" class="col-form-label col-md-3">Email:</label>
+                                                <div class="col-md-9">
+                                                    <input type="email" class="form-control" id="email">
                                                 </div>
                                             </div>
-
-                                            <div class="form-group mb-3">
-                                                <div class="row d-flex justify-content-center">
-                                                    <label class="form-label col-sm-2" for="sdt">SDT:</label>
-                                                    <div class="col-sm-6">
-                                                        <input type="number" class="form-control" id="sdt">
-                                                    </div>
+                                            <div class="mb-3 row">
+                                                <label for="phone" class="col-form-label col-md-3">Phone:</label>
+                                                <div class="col-md-9">
+                                                    <input type="number" class="form-control" id="phone">
                                                 </div>
                                             </div>
-
-                                            <div class="form-group mb-3">
-                                                <div class="row d-flex justify-content-center">
-                                                    <label class="form-label col-sm-2" for="dob">Ngày sinh:</label>
-                                                    <div class="col-sm-6">
-                                                        <input type="date" class="form-control" id="dob">
-                                                    </div>
+                                            <div class="mb-3 row">
+                                                <label for="dob" class="col-form-label col-md-3">Date of Birth:</label>
+                                                <div class="col-md-9">
+                                                    <input type="date" class="form-control" id="dob">
                                                 </div>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="address" class="col-form-label">Địa chỉ:</label>
-                                                <textarea class="form-control" id="address"></textarea>
+                                            <div class="mb-3 row">
+                                                <label for="address" class="col-form-label col-md-3">Address:</label>
+                                                <div class="col-md-9">
+                                                    <textarea class="form-control" id="address"></textarea>
+                                                </div>
                                             </div>
                                         </form>
                                     </div>
@@ -108,8 +99,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div> </div>
                 </div>
 
                 <div class="card mb-4 mb-lg-0">
