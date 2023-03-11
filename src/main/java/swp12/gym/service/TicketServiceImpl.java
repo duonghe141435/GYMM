@@ -21,9 +21,7 @@ public class TicketServiceImpl implements TicketService {
         ticketDao.createTicket(ticket);
     }
 
-    public void updateTickets(Ticket ticket) {
-
-    }
+    public void updateTickets(Ticket ticket, int id) { ticketDao.updateTickets(ticket, id); }
 
     public void deleteTickets(int id_t) {
         ticketDao.deleteAnTicket(id_t);
@@ -37,19 +35,14 @@ public class TicketServiceImpl implements TicketService {
         return null;
     }
 
-    public void createManyTickets() {
-
-    }
+    public void createManyTickets() { }
 
     public int deleteManyTickets() {
         return 0;
     }
 
-    public Ticket find() {
-        return null;
+    public int getNumberTicketInSystem() {
+        return ticketDao.getNumberTicketInSystem();
     }
 
-    public void createNewTicket(Ticket ticket) {
-
-    }
 }

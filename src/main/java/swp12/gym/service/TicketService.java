@@ -17,7 +17,7 @@ public interface TicketService {
     public void createTicket(Ticket ticket);
 
     //Update an tickets
-    public void updateTickets(Ticket ticket);
+    public void updateTickets(Ticket ticket, int id);
 
     //Delete an Tickets (Lock tickets)
     public void deleteTickets(int id_t);
@@ -35,4 +35,7 @@ public interface TicketService {
 
     //Delete many tickets for ...
     public int deleteManyTickets();
+
+
+    public int getNumberTicketInSystem();
 }
