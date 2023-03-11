@@ -41,19 +41,13 @@ public class AdminBaseController {
 
     @RequestMapping(value = "/tickets",method = RequestMethod.GET)
     public String goDashbroashTicket(Model model){
+
         List<Ticket> tickets = ticketService.findAll();
         List<TicketType> ticketTypes = ticketTypeService.findAll();
+
         model.addAttribute("tickets", tickets);
         model.addAttribute("ticketTypes", ticketTypes);
-        model.addAttribute("ticket", new Ticket());
         return "admin/ticket/list_ticket";
-    }
-
-
-    @RequestMapping(value = "/tickets/create",method = RequestMethod.POST)
-    public String createTicket(@ModelAttribute("ticket")Ticket ticket){
-        System.out.println(ticket.toString());
-        return "redirect:/admin/dashboard/tickets";
     }
 
 

@@ -16,12 +16,13 @@ public class UserMapper implements RowMapper<User> {
         user.setU_age(resultSet.getInt("age"));
         user.setU_password(resultSet.getString("password"));
         user.setU_phone_number(resultSet.getString("phone"));
-        user.setU_enable(resultSet.getBoolean("enable"));
+        user.setU_enable(resultSet.getBoolean("enabled"));
         user.setU_gender(resultSet.getInt("gender"));
         user.setU_status(resultSet.getBoolean("status"));
         user.setU_address(resultSet.getString("address"));
         user.setU_identity_card(resultSet.getString("CMND"));
         user.setU_img(resultSet.getString("image"));
+        user.setCreate_date(resultSet.getString("create_date"));
 
         return user;
     }

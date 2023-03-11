@@ -38,13 +38,24 @@ public class TicketDao {
     }
 
     public void createTicket(Ticket ticket) {
-        sql = "INSERT INTO ticket (id_t, tt_id, price, note, total_days, status, name) VALUES (?,?,?,?,?,?,?)";
+        sql = "INSERT INTO ticket (id_t, tt_id, price, note, total_days, status, name, create_date) VALUES (?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql,ticket.getT_id(),ticket.getTt_id(),ticket.getT_price(),
-                ticket.getT_note(),ticket.getT_total_days(),1,ticket.getT_name());
+                ticket.getT_note(),ticket.getT_total_days(),1,ticket.getT_name(), ticket.getCreate_date());
     }
 
     public void deleteAnTicket(int id_t){
         sql = "UPDATE ticket SET status = 0 WHERE id_t = ?";
         jdbcTemplate.update(sql,id_t);
+    }
+
+    public int getNumberTicketInSystem() {
+        sql = "SELECT COUNT(*) FROM ticket";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public void updateTickets(Ticket ticket, int id) {
+        sql = "UPDATE ticket SET name = ?, price = ?, tt_id = ?, total_days = ?, create_date = ? WHERE id_t = ?";
+        jdbcTemplate.update(sql,ticket.getT_name(), ticket.getT_price(), ticket.getTt_id(),
+                ticket.getT_total_days(), ticket.getCreate_date(), id);
     }
 }

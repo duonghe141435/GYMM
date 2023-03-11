@@ -13,13 +13,14 @@ public class User {
     private String u_img;
     private String u_identity_card;
     private boolean u_enable;
+    private String create_date;
 
     public User() {
     }
 
     public User(long u_id, String u_full_name, String u_email, String u_password, int u_age,
                 int u_gender, String u_phone_number, String u_address, boolean u_status,
-                String u_img, String u_identity_card, boolean u_enable) {
+                String u_img, String u_identity_card, boolean u_enable, String create_date) {
         this.u_id = u_id;
         this.u_full_name = u_full_name;
         this.u_email = u_email;
@@ -32,6 +33,7 @@ public class User {
         this.u_img = u_img;
         this.u_identity_card = u_identity_card;
         this.u_enable = u_enable;
+        this.create_date = create_date;
     }
 
     public long getU_id() {
@@ -128,5 +130,13 @@ public class User {
 
     public void setU_enable(boolean u_enable) {
         this.u_enable = u_enable;
+    }
+
+    public String getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
     }
 }

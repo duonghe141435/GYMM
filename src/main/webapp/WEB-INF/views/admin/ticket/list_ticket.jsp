@@ -1,17 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: HongWung
   Date: 3/7/2023
   Time: 4:54 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%--
-  Created by IntelliJ IDEA.
-  User: HongWung
-  Date: 3/7/2023
-  Time: 4:53 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%--
@@ -45,11 +37,14 @@
             <ul class="navbar-nav text-light" id="accordionSidebar">
                 <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
                 </li>
-                <li class="nav-item"><a class="nav-link active" href="/admin/dashboard/users"><i class="fas fa-table"></i><span>Users</span></a>
+                <li class="nav-item"><a class="nav-link active" href="/admin/dashboard/users"><i
+                        class="fas fa-table"></i><span>Users</span></a>
                 </li>
-                <li class="nav-item"><a class="nav-link active" href="/admin/dashboard/tickets"><i class="fas fa-table"></i><span>Tickets</span></a>
+                <li class="nav-item"><a class="nav-link active" href="/admin/dashboard/tickets"><i
+                        class="fas fa-table"></i><span>Tickets</span></a>
                 </li>
-                <li class="nav-item"><a class="nav-link active" href="/admin/dashboard/products"><i class="fas fa-table"></i><span>Product</span></a>
+                <li class="nav-item"><a class="nav-link active" href="/admin/dashboard/products"><i
+                        class="fas fa-table"></i><span>Product</span></a>
                 </li>
             </ul>
             <div class="text-center d-none d-md-inline">
@@ -132,7 +127,7 @@
                                     <h6 class="dropdown-header">alerts center</h6><a
                                         class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                                               src="assets/img/avatars/avatar4.jpeg">
+                                                                               src="/assets/img/avatars/avatar4.jpeg">
                                         <div class="bg-success status-indicator"></div>
                                     </div>
                                     <div class="fw-bold">
@@ -142,7 +137,7 @@
                                     </div>
                                 </a><a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                                               src="assets/img/avatars/avatar2.jpeg">
+                                                                               src="/assets/img/avatars/avatar2.jpeg">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div class="fw-bold">
@@ -152,7 +147,7 @@
                                     </div>
                                 </a><a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                                               src="assets/img/avatars/avatar3.jpeg">
+                                                                               src="/assets/img/avatars/avatar3.jpeg">
                                         <div class="bg-warning status-indicator"></div>
                                     </div>
                                     <div class="fw-bold">
@@ -162,7 +157,7 @@
                                     </div>
                                 </a><a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                                               src="assets/img/avatars/avatar5.jpeg">
+                                                                               src="/assets/img/avatars/avatar5.jpeg">
                                         <div class="bg-success status-indicator"></div>
                                     </div>
                                     <div class="fw-bold">
@@ -183,7 +178,8 @@
                                                                        aria-expanded="false" data-bs-toggle="dropdown"
                                                                        href="#"><span
                                     class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img
-                                    class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+                                    class="border rounded-circle img-profile"
+                                    src="/assets/img/avatars/avatar1.jpeg"></a>
                                 <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
                                         class="dropdown-item" href="#"><i
                                         class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a
@@ -246,59 +242,61 @@
 
                                     <c:forEach items="${tickets}" var="tickets">
 
-                                <tr id="ticket_${tickets.t_id}">
-                                    <td>${tickets.t_id}</td>
-                                    <td>${tickets.t_name}</td>
-                                    <td>${tickets.tt_id}</td>
-                                    <td>${tickets.t_note}</td>
-                                    <td>${tickets.t_price} vnd</td>
-                                    <td>${tickets.t_total_days} ngày</td>
-                                    <td>${tickets.t_status}</td>
-                                    <td>${tickets.create_date}</td>
-                                    <td>
-                                        <a onclick="viewDetailTicket(${tickets.t_id})">
-                                            <i class="fas fa-eye fa-lg fa-fw me-2 text-primary"></i>
-                                        </a>
+                                        <tr id="ticket_${tickets.t_id}">
+                                            <td>${tickets.t_id}</td>
+                                            <td>${tickets.t_name}</td>
+                                            <td>${tickets.tt_id}</td>
+                                            <td>${tickets.t_note}</td>
+                                            <td>${tickets.t_price} vnd</td>
+                                            <td>${tickets.t_total_days} ngày</td>
+                                            <td>${tickets.t_status}</td>
+                                            <td>${tickets.create_date}</td>
+                                            <td>
+                                                <a onclick="viewDetailTicket(${tickets.t_id})" data-bs-toggle="modal"
+                                                   data-bs-target="#exampleModal">
+                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-primary"></i>
+                                                </a>
 
-                                        <a onclick="deleteTicket(${tickets.t_id})">
-                                        <i class="fas fa-trash fa-lg fa-fw me-2 text-danger"
-                                           title="Xóa vé"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                                <a onclick="deleteTicket(${tickets.t_id})">
+                                                    <i class="fas fa-trash fa-lg fa-fw me-2 text-danger"
+                                                       title="Xóa vé"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
 
                                     </c:forEach>
                                 </c:if>
                                 </tbody>
                             </table>
-                            <button type="button" class="btn btn-primary d-flex justify-content-center"  data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Add new
-                            </button>
                         </div>
                         <%--<div class="row">--%>
-                            <%--<div class="col-md-6 align-self-center">--%>
-                                <%--<p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing--%>
-                                    <%--1 to 10 of 27</p>--%>
-                            <%--</div>--%>
-                            <%--<div class="col-md-6">--%>
-                                <%--<nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">--%>
-                                    <%--<ul class="pagination">--%>
-                                        <%--<li class="page-item disabled">--%>
-                                            <%--<a class="page-link" href="#" aria-label="Previous">--%>
-                                                <%--<span aria-hidden="true">«</span>--%>
-                                            <%--</a>--%>
-                                        <%--</li>--%>
-                                        <%--<li class="page-item active">--%>
-                                            <%--<a class="page-link" href="#">1</a></li>--%>
-                                        <%--<li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-                                        <%--<li class="page-item"><a class="page-link" href="#">3</a></li>--%>
-                                        <%--<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span--%>
-                                                <%--aria-hidden="true">»</span></a></li>--%>
-                                    <%--</ul>--%>
-                                <%--</nav>--%>
-                            <%--</div>--%>
+                        <%--<div class="col-md-6 align-self-center">--%>
+                        <%--<p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing--%>
+                        <%--1 to 10 of 27</p>--%>
+                        <%--</div>--%>
+                        <%--<div class="col-md-6">--%>
+                        <%--<nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">--%>
+                        <%--<ul class="pagination">--%>
+                        <%--<li class="page-item disabled">--%>
+                        <%--<a class="page-link" href="#" aria-label="Previous">--%>
+                        <%--<span aria-hidden="true">«</span>--%>
+                        <%--</a>--%>
+                        <%--</li>--%>
+                        <%--<li class="page-item active">--%>
+                        <%--<a class="page-link" href="#">1</a></li>--%>
+                        <%--<li class="page-item"><a class="page-link" href="#">2</a></li>--%>
+                        <%--<li class="page-item"><a class="page-link" href="#">3</a></li>--%>
+                        <%--<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span--%>
+                        <%--aria-hidden="true">»</span></a></li>--%>
+                        <%--</ul>--%>
+                        <%--</nav>--%>
+                        <%--</div>--%>
                         <%--</div>--%>
                     </div>
+                    <button id="addTicket" type="button" class="btn btn-primary d-flex justify-content-center"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Add new
+                    </button>
                 </div>
             </div>
         </div>
@@ -309,17 +307,19 @@
                     <div style="width: 750px;">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button id="btn-close" type="button" class="btn-close " data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                             </div>
                             <div class="py-5">
                                 <div class="container">
-                                    <p class="text-dark h2 text-center">Tạo mới vé tập</p>
-                                    <form:form id="addNewTicketForm" method="POST" action="/admin/dashboard/tickets/create" modelAttribute="ticket">
+                                    <p id="title-form" class="text-dark h2 text-center">Tạo mới vé tập</p>
+
+                                    <div id="addNewTicketForm">
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
                                                 <label class="form-label col-sm-2" for="ticketName">Tên vé:</label>
                                                 <div class="col-sm-6">
-                                                    <form:input type="text" path="t_name" class="form-control" id="ticketName" name="" />
+                                                    <input type="text" class="form-control" id="ticketName" name=""/>
                                                 </div>
                                             </div>
                                         </div>
@@ -328,12 +328,14 @@
                                             <div class="row d-flex justify-content-center">
                                                 <label class="form-label col-sm-2" for="tickeType">Loại vé:</label>
                                                 <div class="col-sm-6">
-                                                    <form:select path="tt_id" id="tickeType" class="form-select" aria-label="Default select example">
-                                                        <option  disabled selected hidden>Chọn loại vé</option>
+                                                    <select id="tickeType" class="form-select">
+
+                                                        <option disabled selected hidden>Chọn loại vé</option>
                                                         <c:forEach items="${ticketTypes}" var="ticketTypes">
-                                                            <form:option value="${ticketTypes.tt_id}">${ticketTypes.name}</form:option>
+                                                            <option value="${ticketTypes.tt_id}">${ticketTypes.name}</option>
                                                         </c:forEach>
-                                                    </form:select>
+
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -342,7 +344,8 @@
                                             <div class="row d-flex justify-content-center">
                                                 <label class="form-label col-sm-2" for="ticketPrice">Giá vé:</label>
                                                 <div class="col-sm-6">
-                                                    <form:input type="text" path="t_price" min="0" class="form-control" id="ticketPrice" name="" />
+                                                    <input type="text"  min="0" class="form-control"
+                                                           id="ticketPrice" name=""/>
                                                 </div>
                                             </div>
                                         </div>
@@ -351,7 +354,9 @@
                                             <div class="row d-flex justify-content-center">
                                                 <label class="form-label col-sm-2" for="t_time">Hạn sử dụng:</label>
                                                 <div class="col-sm-6">
-                                                    <form:input type="number" path="t_total_days" min="1" max="365" placeholder="Total day" class="form-control" id="t_time" name="" />
+                                                    <input type="number" min="1" max="365"
+                                                           placeholder="Total day" class="form-control" id="t_time"
+                                                           name=""/>
                                                 </div>
                                             </div>
                                         </div>
@@ -361,18 +366,19 @@
                                             <div class="row d-flex justify-content-center">
                                                 <label class="form-label col-sm-2" for="createDate">Ngày tạo:</label>
                                                 <div class="col-sm-6">
-                                                    <form:input  path="create_date" type="date" class="form-control" id="createDate" name="" />
+                                                    <input type="date" class="form-control" id="createDate" name=""/>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <button style="width: 200px;" id="btnTickets" class="btn btn-primary btn-block mt-5">Create</button>
+                                                <button style="width: 200px;" id="btnTickets" value="create"
+                                                        class="btn btn-primary btn-block mt-5">Create
+                                                </button>
                                             </div>
                                         </div>
-
-                                    </form:form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -380,31 +386,41 @@
                 </div>
             </div>
         </div>
-
-        <footer class="bg-white sticky-footer">
-            <div class="container my-auto">
-                <div class="text-center my-auto copyright"><span>Copyright © Brand 2023</span></div>
-            </div>
-        </footer>
+        <%@include file="/WEB-INF/views/layouts/admin/footer.jsp"%>
     </div>
 </div>
 
 </body>
 <script src="/assets/js/jquery.min.js"></script>
 <script>
+
+    let id_ticket;
+
+    $("#addTicket").click(function () {
+        $("title-form").html("Tạo mới vé tập")
+        $("#ticketName").val("");
+        $("#ticketPrice").val("");
+        $("#t_time").val("");
+        $("#createDate").val("");
+        $("#btnTickets").html("Thêm mới").prop('value', 'create');
+    });
+
     function viewDetailTicket(u_id) {
         $.ajax({
-            type : 'GET',
-            url : '<c:url value="/admin/ticket-management/" />' + u_id ,
-            dataType : 'json',
-            contentType : 'application/json',
-            success : function(result) {
+            type: 'GET',
+            url: '<c:url value="/admin/ticket-management/" />' + u_id,
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (result) {
+                $("#title-form").html("Cập nhập vé tập")
                 $("#ticketName").val(result.t_name);
                 $("#ticketPrice").val(result.t_price);
                 $("#t_time").val(result.t_total_days);
                 $("#createDate").val(result.create_date);
+                $("#btnTickets").html("Cập nhập").prop('value', 'update');
+                id_ticket = result.t_id;
             },
-            error : function (error) {
+            error: function (error) {
                 console.log(error);
             }
         })
@@ -412,51 +428,59 @@
 
     function deleteTicket(u_id) {
         $.ajax({
-            type : 'DELETE',
-            url : '<c:url value="/admin/ticket-management/" />' + u_id ,
-            success : function(result) {
-                $("#ticket_"+u_id).remove();
+            type: 'DELETE',
+            url: '<c:url value="/admin/ticket-management/" />' + u_id,
+            success: function (result) {
+                $("#ticket_" + u_id).remove();
             },
-            error : function (error) {
+            error: function (error) {
                 console.log(error);
             }
         })
     }
 
-    <%--$("#btnCreateTickets").click(function () {--%>
-        <%--var ticketname =  $("#ticketName").val();--%>
-        <%--var tickettype = $("#tickeType").val();--%>
-        <%--var price = $("#ticketPrice").val();--%>
-        <%--var total_day = $("#Time").val();--%>
-        <%--var create_date = $("#createDate").val();--%>
-
-        <%--$.ajax({--%>
-            <%--type : 'POST',--%>
-            <%--url : '<c:url value="/admin/ticket-management/" />',--%>
-            <%--dataType : 'json',--%>
-            <%--data: {--%>
-                <%--t_name: ticketname,--%>
-                <%--tt_id: tickettype,--%>
-                <%--t_price: price,--%>
-                <%--t_total_days: total_day,--%>
-                <%--create_date: create_date,--%>
-            <%--},--%>
-            <%--contentType : 'application/json',--%>
-            <%--success : function(result) {--%>
-               <%--console.log(result);--%>
-            <%--},--%>
-            <%--error : function (error) {--%>
-                <%--console.log(error);--%>
-            <%--}--%>
-        <%--})--%>
-    <%--})--%>
+    $("#btnTickets").click(function () {
+        var ticketname = $("#ticketName").val();
+        var tickettype = $("#tickeType").val();
+        var price = $("#ticketPrice").val();
+        var total_day = $("#t_time").val();
+        var create_date = $("#createDate").val();
+        var checkacction = $("#btnTickets").val();
+        var method = 'POST'
+        var url = '<c:url value="/admin/ticket-management" />'
+        if (checkacction == 'update') {
+            method = 'PUT';
+            url += "/" + id_ticket;
+        }
+        $.ajax({
+            type: method,
+            url: url,
+            dataType: 'json',
+            data: JSON.stringify({
+                t_name: ticketname,
+                tt_id: parseInt(tickettype),
+                t_price: price,
+                t_total_days: parseInt(total_day),
+                create_date: create_date,
+            }),
+            contentType: 'application/json',
+            success: function (result) {
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        })
+        window.location.href = "http://localhost:8080/admin/dashboard/tickets"
+    })
 
 
 </script>
-<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="/assets/js/bs-init.js"></script>
-<script src="/assets/js/theme.js"></script>
+<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/assets/js/bs-init.js'/>"></script>
+<script src="<c:url value='/assets/js/theme.js'/>"></script>
 
 </html>
+
+
 
 
