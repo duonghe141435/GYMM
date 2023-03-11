@@ -14,7 +14,7 @@ public class ProductMapper implements RowMapper<Product> {
 
         product.setP_id(resultSet.getInt("product_id"));
         product.setP_name(resultSet.getString("name"));
-        product.setP_create_date(resultSet.getDate("added_date"));
+        product.setP_create_date(resultSet.getString("added_date"));
         product.setP_img(resultSet.getString("image"));
 
         return null;
