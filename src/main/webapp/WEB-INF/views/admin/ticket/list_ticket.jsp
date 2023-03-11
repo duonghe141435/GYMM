@@ -305,16 +305,12 @@
                 </div>
             </div>
         </div>
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div style="max-width: 950px; margin-left: 80px">
-                <div class="modal-dialog text-center">
-                    <div style="width: 750px;">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button id="btn-close" type="button" class="btn-close " data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
+        <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                             <div class="py-5">
                                 <div class="container">
                                     <p id="title-form" class="text-dark h2 text-center">Tạo mới vé tập</p>
@@ -387,9 +383,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
-            </div>
         </div>
         <%@include file="/WEB-INF/views/layouts/admin/footer.jsp"%>
     </div>
