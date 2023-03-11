@@ -158,7 +158,11 @@
                         <div class="py-5">
                             <div class="container">
                                 <p class="text-dark h2 text-center">Thêm sản phẩm</p>
-                                <form class="action=">
+                                <form class=""action="">
+                                    <div class="form-group">
+                                        <input type='file' />
+                                        <img id="myImgAdd" src="#">
+                                    </div>
                                     <div class="form-group">
                                         <div class="row d-flex justify-content-center">
                                             <label class="form-label col-sm-4" style="width: 130px;" for="nameAdd">Tên sản phẩm:</label>
@@ -241,8 +245,12 @@
                         <div class="py-5">
                             <div class="container">
                                 <p class="text-dark h2 text-center">Cập nhập sản phẩm</p>
-                                <form class="action=">
+                                <form class=""action="">
                                     <div class="form-group">
+                                        <input type='file' />
+                                        <img id="myImg" src="#">
+                                    </div>
+                            <div class="form-group">
                                         <div class="row d-flex justify-content-center">
                                             <label class="form-label col-sm-4" style="width: 130px;" for="typeofticket">Tên:</label>
                                             <div class="col-sm-6">
@@ -351,6 +359,18 @@
             const start = Date.now();
             alert(start);
         }
+        window.addEventListener('load', function() {
+            document.querySelector('input[type="file"]').addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    var img = document.querySelector('img');
+                    img.onload = () => {
+                        URL.revokeObjectURL(img.src);  // no longer needed, free memory
+                    }
+
+                    img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+                }
+            });
+        });
     </script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
