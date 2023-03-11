@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+nav{
+    background-color: rgb(142, 243, 247);
+}
+
+nav .container img{
+    width: 120px;
+    height: 80px;
+}
+
+section{
+    margin-top: 10rem;
+}
+span.prs{
+    margin-left: 70px;
+}
+
+footer img{
+    width: 200px;
+    height: 100px;
+    margin-left: 55px;
+}
+
+hr{
+    color: white;
+}
