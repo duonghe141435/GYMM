@@ -3,10 +3,10 @@ package swp12.gym.model.entity;
 import java.util.Date;
 
 public class Product {
-    private long p_id;
+    private int p_id;
     private String p_name;
     private String p_title;
-    private Date p_create_date;
+    private String p_create_date;
     private String p_img;
     private int p_unit_id;
     private int p_quantity;
@@ -17,7 +17,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(long p_id, String p_name, String title, Date p_create_date, String p_img, int p_unit_id,
+    public Product(int p_id, String p_name, String title, String p_create_date, String p_img, int p_unit_id,
                    int p_quantity, float p_price, float p_price_original, boolean p_status) {
         this.p_id = p_id;
         this.p_name = p_name;
@@ -34,11 +34,11 @@ public class Product {
     public Product(int p_id, String nuoc_tang_luc_sting, String sting, String s, String demo_img, int p_unit_id, int p_quantity, int p_price, int p_price_original, boolean p_status) {
     }
 
-    public long getP_id() {
+    public int getP_id() {
         return p_id;
     }
 
-    public void setP_id(long p_id) {
+    public void setP_id(int p_id) {
         this.p_id = p_id;
     }
 
@@ -58,11 +58,11 @@ public class Product {
         this.p_title = title;
     }
 
-    public Date getP_create_date() {
+    public String getP_create_date() {
         return p_create_date;
     }
 
-    public void setP_create_date(Date p_create_date) {
+    public void setP_create_date(String p_create_date) {
         this.p_create_date = p_create_date;
     }
 

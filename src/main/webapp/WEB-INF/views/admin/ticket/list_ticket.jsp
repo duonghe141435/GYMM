@@ -228,7 +228,7 @@
                         </div>
                         <div class="table-responsive table mt-2" id="dataTable" role="grid"
                              aria-describedby="dataTable_info">
-                            <table class="table my-0" id="">
+                            <table class="table my-0" id="table_ticket">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -445,7 +445,7 @@
         var total_day = $("#t_time").val();
         var create_date = $("#createDate").val();
         var checkacction = $("#btnTickets").val();
-        var method = 'POST'
+        var method = 'POST';
         var url = '<c:url value="/admin/ticket-management" />'
         if (checkacction == 'update') {
             method = 'PUT';
@@ -463,14 +463,15 @@
                 create_date: create_date,
             }),
             contentType: 'application/json',
-            success: function (result) {
+            success: function (result){
+
             },
             error: function (error) {
                 console.log(error);
             }
-        })
-        window.location.href = "http://localhost:8080/admin/dashboard/tickets"
+        });
     })
+
 
 
 </script>
