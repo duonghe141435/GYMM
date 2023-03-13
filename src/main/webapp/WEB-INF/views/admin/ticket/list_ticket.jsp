@@ -15,8 +15,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -132,19 +130,19 @@
                             </div>
                             <div class="col-md-6">
                                 <%--<nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">--%>
-                                    <%--<ul class="pagination">--%>
-                                        <%--<li class="page-item disabled">--%>
-                                            <%--<a class="page-link" href="#" aria-label="Previous">--%>
-                                                <%--<span aria-hidden="true">«</span>--%>
-                                            <%--</a>--%>
-                                        <%--</li>--%>
-                                        <%--<li class="page-item active">--%>
-                                            <%--<a class="page-link" href="#">1</a></li>--%>
-                                        <%--<li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-                                        <%--<li class="page-item"><a class="page-link" href="#">3</a></li>--%>
-                                        <%--<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span--%>
-                                                <%--aria-hidden="true">»</span></a></li>--%>
-                                    <%--</ul>--%>
+                                <%--<ul class="pagination">--%>
+                                <%--<li class="page-item disabled">--%>
+                                <%--<a class="page-link" href="#" aria-label="Previous">--%>
+                                <%--<span aria-hidden="true">«</span>--%>
+                                <%--</a>--%>
+                                <%--</li>--%>
+                                <%--<li class="page-item active">--%>
+                                <%--<a class="page-link" href="#">1</a></li>--%>
+                                <%--<li class="page-item"><a class="page-link" href="#">2</a></li>--%>
+                                <%--<li class="page-item"><a class="page-link" href="#">3</a></li>--%>
+                                <%--<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span--%>
+                                <%--aria-hidden="true">»</span></a></li>--%>
+                                <%--</ul>--%>
                                 <%--</nav>--%>
                             </div>
                         </div>
@@ -162,81 +160,81 @@
                     <div class="modal-header">
                         <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                            <div class="py-5">
-                                <div class="container">
-                                    <p id="title-form" class="text-dark h2 text-center">Tạo mới vé tập</p>
+                    <div class="py-5">
+                        <div class="container">
+                            <p id="title-form" class="text-dark h2 text-center">Tạo mới vé tập</p>
 
-                                    <div id="addNewTicketForm">
-                                        <div class="form-group">
-                                            <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="ticket_name">Tên vé:</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control" id="ticket_name" name=""/>
-                                                </div>
-                                            </div>
+                            <div id="addNewTicketForm">
+                                <div class="form-group">
+                                    <div class="row d-flex justify-content-center">
+                                        <label class="form-label col-sm-2 mt-3" for="ticket_name">Tên vé:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="ticket_name" name=""/>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="form-group">
-                                            <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="ticket_type">Loại
-                                                    vé:</label>
-                                                <div class="col-sm-6">
-                                                    <select id="ticket_type" class="form-select">
+                                <div class="form-group">
+                                    <div class="row d-flex justify-content-center">
+                                        <label class="form-label col-sm-2 mt-3" for="ticket_type">Loại
+                                            vé:</label>
+                                        <div class="col-sm-6">
+                                            <select id="ticket_type" class="form-select">
 
-                                                        <option disabled selected hidden>Chọn loại vé</option>
-                                                        <c:forEach items="${ticketTypes}" var="ticketTypes">
-                                                            <option value="${ticketTypes.tt_id}">${ticketTypes.name}</option>
-                                                        </c:forEach>
+                                                <option disabled selected hidden>Chọn loại vé</option>
+                                                <c:forEach items="${ticketTypes}" var="ticketTypes">
+                                                    <option value="${ticketTypes.tt_id}">${ticketTypes.name}</option>
+                                                </c:forEach>
 
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            </select>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="form-group">
-                                            <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="ticket_price">Giá vé:</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" min="0" class="form-control" id="ticket_price" name=""/>
-                                                </div>
-                                            </div>
+                                <div class="form-group">
+                                    <div class="row d-flex justify-content-center">
+                                        <label class="form-label col-sm-2 mt-3" for="ticket_price">Giá vé:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" min="0" class="form-control" id="ticket_price" name=""/>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="form-group">
-                                            <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="ticket_day">Hạn sử
-                                                    dụng:</label>
-                                                <div class="col-sm-6">
-                                                    <input type="number" min="1" max="365"
-                                                           placeholder="Total day" class="form-control"
-                                                           id="ticket_day"/>
-                                                </div>
-                                            </div>
+                                <div class="form-group">
+                                    <div class="row d-flex justify-content-center">
+                                        <label class="form-label col-sm-2 mt-3" for="ticket_day">Hạn sử
+                                            dụng:</label>
+                                        <div class="col-sm-6">
+                                            <input type="number" min="1" max="365"
+                                                   placeholder="Total day" class="form-control"
+                                                   id="ticket_day"/>
                                         </div>
+                                    </div>
+                                </div>
 
 
-                                        <div class="form-group">
-                                            <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="ticket_date">Ngày
-                                                    tạo:</label>
-                                                <div class="col-sm-6">
-                                                    <input type="date" class="form-control" id="ticket_date" name=""/>
-                                                </div>
-                                            </div>
+                                <div class="form-group">
+                                    <div class="row d-flex justify-content-center">
+                                        <label class="form-label col-sm-2 mt-3" for="ticket_date">Ngày
+                                            tạo:</label>
+                                        <div class="col-sm-6">
+                                            <input type="date" class="form-control" id="ticket_date" name=""/>
                                         </div>
+                                    </div>
+                                </div>
 
-                                        <div class="form-group">
-                                            <div class="row d-flex justify-content-center">
-                                                <button style="width: 200px;" id="btnTickets" value="create"
-                                                        class="btn btn-primary btn-block mt-5">Create
-                                                </button>
-                                            </div>
-                                        </div>
+                                <div class="form-group">
+                                    <div class="row d-flex justify-content-center">
+                                        <button style="width: 200px;" id="btnTickets" value="create"
+                                                class="btn btn-primary btn-block mt-5">Create
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
+            </div>
         </div>
         <%@include file="/WEB-INF/views/layouts/admin/footer.jsp"%>
     </div>
@@ -269,22 +267,22 @@
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if(result.isConfirmed){
-                    $.ajax({
-                        type: 'DELETE',
-                        url: '<c:url value="/admin/ticket-management/" />' + ids,
-                        success: function (result) {
-                            row.remove();
-                            Swal.fire('Vé đã được xóa!', '', 'success')
-                        },
-                        error: function (error) {
-                            Swal.fire('Lỗi hệ thống', '', 'warning')
-                            console.log(error);
-                        }
-                    });
-                }else if (result.isDenied) {
+                $.ajax({
+                    type: 'DELETE',
+                    url: '<c:url value="/admin/ticket-management/" />' + ids,
+                    success: function (result) {
+                        row.remove();
+                        Swal.fire('Vé đã được xóa!', '', 'success')
+                    },
+                    error: function (error) {
+                        Swal.fire('Lỗi hệ thống', '', 'warning')
+                        console.log(error);
+                    }
+                });
+            }else if (result.isDenied) {
                 Swal.fire('Hành động của bạn đã được thu hồi', '', 'info')
-                }
-            })
+            }
+        })
         });
 
         $("#ticket_table").on('click', '.ticket_view', function () {
@@ -327,6 +325,7 @@
             contentType: 'application/json',
             success: function (respone) {
                 Swal.fire('Thao thác thành công', '', 'info')
+                $.modal.close();
             },
             error: function (error) {
                 Swal.fire('Lỗi thực hiện thao thác này', '', 'error')

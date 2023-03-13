@@ -46,8 +46,11 @@ public class TicketsAPIOfAdmin {
     @PostMapping(value = URL_API, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
     public ResponseEntity<Ticket> createAnProduct(@RequestBody Ticket ticket) {
         try {
+            System.out.println(ticket.toString());
             int id_t = ticketService.getNumberTicketInSystem();
+            System.out.println(id_t);
             ticket.setT_id(id_t + 1);
+            ticket.setT_note("demo");
             ticketService.createTicket(ticket);
             return new ResponseEntity<Ticket>(HttpStatus.OK);
         } catch (Exception e) {
