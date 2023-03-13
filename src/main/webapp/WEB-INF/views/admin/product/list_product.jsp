@@ -20,6 +20,94 @@
             /* Set "my-sec-counter" to 0 */
             counter-reset: my-sec-counter;
         }
+        .containerImg{
+            height: 50px;
+            width: 200px;
+            position: relative;
+        }
+        .containerImg .wrapper{
+            position: relative;
+            height: 250px;
+            width: 100%;
+            border-radius: 10px;
+            background: #fff;
+            border: 2px dashed #c2cdda;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
+        .wrapper.active{
+            border: none;
+        }
+        .wrapper .image{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .wrapper img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        .wrapper .icon{
+            font-size: 100px;
+            color: #9658fe;
+        }
+        .wrapper .text{
+            font-size: 20px;
+            font-weight: 500;
+            color: #5B5B7B;
+        }
+        .wrapper #cancel-btn i{
+            position: absolute;
+            font-size: 20px;
+            right: 15px;
+            top: 15px;
+            color: #FF1493;
+            cursor: pointer;
+            display: none;
+        }
+        .wrapper.active:hover #cancel-btn i{
+            display: block;
+        }
+        .wrapper #cancel-btn i:hover{
+            color: #FF1493;
+        }
+        .wrapper .file-name{
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 18px;
+            color: #fff;
+            display: none;
+            background: linear-gradient(135deg,#00008B 0%,#00BFFF 100%);
+        }
+        .wrapper.active:hover .file-name{
+            display: block;
+        }
+        .containerImg #custom-btn{
+            margin-top: 30px;
+            display: block;
+            width: 100%;
+            height: 50px;
+            border: none;
+            outline: none;
+            border-radius: 25px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            background: linear-gradient(135deg,#00008B 0%,#00BFFF 100%);
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        }
 
         count::before {
             /* Increment "my-sec-counter" by 1 */
@@ -27,6 +115,7 @@
             content: counter(my-sec-counter) ;
         }
         div.modal input,textarea,label,select{margin-top: 13px;}
+        div.modal label{margin-left: 185px; margin-top: 22px;}
     </style>
 </head>
 <body>
@@ -77,7 +166,6 @@
                         <thead>
                         <tr  style="text-align: center;">
                             <th>#</th>
-                            <th>Ảnh</th>
                             <th>Tên</th>
                             <th>Giá bán</th>
                             <th>Ngày thêm</th>
@@ -93,8 +181,7 @@
                         <tr style="text-align: center;">
                             <td><count></count></td>
                             <input type="hidden" class="product_id" name="" value="${tickets.t_id}">
-                            <td class="product_img"><img style="width: 65px; height: 85px;" src="https://kenh14cdn.com/thumb_w/660/2020/7/17/brvn-15950048783381206275371.jpg"/> </td>
-                            <td class="product_name" >Nước lọc</td>
+                             <td class="product_name" >Nước lọc</td>
                             <td class="product_price" ></td>
                             <td class="product_date_add" ></td>
                             <td class="product_oPrice"></td>
@@ -144,9 +231,9 @@
         </div>
     </div>
 
-    <div class="modal fade" id="UAModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg" id="UAModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div >
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div>
                     <div class="modal-content">
                         <div class="modal-header">
@@ -156,10 +243,29 @@
                             <div class="container">
                                 <p id="title_product_form" class="text-dark h2 text-center">Cập nhập sản phẩm</p>
                                 <form class=""action="">
-                                    <div class="form-group d-flex justify-content-center" style="margin-bottom: 13px; margin-top: 30px;">
-                                        <input type='file' />
-                                        <img id="myImg" src="#">
-                                    </div>
+                                    <a onclick="defaultBtnActive()" id="custom-btn">
+                                        <div class="containerImg">
+                                            <div class="wrapper">
+                                                <div class="image">
+                                                    <img src="" alt="Image">
+                                                </div>
+                                                <div class="content">
+                                                    <div class="icon">
+                                                        <i class="fas fa-cloud-upload-alt"></i>
+                                                    </div>
+                                                    <div class="text">
+                                                        Chọn Hình Ảnh
+                                                    </div>
+                                                </div>
+                                                <div id="cancel-btn">
+                                                    <i class="fas fa-times"></i>
+                                                </div>
+                                                <div class="file-name">
+                                                    Tên File
+                                                </div>
+                                            </div>
+                                            <input id="default-btn" type="file" hidden>
+                                        </div></a>
                                     <div class="form-group">
                                         <div class="row d-flex justify-content-center">
                                             <label class="form-label col-sm-4" style="width: 130px;" for="typeofticket">Tên:</label>
@@ -197,20 +303,20 @@
 
                                     <div class="form-group">
                                         <div class="row d-flex justify-content-center">
-                                            <select class="form-select" style="width: 170px; margin-left: 130px;" aria-label="Default select example">
+                                            <select class="form-select" style="width: 320px;margin-top: 5px;margin-right: 5px;margin-left: 315px;" aria-label="Default select example">
                                                 <option  disabled selected hidden selected>Đơn vị</option>
                                                 <option value="1">Chai</option>
                                                 <option value="2">Cái</option>
                                             </select>
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#plusModal" style="width: 40px; text-align: center;" class="btn btn-primary">+</button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#plusModal" style="width: 40px; margin-top: 13px; text-align: center;" class="btn btn-primary">+</button>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <div class="row d-flex justify-content-center">
-                                            <label class="form-label col-sm-2" style="width: 130px;" for="typeoftime">Mô tả sản phẩm:</label>
+                                            <label1 class="form-label col-sm-2" style="width: 170px; margin-top: 70px;" for="typeoftime">Mô tả sản phẩm:</label1>
                                             <div class="col-sm-6">
-                                        <textarea name="txtComment" class="d-flex justify-content-start" style="padding-top: 0px ;width: 240px; font-family: 'Courier New', Courier, monospace;" readonly id="txtComment" rows="5" cols="20">
+                                        <textarea name="txtComment" class="d-flex justify-content-start" style="padding-top: 0px ;width: 450px; font-family: 'Courier New', Courier, monospace;" readonly id="txtComment" rows="5" cols="20">
                                         </textarea>
                                             </div>
                                         </div>
@@ -267,6 +373,21 @@
 </body>
 <script src="/assets/js/jquery.min.js"></script>
 <script>
+
+    function required()
+    {
+        var empt = document.form1.text1.value;
+        if (empt === "")
+        {
+            alert("Please input a Value");
+            return false;
+        }
+        else
+        {
+            alert('Code has accepted : you can try another');
+            return true;
+        }
+    }
 
     window.addEventListener('load', function() {
         document.querySelector('input[type="file"]').addEventListener('change', function() {
@@ -331,6 +452,36 @@
     //     });
     // });
 
+    const wrapper = document.querySelector(".wrapper");
+    const fileName = document.querySelector(".file-name");
+    const defaultBtn = document.querySelector("#default-btn");
+    const customBtn = document.querySelector("#custom-btn");
+    const cancelBtn = document.querySelector("#cancel-btn i");
+    const img = document.querySelector("img");
+    let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+    function defaultBtnActive(){
+        defaultBtn.click();
+    }
+    defaultBtn.addEventListener("change", function(){
+        const file = this.files[0];
+        if(file){
+            const reader = new FileReader();
+            reader.onload = function(){
+                const result = reader.result;
+                img.src = result;
+                wrapper.classList.add("active");
+            }
+            cancelBtn.addEventListener("click", function(){
+                img.src = "";
+                wrapper.classList.remove("active");
+            })
+            reader.readAsDataURL(file);
+        }
+        if(this.value){
+            let valueStore = this.value.match(regExp);
+            fileName.textContent = valueStore;
+        }
+    });
 
 </script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
