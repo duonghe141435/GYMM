@@ -24,9 +24,12 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://103.97.126.23:3306/ulbfkusu_gym_master?useSSL=false"/>
-        <property name="username" value="ulbfkusu_demo"/>
-        <property name="password" value="123123"/>
+        <!--<property name="url" value="jdbc:mysql://103.97.126.23:3306/ulbfkusu_gym_master?useSSL=false"/>-->
+        <!--<property name="username" value="ulbfkusu_demo"/>-->
+        <!--<property name="password" value="123123"/>-->
+        <property name="url" value="jdbc:mysql://localhost:3306/ulbfkusu_gym_master"/>
+        <property name="username" value="root"/>
+        <property name="password" value=""/>
 
     </bean>
 

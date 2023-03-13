@@ -29,7 +29,7 @@ public class ProductAPIOfAdmin {
 
         try{
             List<Product> products = new ArrayList<Product>();
-            products = productDao.getListProductDemo();
+            products = productService.findAll();
             ResponseEntity<List<Product>> responseEntity = new ResponseEntity<List<Product>>(products, HttpStatus.OK);
             return responseEntity;
         }catch (Exception e){

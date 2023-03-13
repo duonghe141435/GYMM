@@ -48,9 +48,7 @@ public class TicketsAPIOfAdmin {
         try {
             int id_t = ticketService.getNumberTicketInSystem();
             ticket.setT_id(id_t + 1);
-            ticket.setT_note("demo");
             ticketService.createTicket(ticket);
-            System.out.println(ticket.toString());
             return new ResponseEntity<Ticket>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<Ticket>(HttpStatus.BAD_REQUEST);

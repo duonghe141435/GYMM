@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: HongWung
@@ -13,6 +12,7 @@
   Time: 18:39
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -21,9 +21,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Table - Brand</title>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
+
     <style>
+        .modal input, select{
+            margin-top: 13px;
+        }
+
+
+        count::before {
+            /* Increment "my-sec-counter" by 1 */
+            counter-increment: my-sec-counter;
+            content: counter(my-sec-counter) ;
+        }
         .modal input, select{
             margin-top: 13px;
         }
@@ -32,179 +43,14 @@
 
 <body id="page-top">
 <div id="wrapper">
-    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
-        <div class="container-fluid d-flex flex-column p-0"><a
-                class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-            <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
-            <div class="sidebar-brand-text mx-3"><span>Brand</span></div>
-        </a>
-            <hr class="sidebar-divider my-0">
-            <ul class="navbar-nav text-light" id="accordionSidebar">
-                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link active" href="/admin/dashboard/users"><i
-                        class="fas fa-table"></i><span>Users</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link active" href="/admin/dashboard/tickets"><i
-                        class="fas fa-table"></i><span>Tickets</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link active" href="/admin/dashboard/products"><i
-                        class="fas fa-table"></i><span>Product</span></a>
-                </li>
-            </ul>
-            <div class="text-center d-none d-md-inline">
-                <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
-            </div>
-        </div>
-    </nav>
+    <%@include file="/WEB-INF/views/layouts/admin/menu.jsp" %>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
-            <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                <div class="container-fluid">
-                    <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i
-                            class="fas fa-bars"></i></button>
-                    <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                                        placeholder="Search for ...">
-                            <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
-                        </div>
-                    </form>
-                    <ul class="navbar-nav flex-nowrap ms-auto">
-                        <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link"
-                                                                            aria-expanded="false"
-                                                                            data-bs-toggle="dropdown" href="#"><i
-                                class="fas fa-search"></i></a>
-                            <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in"
-                                 aria-labelledby="searchDropdown">
-                                <form class="me-auto navbar-search w-100">
-                                    <div class="input-group"><input class="bg-light form-control border-0 small"
-                                                                    type="text" placeholder="Search for ...">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary py-0" type="button"><i
-                                                    class="fas fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
-                                                                       aria-expanded="false" data-bs-toggle="dropdown"
-                                                                       href="#"><span
-                                    class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                    <h6 class="dropdown-header">alerts center</h6><a
-                                        class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="me-3">
-                                        <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div><span class="small text-gray-500">December 12, 2019</span>
-                                        <p>A new monthly report is ready to download!</p>
-                                    </div>
-                                </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="me-3">
-                                        <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div><span class="small text-gray-500">December 7, 2019</span>
-                                        <p>$290.29 has been deposited into your account!</p>
-                                    </div>
-                                </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="me-3">
-                                        <div class="bg-warning icon-circle"><i
-                                                class="fas fa-exclamation-triangle text-white"></i></div>
-                                    </div>
-                                    <div><span class="small text-gray-500">December 2, 2019</span>
-                                        <p>Spending Alert: We've noticed unusually high spending for your account.</p>
-                                    </div>
-                                </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                    Alerts</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
-                                                                       aria-expanded="false" data-bs-toggle="dropdown"
-                                                                       href="#"><span
-                                    class="badge bg-danger badge-counter">7</span><i class="fas fa-envelope fa-fw"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                    <h6 class="dropdown-header">alerts center</h6><a
-                                        class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                                               src="/assets/img/avatars/avatar4.jpeg">
-                                        <div class="bg-success status-indicator"></div>
-                                    </div>
-                                    <div class="fw-bold">
-                                        <div class="text-truncate"><span>Hi there! I am wondering if you can help me with a problem I've been having.</span>
-                                        </div>
-                                        <p class="small text-gray-500 mb-0">Emily Fowler - 58m</p>
-                                    </div>
-                                </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                                               src="/assets/img/avatars/avatar2.jpeg">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div class="fw-bold">
-                                        <div class="text-truncate">
-                                            <span>I have the photos that you ordered last month!</span></div>
-                                        <p class="small text-gray-500 mb-0">Jae Chun - 1d</p>
-                                    </div>
-                                </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                                               src="/assets/img/avatars/avatar3.jpeg">
-                                        <div class="bg-warning status-indicator"></div>
-                                    </div>
-                                    <div class="fw-bold">
-                                        <div class="text-truncate"><span>Last month's report looks great, I am very happy with the progress so far, keep up the good work!</span>
-                                        </div>
-                                        <p class="small text-gray-500 mb-0">Morgan Alvarez - 2d</p>
-                                    </div>
-                                </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image me-3"><img class="rounded-circle"
-                                                                               src="/assets/img/avatars/avatar5.jpeg">
-                                        <div class="bg-success status-indicator"></div>
-                                    </div>
-                                    <div class="fw-bold">
-                                        <div class="text-truncate"><span>Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</span>
-                                        </div>
-                                        <p class="small text-gray-500 mb-0">Chicken the Dog · 2w</p>
-                                    </div>
-                                </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All
-                                    Alerts</a>
-                                </div>
-                            </div>
-                            <div class="shadow dropdown-list dropdown-menu dropdown-menu-end"
-                                 aria-labelledby="alertsDropdown"></div>
-                        </li>
-                        <div class="d-none d-sm-block topbar-divider"></div>
-                        <li class="nav-item dropdown no-arrow">
-                            <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link"
-                                                                       aria-expanded="false" data-bs-toggle="dropdown"
-                                                                       href="#"><span
-                                    class="d-none d-lg-inline me-2 text-gray-600 small">Valerie Luna</span><img
-                                    class="border rounded-circle img-profile"
-                                    src="/assets/img/avatars/avatar1.jpeg"></a>
-                                <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a
-                                        class="dropdown-item" href="#"><i
-                                        class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a
-                                        class="dropdown-item" href="#"><i
-                                        class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a
-                                        class="dropdown-item" href="#"><i
-                                        class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#"><i
-                                            class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
+            <%@include file="/WEB-INF/views/layouts/admin/header.jsp" %>
             <div class="container-fluid">
 
                 <div class="card shadow">
-                    <div class="card-header py-5" >
+                    <div class="card-header py-3">
                         <p class="text-primary m-0 fw-bold">Ticket Info</p>
                     </div>
                     <div class="card-body">
@@ -228,7 +74,7 @@
                         </div>
                         <div class="table-responsive table mt-2" id="dataTable" role="grid"
                              aria-describedby="dataTable_info">
-                            <table class="table my-0" id="table_ticket">
+                            <table class="table my-0" id="ticket_table">
                                 <thead>
                                 <tr>
                                     <th>#</th>
@@ -247,22 +93,27 @@
 
                                     <c:forEach items="${tickets}" var="tickets">
 
-                                        <tr id="ticket_${tickets.t_id}">
-                                            <td>${tickets.t_id}</td>
-                                            <td>${tickets.t_name}</td>
-                                            <td>${tickets.tt_id}</td>
-                                            <td>${tickets.t_note}</td>
-                                            <td>${tickets.t_price} vnd</td>
-                                            <td>${tickets.t_total_days} ngày</td>
-                                            <td>${tickets.t_status}</td>
-                                            <td>${tickets.create_date}</td>
+                                        <tr>
+                                            <td class="ticket_id">${tickets.t_id}</td>
+                                            <td class="ticket_name">${tickets.t_name}</td>
+                                            <td class="ticket_ttids">${tickets.tt_id}</td>
+                                            <td class="ticket_note">${tickets.t_note}</td>
+                                            <td class="ticket_price"><span>${tickets.t_price}</span> vnd</td>
+                                            <td class="ticket_day"><span>${tickets.t_total_days}</span> ngày</td>
                                             <td>
-                                                <a onclick="viewDetailTicket(${tickets.t_id})" data-bs-toggle="modal"
+                                                <c:if test="${tickets.t_status == true}">
+                                                    Đang bán
+                                                </c:if>
+                                            </td>
+                                            <td class="ticket_date">${tickets.create_date}</td>
+
+                                            <td>
+                                                <a class="ticket_view" data-bs-toggle="modal"
                                                    data-bs-target="#exampleModal">
                                                     <i class="fas fa-eye fa-lg fa-fw me-2 text-primary"></i>
                                                 </a>
 
-                                                <a onclick="deleteTicket(${tickets.t_id})">
+                                                <a class="ticket_delete">
                                                     <i class="fas fa-trash fa-lg fa-fw me-2 text-danger"
                                                        title="Xóa vé"></i>
                                                 </a>
@@ -274,31 +125,31 @@
                                 </tbody>
                             </table>
                         </div>
-                        <%--<div class="row">--%>
-                        <%--<div class="col-md-6 align-self-center">--%>
-                        <%--<p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing--%>
-                        <%--1 to 10 of 27</p>--%>
-                        <%--</div>--%>
-                        <%--<div class="col-md-6">--%>
-                        <%--<nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">--%>
-                        <%--<ul class="pagination">--%>
-                        <%--<li class="page-item disabled">--%>
-                        <%--<a class="page-link" href="#" aria-label="Previous">--%>
-                        <%--<span aria-hidden="true">«</span>--%>
-                        <%--</a>--%>
-                        <%--</li>--%>
-                        <%--<li class="page-item active">--%>
-                        <%--<a class="page-link" href="#">1</a></li>--%>
-                        <%--<li class="page-item"><a class="page-link" href="#">2</a></li>--%>
-                        <%--<li class="page-item"><a class="page-link" href="#">3</a></li>--%>
-                        <%--<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span--%>
-                        <%--aria-hidden="true">»</span></a></li>--%>
-                        <%--</ul>--%>
-                        <%--</nav>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
+                        <div class="row">
+                            <div class="col-md-6 align-self-center">
+                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing
+                                    1 to 10 of 27</p>
+                            </div>
+                            <div class="col-md-6">
+                                <%--<nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">--%>
+                                    <%--<ul class="pagination">--%>
+                                        <%--<li class="page-item disabled">--%>
+                                            <%--<a class="page-link" href="#" aria-label="Previous">--%>
+                                                <%--<span aria-hidden="true">«</span>--%>
+                                            <%--</a>--%>
+                                        <%--</li>--%>
+                                        <%--<li class="page-item active">--%>
+                                            <%--<a class="page-link" href="#">1</a></li>--%>
+                                        <%--<li class="page-item"><a class="page-link" href="#">2</a></li>--%>
+                                        <%--<li class="page-item"><a class="page-link" href="#">3</a></li>--%>
+                                        <%--<li class="page-item"><a class="page-link" href="#" aria-label="Next"><span--%>
+                                                <%--aria-hidden="true">»</span></a></li>--%>
+                                    <%--</ul>--%>
+                                <%--</nav>--%>
+                            </div>
+                        </div>
                     </div>
-                    <button id="addTicket" type="button" class="btn btn-primary d-flex justify-content-center"
+                    <button id="ticket_add" type="button" class="btn btn-primary d-flex justify-content-center"
                             data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Add new
                     </button>
@@ -318,18 +169,19 @@
                                     <div id="addNewTicketForm">
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="ticketName">Tên vé:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="ticket_name">Tên vé:</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" class="form-control" id="ticketName" name=""/>
+                                                    <input type="text" class="form-control" id="ticket_name" name=""/>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="tickeType">Loại vé:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="ticket_type">Loại
+                                                    vé:</label>
                                                 <div class="col-sm-6">
-                                                    <select id="tickeType" class="form-select">
+                                                    <select id="ticket_type" class="form-select">
 
                                                         <option disabled selected hidden>Chọn loại vé</option>
                                                         <c:forEach items="${ticketTypes}" var="ticketTypes">
@@ -343,21 +195,21 @@
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="ticketPrice">Giá vé:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="ticket_price">Giá vé:</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text"  min="0" class="form-control"
-                                                           id="ticketPrice" name=""/>
+                                                    <input type="text" min="0" class="form-control" id="ticket_price" name=""/>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="t_time">Hạn sử dụng:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="ticket_day">Hạn sử
+                                                    dụng:</label>
                                                 <div class="col-sm-6">
                                                     <input type="number" min="1" max="365"
-                                                           placeholder="Total day" class="form-control" id="t_time"
-                                                           name=""/>
+                                                           placeholder="Total day" class="form-control"
+                                                           id="ticket_day"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -365,9 +217,10 @@
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2 mt-3" for="createDate">Ngày tạo:</label>
+                                                <label class="form-label col-sm-2 mt-3" for="ticket_date">Ngày
+                                                    tạo:</label>
                                                 <div class="col-sm-6">
-                                                    <input type="date" class="form-control" id="createDate" name=""/>
+                                                    <input type="date" class="form-control" id="ticket_date" name=""/>
                                                 </div>
                                             </div>
                                         </div>
@@ -390,61 +243,71 @@
 </div>
 
 </body>
-<script src="/assets/js/jquery.min.js"></script>
+<script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
 <script>
 
     let id_ticket;
 
-    $("#addTicket").click(function () {
-        $("title-form").html("Tạo mới vé tập")
-        $("#ticketName").val("");
-        $("#ticketPrice").val("");
-        $("#t_time").val("");
-        $("#createDate").val("");
+    $("#ticket_add").click(function () {
+        $("#title-form").html("Tạo mới vé tập")
+        $("#ticket_name").val("");
+        $("#ticket_price").val("");
+        $("#ticket_day").val("");
+        $("#ticket_date").val("");
         $("#btnTickets").html("Thêm mới").prop('value', 'create');
     });
 
-    function viewDetailTicket(u_id) {
-        $.ajax({
-            type: 'GET',
-            url: '<c:url value="/admin/ticket-management/" />' + u_id,
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function (result) {
-                $("#title-form").html("Cập nhập vé tập")
-                $("#ticketName").val(result.t_name);
-                $("#ticketPrice").val(result.t_price);
-                $("#t_time").val(result.t_total_days);
-                $("#createDate").val(result.create_date);
-                $("#btnTickets").html("Cập nhập").prop('value', 'update');
-                id_ticket = result.t_id;
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        })
-    }
+    $(document).ready(function () {
+        $("#ticket_table").on('click', '.ticket_delete', function () {
+            var ids = $(this).parent().siblings('.ticket_id').text();
+            const row = $(this).closest('tr');
+            Swal.fire({
+                title: 'Bạn muốn xóa vé này chứ?',
+                showDenyButton: true,
+                confirmButtonText: 'Xóa',
+                denyButtonText: 'Hoạc tác',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if(result.isConfirmed){
+                    $.ajax({
+                        type: 'DELETE',
+                        url: '<c:url value="/admin/ticket-management/" />' + ids,
+                        success: function (result) {
+                            row.remove();
+                            Swal.fire('Vé đã được xóa!', '', 'success')
+                        },
+                        error: function (error) {
+                            Swal.fire('Lỗi hệ thống', '', 'warning')
+                            console.log(error);
+                        }
+                    });
+                }else if (result.isDenied) {
+                Swal.fire('Hành động của bạn đã được thu hồi', '', 'info')
+                }
+            })
+        });
 
-    function deleteTicket(u_id) {
-        $.ajax({
-            type: 'DELETE',
-            url: '<c:url value="/admin/ticket-management/" />' + u_id,
-            success: function (result) {
-                $("#ticket_" + u_id).remove();
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        })
-    }
+        $("#ticket_table").on('click', '.ticket_view', function () {
+            var ids = $(this).parent().siblings('.ticket_id').text();
+            id_ticket = ids;
+            $("#title-form").html("Cập nhập vé tập")
+            $("#ticket_name").val($(this).parent().siblings('.ticket_name').text());
+            $("#ticket_price").val($(this).parent().siblings('.ticket_price').children('span').text());
+            $("#ticket_day").val($(this).parent().siblings('.ticket_day').children('span').text());
+            $("#ticket_date").val($(this).parent().siblings('.ticket_date').text());
+            $("#ticket_type").val($(this).parent().siblings('.ticket_ttids').text())
+            $("#btnTickets").html("Cập nhập").prop('value', 'update');
+        });
+    });
 
     $("#btnTickets").click(function () {
-        var ticketname = $("#ticketName").val();
-        var tickettype = $("#tickeType").val();
-        var price = $("#ticketPrice").val();
-        var total_day = $("#t_time").val();
-        var create_date = $("#createDate").val();
+        var ticketname = $("#ticket_name").val();
+        var tickettype = $("#ticket_type").val();
+        var price = $("#ticket_price").val();
+        var total_day = $("#ticket_day").val();
+        var create_date = $("#ticket_date").val();
         var checkacction = $("#btnTickets").val();
+
         var method = 'POST';
         var url = '<c:url value="/admin/ticket-management" />'
         if (checkacction == 'update') {
@@ -454,7 +317,6 @@
         $.ajax({
             type: method,
             url: url,
-            dataType: 'json',
             data: JSON.stringify({
                 t_name: ticketname,
                 tt_id: parseInt(tickettype),
@@ -463,22 +325,21 @@
                 create_date: create_date,
             }),
             contentType: 'application/json',
-            success: function (result){
-
+            success: function (respone) {
+                Swal.fire('Thao thác thành công', '', 'info')
             },
             error: function (error) {
-                console.log(error);
+                Swal.fire('Lỗi thực hiện thao thác này', '', 'error')
+                console.log(error)
             }
         });
     })
 
-
-
 </script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<c:url value='/assets/js/bs-init.js'/>"></script>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
-
 </html>
 
 

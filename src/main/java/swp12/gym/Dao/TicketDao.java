@@ -50,7 +50,8 @@ public class TicketDao {
 
     public int getNumberTicketInSystem() {
         sql = "SELECT COUNT(*) FROM ticket";
-        return jdbcTemplate.queryForObject(sql, Integer.class);
+        int number = jdbcTemplate.queryForObject(sql, Integer.class);
+        return number;
     }
 
     public void updateTickets(Ticket ticket, int id) {

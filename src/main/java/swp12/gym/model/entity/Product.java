@@ -5,23 +5,25 @@ import java.util.Date;
 public class Product {
     private int p_id;
     private String p_name;
-    private String p_title;
-    private String p_create_date;
+    private String p_description;
     private String p_img;
     private int p_unit_id;
     private int p_quantity;
     private float p_price;
     private float p_price_original;
     private boolean p_status;
+    private String p_create_date;
+    private int p_kind_id;
+    private boolean enable;
 
     public Product() {
     }
 
-    public Product(int p_id, String p_name, String title, String p_create_date, String p_img, int p_unit_id,
-                   int p_quantity, float p_price, float p_price_original, boolean p_status) {
+    public Product(int p_id, String p_name, String p_description, String p_create_date, String p_img, int p_unit_id,
+                   int p_quantity, float p_price, float p_price_original, boolean p_status, int p_kind_id, boolean enable) {
         this.p_id = p_id;
         this.p_name = p_name;
-        this.p_title = title;
+        this.p_description = p_description;
         this.p_create_date = p_create_date;
         this.p_img = p_img;
         this.p_unit_id = p_unit_id;
@@ -29,9 +31,8 @@ public class Product {
         this.p_price = p_price;
         this.p_price_original = p_price_original;
         this.p_status = p_status;
-    }
-
-    public Product(int p_id, String nuoc_tang_luc_sting, String sting, String s, String demo_img, int p_unit_id, int p_quantity, int p_price, int p_price_original, boolean p_status) {
+        this.p_kind_id = p_kind_id;
+        this.enable = enable;
     }
 
     public int getP_id() {
@@ -50,12 +51,12 @@ public class Product {
         this.p_name = p_name;
     }
 
-    public String getP_title() {
-        return p_title;
+    public String getP_description() {
+        return p_description;
     }
 
-    public void setP_title(String title) {
-        this.p_title = title;
+    public void setP_description(String p_description) {
+        this.p_description = p_description;
     }
 
     public String getP_create_date() {
@@ -110,5 +111,21 @@ public class Product {
 
     public void setP_status(boolean p_status) {
         this.p_status = p_status;
+    }
+
+    public int getP_kind_id() {
+        return p_kind_id;
+    }
+
+    public void setP_kind_id(int p_kind_id) {
+        this.p_kind_id = p_kind_id;
+    }
+
+    public boolean isEnable() {
+        return enable;
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 }
