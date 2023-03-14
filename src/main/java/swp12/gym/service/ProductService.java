@@ -1,5 +1,6 @@
 package swp12.gym.service;
 
+import swp12.gym.dto.ProductDto;
 import swp12.gym.model.entity.Product;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,7 @@ public interface ProductService {
     //===============Many Object===============//
 
     //Get all tickets
-    public List<Product> findAll();
+    public List<ProductDto> findAll();
 
     //Get all tickets for something
     public List<Product> findAllForAttribute();

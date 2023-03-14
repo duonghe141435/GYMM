@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
 
     <style>
-        .modal input, select{
+        .modal input, select, textarea{
             margin-top: 13px;
         }
 
@@ -54,14 +54,32 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label
-                                        class="form-label">Show&nbsp;<select
-                                        class="d-inline-block form-select form-select-sm">
-                                    <option value="10" selected="">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>&nbsp;</label></div>
+                                <div>
+                                    <label class="form-label">Show&nbsp;
+                                        <select class="d-inline-block form-select form-select-sm" style="width: auto">
+                                            <option value="10" selected="">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>&nbsp;
+                                    </label>
+
+                                    <label class="form-label">Loại vé&nbsp;
+                                        <select class="d-inline-block form-select form-select-sm" style="width: auto">
+                                            <option value="1" selected="">Vé vào cửa</option>
+                                            <option value="25">Vé tập với huấn luyện viên</option>
+                                        </select>&nbsp;
+                                    </label>
+
+                                    <label class="form-label">Trạng thái&nbsp;
+                                        <select class="d-inline-block form-select form-select-sm" style="width: auto">
+                                            <option value="1" selected="">Đang bán</option>
+                                            <option value="25">Ngừng bán</option>
+                                        </select>&nbsp;
+                                    </label>
+
+                                </div>
+
                             </div>
                             <div class="col-md-6">
                                 <div class="text-md-end dataTables_filter" id="dataTable_filter"><label
@@ -149,7 +167,7 @@
                     </div>
                     <button id="ticket_add" type="button" class="btn btn-primary d-flex justify-content-center"
                             data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Add new
+                        Thêm vé mới
                     </button>
                 </div>
             </div>
@@ -158,28 +176,27 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="py-5">
                         <div class="container">
-                            <p id="title-form" class="text-dark h2 text-center">Tạo mới vé tập</p>
+                            <p id="title_ticket_form" class="text-dark h2 text-center">Tạo mới vé tập</p>
 
                             <div id="addNewTicketForm">
                                 <div class="form-group">
                                     <div class="row d-flex justify-content-center">
                                         <label class="form-label col-sm-2 mt-3" for="ticket_name">Tên vé:</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="ticket_name" name=""/>
+                                            <input type="text" class="form-control" id="ticket_name" required />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="row d-flex justify-content-center">
-                                        <label class="form-label col-sm-2 mt-3" for="ticket_type">Loại
-                                            vé:</label>
+                                        <label class="form-label col-sm-2 mt-3" for="ticket_type">Loại vé:</label>
                                         <div class="col-sm-6">
-                                            <select id="ticket_type" class="form-select">
+                                            <select id="ticket_type" class="form-select" required>
 
                                                 <option disabled selected hidden>Chọn loại vé</option>
                                                 <c:forEach items="${ticketTypes}" var="ticketTypes">
@@ -195,30 +212,41 @@
                                     <div class="row d-flex justify-content-center">
                                         <label class="form-label col-sm-2 mt-3" for="ticket_price">Giá vé:</label>
                                         <div class="col-sm-6">
-                                            <input type="text" min="0" class="form-control" id="ticket_price" name=""/>
+                                            <input type="number" min="0" class="form-control" id="ticket_price" required />
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <div class="row d-flex justify-content-center">
-                                        <label class="form-label col-sm-2 mt-3" for="ticket_day">Hạn sử
-                                            dụng:</label>
+                                        <label class="form-label col-sm-2 mt-3" for="ticket_day">Hạn sử dụng:</label>
                                         <div class="col-sm-6">
                                             <input type="number" min="1" max="365"
-                                                   placeholder="Total day" class="form-control"
-                                                   id="ticket_day"/>
+                                                   placeholder="Total day" class="form-control" id="ticket_day" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row d-flex justify-content-center">
+                                        <label class="form-label col-sm-2 mt-3" for="ticket_description">Ghi chú:</label>
+                                        <div class="col-sm-6">
+                                           <textarea name="txtComment" class="d-flex justify-content-start"
+                                                     style="padding-top: 0px ;width: 450px; font-family: 'Courier New', Courier, monospace;"
+                                                     id="ticket_description" rows="5" cols="20" required>
+                                            </textarea>
+
                                         </div>
                                     </div>
                                 </div>
 
 
+
                                 <div class="form-group">
                                     <div class="row d-flex justify-content-center">
-                                        <label class="form-label col-sm-2 mt-3" for="ticket_date">Ngày
-                                            tạo:</label>
+                                        <label class="form-label col-sm-2 mt-3" for="ticket_date">Ngày tạo:</label>
                                         <div class="col-sm-6">
-                                            <input type="date" class="form-control" id="ticket_date" name=""/>
+                                            <input type="date" class="form-control" id="ticket_date" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -226,7 +254,7 @@
                                 <div class="form-group">
                                     <div class="row d-flex justify-content-center">
                                         <button style="width: 200px;" id="btnTickets" value="create"
-                                                class="btn btn-primary btn-block mt-5">Create
+                                                class="btn btn-primary btn-block mt-5">Tạo vé
                                         </button>
                                     </div>
                                 </div>
@@ -245,13 +273,17 @@
 <script>
 
     let id_ticket;
+    const today = new Date().toISOString().substr(0, 10);
+    document.querySelector("#ticket_date").value = today;
+
 
     $("#ticket_add").click(function () {
-        $("#title-form").html("Tạo mới vé tập")
+        $("#title_ticket_form").html("Tạo mới vé tập")
         $("#ticket_name").val("");
         $("#ticket_price").val("");
         $("#ticket_day").val("");
         $("#ticket_date").val("");
+        $("#ticket_description").val("")
         $("#btnTickets").html("Thêm mới").prop('value', 'create');
     });
 
@@ -288,12 +320,13 @@
         $("#ticket_table").on('click', '.ticket_view', function () {
             var ids = $(this).parent().siblings('.ticket_id').text();
             id_ticket = ids;
-            $("#title-form").html("Cập nhập vé tập")
+            $("#title_ticket_form").html("Cập nhập vé tập")
             $("#ticket_name").val($(this).parent().siblings('.ticket_name').text());
             $("#ticket_price").val($(this).parent().siblings('.ticket_price').children('span').text());
             $("#ticket_day").val($(this).parent().siblings('.ticket_day').children('span').text());
             $("#ticket_date").val($(this).parent().siblings('.ticket_date').text());
             $("#ticket_type").val($(this).parent().siblings('.ticket_ttids').text())
+            $("#ticket_description").val($(this).parent().siblings('.ticket_note').text())
             $("#btnTickets").html("Cập nhập").prop('value', 'update');
         });
     });
@@ -324,11 +357,15 @@
             }),
             contentType: 'application/json',
             success: function (respone) {
-                Swal.fire('Thao thác thành công', '', 'info')
-                $.modal.close();
+
+                if (checkacction == 'update') {
+                    Swal.fire('Sản phẩm cập nhật thành công thành công', '', 'info')
+                }else{
+                    Swal.fire('Thêm Sản phẩm thành công thành công', '', 'info')
+                }
             },
             error: function (error) {
-                Swal.fire('Lỗi thực hiện thao thác này', '', 'error')
+                Swal.fire('Lỗi hệ thống!!', '', 'error')
                 console.log(error)
             }
         });
