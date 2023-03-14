@@ -93,7 +93,7 @@
             </div>
         </div>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
-            <div class="col">
+            <div class="col vengay">
                 <div class="card border-0 h-100">
                     <div class="card-body d-flex flex-column justify-content-between p-4">
                         <div>
@@ -125,11 +125,12 @@
                                                 <path d="M5 12l5 5l10 -10"></path>
                                             </svg></span><span>Tủ đồ + Phòng tắm</span></li>
                             </ul>
-                        </div><a class="btn btn-primary" role="button" href="#">Button</a>
+                        </div><a class="btn btn-primary" id="btn_dayticket" role="button" data-bs-toggle="modal" data-bs-target="#dayticketinfor">ĐẶT NGAY</a>
                     </div>
                 </div>
             </div>
-            <div class="col">
+
+            <div class="col vethang">
                 <div class="card border-warning border-2 h-100">
                     <div class="card-body d-flex flex-column justify-content-between p-4"><span
                             class="badge bg-warning position-absolute top-0 end-0 rounded-bottom-left text-uppercase text-primary">Most
@@ -163,11 +164,11 @@
                                                 <path d="M5 12l5 5l10 -10"></path>
                                             </svg></span><span>Tủ đồ + Phòng tắm</span></li>
                             </ul>
-                        </div><a class="btn btn-warning" role="button" href="#">Button</a>
+                        </div><a class="btn btn-warning" id="btn_monthticket" role="button" data-bs-toggle="modal" data-bs-target="#monthticketinfor">ĐẾN NGAY</a>
                     </div>
                 </div>
             </div>
-            <div class="col">
+            <div class="col venam">
                 <div class="card border-0 h-100">
                     <div class="card-body d-flex flex-column justify-content-between p-4">
                         <div class="pb-4">
@@ -199,8 +200,134 @@
                                                 <path d="M5 12l5 5l10 -10"></path>
                                             </svg></span><span>Tủ đồ + Phòng tắm</span></li>
                             </ul>
-                        </div><a class="btn btn-primary" role="button" href="#">Button</a>
+                        </div><a class="btn btn-primary" id="btn_yearticket" role="button" data-bs-toggle="modal" data-bs-target="#yearticketinfor">ĐẾN NGAY</a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="dayticketinfor" tabindex="-1" aria-labelledby="dayticketModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="dayticketModalLabel">VÉ NGÀY</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row py-5">
+                        <div class="col-md-4">
+                            <label class="text-dark h5">Giá vé:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-dark h5 ticket-price">${ticket.price} <span>VNĐ</span></p>
+                        </div>
+                    </div>
+                    <div class="row py-5">
+                        <div class="col-md-4">
+                            <label class="text-dark h5">Ngày bắt đầu:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <span id="day-start-date" class="text-dark h5"></span>
+                        </div>
+                    </div>
+                    <div class="row py-5">
+                        <div class="col-md-4">
+                            <label class="text-dark h5">Ngày kết thúc:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <span id="day-end-date" class="text-dark h5"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="monthticketinfor" tabindex="-1" aria-labelledby="monthticketModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="monthticketModalLabel">VÉ THÁNG</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row py-5">
+                        <div class="col-md-4">
+                            <label class="text-dark h5">Giá vé:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-dark h5 ticket-price">${ticket.price}<span>VNĐ</span></p>
+                        </div>
+                    </div>
+                    <div class="row py-5">
+                        <div class="col-md-4">
+                            <label class="text-dark h5">Ngày bắt đầu:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <span id="month-start-date" class="text-dark h5"></span>
+                        </div>
+                    </div>
+                    <div class="row py-5">
+                        <div class="col-md-4">
+                            <label>Ngày kết thúc:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <span id="month-end-date" class="text-dark h5"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="yearticketinfor" tabindex="-1" aria-labelledby="yearticketModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="yearticketModalLabel">VÉ NĂM</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row py-5">
+                        <div class="col-md-4">
+                            <label class="text-dark h5">Giá vé:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="text-dark h5 ticket-price">${ticket.price}<span>VNĐ</span></span>
+                        </div>
+                    </div>
+                    <div class="row py-5">
+                        <div class="col-md-4">
+                            <label class="text-dark h5">Ngày bắt đầu:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <span id="year-start-date" class="text-dark h5"></span>
+                        </div>
+                    </div>
+                    <div class="row py-5">
+                        <div class="col-md-4">
+                            <label class="text-dark h5">Ngày kết thúc:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <span id="year-end-date" class="text-dark h5"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary save">Save</button>
                 </div>
             </div>
         </div>
@@ -286,5 +413,6 @@
 </script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="<c:url value='/assets/js/startup-modern.js'/> "></script>
+<script src="<c:url value='/assets/js/ticket.js'/>"></script>
 </body>
 </html>
