@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Hieuhm
-  Date: 3/9/2023
-  Time: 11:58 AM
+  Date: 3/14/2023
+  Time: 8:28 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -95,15 +95,13 @@
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/test.css">
+    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/order_offline.css'/> ">
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-          integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/> "/>
     <script src="https://kit.fontawesome.com/0d49bb56e3.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 <ul class="nav custom-nav">
     <form autocomplete="off" style="display:flex ;align-items: center;">
@@ -376,21 +374,18 @@
                                 <option value="0" selected>Chọn phường xã</option>
                             </select>
                         </div>
+
                         <div class="form__group field col-5">
                             <input type="input" class="form__field" placeholder="Name" name="name" id='cust_address'
                                    required />
-                            <label for="cust_address" class="form__label" required-field>Địa
-                                chỉ chi
-                                tiết</label>
+                            <label for="cust_address" class="form__label" required-field>Địa chỉ chi tiết</label>
                         </div>
 
                         <div class="form__group field col-5">
                             <input type="input" class="form__field" placeholder="Name" name="name" id='cust_note'
                                    required />
-                            <label for="cust_note" class="form__label">Ghi
-                                chú</label>
+                            <label for="cust_note" class="form__label">Ghi chú</label>
                         </div>
-
                     </div>
                 </div>
 
@@ -465,9 +460,9 @@
         <img src="${pageContext.request.contextPath}/assets_onlinepage/images/electroco.jpg" alt=""
              style="width: 9rem;margin-right: 2rem;">
         <div class="header-info">
-            <h4>ELECTROCO</h4>
-            <p>Chi nhánh Đại Học FPT Hà Nội</p>
-            <p>Địa chỉ: FPT University, P.D317, khu CNC Hòa Lạc</p>
+            <h4>GYMM</h4>
+            <p>Chi nhánh Hòa Lạc</p>
+            <p>Địa chỉ: thôn 3, Thạch Hòa, Thạch Thất, Hà Nội</p>
             <p>ĐT Hotline: 033 625 2948</p>
         </div>
     </div>
@@ -485,7 +480,6 @@
                 <th scope="col" style="border: 1px solid black;">Đơn vị tính</th>
                 <th scope="col" style="border: 1px solid black;">Số lượng</th>
                 <th scope="col" style="border: 1px solid black;">Đơn giá</th>
-                <th scope="col" style="border: 1px solid black;">Thuế(VAT)</th>
                 <th scope="col" style="border: 1px solid black;">Thành tiền</th>
             </tr>
             </thead>
@@ -602,8 +596,11 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="<c:url value='/assets/sweetalert2/sweetalert2.all.min.js'/> "></script>
 //
 <script src="js/test.js"></script>
+
+
 </body>
+
 </html>
