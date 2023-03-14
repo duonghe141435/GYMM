@@ -114,7 +114,7 @@
                                             <td class="ticket_name">${tickets.t_name}</td>
                                             <td class="ticket_ttids">${tickets.tt_id}</td>
                                             <td class="ticket_note">${tickets.t_note}</td>
-                                            <td class="ticket_price"><span>${tickets.t_price}</span> vnd</td>
+                                            <td class="ticket_price"><span>${tickets.t_price}</span></td>
                                             <td class="ticket_day"><span>${tickets.t_total_days}</span> ngày</td>
                                             <td>
                                                 <c:if test="${tickets.t_status == true}">
@@ -371,6 +371,18 @@
         });
     })
 
+    forEach(){
+
+    }
+    const moneyEl = document.querySelector(".ticket_price")
+    // Format money with comma separator and ₫ symbol prefix
+    const formattedMoney = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(moneyEl.innerText);
+
+    // Update the element content with the formatted money
+    moneyEl.innerText = formattedMoney;
 </script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

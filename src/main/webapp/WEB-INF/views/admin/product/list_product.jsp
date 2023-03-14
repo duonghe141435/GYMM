@@ -183,8 +183,8 @@
                                         <td><count></count></td>
                                         <%--<input type="hidden" class="product_id" name="" value="${tickets.t_id}">--%>
                                         <td class="product_name">${productDtos.p_name}</td>
-                                        <td class="product_price"><span>${productDtos.p_price}</span> vnd</td>
-                                        <td class="product_oPrice"><span>${productDtos.p_Oprice}</span> vnd</td>
+                                        <td id="money" class="product_price"><span>${productDtos.p_price}</span> </td>
+                                        <td id="money1" class="product_oPrice"><span>${productDtos.p_Oprice}</span> </td>
                                         <td class="product_date_add">${productDtos.p_create}</td>
                                         <td class="product_quantity">${productDtos.p_quantity}</td>
                                         <td class="product_unit">${productDtos.p_unit_name}</td>
@@ -192,7 +192,7 @@
                                         <td class="product_status">${productDtos.p_status}</td>
                                         <td class="product_kind">${productDtos.p_kind_name}</td>
                                         <td>
-                                            <a class="ticket_view" data-bs-toggle="modal" data-bs-target="#UAModal">
+                                            <a id="update_product" class="ticket_view" data-bs-toggle="modal" data-bs-target="#UAModal">
                                                 <i class="fas fa-eye fa-lg fa-fw me-2 text-primary"></i>
                                             </a>
                                             <a class="ticket_delete">
@@ -229,7 +229,7 @@
                             </div>
                         </div>
                     </div>
-                    <button id="product_add" type="button" class="btn btn-primary d-flex justify-content-center"  data-bs-toggle="modal" data-bs-target="#UAModal">
+                    <button id="add_product" type="button" class="btn btn-primary d-flex justify-content-center"  data-bs-toggle="modal" data-bs-target="#UAModal">
                         Thêm sản phẩm
                     </button>
                 </div>
@@ -251,11 +251,11 @@
                                             <div class="containerImg">
                                                 <div class="wrapper">
                                                     <div class="image">
-                                                        <img src="" alt="Image">
+                                                        <img  id="image_product" src="">
                                                     </div>
                                                     <div class="content">
                                                         <div class="icon">
-                                                            <i class="fas fa-cloud-upload-alt"></i>
+                                                            <i  class="fas fa-cloud-upload-alt"></i>
                                                         </div>
                                                         <div class="text">
                                                             Chọn Hình Ảnh
@@ -269,20 +269,22 @@
                                                     </div>
                                                 </div>
                                                 <input id="default-btn" type="file" hidden>
-                                            </div></a>
+                                            </div>
+                                        </a>
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-4" style="width: 130px;" for="typeofticket">Tên:</label>
+                                                <label class="form-label col-sm-4" style="width: 130px;" for="pr_name">Tên:</label>
                                                 <div class="col-sm-6">
-                                                    <input type="text" class="form-control" id="typeofticket" name="">
+                                                    <input type="text" required class="form-control" id="pr_name" name="">
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2" style="width: 130px;" for="priceUu">Giá bán:</label>
+                                                <label class="form-label col-sm-2" style="width: 130px;" for="price">Giá bán:</label>
                                                 <div class="col-sm-6">
-                                                    <input type="number" min="0" class="form-control" id="priceUu" name="">
+                                                    <input type="number" required min="0" class="form-control" id="price" name="">
                                                 </div>
                                             </div>
                                         </div>
@@ -291,28 +293,44 @@
                                             <div class="row d-flex justify-content-center">
                                                 <label class="form-label col-sm-2" style="width: 130px;" for="quantityUp">Số lượng:</label>
                                                 <div class="col-sm-6">
-                                                    <input type="number" min="1" max="365"  class="form-control" id="quantityUp" name="">
+                                                    <input type="number" required min="1" max="365"  class="form-control" id="quantityUp" name="">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <div class="row d-flex justify-content-center">
-                                                <label class="form-label col-sm-2" style="width: 130px;" for="typeoftime">Giá nhập:</label>
+                                                <label class="form-label col-sm-2" style="width: 130px;" for="oPrice">Giá nhập:</label>
                                                 <div class="col-sm-6">
-                                                    <input type="number" min="0" class="form-control" id="typeoftime" name="">
+                                                    <input type="number" min="0" required class="form-control" id="oPrice" name="">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="form-group">
+
+                                        <div class="form-group" >
                                             <div class="row d-flex justify-content-center">
-                                                <select class="form-select" style="width: 320px;margin-top: 5px;margin-right: 5px;margin-left: 315px;" aria-label="Default select example">
-                                                    <option  disabled selected hidden selected>Đơn vị</option>
-                                                    <option value="1">Chai</option>
-                                                    <option value="2">Cái</option>
-                                                </select>
-                                                <button type="button" data-bs-toggle="modal" data-bs-target="#plusModal" style="width: 40px; margin-top: 13px; text-align: center;" class="btn btn-primary">+</button>
+                                                <label class="form-label col-sm-2 mt-3" >Đơn vị:</label>
+                                                <div class="col-sm-6">
+                                                    <select id="product_unit"  style="width: 320px; float: left;" class="form-select">
+                                                        <option value="1">Chai</option>
+                                                        <option value="2">Cái</option>
+                                                    </select>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#plusModal" style="width: 40px;float: right; margin-top: 13px; text-align: center;">+</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" >
+                                            <div class="row d-flex justify-content-center">
+                                                <label class="form-label col-sm-2 mt-3" >Phân loại:</label>
+                                                <div class="col-sm-6">
+                                                    <select id="product_type"  style="width: 320px; float: left;" class="form-select">
+                                                        <option value="1">Luyện tập</option>
+                                                        <option value="2">Thực phẩm</option>
+                                                    </select>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#plusModal" style="width: 40px;float: right; margin-top: 13px; text-align: center;">+</button>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -399,7 +417,7 @@
     window.addEventListener('load', function() {
         document.querySelector('input[type="file"]').addEventListener('change', function() {
             if (this.files && this.files[0]) {
-                var img = document.querySelector('img');
+                var img = document.getElementById("image_product");
                 img.onload = () => {
                     URL.revokeObjectURL(img.src);  // no longer needed, free memory
                 }
@@ -428,12 +446,12 @@
     $("#update_product").click(function () {
         $("#title_product_form").html("Cập nhập sản phẩm");
         $("#product_img").val($(this).parent().siblings('.product_img').text());
-        $("#product_name").val($(this).parent().siblings('.product_name').text());
-        $("#product_price").val($(this).parent().siblings('.product_price').text());
-        $("#product_quantity").val($(this).parent().siblings('.product_quantity').text());
-        $("#product_oPrice").val($(this).parent().siblings('.product_img').text());
-        $("#product_description").val($(this).parent().siblings('.product_img').text());
-        $("#product_unit").val($(this).parent().siblings('.product_img').text());
+        $("#product_name").val($(this).parent().siblings('.pr_name').text());
+        $("#product_price").val($(this).parent().siblings('.price').text());
+        $("#product_quantity").val($(this).parent().siblings('.quantityUp').text());
+        $("#product_oPrice").val($(this).parent().siblings('.oPrice').text());
+        $("#product_unit").val($(this).parent().siblings('.product_unit').text());
+        $("#product_type").val($(this).parent().siblings('.product_type').text());
         $("#btnAdd").html("Cập nhập").prop('value', 'create');
     });
 
@@ -477,8 +495,24 @@
             let valueStore = this.value.match(regExp);
             fileName.textContent = valueStore;
         }
-    });
 
+    });
+    const moneyEl = document.getElementById('money');
+    const moneyEl1 = document.getElementById('money1');
+    // Format money with comma separator and ₫ symbol prefix
+    const formattedMoney = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(moneyEl.innerText);
+
+    const formattedMoney1 = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    }).format(moneyEl1.innerText);
+
+    // Update the element content with the formatted money
+    moneyEl.innerText = formattedMoney;
+    moneyEl1.innerText = formattedMoney1;
 </script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
