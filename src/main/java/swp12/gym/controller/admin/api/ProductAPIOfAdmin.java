@@ -1,6 +1,7 @@
 package swp12.gym.controller.admin.api;
 
 import swp12.gym.dao.ProductDao;
+import swp12.gym.dto.ProductDto;
 import swp12.gym.model.entity.Product;
 import swp12.gym.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,15 @@ public class ProductAPIOfAdmin {
 
     //Gets a list of Product
     @GetMapping(value = URL_API , produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Product>> getsProduct(){
+    public ResponseEntity<List<ProductDto>> getsProduct(){
 
         try{
-            List<Product> products = new ArrayList<Product>();
-            products = productService.findAll();
-            ResponseEntity<List<Product>> responseEntity = new ResponseEntity<List<Product>>(products, HttpStatus.OK);
+            List<ProductDto> productDtos = new ArrayList<ProductDto>();
+            productDtos = productService.findAll();
+            ResponseEntity<List<ProductDto>> responseEntity = new ResponseEntity<List<ProductDto>>(productDtos, HttpStatus.OK);
             return responseEntity;
         }catch (Exception e){
-            return new ResponseEntity<List<Product>>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<List<ProductDto>>(HttpStatus.BAD_REQUEST);
         }
     }
 

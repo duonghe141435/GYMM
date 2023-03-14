@@ -1,8 +1,10 @@
 package swp12.gym.controller.admin.base;
 
+import swp12.gym.dto.ProductDto;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.TicketType;
 import swp12.gym.model.entity.User;
+import swp12.gym.service.ProductService;
 import swp12.gym.service.TicketService;
 import swp12.gym.service.TicketTypeService;
 import swp12.gym.service.UserService;
@@ -25,6 +27,8 @@ public class AdminBaseController {
     private TicketTypeService ticketTypeService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProductService productService;
 
 
     @RequestMapping(method = RequestMethod.GET)
@@ -52,7 +56,10 @@ public class AdminBaseController {
 
 
     @RequestMapping(value = "/products",method = RequestMethod.GET)
-    public String goDashbroashProdcut(){
+    public String goDashbroashProdcut(Model model){
+        List<ProductDto> productDtos = productService.findAll();
+
+        model.addAttribute("productDtos", productDtos);
         return "admin/product/list_product";
     }
 
