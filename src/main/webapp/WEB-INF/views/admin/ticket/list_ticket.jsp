@@ -183,6 +183,7 @@
                             <p id="title_ticket_form" class="text-dark h2 text-center">Tạo mới vé tập</p>
 
                             <div id="addNewTicketForm">
+                                <form id="updateTicket">
                                 <div class="form-group">
                                     <div class="row d-flex justify-content-center">
                                         <label class="form-label col-sm-2 mt-3" for="ticket_name">Tên vé:</label>
@@ -212,7 +213,7 @@
                                     <div class="row d-flex justify-content-center">
                                         <label class="form-label col-sm-2 mt-3" for="ticket_price">Giá vé:</label>
                                         <div class="col-sm-6">
-                                            <input type="number" min="0" class="form-control" id="ticket_price" required />
+                                            <input type="text" name="price" class="form-control" id="ticket_price" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -258,6 +259,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -295,7 +297,7 @@
                 title: 'Bạn muốn xóa vé này chứ?',
                 showDenyButton: true,
                 confirmButtonText: 'Xóa',
-                denyButtonText: 'Hoạc tác',
+                denyButtonText: 'Hoàn tác',
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if(result.isConfirmed){
@@ -371,18 +373,18 @@
         });
     })
 
-    forEach(){
+    const priceColumn = document.querySelectorAll('.ticket_price');
+    priceColumn.forEach(column => {
+        const price = parseFloat(column.textContent);
+        if (!isNaN(price)) {
+            column.textContent = price.toLocaleString('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
+        }
+    });
 
-    }
-    const moneyEl = document.querySelector(".ticket_price")
-    // Format money with comma separator and ₫ symbol prefix
-    const formattedMoney = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-    }).format(moneyEl.innerText);
 
-    // Update the element content with the formatted money
-    moneyEl.innerText = formattedMoney;
 </script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
