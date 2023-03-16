@@ -1,11 +1,14 @@
 package swp12.gym.dao;
 
+import org.springframework.jdbc.core.RowMapper;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.mapper.TicketMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -49,14 +52,21 @@ public class TicketDao {
     }
 
     public int getNumberTicketInSystem() {
-        sql = "SELECT COUNT(*) FROM ticket";
-        int number = jdbcTemplate.queryForObject(sql, Integer.class);
+        sql = "SELECT COUNT(*) as number_ticket FROM ticket";
+        int number = jdbcTemplate.queryForObject(sql, new RowMapper<Integer>() {
+            public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
+                return resultSet.getInt("number_ticket");
+            }
+        });
         return number;
     }
 
-    public void updateTickets(Ticket ticket, int id) {
-        sql = "UPDATE ticket SET name = ?, price = ?, tt_id = ?, total_days = ?, create_date = ? WHERE id_t = ?";
+    public void updateTickets(Ticket ticket) {
+        System.out.println(ticket.toString());
+        sql = "UPDATE ticket SET name = ?, price = ?, tt_id = ?, total_days = ?, note = ? WHERE id_t = ?";
         jdbcTemplate.update(sql,ticket.getT_name(), ticket.getT_price(), ticket.getTt_id(),
-                ticket.getT_total_days(), ticket.getCreate_date(), id);
+                ticket.getT_total_days(),ticket.getT_note(), ticket.getT_id());
     }
+
+
 }

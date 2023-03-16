@@ -17,6 +17,7 @@ public class TicketDtoMapper implements RowMapper<TicketDto> {
         ticketDto.setT_note(resultSet.getString("t_note"));
         ticketDto.setT_total_days(resultSet.getInt("t_day"));
         ticketDto.setT_status(resultSet.getBoolean("t_status"));
+        ticketDto.setT_price(resultSet.getInt("t_price"));
         ticketDto.setCreate_date(resultSet.getString("t_create_date"));
 
         return ticketDto;

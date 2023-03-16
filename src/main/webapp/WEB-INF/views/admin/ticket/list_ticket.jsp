@@ -21,8 +21,16 @@
     <title>Table - Brand</title>
     <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
+    <script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
+
+        body {
+            /* Set "my-sec-counter" to 0 */
+            counter-reset: my-sec-counter;
+        }
+
         .modal input, select, textarea{
             margin-top: 13px;
         }
@@ -110,29 +118,33 @@
                                     <c:forEach items="${tickets}" var="tickets">
 
                                         <tr>
-                                            <td class="ticket_id">${tickets.t_id}</td>
+                                            <td>
+                                                <count></count>
+                                            </td>
+                                            <td class="ticket_id" style="display: none">${tickets.t_id}</td>
                                             <td class="ticket_name">${tickets.t_name}</td>
-                                            <td class="ticket_ttids">${tickets.tt_id}</td>
+                                            <td class="ticket_ttids">${tickets.tt_name}</td>
                                             <td class="ticket_note">${tickets.t_note}</td>
-                                            <td class="ticket_price"><span>${tickets.t_price}</span></td>
+                                            <td class="ticket_price">${tickets.t_price}</td>
                                             <td class="ticket_day"><span>${tickets.t_total_days}</span> ngày</td>
                                             <td>
                                                 <c:if test="${tickets.t_status == true}">
                                                     Đang bán
                                                 </c:if>
+                                                <c:if test="${tickets.t_status == false}">
+                                                    Ngừng bán
+                                                </c:if>
                                             </td>
                                             <td class="ticket_date">${tickets.create_date}</td>
 
-                                            <td>
-                                                <a class="ticket_view" data-bs-toggle="modal"
-                                                   data-bs-target="#exampleModal">
-                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-primary"></i>
-                                                </a>
+                                            <td><a class="ticket_view" data-bs-toggle="modal" data-bs-target="#update_ticket_modal">
+                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
 
                                                 <a class="ticket_delete">
-                                                    <i class="fas fa-trash fa-lg fa-fw me-2 text-danger"
-                                                       title="Xóa vé"></i>
-                                                </a>
+                                                    <i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Xóa vé"></i></a>
+
+                                                <a class="ticket_delete">
+                                                    <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
                                             </td>
                                         </tr>
 
@@ -172,222 +184,13 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="py-5">
-                        <div class="container">
-                            <p id="title_ticket_form" class="text-dark h2 text-center">Tạo mới vé tập</p>
-
-                            <div id="addNewTicketForm">
-                                <form id="updateTicket">
-                                <div class="form-group">
-                                    <div class="row d-flex justify-content-center">
-                                        <label class="form-label col-sm-2 mt-3" for="ticket_name">Tên vé:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="ticket_name" required />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row d-flex justify-content-center">
-                                        <label class="form-label col-sm-2 mt-3" for="ticket_type">Loại vé:</label>
-                                        <div class="col-sm-6">
-                                            <select id="ticket_type" class="form-select" required>
-
-                                                <option disabled selected hidden>Chọn loại vé</option>
-                                                <c:forEach items="${ticketTypes}" var="ticketTypes">
-                                                    <option value="${ticketTypes.tt_id}">${ticketTypes.name}</option>
-                                                </c:forEach>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row d-flex justify-content-center">
-                                        <label class="form-label col-sm-2 mt-3" for="ticket_price">Giá vé:</label>
-                                        <div class="col-sm-6">
-                                            <input type="text" name="price" class="form-control" id="ticket_price" required/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row d-flex justify-content-center">
-                                        <label class="form-label col-sm-2 mt-3" for="ticket_day">Hạn sử dụng:</label>
-                                        <div class="col-sm-6">
-                                            <input type="number" min="1" max="365"
-                                                   placeholder="Total day" class="form-control" id="ticket_day" required />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row d-flex justify-content-center">
-                                        <label class="form-label col-sm-2 mt-3" for="ticket_description">Ghi chú:</label>
-                                        <div class="col-sm-6">
-                                           <textarea name="txtComment" class="d-flex justify-content-start"
-                                                     style="padding-top: 0px ;width: 450px; font-family: 'Courier New', Courier, monospace;"
-                                                     id="ticket_description" rows="5" cols="20" required>
-                                            </textarea>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <div class="row d-flex justify-content-center">
-                                        <label class="form-label col-sm-2 mt-3" for="ticket_date">Ngày tạo:</label>
-                                        <div class="col-sm-6">
-                                            <input type="date" class="form-control" id="ticket_date" required/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row d-flex justify-content-center">
-                                        <button style="width: 200px;" id="btnTickets" value="create"
-                                                class="btn btn-primary btn-block mt-5">Tạo vé
-                                        </button>
-                                    </div>
-                                </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <%@include file="/WEB-INF/views/layouts/admin/modal_tickets.jsp"%>
         <%@include file="/WEB-INF/views/layouts/admin/footer.jsp"%>
     </div>
 </div>
 
 </body>
-<script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
-<script>
-
-    let id_ticket;
-    const today = new Date().toISOString().substr(0, 10);
-    document.querySelector("#ticket_date").value = today;
-
-
-    $("#ticket_add").click(function () {
-        $("#title_ticket_form").html("Tạo mới vé tập")
-        $("#ticket_name").val("");
-        $("#ticket_price").val("");
-        $("#ticket_day").val("");
-        $("#ticket_date").val("");
-        $("#ticket_description").val("")
-        $("#btnTickets").html("Thêm mới").prop('value', 'create');
-    });
-
-    $(document).ready(function () {
-        $("#ticket_table").on('click', '.ticket_delete', function () {
-            var ids = $(this).parent().siblings('.ticket_id').text();
-            const row = $(this).closest('tr');
-            Swal.fire({
-                title: 'Bạn muốn xóa vé này chứ?',
-                showDenyButton: true,
-                confirmButtonText: 'Xóa',
-                denyButtonText: 'Hoàn tác',
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if(result.isConfirmed){
-                $.ajax({
-                    type: 'DELETE',
-                    url: '<c:url value="/admin/ticket-management/" />' + ids,
-                    success: function (result) {
-                        row.remove();
-                        Swal.fire('Vé đã được xóa!', '', 'success')
-                    },
-                    error: function (error) {
-                        Swal.fire('Lỗi hệ thống', '', 'warning')
-                        console.log(error);
-                    }
-                });
-            }else if (result.isDenied) {
-                Swal.fire('Hành động của bạn đã được thu hồi', '', 'info')
-            }
-        })
-        });
-
-        $("#ticket_table").on('click', '.ticket_view', function () {
-            var ids = $(this).parent().siblings('.ticket_id').text();
-            id_ticket = ids;
-            $("#title_ticket_form").html("Cập nhập vé tập")
-            $("#ticket_name").val($(this).parent().siblings('.ticket_name').text());
-            $("#ticket_price").val($(this).parent().siblings('.ticket_price').children('span').text());
-            $("#ticket_day").val($(this).parent().siblings('.ticket_day').children('span').text());
-            $("#ticket_date").val($(this).parent().siblings('.ticket_date').text());
-            $("#ticket_type").val($(this).parent().siblings('.ticket_ttids').text())
-            $("#ticket_description").val($(this).parent().siblings('.ticket_note').text())
-            $("#btnTickets").html("Cập nhập").prop('value', 'update');
-        });
-    });
-
-    $("#btnTickets").click(function () {
-        var ticketname = $("#ticket_name").val();
-        var tickettype = $("#ticket_type").val();
-        var price = $("#ticket_price").val();
-        var total_day = $("#ticket_day").val();
-        var create_date = $("#ticket_date").val();
-        var checkacction = $("#btnTickets").val();
-
-        var method = 'POST';
-        var url = '<c:url value="/admin/ticket-management" />'
-        if (checkacction == 'update') {
-            method = 'PUT';
-            url += "/" + id_ticket;
-        }
-        $.ajax({
-            type: method,
-            url: url,
-            data: JSON.stringify({
-                t_name: ticketname,
-                tt_id: parseInt(tickettype),
-                t_price: price,
-                t_total_days: parseInt(total_day),
-                create_date: create_date,
-            }),
-            contentType: 'application/json',
-            success: function (respone) {
-
-                if (checkacction == 'update') {
-                    Swal.fire('Sản phẩm cập nhật thành công thành công', '', 'info')
-                }else{
-                    Swal.fire('Thêm Sản phẩm thành công thành công', '', 'info')
-                }
-            },
-            error: function (error) {
-                Swal.fire('Lỗi hệ thống!!', '', 'error')
-                console.log(error)
-            }
-        });
-    })
-
-    const priceColumn = document.querySelectorAll('.ticket_price');
-    priceColumn.forEach(column => {
-        const price = parseFloat(column.textContent);
-        if (!isNaN(price)) {
-            column.textContent = price.toLocaleString('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            });
-        }
-    });
-
-
-</script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<c:url value='/assets/js/bs-init.js'/>"></script>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
 </html>

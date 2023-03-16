@@ -5,7 +5,7 @@ public class TicketDto {
     private String t_name;
     private int tt_id;
     private String tt_name;
-    private float t_price;
+    private int t_price;
     private String t_note;
     private boolean t_status;
     private int t_total_days; // the day ticket is active
@@ -14,7 +14,7 @@ public class TicketDto {
     public TicketDto() {
     }
 
-    public TicketDto(int t_id, String t_name, int tt_id, String tt_name, float t_price,
+    public TicketDto(int t_id, String t_name, int tt_id, String tt_name, int t_price,
                      String t_note, boolean t_status, int t_total_days, String create_date) {
         this.t_id = t_id;
         this.t_name = t_name;
@@ -59,11 +59,11 @@ public class TicketDto {
         this.tt_name = tt_name;
     }
 
-    public float getT_price() {
+    public int getT_price() {
         return t_price;
     }
 
-    public void setT_price(float t_price) {
+    public void setT_price(int t_price) {
         this.t_price = t_price;
     }
 
@@ -97,5 +97,20 @@ public class TicketDto {
 
     public void setCreate_date(String create_date) {
         this.create_date = create_date;
+    }
+
+    @Override
+    public String toString() {
+        return "TicketDto{" +
+                "t_id=" + t_id +
+                ", t_name='" + t_name + '\'' +
+                ", tt_id=" + tt_id +
+                ", tt_name='" + tt_name + '\'' +
+                ", t_price=" + t_price +
+                ", t_note='" + t_note + '\'' +
+                ", t_status=" + t_status +
+                ", t_total_days=" + t_total_days +
+                ", create_date='" + create_date + '\'' +
+                '}';
     }
 }

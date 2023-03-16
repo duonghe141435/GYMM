@@ -1,6 +1,10 @@
 package swp12.gym.controller.admin.base;
 
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import swp12.gym.dto.ProductDto;
+import swp12.gym.dto.TicketDto;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.TicketType;
 import swp12.gym.model.entity.User;
@@ -46,7 +50,7 @@ public class AdminBaseController {
     @RequestMapping(value = "/tickets",method = RequestMethod.GET)
     public String goDashbroashTicket(Model model){
 
-        List<Ticket> tickets = ticketService.findAll();
+        List<TicketDto> tickets = ticketService.findAll();
         List<TicketType> ticketTypes = ticketTypeService.findAll();
 
         model.addAttribute("tickets", tickets);

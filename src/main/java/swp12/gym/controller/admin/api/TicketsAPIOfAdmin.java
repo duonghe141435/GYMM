@@ -1,5 +1,7 @@
 package swp12.gym.controller.admin.api;
 
+import org.springframework.http.MediaType;
+import swp12.gym.dto.TicketDto;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,54 +24,85 @@ public class TicketsAPIOfAdmin {
 
     //Get An Ticket
     @GetMapping(value = URL_API + "/{id}", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Ticket> getAnProduct(@PathVariable int id) {
+    public ResponseEntity<TicketDto> getAnProduct(@PathVariable int id) {
         try {
-            Ticket ticket = ticketService.findAnTicket(id);
-            return new ResponseEntity<Ticket>(ticket, HttpStatus.OK);
+            TicketDto ticket = ticketService.findAnTicket(id);
+            return new ResponseEntity<TicketDto>(ticket, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Ticket>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<TicketDto>(HttpStatus.BAD_REQUEST);
         }
     }
 
     //Update An Product
-    @PutMapping(value = URL_API + "/{id}", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Ticket> updateAnProduct(@RequestBody Ticket ticket, @PathVariable int id) {
-        try {
-            ticketService.updateTickets(ticket, id);
-            return new ResponseEntity<Ticket>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<Ticket>(HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @PutMapping(value = URL_API + "/{id}", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+//    public ResponseEntity<Ticket> updateAnProduct(@RequestBody Ticket ticket, @PathVariable int id) {
+//        try {
+//            ticketService.updateTickets(ticket, id);
+//            return new ResponseEntity<Ticket>(HttpStatus.OK);
+//        } catch (Exception e) {
+//            return new ResponseEntity<Ticket>(HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
 
     //Create An Product
-    @PostMapping(value = URL_API, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Ticket> createAnProduct(@RequestBody Ticket ticket) {
+    @PutMapping(value = URL_API,produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TicketDto> updateAnProduct(@RequestBody TicketDto ticketDto) {
         try {
-            System.out.println(ticket.toString());
-            int id_t = ticketService.getNumberTicketInSystem();
-            System.out.println(id_t);
-            ticket.setT_id(id_t + 1);
-            ticket.setT_note("demo");
-            ticketService.createTicket(ticket);
-            return new ResponseEntity<Ticket>(HttpStatus.OK);
+
+            Ticket ticket = new Ticket();
+            ticket.setT_id(ticketDto.getT_id());
+            ticket.setT_name(ticketDto.getT_name());
+            ticket.setT_price(ticketDto.getT_price());
+            ticket.setT_total_days(ticketDto.getT_total_days());
+            ticket.setTt_id(ticketDto.getTt_id());
+            ticket.setT_note(ticketDto.getT_note());
+
+            ticketService.updateTickets(ticket);
+
+            return new ResponseEntity<TicketDto>(ticketDto,HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<Ticket>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<TicketDto>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //Create An Product
+    @PostMapping(value = URL_API)
+    public ResponseEntity<String> createAnProduct(HttpServletRequest request) {
+        try {
+            String t_name = request.getParameter("t_name");
+            int tt_id = Integer.parseInt(request.getParameter("tt_id"));
+            String t_note = request.getParameter("t_note");
+            int t_price = Integer.parseInt(request.getParameter("t_price"));
+            int t_day = Integer.parseInt(request.getParameter("t_total_days"));
+            String create_date = request.getParameter("create_date");
+
+            int id_t = ticketService.getNumberTicketInSystem() + 1;
+            Ticket ticket = new Ticket();
+            ticket.setT_id(id_t);
+            ticket.setT_note(t_note);
+            ticket.setT_name(t_name);
+            ticket.setT_total_days(t_day);
+            ticket.setCreate_date(create_date);
+            ticket.setT_price(t_price);
+            ticket.setTt_id(tt_id);
+
+            ticketService.createTicket(ticket);
+            return new ResponseEntity<String>(id_t+"",HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
     }
 
     //Gets a list of Tickets
     @GetMapping(value = URL_API, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Ticket>> getsTickets() {
+    public ResponseEntity<List<TicketDto>> getsTickets() {
 
         try {
-            List<Ticket> tickets = new ArrayList<Ticket>();
-            tickets = ticketService.findAll();
-            ResponseEntity<List<Ticket>> responseEntity = new ResponseEntity<List<Ticket>>(tickets, HttpStatus.OK);
-            return responseEntity;
+            List<TicketDto> tickets = ticketService.findAll();
+            return new ResponseEntity<List<TicketDto>>(tickets, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<List<Ticket>>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<List<TicketDto>>(HttpStatus.BAD_REQUEST);
         }
     }
 
