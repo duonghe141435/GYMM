@@ -57,7 +57,7 @@ function getCurrentTime() {
     return hours + ":" + minutes + ":" + seconds;
 }
 
-let btnSave = document.querySelector("#save");
+let btnSave = document.querySelector(".save");
 
 btnSave.addEventListener('click', function(event){
 

@@ -141,9 +141,7 @@ const checkPhoneNumber = () => {
 };
 
 form.addEventListener('submit', function (e) {
-
     e.preventDefault();
-
 
     let isUsernameValid = checkUsername(),
         isPhoneValid = checkPhoneNumber(),
@@ -158,16 +156,34 @@ form.addEventListener('submit', function (e) {
         isConfirmPasswordValid;
 
     if (isFormValid) {
-        let msg = document.getElementById('title');
-        msg.innerHTML = 'You have registered successfully';
-        msg.style.color = 'green';
-
-    }else {
+        // Send registration data using Ajax
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/register');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Redirect to success page
+                window.location.href = '/success';
+            } else {
+                // Display error message
+                let msg = document.getElementById('title');
+                msg.innerHTML = 'Registration failed';
+                msg.style.color = 'red';
+            }
+        };
+        xhr.send(JSON.stringify({
+            name: name.value,
+            phone: phoneNumber.value,
+            email: emailElm.value,
+            password: passwordElm.value
+        }));
+    } else {
         let msg = document.getElementById('title');
         msg.innerHTML = 'Please fill input correctly';
         msg.style.color = 'red';
     }
 });
+
 
 form.addEventListener('input', function (e) {
     switch (e.target.id) {
