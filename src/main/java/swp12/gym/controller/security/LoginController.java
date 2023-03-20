@@ -33,11 +33,10 @@ public class LoginController {
 //                session.setAttribute("role", "admin");
                 return "redirect:/admin/dashboard";
             }
-            if (request.isUserInRole("ROLE_OWNER")) {
-//                session.setAttribute("role", "chief");
-                return "redirect:/owner/dashboard";
+            if (request.isUserInRole("ROlE_CUSTOMER")) {
+//                session.setAttribute("role", "admin");
+                return "redirect:/admin/dashboard";
             }
-
         }
 
         model.addAttribute("message", "wrong_account");

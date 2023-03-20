@@ -1,19 +1,22 @@
 package swp12.gym.service;
 
+import swp12.gym.model.entity.User;
 import org.springframework.stereotype.Service;
-import swp12.gym.model.Entity.Users;
 
 import java.util.List;
 
 @Service
 public interface UserService {
 
-    Users findById(long id);
-    Users findByName(String name);
-    void saveUser(Users user);
-    void updateUser(Users user);
-    void lockUserById(long id);
-    List<Users> findAllUsers();
-    public boolean isUserExist(Users user);
-    int getNumberUserInSystem();
+    //Create an Users
+    public void createUser(User user);
+
+    //Reset password of Users
+    public void resetPassword();
+
+    //Lock account of Users
+    public void lockUser();
+
+    //Get all users
+    public List<User> findAll();
 }

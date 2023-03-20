@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav .container img{
+    width: 100px;
+    height: 80px;
+}
+nav ul.navbar-nav{
+    width: 30rem;
+    padding-left: 3rem;
+}
+
+header{
+    height: 100vh;
+    background-image: url("/assets/img/dogs/6.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    image-rendering: crisp-edges;
+}
+
+header div.container{
+    position: relative;
+    right: 10%;
+    top: 40%;
+}
+
+section.navbar-brand{
+    background-color: rgb(16, 240, 248);
+    height: 15vh;
+}
+
+section.py-4{
+    background-image: url("/assets/img/dogs/5.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    image-rendering: crisp-edges;
+    height: 70vh;
+}
+
+section.py-4 div.pt-4{
+    position: relative;
+    right: 10%;
+    top: 25%;
+}
+
+section.hlv img{
+    width: 300px;
+    height: 300px;
+}
+
+footer img{
+    width: 200px;
+    height: 100px;
+    margin-left: 40px;
+}
+
+footer{
+    width: 100%;
+}
+
+hr{
+    color: white;
+}
+
+#mainNav{
+    background-color: rgb(142, 243, 247) !important;
+}
+
+li.nav-item div.nav-item img{
+    width: 60px;
+}
+
+.container-fluid{
+    margin-left: 1rem;
+}
+
+div.container a.navbar-brand img{
+    margin-left: 5rem;
+    margin-right: 5rem;
+}
+
