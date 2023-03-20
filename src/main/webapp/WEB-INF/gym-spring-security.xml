@@ -9,10 +9,12 @@
     <http auto-config="true">
         <intercept-url pattern="/customer/**"
                        access="hasAnyRole('ROLE_CUSTOMER','ROLE_ADMIN')" />
+        <intercept-url pattern="/owner/**"
+                       access="hasAnyRole('ROLE_OWNER','ROLE_ADMIN')" />
         <intercept-url pattern="/employee/**"
                        access="hasAnyRole('ROLE_EMPLOYEE','ROLE_ADMIN')" />
         <intercept-url pattern="/hlv/**"
-                       access="hasAnyRole('ROLE_TRAINER','ROLE_ADMIN')" />
+                       access="hasAnyRole('ROLE_HLV','ROLE_ADMIN')" />
         <intercept-url pattern="/admin/**"
                        access="hasRole('ROLE_ADMIN')" />
 
