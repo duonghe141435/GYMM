@@ -9,41 +9,41 @@
     <http auto-config="true">
         <intercept-url pattern="/customer/**"
                        access="hasAnyRole('ROLE_CUSTOMER','ROLE_ADMIN')" />
-        <intercept-url pattern="/owner/**"
-                       access="hasAnyRole('ROLE_OWNER','ROLE_ADMIN')" />
         <intercept-url pattern="/employee/**"
                        access="hasAnyRole('ROLE_EMPLOYEE','ROLE_ADMIN')" />
-        <intercept-url pattern="/hlv/**"
-                       access="hasAnyRole('ROLE_HLV','ROLE_ADMIN')" />
+        <intercept-url pattern="/trainer/**"
+                       access="hasAnyRole('ROLE_TRAINER','ROLE_ADMIN')" />
         <intercept-url pattern="/admin/**"
                        access="hasRole('ROLE_ADMIN')" />
 
         <access-denied-handler
                 error-page="/access_denied?message=authorization_error" />
 
-        <form-login login-page="/dang-nhap"
+        <form-login login-page="/login"
                     login-processing-url="/j_spring_security_login"
-                    default-target-url="/kiem-tra-tai-khoan"
-                    authentication-failure-url="/dang-nhap?message=account_error"
+                    default-target-url="/login_success"
+                    authentication-failure-url="/login?message=account_error"
                     username-parameter="email" password-parameter="password" />
 
         <logout logout-url="/j_spring_security_logout"
-                logout-success-url="/dang-nhap?message=logout"
+                logout-success-url="/login?message=logout"
                 delete-cookies="JSESSIONID" />
 
         <session-management
                 session-fixation-protection="newSession"
-                invalid-session-url="/dang-nhap?error=sessionExpired"
-                session-authentication-error-url="/dang-nhap?auth_error=BadCredencials">
+                invalid-session-url="/login?error=sessionExpired"
+                session-authentication-error-url="/login?auth_error=BadCredencials">
             <concurrency-control max-sessions="2" />
         </session-management>
+
+        <remember-me key="uniqueAndSecret" token-validity-seconds="3600"/>
     </http>
 
     <authentication-manager>
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
-                               users-by-username-query="SELECT email, password, enabled FROM users WHERE email=?"
-                               authorities-by-username-query="SELECT users.email, roles.code FROM users, roles, users_roles WHERE users.email =? AND users.id_u = users_roles.u_id AND users_roles.r_id = roles.id_r; " />
+                               users-by-username-query="SELECT username, password, enabled FROM users WHERE username=?"
+                               authorities-by-username-query="SELECT users.username, roles.code FROM users, roles, users_roles WHERE users.username =? AND users.id_u = users_roles.u_id AND users_roles.r_id = roles.id_r; " />
             <password-encoder ref="encoder" />
         </authentication-provider>
     </authentication-manager>
