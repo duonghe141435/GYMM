@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import swp12.gym.model.entity.Role;
 import swp12.gym.service.RoleService;
 import swp12.gym.service.StaffService;
 import swp12.gym.service.TrainerService;

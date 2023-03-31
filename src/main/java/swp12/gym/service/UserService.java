@@ -11,4 +11,6 @@ public interface UserService {
     User getNameAndImgByEmail(String userName);
 
     List<UserDto> findAll();
+
+    int getNumberUserInSystem();
 }
