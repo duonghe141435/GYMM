@@ -20,11 +20,11 @@
     <mvc:resources mapping="/assets/**" location="/assets/" />
 
     <!-- configuring multipart resolver -->
-    <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+    <!--<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />-->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/ulbfkusu_gym_master?"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/ulbfkusu_gym_master"/>
         <property name="username" value="root"/>
         <property name="password" value=""/>
     </bean>

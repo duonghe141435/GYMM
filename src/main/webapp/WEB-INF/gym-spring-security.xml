@@ -42,8 +42,8 @@
     <authentication-manager>
         <authentication-provider>
             <jdbc-user-service data-source-ref="dataSource"
-                               users-by-username-query="SELECT username, password, enabled FROM users WHERE username=?"
-                               authorities-by-username-query="SELECT users.username, roles.code FROM users, roles, users_roles WHERE users.username =? AND users.id_u = users_roles.u_id AND users_roles.r_id = roles.id_r; " />
+                               users-by-username-query="SELECT email, password, enabled FROM users WHERE email=?"
+                               authorities-by-username-query="SELECT users.email, roles.code FROM users, roles, users_roles WHERE users.email =? AND users.id_u = users_roles.u_id AND users_roles.r_id = roles.id_r; " />
             <password-encoder ref="encoder" />
         </authentication-provider>
     </authentication-manager>
