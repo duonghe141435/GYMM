@@ -1,4 +1,4 @@
-package swp12.gym.Controller;
+package swp12.gym.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

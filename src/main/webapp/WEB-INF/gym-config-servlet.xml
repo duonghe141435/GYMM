@@ -19,12 +19,12 @@
     <mvc:annotation-driven />
     <mvc:resources mapping="/assets/**" location="/assets/" />
 
-    <!--&lt;!&ndash; configuring multipart resolver &ndash;&gt;-->
-    <!--<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />-->
+    <!-- configuring multipart resolver -->
+    <bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/gym_master?characterEncoding=UTF-8"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/ulbfkusu_gym_master?"/>
         <property name="username" value="root"/>
         <property name="password" value=""/>
     </bean>
