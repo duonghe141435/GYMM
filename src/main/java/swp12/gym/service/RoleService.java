@@ -7,5 +7,10 @@ import java.util.List;
 
 @Service
 public interface RoleService {
-    List<Role> findAllForAdmin();
+    //Get All Role In System
+    List<Role> findAll();
+    //Save role of User
+    void saveRoleForUser(int id_u, int r_id);
+    //Update role of User
+    void updateRoleForUser(int u_id, int r_id);
 }

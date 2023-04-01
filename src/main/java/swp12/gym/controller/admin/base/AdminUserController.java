@@ -6,10 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import swp12.gym.dto.UserDto;
 import swp12.gym.model.entity.Role;
 import swp12.gym.service.RoleService;
-import swp12.gym.service.StaffService;
-import swp12.gym.service.TrainerService;
 import swp12.gym.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,100 +26,96 @@ public class AdminUserController {
     private UserService userService;
     @Autowired
     private RoleService roleService;
-    @Autowired
-    private StaffService staffService;
-    @Autowired
-    private TrainerService trainerService;
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public String goListUser(Model model){
+    public String goListUser(Model model) {
         List<UserDto> users = userService.findAll();
 
-        model.addAttribute("users",users);
+        model.addAttribute("users", users);
         return "admin/user/list_user";
     }
 
-    @RequestMapping(value = "/new-user",method = RequestMethod.GET)
-    public String goCreateUser(Model model){
-        List<Role> roles = roleService.findAllForAdmin();
+    @RequestMapping(value = "/new-user", method = RequestMethod.GET)
+    public String goCreateUser(Model model) {
+        List<Role> roles = roleService.findAll();
 
         model.addAttribute("roles", roles);
-        model.addAttribute("user",new UserDto());
+        model.addAttribute("user", new UserDto());
         return "admin/user/create_user";
     }
 
-    @RequestMapping(value = "/new-users/save",method = RequestMethod.POST)
+    @RequestMapping(value = "/new-users/save", method = RequestMethod.POST)
     public String goSaveUser(@RequestParam("file-up") CommonsMultipartFile file,
-                             @ModelAttribute("user") UserDto user, HttpSession s, HttpServletRequest request){
+                             @ModelAttribute("user") UserDto user, HttpSession s, HttpServletRequest request) {
 
         int year_experience;
-        String u_img = "/assets/img/avatars/"+file.getOriginalFilename();
+        String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
         int id_u = userService.getNumberUserInSystem() + 1;
         user.setU_id(id_u);
         user.setU_img(u_img);
 
-        user.setU_password(BCrypt.hashpw(user.getU_password(),BCrypt.gensalt(10)));
+        user.setU_password(BCrypt.hashpw(user.getU_password(), BCrypt.gensalt(10)));
 
         userService.createUser(user);
-        UtilsFunctions.doSaveFileToService(file,s,"avatars");
-        if(user.getR_id() == 3){
+//        UtilsFunctions.doSaveFileToService(file,s,"avatars");
+        if (user.getR_id() == 3) {
             year_experience = Integer.parseInt(request.getParameter("extra-info"));
-            trainerService.createNewTrainer(id_u,year_experience);
-        } else if(user.getR_id() == 2){
-            staffService.createNewStaff(id_u);
+            userService.createTrainer(id_u, year_experience);
+        } else if (user.getR_id() == 2) {
+            userService.createStaff(id_u);
         }
         roleService.saveRoleForUser(id_u, user.getR_id());
         return "redirect:/admin/dashboard/users";
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public String goViewUser(@PathVariable int id, Model model){
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String goViewUser(@PathVariable int id, Model model) {
         UserDto userDto = userService.findAnUserById(id);
-        if(userDto.getR_id() == 3){
+        if (userDto.getR_id() == 3) {
 
         }
-        List<Role> roles = roleService.findAllForAdmin();
+        List<Role> roles = roleService.findAll();
 
         model.addAttribute("roles", roles);
-        model.addAttribute("user",userDto);
+        model.addAttribute("user", userDto);
         return "admin/user/update_user";
     }
 
-    @RequestMapping(value = "/update-user",method = RequestMethod.POST)
+    @RequestMapping(value = "/update-user", method = RequestMethod.POST)
     public String goUpdateUser(@RequestParam("file-up") CommonsMultipartFile file,
-                               @ModelAttribute("user") UserDto user, HttpSession s, HttpServletRequest request){
+                               @ModelAttribute("user") UserDto user, HttpSession s, HttpServletRequest request) {
 
         int year_experience;
 
-        if(!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null){
-            String u_img = "/assets/img/avatars/"+file.getOriginalFilename();
-            if(!u_img.equalsIgnoreCase(user.getU_img())){
-                UtilsFunctions.doSaveFileToService(file,s,"avatars");
+        if (!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null) {
+            String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
+            if (!u_img.equalsIgnoreCase(user.getU_img())) {
+//                UtilsFunctions.doSaveFileToService(file,s,"avatars");
                 user.setU_img(u_img);
             }
         }
         userService.updateUser(user);
         roleService.updateRoleForUser(user.getU_id(), user.getR_id());
 
-        if(user.getR_id() == 3){
+        if (user.getR_id() == 3) {
             //kiểm tra xem người dùng này có phải là trainer không
             year_experience = Integer.parseInt(request.getParameter("extra-info"));
-            if(trainerService.checkTrainer(user.getU_id())){
-                trainerService.updateExperienceTrainer(user.getU_id(),year_experience);
-            }else {
-                staffService.deleteStaff(user.getU_id());
-                trainerService.createNewTrainer(user.getU_id(),year_experience);
+            if (userService.isExistsTrainer(user.getU_id())) {
+                userService.updateExperienceTrainer(user.getU_id(), year_experience);
+            } else {
+                userService.deleteStaff(user.getU_id());
+                userService.createTrainer(user.getU_id(), year_experience);
             }
 
-        }
-        else if(user.getR_id() == 2){
+        } else if (user.getR_id() == 2) {
             //kiểm tra xem người dùng này có phải là nhân viên hay không
-            if(staffService.checkStaff(user.getU_id())){
-                trainerService.deleteTrainer(user.getU_id());
-                staffService.createNewStaff(user.getU_id());
+            if (userService.isExistsStaff(user.getU_id())) {
+                userService.deleteTrainer(user.getU_id());
+                userService.createStaff(user.getU_id());
             }
 
         }
         return "redirect:/admin/dashboard/users";
     }
+}
