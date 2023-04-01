@@ -10,6 +10,7 @@ import swp12.gym.dto.UserDto;
 import swp12.gym.model.entity.Role;
 import swp12.gym.service.RoleService;
 import swp12.gym.service.UserService;
+import swp12.gym.utils.ProcessFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -58,7 +59,7 @@ public class AdminUserController {
         user.setU_password(BCrypt.hashpw(user.getU_password(), BCrypt.gensalt(10)));
 
         userService.createUser(user);
-//        UtilsFunctions.doSaveFileToService(file,s,"avatars");
+        ProcessFile.doSaveImgToService(file,s,"avatars");
         if (user.getR_id() == 3) {
             year_experience = Integer.parseInt(request.getParameter("extra-info"));
             userService.createTrainer(id_u, year_experience);
@@ -91,7 +92,7 @@ public class AdminUserController {
         if (!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null) {
             String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
             if (!u_img.equalsIgnoreCase(user.getU_img())) {
-//                UtilsFunctions.doSaveFileToService(file,s,"avatars");
+            ProcessFile.doSaveImgToService(file,s,"avatars");
                 user.setU_img(u_img);
             }
         }
