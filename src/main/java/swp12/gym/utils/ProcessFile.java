@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 
 public class SaveImageFunctions {
 
-    public static String doSaveFileToService(CommonsMultipartFile file, HttpSession s, String root_file){
+    public static String doSaveImgToService(CommonsMultipartFile file, HttpSession s, String root_file){
         try {
             byte[] data = file.getBytes();
             //we have to save this file to server...
