@@ -19,37 +19,49 @@ public class UserServiceImpl implements UserService {
         return usersDao.findAll();
     }
 
-    public User findById(long id) {
-        return usersDao.findById(id);
+    public UserDto findAnUserById(int id) { return usersDao.findAnUserById(id); }
+
+    public User getNameAndImgByEmail(String email) {
+        return usersDao.getNameAndImgByEmail(email);
     }
 
-    public User findByName(String name) {
-        return null;
+    public int getNumberUserInSystem() {
+        return 0;
     }
-
-
-
-    public int getNumberUserInSystem() { return usersDao.getNumberUserInSystem(); }
 
     public void createUser(UserDto user) {
         usersDao.createUser(user);
     }
 
-    public void updateUser(User user) {
+    public void updateUser(UserDto user) {
 
     }
 
-    public void lockUserById(long id) {
+    public void createStaff(int id_u) {
 
     }
 
-    public boolean isUserExist(User user) {
+    public void deleteStaff(int u_id) {
+
+    }
+
+    public boolean isExistsStaff(int u_id) {
         return false;
     }
 
+    public void createTrainer(int id_u, int year_experience) {
 
+    }
 
-    public User getNameAndImgByEmail(String email) {
-        return usersDao.getNameAndImgByEmail(email);
+    public void deleteTrainer(int u_id) {
+
+    }
+
+    public boolean isExistsTrainer(int u_id) {
+        return false;
+    }
+
+    public void updateExperienceTrainer(int u_id, int year_experience) {
+
     }
 }
