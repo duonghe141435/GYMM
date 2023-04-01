@@ -10,27 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3d17186-d0eb-4305-a02d-e8011fe191b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/Dao/RoleDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminUserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/model/entity/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/RoleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/utils/ProcessFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/Dao/UsersDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/Dao/UsersDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/AdminTicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminTicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/AdminUserController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/model/Mapper/TicketClassMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/TicketClassMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/model/Mapper/TicketPersonalTrainerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/TicketPersonalTrainerMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/model/Mapper/UserMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/RoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/RoleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/RoleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/StaffService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/StaffServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TrainerService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TrainerServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java" afterDir="false" />
     </list>
     <ignored path="C:\Users\HongWung\Documents\GitHub\GYMM\.idea\shelf/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -81,6 +61,7 @@
     <session id="1153323677">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.opened" value="2" />
@@ -114,7 +95,7 @@
           <entry key="java" value="542" />
           <entry key="js" value="40" />
           <entry key="jsp" value="32" />
-          <entry key="txt" value="83" />
+          <entry key="txt" value="142" />
           <entry key="xml" value="5" />
         </counts>
       </usages-collector>
@@ -123,7 +104,7 @@
           <entry key="JAVA" value="542" />
           <entry key="JSP" value="32" />
           <entry key="JavaScript" value="40" />
-          <entry key="PLAIN_TEXT" value="83" />
+          <entry key="PLAIN_TEXT" value="142" />
           <entry key="XML" value="5" />
         </counts>
       </usages-collector>
@@ -649,7 +630,7 @@
       <workItem from="1675763185116" duration="262000" />
       <workItem from="1675771892099" duration="107000" />
       <workItem from="1680285415548" duration="7274000" />
-      <workItem from="1680324134762" duration="1161000" />
+      <workItem from="1680324134762" duration="1239000" />
     </task>
     <task id="LOCAL-00001" summary="Update xml config spring">
       <created>1680285825479</created>
@@ -665,11 +646,18 @@
       <option name="project" value="LOCAL" />
       <updated>1680291878104</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="commit: fix code bug AdminUserController">
+      <created>1680325364105</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1680325364105</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11389000" />
+    <option name="totallyTimeSpent" value="11467000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -731,7 +719,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Update xml config spring" />
     <MESSAGE value="Commit Login Form and process login" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit Login Form and process login" />
+    <MESSAGE value="commit: fix code bug AdminUserController" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit: fix code bug AdminUserController" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

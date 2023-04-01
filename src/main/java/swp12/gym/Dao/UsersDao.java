@@ -23,26 +23,47 @@ public class UsersDao {
 
     //Lay tat ca nguoi dung
     public List<UserDto> findAll() {
-        sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
-                "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
-                "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r;";
-        return jdbcTemplate.query(sql, new UserDtoMapper());
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+                    "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r;";
+            return jdbcTemplate.query(sql, new UserDtoMapper());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public Integer getNumberUserInSystem() {
-        sql = "SELECT COUNT(*) FROM users WHERE enabled = 1";
-        return jdbcTemplate.queryForObject(sql, Integer.class);
+    public UserDto findAnUserById(int id) {
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+                    "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE users.id_u = ?;";
+            return jdbcTemplate.queryForObject(sql, new UserDtoMapper(), id);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public User findById(long id){
-        sql = "SELECT * FROM users WHERE id_u = ?;";
-        return jdbcTemplate.queryForObject(sql, new UserMapper(),id);
+    public UserDto findAnUserByEmail(String username) {
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+                    "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE users.email = ?;";
+            return jdbcTemplate.queryForObject(sql, new UserDtoMapper(), username);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void createUser(UserDto userDto) {
         try{
-            sql = "INSERT INTO users (id_u, name, email, password, enabled, gender, phone, address, image, CMND, status, create_date, DOB) " +
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            sql = "INSERT INTO users (id_u, name, email, password, enabled, gender, phone, address, image, CMND, " +
+                    "status, create_date, DOB) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
             jdbcTemplate.update(sql, userDto.getU_id(), userDto.getU_full_name(),userDto.getU_email(), userDto.getU_password(),
                     1, userDto.getU_gender(), userDto.getU_phone_number(), userDto.getU_address(), userDto.getU_img(),
                     userDto.getU_identity_card(), 1,userDto.getU_dob() ,userDto.getU_dob());
@@ -52,19 +73,17 @@ public class UsersDao {
         }
     }
 
-    public void createCustomer(User user) {
-        try{
-            final String hash_pass = BCrypt.hashpw(user.getU_password(),BCrypt.gensalt(10));
-            sql = "INSERT INTO users (name, email, password, enabled) " +
-                    "VALUES (?,?,?,?);";
-            jdbcTemplate.update(sql, user.getU_full_name(),user.getU_email(),hash_pass,1);
-        }
-        catch (Exception e){
+    public void createTrainer(int id_u, int year_experience) {
+        try {
+            sql = "INSERT INTO trainer(id_u, Year_of_experience) VALUES(?,?)";
+            jdbcTemplate.update(sql,id_u, year_experience);
+        }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
-    public User getNameAndImgByEmail(String email) {
+    public User getNameAndImgByEmail(String userName) {
         try{
             sql = "SELECT name, image FROM users WHERE email = ?";
             return jdbcTemplate.queryForObject(sql, new RowMapper<User>() {
@@ -74,7 +93,7 @@ public class UsersDao {
                     user.setU_img(resultSet.getString("image"));
                     return user;
                 }
-            }, email);
+            }, userName);
         }catch (Exception e){
             e.printStackTrace();
             return null;
