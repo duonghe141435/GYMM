@@ -16,6 +16,16 @@ public class UserServiceImpl implements UserService{
         return usersDao.findAll();
     }
 
+    public List<UserDto> findAllTrainer(){ return usersDao.findAllTrainer(); }
+
+    public List<User> findAllTrainerIdAndName() {
+        return usersDao.findAllTrainerIdAndName();
+    }
+
+    public List<UserDto> findAllCustomer(){ return usersDao.findAllCustomer(); }
+
+    public List<UserDto> findAllEmployee(){ return usersDao.findAllEmployee(); }
+
     public UserDto findAnUserById(int id) { return usersDao.findAnUserById(id); }
 
     public User getNameAndImgByEmail(String email) {
@@ -35,15 +45,15 @@ public class UserServiceImpl implements UserService{
     }
 
     public void createStaff(int id_u) {
-
+        usersDao.createStaff(id_u);
     }
 
     public void deleteStaff(int u_id) {
-
+        usersDao.deleteStaff(u_id);
     }
 
     public boolean isExistsStaff(int u_id) {
-        return false;
+        return usersDao.isExistsStaff(u_id) != 0;
     }
 
     public void createTrainer(int id_u, int year_experience) {

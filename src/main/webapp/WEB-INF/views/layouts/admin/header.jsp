@@ -1,37 +1,88 @@
 <%--
   Created by IntelliJ IDEA.
-  User: a5nam
-  Date: 3/31/2023
-  Time: 2:23 PM
+  User: HongWung
+  Date: 3/7/2023
+  Time: 4:59 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+<nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top fixed-top">
     <div class="container-fluid">
-        <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button"><i
-                class="fas fa-bars"></i></button>
-        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                            placeholder="Search for ...">
-                <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i></button>
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="padding: 0 .75rem;">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i></div>
+            <div class="sidebar-brand-text mx-3">
+                <span>Brand</span>
             </div>
-        </form>
-        <ul class="navbar-nav flex-nowrap ms-auto">
-            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
-                                                                data-bs-toggle="dropdown" href="#"><i
-                    class="fas fa-search"></i></a>
-                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                    <form class="me-auto navbar-search w-100">
-                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
-                                                        placeholder="Search for ...">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary py-0" type="button"><i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+        </a>
+        <ul class="navbar-nav text-light" id="accordionSidebar">
+            <li class="nav-item dropdown no-arrow mx-1">
+                <div class="nav-item dropdown no-arrow">
+                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                        <i class="fas fa-user-alt"></i><span>Người dùng hệ thống</span>
+                    </a>
+
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users"/>">Danh sách người dùng hệ thống</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/employee"/>">Danh sách nhân viên</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/trainer"/>">Danh sách huấn luyện viên</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/customer"/>">Danh sách khách hàng</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/log-activity  "/>">Lịch sử tác động</a>
+                    </div>
                 </div>
             </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <div class="nav-item dropdown no-arrow">
+                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                        <i class="fas fa-ticket-alt"></i><span>Vé</span></a>
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket-door"/>">Quản lý vé vào cửa</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket-trainer"/>">Quản lý vé PT cá nhân</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket-class"/>">Quản lý vé lớp học</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <div class="nav-item dropdown no-arrow">
+                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                        <i class="fas fa-user-alt"></i><span>Phòng tập</span>
+                    </a>
+
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý thiết bị</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý sản phẩm</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý huấn luyện viên</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <div class="nav-item dropdown no-arrow">
+                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                        <i class="fas fa-user-alt"></i><span>Sổ quỹ</span>
+                    </a>
+
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý người dùng hệ thống</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý nhân viên</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý huấn luyện viên</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <div class="nav-item dropdown no-arrow">
+                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                        <i class="fas fa-user-alt"></i><span>Báo cáo</span>
+                    </a>
+
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý người dùng hệ thống</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý nhân viên</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý huấn luyện viên</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav flex-nowrap ms-auto">
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
                                                            data-bs-toggle="dropdown" href="#"><span
@@ -117,14 +168,14 @@
             </li>
             <div class="d-none d-sm-block topbar-divider"></div>
             <li class="nav-item dropdown no-arrow">
-                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
-                                                           data-bs-toggle="dropdown" href="#"><span
-                        class="d-none d-lg-inline me-2 text-gray-600 small">${display_name}</span>
+                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                    <span class="d-none d-lg-inline me-2 text-gray-600 small">${display_name}</span>
                     <img class="border rounded-circle img-profile" src="<c:url value="${display_img}"/>"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a
-                            class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a
-                            class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Đổi mật khẩu</a>
 
                         <div class="dropdown-divider"></div>
                         <form action="<c:url value="/j_spring_security_logout"/>" method="POST" class="dropdown-item">

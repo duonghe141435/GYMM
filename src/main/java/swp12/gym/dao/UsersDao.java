@@ -27,6 +27,60 @@ public class UsersDao {
         return jdbcTemplate.query(sql, new UserDtoMapper());
     }
 
+    public List<UserDto> findAllTrainer() {
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+                    "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 3;";
+            return jdbcTemplate.query(sql, new UserDtoMapper());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<User> findAllTrainerIdAndName() {
+        try{
+            sql = "SELECT id_u, name FROM users JOIN users_roles ON users.id_u = users_roles.u_id " +
+                    "WHERE users.enabled = 1 AND users_roles.r_id = 3";
+            return jdbcTemplate.query(sql, new RowMapper<User>() {
+                public User mapRow(ResultSet resultSet, int i) throws SQLException {
+                    User user = new User();
+                    user.setU_id(resultSet.getInt("id_u"));
+                    user.setU_full_name(resultSet.getString("name"));
+                    return user;
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<UserDto> findAllEmployee() {
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+                    "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 2;";
+            return jdbcTemplate.query(sql, new UserDtoMapper());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<UserDto> findAllCustomer() {
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+                    "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 4;";
+            return jdbcTemplate.query(sql, new UserDtoMapper());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public UserDto findAnUserById(int id) {
         sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
                 "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
@@ -77,6 +131,35 @@ public class UsersDao {
         }
     }
 
+    public void createStaff(int id_u) {
+        try{
+            sql = "INSERT INTO staff(id_u) VALUES (?)";
+            jdbcTemplate.update(sql,id_u);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteStaff(int u_id) {
+        try{
+            sql = "DELETE FROM staff WHERE id_u = ?";
+            jdbcTemplate.update(sql,u_id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public int isExistsStaff(int u_id) {
+        try{
+            sql = "SELECT COUNT(*) as number_staff FROM staff WHERE id_u = ?";
+            return jdbcTemplate.queryForObject(sql, Integer.class, u_id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
     public void createTrainer(int id_u, int year_experience) {
         try{
             sql = "INSERT INTO trainer(id_u, Year_of_experience) VALUES(?,?)";
@@ -84,7 +167,6 @@ public class UsersDao {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public int isExistsTrainer(int u_id) {

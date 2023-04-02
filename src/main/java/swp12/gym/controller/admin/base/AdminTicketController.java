@@ -26,31 +26,36 @@ public class AdminTicketController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String goDashbroashTicket(Model model){
-        //get all ticket
-        List<TicketDto> tickets = ticketService.findAll();
+    //Xem tất cả các vé vào cửa
+    @RequestMapping(value = "/ticket-door",method = RequestMethod.GET)
+    public String goTicketDoor(Model model){
+        List<TicketDto> tickets = ticketService.findAllTicketDoor();
 
         model.addAttribute("tickets", tickets);
         return "admin/ticket/list_ticket";
     }
 
-    //Tao ve moi
-    @RequestMapping(value = "/new-ticket",method = RequestMethod.GET)
-    public String goCreateTicket(Model model){
-        List<TicketType> ticketTypes = ticketTypeService.findAll();
+    @RequestMapping(value = "/ticket-trainer", method = RequestMethod.GET)
+    public String goManagementTicketTrainer(Model model){
+        //get all ticket trainer
+        List<User> trainer = userService.findAllTrainerIdAndName();
+        List<TicketDto> tickets = ticketService.findAllTicketTrainer();
 
-        model.addAttribute("ticketTypes", ticketTypes);
-        model.addAttribute("ticket", new Ticket());
-        return "admin/ticket/create_ticket";
+        model.addAttribute("trainer", trainer);
+        model.addAttribute("tickets", tickets);
+        return "admin/ticket/list_ticket_trainer";
     }
 
 
-    //Luu ve moi vao database
-    @RequestMapping(value = "/new-ticket/save",method = RequestMethod.POST)
-    public String goSaveTicket(@ModelAttribute("ticket") Ticket ticket){
-        int id_t = ticketService.getNumberTicketInSystem();
-        ticketService.createTicket(ticket);
-        return "redirect:/admin/dashboard/tickets";
+    @RequestMapping(value = "/ticket-class", method = RequestMethod.GET)
+    public String goManagementTicketClass(Model model){
+        List<User> trainer = userService.findAllTrainer();
+        List<TicketDto> tickets = ticketService.findAllTicketClass();
+
+
+/       model.addAttribute("trainer", trainer);
+        model.addAttribute("tickets", tickets);
+        return "admin/ticket/list_ticket_class";
     }
+
 }

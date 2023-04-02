@@ -9,8 +9,15 @@ import java.util.List;
 @Service
 public interface UserService {
 
-   //Get All User
+    //Get All User
     List<UserDto> findAll();
+    //Get All Trainer
+    List<UserDto> findAllTrainer();
+    List<User> findAllTrainerIdAndName();
+    //Get All Customer
+    List<UserDto> findAllCustomer();
+    //Get All Employee
+    List<UserDto> findAllEmployee();
     //Get An User By Id
     UserDto findAnUserById(int id);
     //Get Name and Email By email of user
