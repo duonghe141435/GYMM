@@ -19,7 +19,14 @@ public interface TicketService {
 
     List<TicketDto> findAllTicketClass();
 
-    int getNumberTicketInSystem();
+    //Create an tickets
+    public void createTicket(String name, String price, String day, int type_id);
 
-    void createTicket(Ticket ticket);
+    //Create an have trainer
+    void createTicketForTrainer(String ticketName, String ticketDay, int i);
+
+    //Create an tickets personal
+    void createPersonalTicket(String id_trainer, String price, int ids);
+
+    int getNumberTicketInSystem();
 }

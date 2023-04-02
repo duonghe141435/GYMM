@@ -2,13 +2,11 @@ package swp12.gym.controller.admin.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import swp12.gym.dto.TicketDto;
-import swp12.gym.model.entity.Ticket;
-import swp12.gym.model.entity.TicketType;
+import swp12.gym.model.entity.User;
 import swp12.gym.service.TicketService;
 import swp12.gym.service.TicketTypeService;
 import swp12.gym.service.TimeService;
@@ -49,11 +47,11 @@ public class AdminTicketController {
 
     @RequestMapping(value = "/ticket-class", method = RequestMethod.GET)
     public String goManagementTicketClass(Model model){
-        List<User> trainer = userService.findAllTrainer();
+        List<User> trainer = userService.findAllTrainerIdAndName();
         List<TicketDto> tickets = ticketService.findAllTicketClass();
 
 
-/       model.addAttribute("trainer", trainer);
+        model.addAttribute("trainer", trainer);
         model.addAttribute("tickets", tickets);
         return "admin/ticket/list_ticket_class";
     }

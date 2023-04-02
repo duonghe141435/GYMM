@@ -8,4 +8,8 @@ import java.util.List;
 @Service
 public interface ProductTypeService {
     List<ProductType> findAll();
+
+    int getTotalItemInSystem();
+
+    void createProductType(int id, String type);
 }

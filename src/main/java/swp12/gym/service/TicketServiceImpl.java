@@ -28,11 +28,20 @@ public class TicketServiceImpl implements TicketService{
         return null;
     }
 
+    public void createTicket(String name, String price, String day, int type_id) {
+        ticketDao.createTicket(name, price,day, type_id);
+    }
+
+    public void createTicketForTrainer(String ticketName, String ticketDay, int i) {
+        ticketDao.createTicketForTrainer(ticketName, ticketDay, i);
+    }
+
+    public void createPersonalTicket(String id_trainer, String price, int ids) {
+        ticketDao.createPersonalTicket(id_trainer, price, ids);
+    }
+
     public int getNumberTicketInSystem() {
-        return 0;
+        return ticketDao.getNumberTicketInSystem();
     }
 
-    public void createTicket(Ticket ticket) {
-
-    }
 }

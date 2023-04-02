@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin/dashboard/users")
+@RequestMapping("/admin/dashboard")
 public class AdminUserController {
 
     private final int IS_ACTIVE = 1;
@@ -28,16 +28,38 @@ public class AdminUserController {
     @Autowired
     private RoleService roleService;
 
-
-    @RequestMapping(method = RequestMethod.GET)
-    public String goListUser(Model model) {
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    public String goListUser(Model model){
         List<UserDto> users = userService.findAll();
 
-        model.addAttribute("users", users);
+        model.addAttribute("users",users);
         return "admin/user/list_user";
     }
 
-    @RequestMapping(value = "/new-user", method = RequestMethod.GET)
+    @RequestMapping(value = "/employee", method = RequestMethod.GET)
+    public String goListEmployee(Model model){
+        List<UserDto> users = userService.findAllEmployee();
+        model.addAttribute("users",users);
+        return "admin/user/list_user";
+    }
+
+    @RequestMapping(value = "/trainer", method = RequestMethod.GET)
+    public String goListTrainer(Model model){
+        List<UserDto> users = userService.findAll();
+
+        model.addAttribute("users",users);
+        return "admin/user/list_user";
+    }
+
+    @RequestMapping(value = "/customer", method = RequestMethod.GET)
+    public String goListCustomer(Model model){
+        List<UserDto> users = userService.findAll();
+
+        model.addAttribute("users",users);
+        return "admin/user/list_user";
+    }
+
+    @RequestMapping(value = "/users/new-user", method = RequestMethod.GET)
     public String goCreateUser(Model model) {
         List<Role> roles = roleService.findAll();
 
@@ -46,7 +68,7 @@ public class AdminUserController {
         return "admin/user/create_user";
     }
 
-    @RequestMapping(value = "/new-users/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/users/save", method = RequestMethod.POST)
     public String goSaveUser(@RequestParam("file-up") CommonsMultipartFile file,
                              @ModelAttribute("user") UserDto user, HttpSession s, HttpServletRequest request) {
 
@@ -68,19 +90,6 @@ public class AdminUserController {
         }
         roleService.saveRoleForUser(id_u, user.getR_id());
         return "redirect:/admin/dashboard/users";
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String goViewUser(@PathVariable int id, Model model) {
-        UserDto userDto = userService.findAnUserById(id);
-        if (userDto.getR_id() == 3) {
-
-        }
-        List<Role> roles = roleService.findAll();
-
-        model.addAttribute("roles", roles);
-        model.addAttribute("user", userDto);
-        return "admin/user/update_user";
     }
 
     @RequestMapping(value = "/update-user", method = RequestMethod.POST)
