@@ -9,18 +9,19 @@ public class UserDto {
     private int u_gender;
     private String u_phone_number;
     private String u_address;
-    private boolean u_status;
     private String u_img;
     private String u_identity_card;
     private int r_id;
-    private boolean u_enable;
+    private String r_name;
+    private int u_enable;
     private String u_create_date;
 
     public UserDto() {
     }
 
     public UserDto(int u_id, String u_full_name, String u_email, String u_password, String u_dob, int u_gender,
-                   String u_phone_number, String u_address, boolean u_status, String u_img, String u_identity_card, int r_id, boolean u_enable, String u_create_date) {
+                   String u_phone_number, String u_address, String u_img, String u_identity_card,
+                   int r_id, String r_name, int u_enable, String u_create_date) {
         this.u_id = u_id;
         this.u_full_name = u_full_name;
         this.u_email = u_email;
@@ -29,10 +30,10 @@ public class UserDto {
         this.u_gender = u_gender;
         this.u_phone_number = u_phone_number;
         this.u_address = u_address;
-        this.u_status = u_status;
         this.u_img = u_img;
         this.u_identity_card = u_identity_card;
         this.r_id = r_id;
+        this.r_name = r_name;
         this.u_enable = u_enable;
         this.u_create_date = u_create_date;
     }
@@ -101,13 +102,9 @@ public class UserDto {
         this.u_address = u_address;
     }
 
-    public boolean isU_status() {
-        return u_status;
-    }
+    public int getU_enable() { return u_enable; }
 
-    public void setU_status(boolean u_status) {
-        this.u_status = u_status;
-    }
+    public void setU_enable(int u_enable) { this.u_enable = u_enable; }
 
     public String getU_img() {
         return u_img;
@@ -133,14 +130,6 @@ public class UserDto {
         this.r_id = r_id;
     }
 
-    public boolean isU_enable() {
-        return u_enable;
-    }
-
-    public void setU_enable(boolean u_enable) {
-        this.u_enable = u_enable;
-    }
-
     public String getU_create_date() {
         return u_create_date;
     }
@@ -148,6 +137,10 @@ public class UserDto {
     public void setU_create_date(String u_create_date) {
         this.u_create_date = u_create_date;
     }
+
+    public String getR_name() { return r_name; }
+
+    public void setR_name(String r_name) { this.r_name = r_name; }
 
     @Override
     public String toString() {
@@ -160,7 +153,6 @@ public class UserDto {
                 ", u_gender=" + u_gender +
                 ", u_phone_number='" + u_phone_number + '\'' +
                 ", u_address='" + u_address + '\'' +
-                ", u_status=" + u_status +
                 ", u_img='" + u_img + '\'' +
                 ", u_identity_card='" + u_identity_card + '\'' +
                 ", r_id=" + r_id +

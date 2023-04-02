@@ -8,6 +8,7 @@ import swp12.gym.model.entity.User;
 import java.util.List;
 
 public class UserServiceImpl implements UserService{
+
     @Autowired
     private UsersDao usersDao;
 
@@ -46,20 +47,18 @@ public class UserServiceImpl implements UserService{
     }
 
     public void createTrainer(int id_u, int year_experience) {
-
+        usersDao.createTrainer(id_u, year_experience);
     }
 
     public void deleteTrainer(int u_id) {
-
+        usersDao.deleteTrainer(u_id);
     }
 
     public boolean isExistsTrainer(int u_id) {
-        return false;
+        return usersDao.isExistsTrainer(u_id) != 0;
     }
 
     public void updateExperienceTrainer(int u_id, int year_experience) {
-
+        usersDao.updateExperienceTrainer(u_id, year_experience);
     }
-
-
 }

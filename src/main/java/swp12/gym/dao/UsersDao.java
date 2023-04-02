@@ -22,7 +22,7 @@ public class UsersDao {
     //Lay tat ca nguoi dung
     public List<UserDto> findAll() {
         sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
-                "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date, r.description\n" +
                 "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r;";
         return jdbcTemplate.query(sql, new UserDtoMapper());
     }
@@ -59,10 +59,6 @@ public class UsersDao {
         }
     }
 
-    public void createTrainer(int id_u, int year_experience) {
-        sql = "INSERT INTO trainer(id_u, Year_of_experience) VALUES(?,?)";
-        jdbcTemplate.update(sql,id_u, year_experience);
-    }
 
     public User getNameAndImgByEmail(String userName) {
         try{
@@ -78,6 +74,44 @@ public class UsersDao {
         }catch (Exception e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void createTrainer(int id_u, int year_experience) {
+        try{
+            sql = "INSERT INTO trainer(id_u, Year_of_experience) VALUES(?,?)";
+            jdbcTemplate.update(sql,id_u, year_experience);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public int isExistsTrainer(int u_id) {
+        try {
+            sql = "SELECT COUNT(*) as number_trainer FROM trainer WHERE id_u = ?";
+            return jdbcTemplate.queryForObject(sql, Integer.class, u_id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public void updateExperienceTrainer(int u_id, int year_experience) {
+        try {
+            sql = "UPDATE trainer SET Year_of_experience = ? WHERE id_u = ?";
+            jdbcTemplate.update(sql,year_experience, u_id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteTrainer(int u_id) {
+        try {
+            sql = "DELETE FROM trainer WHERE id_u = ?";
+            jdbcTemplate.update(sql,u_id);
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

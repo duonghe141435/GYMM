@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 
-public class SaveImageFunctions {
+public class ProcessFile {
 
     public static String doSaveImgToService(CommonsMultipartFile file, HttpSession s, String root_file){
         try {

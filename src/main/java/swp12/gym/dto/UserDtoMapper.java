@@ -19,13 +19,13 @@ public class UserDtoMapper  implements RowMapper<UserDto> {
         userDto.setU_gender(resultSet.getInt("gender"));
         userDto.setU_address(resultSet.getString("address"));
         userDto.setU_img(resultSet.getString("image"));
-        userDto.setU_status(resultSet.getBoolean("status"));
-        userDto.setU_enable(resultSet.getBoolean("enabled"));
+        userDto.setU_enable(resultSet.getInt("enabled"));
         userDto.setR_id(resultSet.getInt("id_r"));
         userDto.setU_identity_card(resultSet.getString("CMND"));
         userDto.setU_dob(resultSet.getString("DOB"));
         userDto.setU_phone_number(resultSet.getString("phone"));
         userDto.setU_create_date(resultSet.getString("create_date"));
+        userDto.setR_name(resultSet.getString("description"));
 
         return userDto;
     }
