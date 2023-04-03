@@ -1,42 +1,32 @@
 package swp12.gym.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import swp12.gym.dto.TicketDto;
 import swp12.gym.model.entity.Ticket;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface TicketService {
 
-    //===============One Object===============//
+    List<TicketDto> findAll();
 
-    //Get an tickets
-    public TicketDto findAnTicket(int id);
+    List<TicketDto> findAllTicketDoor();
+
+    List<TicketDto> findAllTicketTrainer();
+
+    List<TicketDto> findAllTicketClass();
 
     //Create an tickets
-    public void createTicket(Ticket ticket);
+    public void createTicket(String name, String price, String day, int type_id);
 
-    //Update an tickets
-    public void updateTickets(Ticket ticket);
+    //Create an have trainer
+    void createTicketForTrainer(String ticketName, String ticketDay, int i);
 
-    //Delete an Tickets (Lock tickets)
-    public void deleteTickets(int id_t);
+    //Create an tickets personal
+    void createPersonalTicket(String id_trainer, String price, int ids);
 
-    //===============Many Object===============//
-
-    //Get all tickets
-    public List<TicketDto> findAll();
-
-    //Get all tickets for something
-    public List<Ticket> findAllForAttribute();
-
-    //Create many tickets for ...
-    public void createManyTickets();
-
-    //Delete many tickets for ...
-    public int deleteManyTickets();
-
-
-    public int getNumberTicketInSystem();
+    int getNumberTicketInSystem();
 }

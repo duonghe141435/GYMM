@@ -17,32 +17,33 @@ public class TicketServiceImpl implements TicketService {
     @Autowired
     private TicketDtoDao ticketDtoDao;
 
-    public TicketDto findAnTicket(int id) {
-        return ticketDtoDao.findAnTickets(id);
-    }
-
-    public void createTicket(Ticket ticket) {
-        ticketDao.createTicket(ticket);
-    }
-
-    public void updateTickets(Ticket ticket) { ticketDao.updateTickets(ticket); }
-
-    public void deleteTickets(int id_t) {
-        ticketDao.deleteAnTicket(id_t);
-    }
 
     public List<TicketDto> findAll() {
-      return ticketDtoDao.findAll();
-    }
-
-    public List<Ticket> findAllForAttribute() {
         return null;
     }
 
-    public void createManyTickets() { }
+    public List<TicketDto> findAllTicketDoor() {
+        return null;
+    }
 
-    public int deleteManyTickets() {
-        return 0;
+    public List<TicketDto> findAllTicketTrainer() {
+        return null;
+    }
+
+    public List<TicketDto> findAllTicketClass() {
+        return null;
+    }
+
+    public void createTicket(String name, String price, String day, int type_id) {
+
+    }
+
+    public void createTicketForTrainer(String ticketName, String ticketDay, int i) {
+
+    }
+
+    public void createPersonalTicket(String id_trainer, String price, int ids) {
+
     }
 
     public int getNumberTicketInSystem() {

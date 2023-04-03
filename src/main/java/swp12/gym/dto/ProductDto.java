@@ -5,6 +5,7 @@ public class ProductDto {
     private int p_id;
     private String p_name;
     private String p_img;
+    private int p_price_id;
     private float p_price;
     private float p_Oprice;
     private String p_create;
@@ -18,11 +19,13 @@ public class ProductDto {
 
     public ProductDto() { }
 
-    public ProductDto(int p_id, String p_name, String p_img, float p_price, float p_Oprice, String p_create,
-                      int p_quantity, int p_unit, String p_unit_name, String p_description, Boolean p_status, int p_kind, String p_kind_name) {
+    public ProductDto(int p_id, String p_name, String p_img, int p_price_id, float p_price, float p_Oprice,
+                      String p_create, int p_quantity, int p_unit, String p_unit_name, String p_description,
+                      Boolean p_status, int p_kind, String p_kind_name) {
         this.p_id = p_id;
         this.p_name = p_name;
         this.p_img = p_img;
+        this.p_price_id = p_price_id;
         this.p_price = p_price;
         this.p_Oprice = p_Oprice;
         this.p_create = p_create;
@@ -139,12 +142,21 @@ public class ProductDto {
         this.p_img = p_img;
     }
 
+    public int getP_price_id() {
+        return p_price_id;
+    }
+
+    public void setP_price_id(int p_price_id) {
+        this.p_price_id = p_price_id;
+    }
+
     @Override
     public String toString() {
         return "ProductDto{" +
                 "p_id=" + p_id +
-                ", p_name=" + p_name +
+                ", p_name='" + p_name + '\'' +
                 ", p_img='" + p_img + '\'' +
+                ", p_price_id=" + p_price_id +
                 ", p_price=" + p_price +
                 ", p_Oprice=" + p_Oprice +
                 ", p_create='" + p_create + '\'' +

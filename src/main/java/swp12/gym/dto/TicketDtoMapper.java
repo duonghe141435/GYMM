@@ -14,12 +14,12 @@ public class TicketDtoMapper implements RowMapper<TicketDto> {
         ticketDto.setT_name(resultSet.getString("t_name"));
         ticketDto.setTt_id(resultSet.getInt("tt_id"));
         ticketDto.setTt_name(resultSet.getString("tt_name"));
-        ticketDto.setT_note(resultSet.getString("t_note"));
-        ticketDto.setT_total_days(resultSet.getInt("t_day"));
-        ticketDto.setT_status(resultSet.getBoolean("t_status"));
         ticketDto.setT_price(resultSet.getInt("t_price"));
+        ticketDto.setT_total_days(resultSet.getInt("t_day"));
+        ticketDto.setT_status(resultSet.getInt("t_status"));
         ticketDto.setCreate_date(resultSet.getString("t_create_date"));
 
         return ticketDto;
     }
 }
+

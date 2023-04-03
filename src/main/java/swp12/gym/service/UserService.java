@@ -1,22 +1,48 @@
 package swp12.gym.service;
 
-import swp12.gym.model.entity.User;
 import org.springframework.stereotype.Service;
+import swp12.gym.dto.UserDto;
+import swp12.gym.model.entity.User;
 
 import java.util.List;
 
 @Service
 public interface UserService {
 
-    //Create an Users
-    public void createUser(User user);
+    //Get All User
+    List<UserDto> findAll();
+    //Get All Trainer
+    List<UserDto> findAllTrainer();
+    List<User> findAllTrainerIdAndName();
+    //Get All Customer
+    List<UserDto> findAllCustomer();
+    //Get All Employee
+    List<UserDto> findAllEmployee();
+    //Get An User By Id
+    UserDto findAnUserById(int id);
+    //Get Name and Email By email of user
+    User getNameAndImgByEmail(String email);
+    //Get number user in system
+    int getNumberUserInSystem();
+    //Create new user in system
+    void createUser(UserDto user);
+    //Update Information of user in system
+    void updateUser(UserDto user);
 
-    //Reset password of Users
-    public void resetPassword();
+    //Create new staff in System
+    void createStaff(int id_u);
+    //Delete staff in System(This is function lock staff)
+    void deleteStaff(int u_id);
+    //Checking user is staff or not
+    boolean isExistsStaff(int u_id);
 
-    //Lock account of Users
-    public void lockUser();
+    //Create new trainer in System
+    void createTrainer(int id_u, int year_experience);
+    //Delete staff in System(This is function lock staff)
+    void deleteTrainer(int u_id);
+    //Checking user is staff or not
+    boolean isExistsTrainer(int u_id);
+    //update information of trainer
+    void updateExperienceTrainer(int u_id, int year_experience);
 
-    //Get all users
-    public List<User> findAll();
 }

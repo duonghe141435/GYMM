@@ -18,35 +18,23 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductDtoDao productDtoDao;
 
-    public Product findAnProduct(int id) {
-        return productDao.findAnProduct(id);
-    }
-
-    public void createProduct(Product product) {
-
-    }
-
-    public void updateProduct(Product product) {
-        productDao.updateProdcut(product);
-    }
-
-    public void deleteProduct(int id_p) {
-
-    }
-
     public List<ProductDto> findAll() {
-        return productDtoDao.findAll();
-    }
-
-    public List<Product> findAllForAttribute() {
         return null;
     }
 
-    public void createManyProducts() {
+    public int getNumberProductInSystem() {
+        return 0;
+    }
+
+    public void createProduct(ProductDto productDto) {
 
     }
 
-    public int deleteManyProducts() {
-        return 0;
+    public ProductDto findAnProduct(int id) {
+        return null;
+    }
+
+    public void updateProduct(String p_img, String p_description, int p_kind, int p_unit, int p_id) {
+
     }
 }

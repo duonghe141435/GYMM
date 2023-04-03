@@ -14,6 +14,7 @@ public class ProductDtoMapper implements RowMapper<ProductDto> {
         productDto.setP_name(resultSet.getString("p_name"));
         productDto.setP_img(resultSet.getString("p_img"));
         productDto.setP_price(resultSet.getFloat("p_price"));
+        productDto.setP_price_id(resultSet.getInt("p_price_id"));
         productDto.setP_Oprice(resultSet.getFloat("p_Oprice"));
         productDto.setP_create(resultSet.getString("p_create"));
         productDto.setP_quantity(resultSet.getInt("p_quantity"));

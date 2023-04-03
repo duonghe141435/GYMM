@@ -1,39 +1,19 @@
 package swp12.gym.service;
 
-import swp12.gym.dto.ProductDto;
-import swp12.gym.model.entity.Product;
 import org.springframework.stereotype.Service;
+import swp12.gym.dto.ProductDto;
 
 import java.util.List;
 
 @Service
 public interface ProductService {
+    List<ProductDto> findAll();
 
-    //===============One Object===============//
+    int getNumberProductInSystem();
 
-    //Get an tickets
-    public Product findAnProduct(int id);
+    void createProduct(ProductDto productDto);
 
-    //Create an tickets
-    public void createProduct(Product product);
+    ProductDto findAnProduct(int id);
 
-    //Update an tickets
-    public void updateProduct(Product product);
-
-    //Delete an Product(Lock Product)
-    public void deleteProduct(int id_p);
-
-    //===============Many Object===============//
-
-    //Get all tickets
-    public List<ProductDto> findAll();
-
-    //Get all tickets for something
-    public List<Product> findAllForAttribute();
-
-    //Create many tickets for ...
-    public void createManyProducts();
-
-    //Delete many tickets for ...
-    public int deleteManyProducts();
+    void updateProduct(String p_img, String p_description, int p_kind, int p_unit, int p_id);
 }
