@@ -8,6 +8,10 @@ import java.sql.SQLException;
 
 public class RoleMapper implements RowMapper<Role> {
     public Role mapRow(ResultSet resultSet, int i) throws SQLException {
-        return null;
+        Role role = new Role();
+        role.setR_id(resultSet.getInt("id_r"));
+        role.setR_code(resultSet.getString("code"));
+        role.setR_description(resultSet.getString("description"));
+        return role;
     }
 }
