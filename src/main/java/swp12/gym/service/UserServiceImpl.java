@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService{
         return usersDao.findAll();
     }
 
-    public List<UserDto> findAllTrainer(){ return usersDao.findAllTrainer(); }
+    public List<User> findAllTrainer(){ return usersDao.findAllTrainer(); }
 
     public List<User> findAllTrainerIdAndName() {
         return usersDao.findAllTrainerIdAndName();

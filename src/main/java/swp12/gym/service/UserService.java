@@ -12,7 +12,7 @@ public interface UserService {
     //Get All User
     List<UserDto> findAll();
     //Get All Trainer
-    List<UserDto> findAllTrainer();
+    List<User> findAllTrainer();
     List<User> findAllTrainerIdAndName();
     //Get All Customer
     List<UserDto> findAllCustomer();

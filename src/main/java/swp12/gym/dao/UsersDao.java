@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import swp12.gym.dto.UserDto;
 import swp12.gym.dto.UserDtoMapper;
 import swp12.gym.model.entity.User;
+import swp12.gym.model.mapper.UserMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,12 +28,17 @@ public class UsersDao {
         return jdbcTemplate.query(sql, new UserDtoMapper());
     }
 
-    public List<UserDto> findAllTrainer() {
-        try {
-            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
-                    "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
-                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 3;";
-            return jdbcTemplate.query(sql, new UserDtoMapper());
+    public List<User> findAllTrainer() {
+        try{
+            sql = "SELECT t.trainer_id, name FROM users JOIN trainer t on users.id_u = t.id_u";
+            return jdbcTemplate.query(sql, new RowMapper<User>() {
+                public User mapRow(ResultSet resultSet, int i) throws SQLException {
+                    User user = new User();
+                    user.setU_id(resultSet.getInt("trainer_id"));
+                    user.setU_full_name(resultSet.getString("name"));
+                    return user;
+                }
+            });
         }catch (Exception e){
             e.printStackTrace();
             return null;

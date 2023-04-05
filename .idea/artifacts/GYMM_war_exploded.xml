@@ -25,6 +25,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.2.20.RELEASE" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.45" />
           <element id="library" level="project" name="Maven: org.mindrot:jbcrypt:0.4" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.9" />
         </element>
       </element>
       <element id="directory" name="META-INF">

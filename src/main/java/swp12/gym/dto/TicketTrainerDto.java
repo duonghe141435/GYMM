@@ -1,28 +1,29 @@
 package swp12.gym.dto;
 
-public class TicketDto {
+public class TicketTrainerDto {
+
     private int t_id;
     private String t_name;
     private int tt_id;
-    private String tt_name;
-    private float t_price;
     private int t_status;
     private int t_total_days; // the day ticket is active
     private String create_date;
+    private int t_price_min;
+    private int t_price_max;
 
-    public TicketDto() {
+    public TicketTrainerDto() {
     }
 
-    public TicketDto(int t_id, String t_name, int tt_id, String tt_name, float t_price,
-                     int t_status, int t_total_days, String create_date) {
+    public TicketTrainerDto(int t_id, String t_name, int tt_id,int t_status, int t_total_days,
+                            String create_date, int t_price_min, int t_price_max) {
         this.t_id = t_id;
         this.t_name = t_name;
         this.tt_id = tt_id;
-        this.tt_name = tt_name;
-        this.t_price = t_price;
         this.t_status = t_status;
         this.t_total_days = t_total_days;
         this.create_date = create_date;
+        this.t_price_min = t_price_min;
+        this.t_price_max = t_price_max;
     }
 
     public int getT_id() {
@@ -49,22 +50,6 @@ public class TicketDto {
         this.tt_id = tt_id;
     }
 
-    public String getTt_name() {
-        return tt_name;
-    }
-
-    public void setTt_name(String tt_name) {
-        this.tt_name = tt_name;
-    }
-
-    public float getT_price() {
-        return t_price;
-    }
-
-    public void setT_price(float t_price) {
-        this.t_price = t_price;
-    }
-
     public int getT_status() {
         return t_status;
     }
@@ -88,4 +73,21 @@ public class TicketDto {
     public void setCreate_date(String create_date) {
         this.create_date = create_date;
     }
+
+    public int getT_price_min() {
+        return t_price_min;
+    }
+
+    public void setT_price_min(int t_price_min) {
+        this.t_price_min = t_price_min;
+    }
+
+    public int getT_price_max() {
+        return t_price_max;
+    }
+
+    public void setT_price_max(int t_price_max) {
+        this.t_price_max = t_price_max;
+    }
 }
+
