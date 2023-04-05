@@ -216,7 +216,7 @@ const dateInput = document.getElementById("date-input");
 dateInput.value = dateText;
 
 
-var mySelect = document.getElementById("ticket_type");
+var mySelect = document.getElementById("ticket_type_buyTicket");
 var perJoinLab = document.getElementById("num");
 var perJoinIn = document.getElementById("num1");
 var timePracIn = document.getElementById("timePracIn");
