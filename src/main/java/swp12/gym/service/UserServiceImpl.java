@@ -1,16 +1,22 @@
 package swp12.gym.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.UserDto;
+import swp12.gym.dto.UserDtoDao;
 import swp12.gym.model.entity.User;
 
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService{
 
     @Autowired
     private UsersDao usersDao;
+
+    @Autowired
+    private UserDtoDao userDtoDao;
 
     public List<UserDto> findAll() {
         return usersDao.findAll();
@@ -70,5 +76,9 @@ public class UserServiceImpl implements UserService{
 
     public void updateExperienceTrainer(int u_id, int year_experience) {
         usersDao.updateExperienceTrainer(u_id, year_experience);
+    }
+
+    public UserDto getUserByEmail(String username) {
+        return userDtoDao.findAnUserByEmail(username);
     }
 }

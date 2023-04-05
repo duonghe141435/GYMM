@@ -1,12 +1,14 @@
 package swp12.gym.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import swp12.gym.dao.TicketDao;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.model.entity.Ticket;
 
 import java.util.List;
 
+@Service
 public class TicketServiceImpl implements TicketService{
 
     @Autowired

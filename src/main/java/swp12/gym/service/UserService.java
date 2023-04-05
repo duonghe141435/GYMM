@@ -45,4 +45,6 @@ public interface UserService {
     //update information of trainer
     void updateExperienceTrainer(int u_id, int year_experience);
 
+    UserDto getUserByEmail(String userName);
+
 }
