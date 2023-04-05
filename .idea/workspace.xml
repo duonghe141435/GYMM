@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e3d17186-d0eb-4305-a02d-e8011fe191b0" name="Default Changelist" comment="commit : time 1 : commit process Product for Admin">
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/TimeDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dto/TicketTrainerDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dto/TicketTrainerDtoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/model/entity/Time.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/TimeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TimeServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/GYMM_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/GYMM_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminTicketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminTicketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/UsersDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/UsersDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/dto/TicketDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/dto/TicketDtoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/TicketMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/TicketMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TimeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java" afterDir="false" />
-    </list>
+    <list default="true" id="e3d17186-d0eb-4305-a02d-e8011fe191b0" name="Default Changelist" comment="commit : time 1 : commit process Product for Admin" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -268,7 +246,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="203">
-              <caret line="88" column="46" lean-forward="true" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
+              <caret line="88" column="46" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -304,7 +282,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="43" column="25" lean-forward="true" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+              <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1332#1333#0" expanded="true" />
@@ -321,8 +299,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="102" column="32" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
+            <state relative-caret-position="475">
+              <caret line="108" selection-start-line="108" selection-end-line="108" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -426,8 +404,8 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="478" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
@@ -761,7 +739,7 @@
       <workItem from="1680477808272" duration="1956000" />
       <workItem from="1680479835331" duration="631000" />
       <workItem from="1680509099021" duration="79000" />
-      <workItem from="1680678013366" duration="1976000" />
+      <workItem from="1680678013366" duration="2239000" />
     </task>
     <task id="LOCAL-00001" summary="re commit : {fix lost branch}">
       <created>1680241631802</created>
@@ -781,12 +759,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20944000" />
+    <option name="totallyTimeSpent" value="21207000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="478" y="0" width="697" height="735" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497545" visible="true" weight="0.42738277" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497545" visible="true" weight="0.88697016" />
       <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.24962178" />
       <window_info id="Web" order="2" sideWeight="0.5008183" side_tool="true" weight="0.24962178" />
       <window_info id="Designer" order="3" />
@@ -1197,7 +1176,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
-          <caret line="88" column="46" lean-forward="true" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
+          <caret line="88" column="46" selection-start-line="88" selection-start-column="46" selection-end-line="88" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1217,7 +1196,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="43" column="25" lean-forward="true" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
+          <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1332#1333#0" expanded="true" />
@@ -1232,8 +1211,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="102" column="32" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
+        <state relative-caret-position="475">
+          <caret line="108" selection-start-line="108" selection-end-line="108" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

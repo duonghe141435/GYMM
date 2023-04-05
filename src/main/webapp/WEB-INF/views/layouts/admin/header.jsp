@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: HongWung
+  Date: 3/7/2023
+  Time: 4:59 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top fixed-top">
     <div class="container-fluid">
@@ -71,6 +78,7 @@
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý người dùng hệ thống</a>
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý nhân viên</a>
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý huấn luyện viên</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/recycle-bin"/>">Thùng rác</a>
                     </div>
                 </div>
             </li>
