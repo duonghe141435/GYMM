@@ -78,17 +78,4 @@ public class Ticket {
     public void setCreate_date(String create_day) {
         this.create_date = create_day;
     }
-
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "t_id=" + t_id +
-                ", t_name='" + t_name + '\'' +
-                ", tt_id=" + tt_id +
-                ", t_price=" + t_price +
-                ", t_status=" + t_status +
-                ", t_total_days=" + t_total_days +
-                ", create_date=" + create_date +
-                '}';
-    }
 }

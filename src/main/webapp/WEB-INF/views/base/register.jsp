@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: hieuhm
+  Date: 2/7/2023
+  Time: 5:38 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,6 +18,7 @@
     <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/assets/css/register-style.css'/> ">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -27,37 +35,38 @@
                         <div class="text-center">
                             <h4 class="text-dark mb-4">Tạo tài khoản!</h4>
                         </div>
-                        <form:form id="register" action="/register/create_user" method="POST" modelAttribute="new_users">
+                        <form:form name="register" id="register" action="/register/create_user" method="POST" modelAttribute="new_users">
                             <small id="title"></small>
                             <div class="form-field">
                                 <label for="user-name">Name:</label>
                                 <small style="font-size: 15px"></small>
                                 <form:input class="form-control form-control-user"
                                             path="u_full_name" type="text" id="user-name"
-                                            placeholder="Your Name" name="name" />
+                                            placeholder="Nhập tên của bạn" name="name" />
                             </div>
                             <div class="form-field">
                                 <label for="user-email">Email:</label>
                                 <small style="font-size: 15px"></small>
-                                <form:input class="form-control form-control-user" type="email" path="u_email"
-                                            id="user-email" aria-describedby="emailHelp"
-                                            placeholder="Email Address" name="email" />
+                                <form:input class="form-control form-control-user" type="email"
+                                       path="u_email" id="user-email"
+                                       placeholder="Nhập địa chỉ email của bạn" name="email" />
                             </div>
                             <div class="form-field">
-                                <label for="user-password">Password:</label>
+                                <label for="user-pass">Password:</label>
                                 <small style="font-size: 15px"></small>
-                                <form:input class="form-control form-control-user" path="u_password"
-                                            type="password" id="user-password" placeholder="Password" name="password" />
+                                <form:input class="form-control form-control-user"
+                                            path="u_password"
+                                            type="password" id="user-pass"
+                                            placeholder="Nhập mật khẩu của bạn" name="password" />
                             </div>
                             <div class="form-field">
-                                <label for="user-re-password">Confirm-password:</label>
+                                <label for="exampleRepeatPasswordInput">Confirm-password:</label>
                                 <small style="font-size: 15px"></small>
                                 <input class="form-control form-control-user" type="password"
-                                       id="user-re-password"
-                                       placeholder="Confirm Password" name="password_repeat">
+                                       id="exampleRepeatPasswordInput"
+                                       placeholder="Nhập lại mật khẩu" name="password_repeat">
                             </div>
-                            <button class="btn btn-primary d-block btn-user w-100" id="btn-register" type="submit">Register Account
-                            </button>
+                            <button class="btn btn-primary d-block btn-user w-100" id="btn-register" type="submit">Register Account</button>
                             <hr>
                             <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i
                                     class="fab fa-google"></i>&nbsp; Register with Google</a>
@@ -74,8 +83,11 @@
 
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="<c:url value='/assets/js/bs-init.js'/>"></script>
-<script src="<c:url value='/assets/js/theme.js'/>"></script>
+<script>
+    <c:if test="${not empty message}">
+    Swal.fire({icon: 'error', title: 'Oops...', text: '${message}', showConfirmButton: false, timer: 2500});
+    </c:if>
+</script>
 <script src="<c:url value='/assets/js/register-validate.js'/>"></script>
 </body>
-
 </html>

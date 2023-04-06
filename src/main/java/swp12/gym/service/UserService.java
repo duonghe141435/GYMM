@@ -3,6 +3,8 @@ package swp12.gym.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import swp12.gym.dao.UsersDao;
+import swp12.gym.dto.StaffDto;
+import swp12.gym.dto.TrainerDto;
 import swp12.gym.dto.UserDto;
 import swp12.gym.model.entity.User;
 
@@ -24,6 +26,12 @@ public interface UserService {
     //Update Information of user in system
     void updateUser(UserDto user);
 
+
+    int getNumberTrainerInSystem();
+    //Get All Trainer
+    List<User> findAllEmployee();
+    //Get An Trainer By email
+    StaffDto findAnEmployeeByEmail(String email);
     //Create new staff in System
     void createStaff(int id_u);
     //Delete staff in System(This is function lock staff)
@@ -31,6 +39,11 @@ public interface UserService {
     //Checking user is staff or not
     boolean isExistsStaff(int u_id);
 
+    int getNumberEmployeeInSystem();
+    //Get All Trainer
+    List<User> findAllTrainer();
+    //Get An Trainer By email
+    TrainerDto findAnTrainerByEmail(String email);
     //Create new trainer in System
     void createTrainer(int id_u, int year_experience);
     //Delete staff in System(This is function lock staff)
@@ -40,4 +53,7 @@ public interface UserService {
     //update information of trainer
     void updateExperienceTrainer(int u_id, int year_experience);
 
+    void createUserForGuest(User user);
+    //Checking user is exists or not
+    boolean isExistsUser(String email);
 }

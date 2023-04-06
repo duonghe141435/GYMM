@@ -1,6 +1,6 @@
 package swp12.gym.model.entity;
 
-public class TicketClass {
+public class ClassTrainer {
     private int class_id;
     private String class_name;
     private int time_id;
@@ -12,11 +12,11 @@ public class TicketClass {
     private int max_member;
     private int class_price;
 
-    public TicketClass() {
+    public ClassTrainer() {
     }
 
-    public TicketClass(int class_id, String class_name, int time_id, int class_state, String start_date,
-                             String end_date, int trainer_id, int ticket_id, int max_member, int class_price) {
+    public ClassTrainer(int class_id, String class_name, int time_id, int class_state, String start_date,
+                        String end_date, int trainer_id, int ticket_id, int max_member, int class_price) {
         this.class_id = class_id;
         this.class_name = class_name;
         this.time_id = time_id;

@@ -1,15 +1,15 @@
 package swp12.gym.model.mapper;
 
 import org.springframework.jdbc.core.RowMapper;
-import swp12.gym.model.entity.TicketClass;
+import swp12.gym.model.entity.ClassTrainer;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TicketClassMapper implements RowMapper<TicketClass> {
-    public TicketClass mapRow(ResultSet resultSet, int i) throws SQLException {
+public class TicketClassMapper implements RowMapper<ClassTrainer> {
+    public ClassTrainer mapRow(ResultSet resultSet, int i) throws SQLException {
 
-        TicketClass classTrainer = new TicketClass();
+        ClassTrainer classTrainer = new ClassTrainer();
 
         classTrainer.setClass_id(resultSet.getInt("class_id"));
         classTrainer.setClass_name(resultSet.getString("name"));
