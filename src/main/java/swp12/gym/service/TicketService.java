@@ -10,6 +10,8 @@ import java.util.List;
 @Service
 public interface TicketService {
 
+    List<Ticket> findAllGymTicket();
+
     List<Ticket> findAll();
 
     List<Ticket> findAllTicketDoor();

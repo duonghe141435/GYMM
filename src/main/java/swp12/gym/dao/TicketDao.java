@@ -21,6 +21,23 @@ public class TicketDao {
 
     private final LocalDate currentDate = LocalDate.now();
 
+
+    public List<Ticket> findAllGymTickets(){
+        sql = "SELECT t.id_t as id_t, t.name as t_name,t.tt_id as tt_id, \n" +
+                "t.total_days as t_day, t.status as t_status,\n" +
+                "t.create_date as t_create_date, t.price as t_price\n" +
+                "FROM ticket t WHERE tt_id = 1";
+        return jdbcTemplate.query(sql, new TicketMapper());
+    }
+
+    public List<Ticket> findAllTickets(){
+        sql = "SELECT t.id_t as id_t, t.name as t_name,t.tt_id as tt_id, \n" +
+                "t.total_days as t_day, t.status as t_status,\n" +
+                "t.create_date as t_create_date, t.price as t_price\n" +
+                "FROM ticket t";
+        return jdbcTemplate.query(sql, new TicketMapper());
+    }
+
     public List<Ticket> findAllTicketDoor(){
         try{
             sql = "SELECT t.id_t as id_t, t.name as t_name,t.tt_id as tt_id, \n" +
@@ -36,7 +53,7 @@ public class TicketDao {
 
     public List<TicketTrainerDto> findAllTicketTrainer() {
         try{
-            sql = "SELECT t.id_t as t_id, t.name as t_name, t.tt_id, t.total_days as t_day, " +
+            sql = "SELECT t.id_t as t_id, t.name as t_name, t.id_t as ticket_id, t.tt_id, t.total_days as t_day, " +
                     "t.status as t_status, t.create_date as t_create_date,  MIN(pt.price) as min_price, MAX(pt.price) as max_price\n" +
                     "FROM ticket t join personal_trainer pt on t.id_t = pt.ticket_id WHERE t.tt_id = 2\n" +
                     "GROUP BY t.id_t,  t.tt_id, t.total_days, t.create_date";

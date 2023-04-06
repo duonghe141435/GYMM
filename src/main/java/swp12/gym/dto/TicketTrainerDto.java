@@ -4,6 +4,7 @@ public class TicketTrainerDto {
 
     private int t_id;
     private String t_name;
+    private int ticket_id;
     private int tt_id;
     private int t_status;
     private int t_total_days; // the day ticket is active
@@ -14,10 +15,10 @@ public class TicketTrainerDto {
     public TicketTrainerDto() {
     }
 
-    public TicketTrainerDto(int t_id, String t_name, int tt_id,int t_status, int t_total_days,
-                            String create_date, int t_price_min, int t_price_max) {
+    public TicketTrainerDto(int t_id, String t_name, int ticket_id, int tt_id, int t_status, int t_total_days, String create_date, int t_price_min, int t_price_max) {
         this.t_id = t_id;
         this.t_name = t_name;
+        this.ticket_id = ticket_id;
         this.tt_id = tt_id;
         this.t_status = t_status;
         this.t_total_days = t_total_days;
@@ -88,6 +89,14 @@ public class TicketTrainerDto {
 
     public void setT_price_max(int t_price_max) {
         this.t_price_max = t_price_max;
+    }
+
+    public int getTicket_id() {
+        return ticket_id;
+    }
+
+    public void setTicket_id(int ticket_id) {
+        this.ticket_id = ticket_id;
     }
 }
 

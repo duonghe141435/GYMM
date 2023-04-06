@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.dto.UserDto;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.User;
@@ -28,7 +29,15 @@ public class CustomerBaseController {
     @RequestMapping(value = "/home",method = RequestMethod.GET)
     public String indexCustomer(Model model) {
         List<Ticket> ticket = ticketService.findAll();
-        model.addAttribute("ticket", ticket);
+        //        List<Ticket> ticket = ticketService.findAllGymTicket();
+        model.addAttribute("tickets", ticket);
+
+        List<TicketTrainerDto> allTicketTrainer = ticketService.findAllTicketTrainer();
+        model.addAttribute("allTicketTrainer", allTicketTrainer);
+
+        List<User> trainers = userService.findAllTrainer();
+        model.addAttribute("trainers",trainers);
+
         return "customer/index_customer";
     }
 
@@ -47,3 +56,4 @@ public class CustomerBaseController {
         return "customer/index_customer";
     }
 }
+

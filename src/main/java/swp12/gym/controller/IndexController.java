@@ -33,7 +33,8 @@ public class IndexController {
             }
         }
         System.out.println("dang dang nhap");
-        return "base/login";
+        return "base/homepage";
+//        return "base/homepage";
     }
 
     @RequestMapping(value = "/product",method = RequestMethod.GET)

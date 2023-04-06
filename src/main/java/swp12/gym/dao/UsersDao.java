@@ -28,14 +28,30 @@ public class UsersDao {
         return jdbcTemplate.query(sql, new UserDtoMapper());
     }
 
+    public int findIdByUsername(String username) {
+        try{
+            sql = "SELECT id_u FROM users WHERE email = ?";
+            return jdbcTemplate.queryForObject(sql,Integer.class,username);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public List<User> findAllTrainer() {
         try{
-            sql = "SELECT t.trainer_id, name FROM users JOIN trainer t on users.id_u = t.id_u";
+            sql = "SELECT t.trainer_id, name, email, gender, phone, address, image, DOB FROM users JOIN trainer t on users.id_u = t.id_u";
             return jdbcTemplate.query(sql, new RowMapper<User>() {
                 public User mapRow(ResultSet resultSet, int i) throws SQLException {
                     User user = new User();
                     user.setU_id(resultSet.getInt("trainer_id"));
                     user.setU_full_name(resultSet.getString("name"));
+                    user.setU_email(resultSet.getString("email"));
+                    user.setU_gender(resultSet.getInt("gender"));
+                    user.setU_phone_number(resultSet.getString("phone"));
+                    user.setU_address(resultSet.getString("address"));
+                    user.setU_img(resultSet.getString("image"));
+                    user.setU_dob(resultSet.getString("DOB"));
                     return user;
                 }
             });

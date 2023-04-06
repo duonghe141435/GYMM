@@ -10,12 +10,46 @@
 <html>
 <head>
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/bootstrap.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/homepagestyle.css'/>">
-    <link rel="stylesheet" href="<c:url value='/assets/font-awesome/font-awesome.min.css'/>">
+    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
 </head>
 <body>
-<%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
+<nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+    <div class="container"><a class="navbar-brand d-flex align-items-center" href="homepage.jsp"><img src="/assets/img/logo/logo.png"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link active" href="homepage.jsp">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">PT-HLV</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Sản Phẩm</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Lịch Tập</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Dịch vụ</a></li>
+            </ul>
+        </div>
+        <div class="container-fluid">
+            <ul class="navbar-nav flex-nowrap ms-auto">
+                <div class="d-none d-sm-block topbar-divider"></div>
+                <li class="nav-item dropdown no-arrow">
+                    <div class="nav-item dropdown no-arrow">
+                        <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                            <span class="d-none d-lg-inline me-2 text-gray-600 small">Đức Lương</span>
+                            <img class="border rounded-circle img-profile" src="/assets/img/avatars/avatar5.jpeg" />
+                        </a>
+                        <div class="dropdown-menu shadow dropdown-menu-end animated-grow-in">
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-user fa-sm fa-sw me-2 text-gray-400"> Profile</i>
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"> Log out</i>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <header class="pt-5">
     <div class="container pt-4">
         <div class="col-md-8 text-center text-md-start mx-auto">
@@ -196,10 +230,42 @@
         </div>
     </div>
 </section>
-<%@include file="/WEB-INF/views/layouts/customer/footer.jsp" %>
+<footer class="bg-dark">
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-4">
+                <img src="/assets/img/logo/logo.png">
+                <p class="text-light text-start h5 mt-3">Chúng tôi cung cấp khả năng thực hiện các hoạt động thể thao: Crossfit, Gym và các hoạt động khác
+                    , nhằm cải thiện sức khỏe và sức đề kháng thể chất của bạn, thông qua hệ thống đào tạo chuyên nghiệp 100%.
+                </p>
+            </div>
+            <div class="col-4">
+                <p class="text-info text-center h2">INFORMATION</p>
+                <p class="text-light text-center h5 mt-5">HOME</p>
+                <p class="text-light text-center h5">PT-HLV</p>
+                <p class="text-light text-center h5">SẢN PHẨM</p>
+                <p class="text-light text-center h5">LỊCH TẬP</p>
+                <p class="text-light text-center h5">DỊCH VỤ</p>
+            </div>
+            <div class="col-4">
+                <p class="text-info text-center h2">SUBCRIBE</p>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="EMAIL" aria-label="Email" aria-describedby="basic-addon1">
+                </div>
+                <button class="btn btn-primary">Subcribe</button>
+            </div>
+        </div>
+        <hr />
+        <div class="d-flex justify-content-between">
+            <p class="text-light">Copyright @ 2023</p>
+            <p class="text-light">Hòa Lạc,Thạch Thất, Hà Nội</p>
+            <p class="text-light">Hotline: +84 962103669</p>
+        </div>
+    </div>
+</footer>
 
 
-<script src="<c:url value='/assets/bootstrap/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="<c:url value='/assets/js/startup-modern.js'/> "></script>
 </body>
 </html>

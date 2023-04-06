@@ -15,7 +15,7 @@
 </style>
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top fixed-top navbar-shrink py-3" id="mainNav">
     <div class="container d-flex justify-content-between"><a class="navbar-brand d-flex align-items-center" href="#"><img
-            src="/assets/img/logo/gymm_logo.png"></a><button data-bs-toggle="collapse" class="navbar-toggler"
+            src="/assets/img/logo/logo.png"></a><button data-bs-toggle="collapse" class="navbar-toggler"
                                                              data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span
             class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
@@ -135,7 +135,7 @@
                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
                                                            data-bs-toggle="dropdown" href="#"><span
                         class="d-none d-lg-inline me-2 text-gray-600 small">${display_name}</span><img
-                        class="border rounded-circle img-profile" src="assets/img/avatars/avatar1.jpeg"></a>
+                        class="border rounded-circle img-profile" src="${display_img}"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="<c:url value="/customer/profile"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a
                             class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a

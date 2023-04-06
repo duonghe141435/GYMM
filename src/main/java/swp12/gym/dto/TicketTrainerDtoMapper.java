@@ -15,6 +15,7 @@ public class TicketTrainerDtoMapper implements RowMapper<TicketTrainerDto> {
         TicketTrainerDto ticketTrainerDto = new TicketTrainerDto();
         ticketTrainerDto.setT_id(resultSet.getInt("t_id"));
         ticketTrainerDto.setT_name(resultSet.getString("t_name"));
+        ticketTrainerDto.setTicket_id(resultSet.getInt("ticket_id"));
         ticketTrainerDto.setTt_id(resultSet.getInt("tt_id"));
         ticketTrainerDto.setT_total_days(resultSet.getInt("t_day"));
         ticketTrainerDto.setT_status(resultSet.getInt("t_status"));

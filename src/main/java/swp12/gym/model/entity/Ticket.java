@@ -1,5 +1,7 @@
 package swp12.gym.model.entity;
 
+import java.sql.Date;
+
 public class Ticket {
 
     private int t_id;
@@ -8,7 +10,7 @@ public class Ticket {
     private float t_price;
     private int t_status;
     private int t_total_days; // the day ticket is active
-    private String create_date;
+    private String  create_date;
 
     public Ticket() {
     }

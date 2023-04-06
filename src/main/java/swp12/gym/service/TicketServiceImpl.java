@@ -14,8 +14,12 @@ public class TicketServiceImpl implements TicketService{
     @Autowired
     private TicketDao ticketDao;
 
+    public List<Ticket> findAllGymTicket() {
+        return ticketDao.findAllGymTickets();
+    }
+
     public List<Ticket> findAll() {
-        return null;
+        return ticketDao.findAllTickets();
     }
 
     public List<Ticket> findAllTicketDoor() { return ticketDao.findAllTicketDoor(); }
