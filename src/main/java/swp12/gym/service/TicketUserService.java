@@ -9,11 +9,13 @@ import java.time.LocalDateTime;
 public interface TicketUserService {
     TicketDto findAnTicket(long id);
 
-    boolean bookTicket(long id, long userID, String date);
+    boolean bookTicket(long id, long userID, String date, int price);
 
 //    boolean checkTicketUser(long userID);
 
     LocalDateTime findEndDateTicket(long userID);
 
     LocalDateTime findEndDateTicketClass(long userID);
+
+    LocalDateTime findEndDateTicketTrainerPersonal(long userID);
 }

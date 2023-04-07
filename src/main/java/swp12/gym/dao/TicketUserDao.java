@@ -28,13 +28,11 @@ public class TicketUserDao {
                 "t.total_days as t_day, t.status as t_status,\n" +
                 "t.create_date as t_create_date, t.price as t_price\n" +
                 "FROM ticket t WHERE id_t = ?";
-        System.out.println("......sql findAnTicket1");
         return jdbcTemplate.queryForObject(sql,new TicketMapper(),id);
     }
 
     public void insertAnTicketUser(TicketUser ticketUser){
         try{
-            System.out.println("......sql insertAnTicketUser");
             sql = "INSERT INTO ticket_user (name, create_date, start_date, end_date, payment_status, value_cost, date_payment, id_u, ticket_id) VALUES (?,?,?,?,?,?,?,?,?)";
             jdbcTemplate.update(sql,ticketUser.getName(),ticketUser.getCreate_date(), ticketUser.getStart_date(), ticketUser.getEnd_date(), ticketUser.getPayment_Status(), ticketUser.getValue_Cost(), ticketUser.getDate_Payment(), ticketUser.getId_u(), ticketUser.getId_t());
             System.out.println(ticketUser.toString());
@@ -63,6 +61,12 @@ public class TicketUserDao {
     public LocalDateTime findDateAnTicketClass(long userId){
 //        sql = "SELECT MAX(end_date) FROM ticket_user JOIN ticket t on ticket_user.ticket_id = t.id_t JOIN ticket_type tt on t.tt_id = tt.tt_id WHERE id_u = ?";
         sql = "SELECT MAX(end_date) FROM ticket_user JOIN ticket t on ticket_user.ticket_id = t.id_t and t.tt_id = 3 WHERE id_u = ?";
+        LocalDateTime end_date = jdbcTemplate.queryForObject(sql, LocalDateTime.class, userId);
+        return end_date;
+    }
+
+    public LocalDateTime findDateAnTicketTrainerPersonal(long userId){
+        sql = "SELECT MAX(end_date) FROM ticket_user JOIN ticket t on ticket_user.ticket_id = t.id_t and t.tt_id = 2 WHERE id_u = ?";
         LocalDateTime end_date = jdbcTemplate.queryForObject(sql, LocalDateTime.class, userId);
         return end_date;
     }

@@ -7,10 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <section class="wrapper">
-    <div class="container-fostrap">
+    <div class="container-fostrap" >
         <div>
             <h1 class="heading">
-                Huấn Luyện Viên được mọi người tin tưởng
+                Huấn Luyện Viên
             </h1>
         </div>
         <div class="content">

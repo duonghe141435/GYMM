@@ -26,6 +26,8 @@ public class UserDtoMapper  implements RowMapper<UserDto> {
         userDto.setU_phone_number(resultSet.getString("phone"));
         userDto.setU_create_date(resultSet.getString("create_date"));
         userDto.setR_name(resultSet.getString("description"));
+        userDto.setT_experience(resultSet.getInt("Year_of_experience"));
+        userDto.setT_experience(resultSet.getInt("price"));
 
         return userDto;
     }

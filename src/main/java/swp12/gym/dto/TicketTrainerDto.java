@@ -12,6 +12,7 @@ public class TicketTrainerDto {
     private int t_price_min;
     private int t_price_max;
 
+
     public TicketTrainerDto() {
     }
 

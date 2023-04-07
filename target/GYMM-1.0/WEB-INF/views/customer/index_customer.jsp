@@ -5,6 +5,7 @@
 
 <head>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
+    <script src="<c:url value='/assets/js/jquery-3.2.1.min.js'/>"></script>
     <title>Trang chủ</title>
     <style>
         .wrapper {
@@ -117,9 +118,9 @@
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
 </body>
-<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
-<script src="<c:url value='/assets/js/bs-init.js'/>"></script>
-<script src="<c:url value='/assets/js/theme.js'/>"></script>
+<%--<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>--%>
+<%--<script src="<c:url value='/assets/js/bs-init.js'/>"></script>--%>
+<%--<script src="<c:url value='/assets/js/theme.js'/>"></script>--%>
 <script>
     $('.price').each(function () {
         var price = parseFloat($(this).text());

@@ -3,12 +3,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-<link rel="stylesheet" href="<c:url value='/assets/bootstrap/bootstrap.min.css'/>">
-<script src="<c:url value='/assets/bootstrap/bootstrap.min.js'/>"></script>
 
-<link rel="stylesheet" href="<c:url value='/assets/font-awesome/font-awesome.min.css'/>">
 
 <script src="<c:url value='/assets/js/jquery-3.2.1.min.js'/>"></script>
+
+<script src="<c:url value='/assets/js/popper.js'/>"></script>
+<link rel="stylesheet" href="<c:url value='/assets/bootstrap/bootstrap.min.css'/>">
+<script src="<c:url value='/assets/bootstrap/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
+<link rel="stylesheet" href="<c:url value='/assets/font-awesome/font-awesome.min.css'/>">
+
+
 
 <script src="<c:url value='/assets/js/bs-init.js'/>"></script>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>

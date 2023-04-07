@@ -25,7 +25,7 @@ public class TicketUserServiceImpl implements TicketUserService{
         return ticketUserDtoDao.findAnTicket(id);
     }
 
-    public boolean bookTicket(long id, long userID, String date) {
+    public boolean bookTicket(long id, long userID, String date, int price) {
         Ticket ticket = ticketUserDao.findAnTicket1(id);
         TicketUser ticketUser = new TicketUser();
 
@@ -46,7 +46,12 @@ public class TicketUserServiceImpl implements TicketUserService{
         }
 
         ticketUser.setPayment_Status(1);
-        ticketUser.setValue_Cost(ticket.getT_price());
+        if (price != 0){
+            ticketUser.setValue_Cost(price);
+        }else {
+            ticketUser.setValue_Cost(ticket.getT_price());
+        }
+
         ticketUser.setDate_Payment(LocalDateTime.now());
         ticketUser.setId_t(id);
         ticketUser.setId_u(userID);
@@ -73,6 +78,23 @@ public class TicketUserServiceImpl implements TicketUserService{
     public LocalDateTime findEndDateTicketClass(long userID) {
         LocalDateTime end_date = ticketUserDao.findDateAnTicketClass(userID);
         LocalDateTime now = LocalDateTime.now();
+
+        if (end_date == null){
+            return end_date;
+        }else{
+            if (end_date.isBefore(now)){
+                end_date = null;
+                return end_date;
+            }else{
+                return end_date;
+            }
+        }
+    }
+
+    public LocalDateTime findEndDateTicketTrainerPersonal(long userID) {
+        LocalDateTime end_date = ticketUserDao.findDateAnTicketTrainerPersonal(userID);
+        LocalDateTime now = LocalDateTime.now();
+
         if (end_date == null){
             return end_date;
         }else{

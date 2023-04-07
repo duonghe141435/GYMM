@@ -66,6 +66,30 @@ public class BookingTicketsApi {
         }
     }
 
+    //check hội viên có ticket Trainer personal hay chưa
+    @GetMapping(value = URL_API + "/checkEndDateTicketTrainerPersonal")
+    public ResponseEntity<String> check_end_date_ticket_trainer_personal(RedirectAttributes redirectAttributes, HttpServletRequest request, Authentication authentication){
+        try{
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String userName = userDetails.getUsername();
+            long userID = userDao.findIdByUsername(userName);
+            LocalDateTime date = ticketUserService.findEndDateTicketTrainerPersonal(userID);
+
+            String result = null;
+            if(date != null){
+                result = new DataUtil().convertLocalDateTimeToString(date);
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            }else{
+                return ResponseEntity.status(HttpStatus.OK).body(result);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+
+    //check hội viên có ticket class hay chưa
     @GetMapping(value = URL_API + "/checkEndDateTicketClass")
     public ResponseEntity<String> check_end_date_ticket_class(RedirectAttributes redirectAttributes, HttpServletRequest request, Authentication authentication){
         try{

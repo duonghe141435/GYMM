@@ -61,6 +61,26 @@ public class UsersDao {
         }
     }
 
+    public List<UserDto> findAllTrainerPersonal(int ticket_id) {
+        try{
+            sql = "SELECT t.trainer_id, name, t.Year_of_experience, pt.price, pt.personal_trainer_id FROM users JOIN trainer t on users.id_u = t.id_u JOIN personal_trainer pt ON t.trainer_id = pt.trainer_id  AND pt.status = 1 AND pt.ticket_id = ?";
+            return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
+                public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+                    UserDto userDto = new UserDto();
+                    userDto.setU_id(resultSet.getInt("trainer_id"));
+                    userDto.setU_full_name(resultSet.getString("name"));
+                    userDto.setT_experience(resultSet.getInt("Year_of_experience"));
+                    userDto.setTp_price(resultSet.getInt("price"));
+                    userDto.setTp_id(resultSet.getInt("personal_trainer_id"));
+                    return userDto;
+                }
+            }, ticket_id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public List<User> findAllTrainerIdAndName() {
         try{
             sql = "SELECT id_u, name FROM users JOIN users_roles ON users.id_u = users_roles.u_id " +

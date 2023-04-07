@@ -38,12 +38,9 @@
                                         </p>
                                     </div>
                                     <div class="card-read-more">
-                                        <%--<a class="btn btn-link btn-block" onclick="mess(${tickets.t_id})">--%>
-                                            <%--Mua vé ngay--%>
-                                        <%--</a>--%>
-                                            <a class="btn btn-link btn-block" onclick="classs(${tickets.t_id})">
-                                                Mua vé ngay
-                                            </a>
+                                        <a class="btn btn-link btn-block" onclick="classticket(${tickets.t_id})">
+                                            Mua vé ngay
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +51,7 @@
         </div>
     </div>
     <script>
-        function classs(id){
+        function classticket(id){
             console.log("class: " + id);
             $.ajax(
                 {
@@ -64,10 +61,7 @@
                     success: function (resultAPI) {
                         console.log("result: " + resultAPI);
                         if (resultAPI === ""){
-                            Swal.fire('Bạn đã book class thành công', '', 'success').then((result) => {
-                                if(result.isConfirmed){
-                                window.location.href = '<c:url value="/CustomerUser/saveTickerUserClass?" />' + "id=" + id;
-                            }
+
                         }else{
                                 Swal.fire({
                                     title: 'Bạn chắc chắn muốn mua thêm Class này?',
@@ -82,7 +76,7 @@
                                     if(result.isConfirmed){
                                     Swal.fire('Bạn đã book class thành công', '', 'success').then((result) => {
                                         if(result.isConfirmed){
-                                        window.location.href = '<c:url value="/CustomerUser/saveTickerUserClass?" />' + "id=" + id;
+                                        <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUserClass?" />' + "id=" + id;--%>
                                         // console.log("end: " + date);
                                         <%--window.location.href = '<c:url value="/CustomerUser/" />' + id--%>
                                     }
@@ -102,4 +96,6 @@
         }
     </script>
 </section>
+
+
 

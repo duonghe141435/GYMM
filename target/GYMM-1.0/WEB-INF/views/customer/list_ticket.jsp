@@ -11,7 +11,7 @@
     <div class="container-fostrap">
         <div>
             <h1 class="heading">
-                Vé được nhiều người chọn
+                Danh sách vé
             </h1>
         </div>
         <div class="content">
@@ -76,12 +76,15 @@
                             }).then((result) => {
                                 /* Read more about isConfirmed, isDenied below */
                                 if(result.isConfirmed){
-                                <%--window.location.href = '<c:url value="list_class.jsp" />'--%>
+                                    // lưu ticket_id vào session
+                                    sessionStorage.setItem("ticket_id", id);
+                                    var show = document.getElementById("shows");
+                                    show.scrollIntoView();
                             }else if (result.isDenied) {
                                 Swal.fire('Bạn đã book ticket thành công', '', 'success').then((result) => {
                                     if(result.isConfirmed){
                                     <%--window.location.href = '<c:url value="/CustomerUser/" />' + id--%>
-                                    window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "id=" + id + "&date="+resultAPI;
+                                    window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "ticket_id=" + id + "&date="+resultAPI + "&price=" + 0 + "&ticket_pt_id=" + 0;
                                 }
                             })
                             }
@@ -98,24 +101,28 @@
                             }).then((result) => {
                                 /* Read more about isConfirmed, isDenied below */
                                 if(result.isConfirmed){
-                                    Swal.fire({title: 'Bạn có muốn thêm Book Ticket Trainer không?', text: 'Bạn sẽ được chuyển sang trang Book Ticket Class',
-                                        showDenyButton: true, showConfirmButton: true, confirmButtonText: 'Có',
-                                        denyButtonText: 'Không', icon: 'question'}).then((result) => {
-                                        if(result.isConfirmed){
+                                Swal.fire({title: 'Bạn có muốn thêm Book Ticket Trainer không?', text: 'Bạn sẽ được chuyển sang trang Book Ticket Class',
+                                    showDenyButton: true, showConfirmButton: true, confirmButtonText: 'Có',
+                                    denyButtonText: 'Không', icon: 'question'}).then((result) => {
+                                    if(result.isConfirmed){
+                                        // lưu ticket_id vào session
+                                        sessionStorage.setItem("ticket_id", id);
+                                        var show = document.getElementById("shows");
+                                        show.scrollIntoView()
 
-                                    }else if (result.isDenied) {
-                                        Swal.fire('Bạn đã book ticket thành công', '', 'success').then((result) => {
-                                            if(result.isConfirmed){
-                                            <%--window.location.href = '<c:url value="/CustomerUser/" />' + id--%>
-                                            window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "id=" + id + "&date="+resultAPI;
-                                        }
-                                    })
+                                }else if (result.isDenied) {
+                                    Swal.fire('Bạn đã book ticket thành công', '', 'success').then((result) => {
+                                        if(result.isConfirmed){
+                                        <%--window.location.href = '<c:url value="/CustomerUser/" />' + id--%>
+                                        window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "ticket_id=" + id + "&date="+resultAPI + "&price=" + 0 + "&ticket_pt_id=" + 0;
+                                    }
+                                })
                                 }
 
-                                    <%--Swal.fire('Bạn đã book ticket thành công', '', 'success').then((result) => {--%>
-                                        <%--if(result.isConfirmed){--%>
-                                        <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "id=" + id + "&date="+resultAPI;--%>
-                                    <%--}--%>
+                                <%--Swal.fire('Bạn đã book ticket thành công', '', 'success').then((result) => {--%>
+                                <%--if(result.isConfirmed){--%>
+                                <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "id=" + id + "&date="+resultAPI;--%>
+                                <%--}--%>
                             })
                             }else if (result.isDenied) {
                             }
