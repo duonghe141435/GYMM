@@ -1,77 +1,10 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %><%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Danh sách người dùng hệ thống</title>
-    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
-    <script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
-    <style>
-        body {
-            /* Set "my-sec-counter" to 0 */
-            counter-reset: my-sec-counter;
-        }
-
-        count::before {
-            /* Increment "my-sec-counter" by 1 */
-            counter-increment: my-sec-counter;
-            content: counter(my-sec-counter) ;
-        }
-        .table tbody td.status .active {
-            background: #cff6dd;
-            color: #1fa750;
-        }
-        .table tbody td.status span {
-            position: relative;
-            border-radius: 30px;
-            padding: 4px 10px 4px 25px;
-        }
-        td.status span:after {
-            position: absolute;
-            top: 9px;
-            left: 10px;
-            width: 10px;
-            height: 10px;
-            content: '';
-            border-radius: 50%;
-        }
-        .table tbody td.status .active:after {
-            background: #23bd5a;
-        }
-        .table tbody td .img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-        .table tbody td .img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-        .table tbody td .email span {
-            display: block;
-        }
-        .table tbody td.status .waiting {
-            background: #fdf5dd;
-            color: #cfa00c;
-        }
-        .table tbody td.status .waiting:after {
-            background: #f2be1d;
-        }
-        .table tbody td.status .danger {
-            background: #fd6f48;
-            color: rgba(170, 14, 9, 0.74);
-        }
-        .table tbody td.status .danger:after {
-            background: #f21b21;
-        }
-
-    </style>
+    <title>Danh sách người dùng</title>
+    <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
 </head>
-
 <body id="page-top">
 <div id="wrapper">
     <div class="d-flex flex-column" id="content-wrapper">
@@ -86,18 +19,26 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label class="form-label">Show&nbsp;<select class="d-inline-block form-select form-select-sm">
-                                    <option value="10" selected="">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                </select>&nbsp;</label></div>
+                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
+                                    <label class="form-label">Show&nbsp;
+                                        <select class="d-inline-block form-select form-select-sm">
+                                            <option value="10" selected="">10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>&nbsp;</label>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="text-md-end dataTables_filter" id="dataTable_filter"><label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
+                            <div class="col-md-6 text-nowrap">
+                                <div class="text-md-end w-25 float-end">
+                                    <label class="form-label d-flex">
+                                        <input type="search" class="form-control form-control-sm" placeholder="Search" id="input-search">
+                                        <button id="btn-search-user" type="button" style="background: none; border: none"><i class="fa fa-search"></i></button>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info" style="max-height: 100vh;">
+                        <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
                             <table class="table my-0" id="dataTable">
                                 <thead>
                                 <tr>
@@ -117,14 +58,14 @@
                                             <td class="d-flex align-items-center" style="border: none;">
                                                 <div class="img" style="background-image: url('<c:url value="${users.u_img}"/> ');"></div>
                                                 <div class="pl-3 email">
-                                                    <span>${users.u_email}</span>
+                                                <span>${users.u_email}</span>
                                                     <span>Added: ${users.u_create_date}</span>
                                                 </div>
                                             </td>
                                             <td>${users.u_full_name}</td>
                                             <td class="text-center">${users.u_phone_number}</td>
                                             <c:if test="${users.u_enable == 0}">
-                                                <td class="status text-center"><span class="waiting">Chưa kích hoạt</span></td>
+
                                             </c:if>
                                             <c:if test="${users.u_enable == -1}">
                                                 <td class="status text-center"><span class="danger">Khóa</span></td>
@@ -134,12 +75,8 @@
                                             </c:if>
                                             <td class="text-center"><a class="user_view" data-bs-toggle="modal" data-bs-target="#vew_user_modal">
                                                 <i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
-
-                                                <a class="ticket_update" href="<c:url value='/admin/dashboard/users/${users.u_id}'/> ">
-                                                    <i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>
-
-                                                <a class="ticket_delete">
-                                                    <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                                <a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>
+                                                <a class="ticket_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -147,25 +84,109 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6 align-self-center">
+                                <p>Tổng số bản ghi: <span>${count}</span></p>
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <%@include file="/WEB-INF/views/layouts/admin/footer.jsp" %>
-    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        <%@include file="/WEB-INF/views/layouts/admin/footer.jsp"%>
+    </div>
 </div>
 </body>
-<script src="<c:url value="/assets/perfect-scrollbar/perfect-scrollbar.min.js"/>"></script>
 <script>
-    $('.js-pscroll').each(function () {
-        var ps = new PerfectScrollbar(this);
-        $(window).on('resize', function () {
-            ps.update();
-        })
-    });
 
+    $(document).ready(function () {
+        var btn_search = $("#btn-search-user");
+        var input_search = $("#input-search");
+        // Thực hiện hành động tìm kiếm tại Danh sách người dùng hệ thống
+        input_search.on("input", function (){
+            var input = $(this).val();
+            if(input.length >=5 ){
+                $.ajax({
+                    url: 'http://localhost:8080/admin/user-management/search',
+                    method: 'GET',
+                    data: {query: input},
+                    dataType : 'json',
+                    success: function(response) {
+                        $('#dataTable tbody').remove();
+                        console.log(response);
+                        var tbody = $('<tbody>');
+                        $('#dataTable').append(tbody);
+                        $('#dataTable tbody').css({
+                            'display': 'contents',
+                            'width': '100%',
+                            'overflow': 'auto'
+                        });
+                        $.each(response, function(index, users) {
+                            var newrow = $("<tr>");
+                            var row = '<td class="text-center"><count></count></td><td class="d-flex align-items-center" style="border: none;">\n' +
+                                '<div class="img" style="background-image: url(http://localhost:8080'+users.u_img+')"></div>\n' +
+                                '<div class="pl-3 email"><span>'+users.u_email+'</span><span>Added:'+users.u_create_date+'</span>\n' +
+                                '</div></td><td>'+users.u_full_name+'</td><td class="text-center">'+users.u_phone_number+'</td>';
+
+                            if(users.u_enable === -1){
+                                row += ' <td class="status text-center"><span class="waiting">Chưa kích hoạt</span></td>';
+                            }
+                            if(users.u_enable === 0){
+                                row += '<td class="status text-center"><span class="danger">Khóa</span></td>';
+                            }
+                            if(users.u_enable === 1){
+                                row += '<td class="status text-center"><span class="active">Hoạt động</span></td>';
+                            }
+                            row += '<td class="text-center"><a class="user_view" data-bs-toggle="modal" data-bs-target="#vew_user_modal">\n' +
+                                '<i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>\n' +
+                                '<a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>\n' +
+                                '<a class="ticket_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>\n' +
+                                '</td>';
+                            newrow.append(row);
+                            $('#dataTable tbody').append(newrow);
+                        });
+
+                        // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+        btn_search.click(function (e) {
+            var input = input_search.val();
+            // Thực hiện hành động khi thẻ input thay đổi
+            if(input === ''){
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Bạn cần nhập thông tin vào ô tìm kiếm',
+                    icon: 'error'
+                })
+            }else if(input.length >= 5){
+                $.ajax({
+                    url: 'http://localhost:8080/admin/user-management/search',
+                    method: 'GET',
+                    data: {query: input},
+                    success: function(response) {
+                       window.location.href = "http://localhost:8080/admin/dashboard/users/search/"+input;
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }else {
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Hãy nhập tối thiểu 5 ký tự vào ô input',
+                    icon: 'error'
+                })
+            }
+        });
+    });
+    
 </script>
-<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
-<script src="<c:url value='/assets/js/bs-init.js'/>"></script>
-<script src="<c:url value='/assets/js/theme.js'/>"></script>
 </html>

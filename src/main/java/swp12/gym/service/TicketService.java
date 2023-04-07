@@ -2,6 +2,7 @@ package swp12.gym.service;
 
 import org.springframework.stereotype.Service;
 
+import swp12.gym.dto.TicketDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.model.entity.Ticket;
 
@@ -10,9 +11,11 @@ import java.util.List;
 @Service
 public interface TicketService {
 
-    List<Ticket> findAllGymTicket();
-
     List<Ticket> findAll();
+
+    List<TicketDto> findAllOfAdmin();
+
+    List<Ticket> findAllGymTicket();
 
     List<Ticket> findAllTicketDoor();
 
@@ -41,6 +44,5 @@ public interface TicketService {
     int getNumberTicketInSystem();
 
     void deleteTickets(String id);
-
 
 }

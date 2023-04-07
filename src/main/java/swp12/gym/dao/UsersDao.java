@@ -23,7 +23,7 @@ public class UsersDao {
     //Lay tat ca nguoi dung
     public List<UserDto> findAll() {
         sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
-                "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date, r.description\n" +
+                "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date, r.description\n" +
                 "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r;";
         return jdbcTemplate.query(sql, new UserDtoMapper());
     }

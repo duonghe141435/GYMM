@@ -1,11 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: HongWung
-  Date: 3/7/2023
-  Time: 4:59 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!--SHOW MENU --><%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="padding: 0 .75rem;">
@@ -34,21 +27,11 @@
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-ticket-alt"></i><span>Vé</span></a>
-                    <div class="dropdown-menu shadow animated--grow-in">
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket-door"/>">Quản lý vé vào cửa</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket-trainer"/>">Quản lý vé PT cá nhân</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket-class"/>">Quản lý vé lớp học</a>
-                    </div>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <div class="nav-item dropdown no-arrow">
-                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
                         <i class="fas fa-user-alt"></i><span>Phòng tập</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket"/>">Quản lý vé</a>
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý thiết bị</a>
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý sản phẩm</a>
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý huấn luyện viên</a>
@@ -173,10 +156,9 @@
                     <span class="d-none d-lg-inline me-2 text-gray-600 small">${display_name}</span>
                     <img class="border rounded-circle img-profile" src="<c:url value="${display_img}"/>"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Đổi mật khẩu</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/your-profile"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
+                        <a class="dropdown-item"  href="<c:url value="/admin/dashboard/activity-log"/>"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Lịch sử hoạt động</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/change-pass"/>"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Đổi mật khẩu</a>
 
                         <div class="dropdown-divider"></div>
                         <form action="<c:url value="/j_spring_security_logout"/>" method="POST" class="dropdown-item">

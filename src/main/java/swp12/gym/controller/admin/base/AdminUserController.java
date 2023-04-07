@@ -31,7 +31,6 @@ public class AdminUserController {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String goListUser(Model model){
         List<UserDto> users = userService.findAll();
-
         model.addAttribute("users",users);
         return "admin/user/list_user";
     }

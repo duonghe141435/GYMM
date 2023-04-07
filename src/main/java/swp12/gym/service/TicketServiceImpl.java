@@ -3,6 +3,7 @@ package swp12.gym.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import swp12.gym.dao.TicketDao;
+import swp12.gym.dto.TicketDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.model.entity.Ticket;
 
@@ -20,6 +21,10 @@ public class TicketServiceImpl implements TicketService{
 
     public List<Ticket> findAll() {
         return ticketDao.findAllTickets();
+    }
+
+    public List<TicketDto> findAllOfAdmin() {
+        return ticketDao.findAllOfAdmin();
     }
 
     public List<Ticket> findAllTicketDoor() { return ticketDao.findAllTicketDoor(); }

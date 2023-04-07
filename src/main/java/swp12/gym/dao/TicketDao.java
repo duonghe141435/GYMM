@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import swp12.gym.dto.TicketDto;
+import swp12.gym.dto.TicketDtoMapper;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.dto.TicketTrainerDtoMapper;
 import swp12.gym.model.entity.Ticket;
@@ -20,6 +22,27 @@ public class TicketDao {
     private String sql;
 
     private final LocalDate currentDate = LocalDate.now();
+
+    public List<TicketDto> findAllOfAdmin() {
+        try{
+            sql = "SELECT t.id_t as ticket_id, t.tt_id as ticket_type,\n" +
+                    "t.name as ticket_name, t.total_days as ticket_day,\n" +
+                    "IFNULL(MAX(class.max_menber),1) as max_menber, IFNULL(MIN(class.max_menber),1) as min_menber,\n" +
+                    "t.status as ticket_status, t.create_date as ticket_create,\n" +
+                    "IFNULL(t.price,0) as ticket_price, IFNULL(MAX(class.price),0) as class_price_max,\n" +
+                    "IFNULL(MIN(class.price),0) as class_price_min,IFNULL(MAX(t2.price),0) as trainer_price_max,\n" +
+                    "IFNULL(MIN(t2.price),0) as trainer_price_min\n" +
+                    "FROM ticket t left join class on t.id_t = class.ticket_id " +
+                    "left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status <> 0\n" +
+                    "GROUP BY t.id_t, t.create_date, t.tt_id, t.name,t.total_days\n" +
+                    "ORDER BY t.create_date DESC";
+
+            return jdbcTemplate.query(sql, new TicketDtoMapper());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
     public List<Ticket> findAllGymTickets(){
@@ -160,4 +183,6 @@ public class TicketDao {
             e.printStackTrace();
         }
     }
+
+
 }
