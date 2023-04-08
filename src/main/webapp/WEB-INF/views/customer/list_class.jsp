@@ -64,7 +64,7 @@
 
                         }else{
                                 Swal.fire({
-                                    title: 'Bạn chắc chắn muốn mua thêm Class này?',
+                                    title: 'Bạn chắc chắn muốn mua tham gia vào lớp này không?',
                                     showDenyButton: true,
                                     confirmButtonText: 'Có',
                                     denyButtonText: 'Không',

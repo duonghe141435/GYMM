@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import swp12.gym.dto.UserDto;
+import swp12.gym.dto.UserDtoAdmin;
 import swp12.gym.model.entity.Role;
 import swp12.gym.service.RoleService;
 import swp12.gym.service.UserService;
@@ -30,7 +31,7 @@ public class AdminUserController {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String goListUser(Model model){
-        List<UserDto> users = userService.findAll();
+        List<UserDtoAdmin> users = userService.findAllOfAdmin();
         model.addAttribute("users",users);
         return "admin/user/list_user";
     }

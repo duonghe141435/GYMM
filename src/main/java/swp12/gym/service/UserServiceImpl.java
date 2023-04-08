@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.UserDto;
+import swp12.gym.dto.UserDtoAdmin;
 import swp12.gym.dto.UserDtoDao;
 import swp12.gym.model.entity.User;
 
@@ -17,6 +18,10 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserDtoDao userDtoDao;
+
+    public List<UserDtoAdmin> findAllOfAdmin() {
+        return usersDao.findAllOfAdmin();
+    }
 
     public List<UserDto> findAll() {
         return usersDao.findAll();

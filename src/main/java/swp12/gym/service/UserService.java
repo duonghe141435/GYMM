@@ -2,12 +2,15 @@ package swp12.gym.service;
 
 import org.springframework.stereotype.Service;
 import swp12.gym.dto.UserDto;
+import swp12.gym.dto.UserDtoAdmin;
 import swp12.gym.model.entity.User;
 
 import java.util.List;
 
 @Service
 public interface UserService {
+
+    List<UserDtoAdmin> findAllOfAdmin();
 
     //Get All User
     List<UserDto> findAll();
@@ -46,5 +49,6 @@ public interface UserService {
     void updateExperienceTrainer(int u_id, int year_experience);
 
     UserDto getUserByEmail(String userName);
+
 
 }

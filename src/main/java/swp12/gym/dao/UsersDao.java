@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import swp12.gym.dto.UserDto;
+import swp12.gym.dto.UserDtoAdmin;
+import swp12.gym.dto.UserDtoAdminMapper;
 import swp12.gym.dto.UserDtoMapper;
 import swp12.gym.model.entity.User;
 import swp12.gym.model.mapper.UserMapper;
@@ -19,6 +21,18 @@ public class UsersDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     private String sql;
+
+    public List<UserDtoAdmin> findAllOfAdmin() {
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+                    "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r;";
+            return jdbcTemplate.query(sql, new UserDtoAdminMapper());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     //Lay tat ca nguoi dung
     public List<UserDto> findAll() {
@@ -125,7 +139,7 @@ public class UsersDao {
 
     public UserDto findAnUserById(int id) {
         sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
-                "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                "users.CMND,users, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
                 "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE users.id_u = ?;";
         return jdbcTemplate.queryForObject(sql, new UserDtoMapper(), id);
     }
@@ -133,7 +147,7 @@ public class UsersDao {
     public UserDto findAnUserByEmail(String username) {
         try {
             sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
-                    "users.CMND,users.status, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
                     "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE users.email = ?;";
             return jdbcTemplate.queryForObject(sql, new UserDtoMapper(), username);
         }catch (Exception e) {
@@ -144,11 +158,10 @@ public class UsersDao {
 
     public void createUser(UserDto userDto) {
         try{
-            sql = "INSERT INTO users (id_u, name, email, password, enabled, gender, phone, address, image, CMND, " +
-                    "status, create_date, DOB) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            sql = "INSERT INTO users (id_u, name, email, password, enabled, gender, phone, address, image, CMND, create_date, DOB) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
             jdbcTemplate.update(sql, userDto.getU_id(), userDto.getU_full_name(),userDto.getU_email(), userDto.getU_password(),
                     1, userDto.getU_gender(), userDto.getU_phone_number(), userDto.getU_address(), userDto.getU_img(),
-                    userDto.getU_identity_card(), 1,userDto.getU_dob() ,userDto.getU_dob());
+                    userDto.getU_identity_card(),userDto.getU_dob() ,userDto.getU_dob());
         }
         catch (Exception e){
             e.printStackTrace();
@@ -238,4 +251,6 @@ public class UsersDao {
             e.printStackTrace();
         }
     }
+
+
 }

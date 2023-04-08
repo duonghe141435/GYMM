@@ -67,12 +67,12 @@
                         <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "id=" + id + "&date="+result;--%>
                         if (resultAPI === ""){
                             Swal.fire({
-                                title: 'Bạn có muốn thêm Book Ticket Trainer không?',
+                                title: 'Bạn có muốn thuê huấn luyện viên không?',
                                 showDenyButton: true,
                                 confirmButtonText: 'Có',
                                 denyButtonText: 'Không',
                                 icon: 'question',
-                                text: 'Bạn sẽ được chuyển sang trang Book Ticket Class',
+                                text: 'Bạn sẽ được chuyển đên "Huấn Luyện Viên"',
                             }).then((result) => {
                                 /* Read more about isConfirmed, isDenied below */
                                 if(result.isConfirmed){

@@ -89,9 +89,11 @@
                         <table class="table my-0" id="class-table">
                             <thead>
                             <tr>
+                                <th>Tên lớp</th>
                                 <th>Huấn luyện viên</th>
-                                <th>Ca tập</th>
                                 <th>Giá vé</th>
+                                <th>Ca tập</th>
+                                <th>Lịch tập</th>
                                 <th>Ngày bắt đầu</th>
                                 <th>Member</th>
                                 <th>Thao tác</th>

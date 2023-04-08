@@ -119,20 +119,20 @@ public class TicketDao {
         }
     }
 
-    public void createTicket(String name, String price, String day, int type_id, int ids) {
+    public void createTicket(String name, String price, String day, String type_id,int status, int ids) {
         try{
             sql = "INSERT INTO ticket (id_t, price, total_days, status, name, create_date,tt_id) VALUES (?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql,ids, price, day, 1,name, currentDate, type_id);
+            jdbcTemplate.update(sql,ids, price, day, status,name, currentDate, type_id);
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public void createTicketClass(int ids_class, int id_trainer, int ids, int id_time, int state,
+    public void createTicketClass(int ids_class, String name, int id_trainer, int ids, int id_time, int state,
                                   String start_date, String end_date, int max_member, int price) {
         try{
-            sql = "INSERT INTO class (class_id ,price, time_id, state, start_date,end_date, trainer_id,ticket_id,max_menber) VALUES (?,?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql,ids_class, price, id_time,state, start_date,end_date, id_trainer,ids, max_member);
+            sql = "INSERT INTO class (class_id,name,price, time_id, state, start_date,end_date, trainer_id,ticket_id,max_menber) VALUES (?,?,?,?,?,?,?,?,?)";
+            jdbcTemplate.update(sql,ids_class,name, price, id_time,state, start_date,end_date, id_trainer,ids, max_member);
         }catch (Exception e){
             e.printStackTrace();
         }

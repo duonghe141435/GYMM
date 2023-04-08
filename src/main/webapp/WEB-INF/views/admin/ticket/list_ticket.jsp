@@ -178,6 +178,7 @@
         //=================Trainer===============
         var list_class = [];
         var class_name = $("#class-name");
+        var trainer_class = $("#trainer-class")
         var btn_add_class = $("#btn-add-class");
         var table_class =  $("#class-table");
         var class_price =  $("#class-price");
@@ -214,7 +215,13 @@
                 show_add_ticket.click();
             }
         });
-        btn_close_class.click(function () {show_add_ticket.click();});
+        btn_close_class.click(function () {
+            if(list_class.length === 0){
+                show_add_ticket.click();
+            }else {
+                Toast.fire({icon: 'info', title: 'Dữ liệu đã tự động lưu lại!'})
+                show_add_ticket.click();
+            }});
         btn_close_ticket.click(function () {});
 
         ticket_type.on("change", function () {
@@ -546,6 +553,7 @@
                 table_trainer.append(newrow);
             }
         });
+
         table_trainer.on('click', '.delete-trainer', function () {
             var row = $(this).closest('tr');
             var _index = $(this).closest('tr').index();
@@ -554,20 +562,51 @@
         });
 
         btn_add_class.click(function () {
+            var _price = class_price.val().replace(/\D/g, "");
+
+            var _id = trainer_class.val();
+            var _id_check = list_class.map(function(item) {return item._id;});
+            var newrow = $("<tr>");
 
             var input_value = $('#my-input').val();
             var checkbox_values = [];
+            var lichtap = '';
             $('table input[type="checkbox"]:checked').each(function() {
                 checkbox_values.push($(this).attr('id'));
+                if($(this).attr('id') === '1'){
+                    lichtap += ' Cn '
+                }
+                if($(this).attr('id') === '2'){
+                    lichtap += ' Thu2 '
+                }
+                if($(this).attr('id') === '3'){
+                    lichtap += ' Thu3'
+                }
+                if($(this).attr('id') === '4'){
+                    lichtap += ' Thu4 '
+                }
+                if($(this).attr('id') === '5'){
+                    lichtap += ' Thu5 '
+                }
+                if($(this).attr('id') === '6'){
+                    lichtap += ' Thu6 '
+                }
+                if($(this).attr('id') === '7'){
+                    lichtap += ' Thu7 '
+                }
             });
 
-            var _price = class_price.val().replace(/\D/g, "");
-            if(checkbox_values.length === 0){
+            if($.trim(class_name.val()) === '' || $.trim(_price) === '' || (parseInt(_price) < 1000 || parseInt(_price) > 50000)){
+                Swal.fire('Xin hãy điền đầy đủ thông tin một cách chính xác', '', 'warning');
+            } else if (_id_check.includes(_id)) {
+                Swal.fire({ title: 'Huấn luyện viên đã có vé', text:"Huấn luyện viên đã có vé này, bạn không thể tiếp tục thêm",
+                    icon: 'info'
+                })
+            }else if(checkbox_values.length === 0){
                 Swal.fire('Thiếu lịch tập', 'Bạn quên chưa chọn lịch tập trong tuần rôi', 'warning')
-            }else if((parseInt(_price) < 1000 || parseInt(_price) > 50000)){
-
-            }else {
+            }else{
                 var data = {
+                    '_name': class_name.val(),
                     '_id': trainer_select.val(),
                     '_id_time': time_select.val(),
                     '_max_member': max_member.val(),
@@ -584,10 +623,11 @@
 
                 list_class.push(data);
 
-                var newrow = $("<tr>");
                 newrow.append(
+                    '<td>' + class_name.val() + '</td>' +
                     '<td>' + trainer_name + '</td>' +
                     '<td>' + time_detail + '</td>' +
+                    '<td>' + lichtap + '</td>' +
                     '<td class="class-price">' + formattedPrice + '</td>' +
                     '<td>' + start_date.val() + '</td>' +
                     '<td>' + max_member.val() + '</td>' +
@@ -601,7 +641,7 @@
         table_class.on('click', '.delete-class', function () {
             var row = $(this).closest('tr');
             var _index = $(this).closest('tr').index();
-            list_trainer.splice(_index,1);
+            list_class.splice(_index,1);
             row.remove();
         });
 
@@ -637,7 +677,6 @@
             }
         })
         });
-
 
         table_ticket.on('click', '.ticket-view', function () {
             var ids = $(this).parent().siblings('.ticket-id').text();

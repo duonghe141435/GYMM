@@ -24,12 +24,12 @@ public interface TicketService {
     List<Ticket> findAllTicketClass();
 
     //Create an tickets
-    public void createTicket(String name, String price, String day, int typeId, int type_id);
+    public void createTicket(String name, String price, String day, String type_id, int status, int ids);
 
     //Create an have trainer
     void createTicketForTrainer(String ticketName, String ticketDay, int i);
 
-    public void createTicketClass(int ids_class, int id_trainer, int ids, int _id_time, int state,
+    public void createTicketClass(int ids_class, String name, int id_trainer, int ids, int _id_time, int state,
                                   String start_date, String end_date, int _max_member, int _price);
 
     //Create an tickets personal
