@@ -99,11 +99,8 @@
                                         </td>
                                         <td class="text-center">${tickets.create_date}</td>
                                         <td class="text-center">
-                                            <a class="ticket_plus">
-                                                <i class="fas fa-plus-circle fa-lg fa-fw me-2 text-info" title="Thêm Huấn Luyện viên"></i></a>
-
                                             <a class="ticket-view">
-                                                <i class="fas fa-eye fa-lg fa-fw me-2 text-primary" title="Thôn tin chi tiết"></i></a>
+                                                <i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Thôn tin chi tiết"></i></a>
 
                                             <a class="ticket-delete">
                                                 <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
@@ -134,7 +131,3 @@
 </body>
 <script src="<c:url value='/assets/js/admin-process-ticket.js'/>"></script>
 </html>
-
-
-
-
