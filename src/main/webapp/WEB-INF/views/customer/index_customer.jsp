@@ -5,7 +5,6 @@
 
 <head>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
-    <script src="<c:url value='/assets/js/jquery-3.2.1.min.js'/>"></script>
     <title>Trang chủ</title>
     <style>
         .wrapper {

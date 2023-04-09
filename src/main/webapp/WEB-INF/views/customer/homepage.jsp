@@ -10,9 +10,9 @@
 <html>
 <head>
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
+    <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
     <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/homepagestyle.css'/>">
-    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
+
 </head>
 <body>
 <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
@@ -263,9 +263,6 @@
         </div>
     </div>
 </footer>
-
-
-<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <script src="<c:url value='/assets/js/startup-modern.js'/> "></script>
 </body>
 </html>

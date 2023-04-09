@@ -58,7 +58,7 @@
                                             <td class="d-flex align-items-center" style="border: none;">
                                                 <div class="img" style="background-image: url('<c:url value="${users.u_img}"/> ');"></div>
                                                 <div class="pl-3 email">
-                                                <span>${users.u_email}</span>
+                                                    <span>${users.u_email}</span>
                                                     <span>Added: ${users.u_create_date}</span>
                                                 </div>
                                             </td>
@@ -172,7 +172,7 @@
                     method: 'GET',
                     data: {query: input},
                     success: function(response) {
-                       window.location.href = "http://localhost:8080/admin/dashboard/users/search/"+input;
+                        window.location.href = "http://localhost:8080/admin/dashboard/users/search/"+input;
                     },
                     error: function(xhr, status, error) {
                         console.log(error);
@@ -187,6 +187,6 @@
             }
         });
     });
-    
+
 </script>
 </html>

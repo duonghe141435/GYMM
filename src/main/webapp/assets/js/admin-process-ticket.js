@@ -8,8 +8,8 @@ $(document).ready(function () {
         timerProgressBar: true,
         didOpen: (toast) => {
         toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }})
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+}})
 
     //=================Ticket===============
     var table_ticket = $("#ticket-table");
@@ -38,12 +38,10 @@ $(document).ready(function () {
     var trainer_select = $("#trainer-select");
     var save_trainer = $("#btn-save-trainer");
 
-
-
     //=================Trainer===============
     var list_class = [];
     var class_name = $("#class-name");
-    var trainer_class = $("#trainer-class")
+    var trainer_class = $("#trainer-class");
     var btn_add_class = $("#btn-add-class");
     var table_class =  $("#class-table");
     var class_price =  $("#class-price");
@@ -76,7 +74,7 @@ $(document).ready(function () {
         if(list_trainer.length === 0){
             show_add_ticket.click();
         }else {
-            Toast.fire({icon: 'info', title: 'Dữ liệu đã tự động lưu lại!'})
+            Toast.fire({icon: 'info', title: 'Dữ liệu đã tự động lưu lại!'});
             show_add_ticket.click();
         }
     });
@@ -84,7 +82,7 @@ $(document).ready(function () {
         if(list_class.length === 0){
             show_add_ticket.click();
         }else {
-            Toast.fire({icon: 'info', title: 'Dữ liệu đã tự động lưu lại!'})
+            Toast.fire({icon: 'info', title: 'Dữ liệu đã tự động lưu lại!'});
             show_add_ticket.click();
         }});
     btn_close_ticket.click(function () {});
@@ -113,6 +111,7 @@ $(document).ready(function () {
             price_error.hide();
         }
     });
+
 
     btn_add_ticket.click(function () {
         var _name = ticket_name.val();
@@ -158,8 +157,7 @@ $(document).ready(function () {
                                     '<td class="text-center">Chưa được xác định</td>' +
                                     '<td class="text-center"><span>' + showday + '</span> ngày</td>' +
                                     '<td class="status text-center"><span class="waiting">Chưa bán - Thiếu huấn luyện viên</span></td>' +
-                                    '<td class="text-center">' + today + '</td><a class="ticket_plus">\n' +
-                                    '<i class="fas fa-plus-circle fa-lg fa-fw me-2 text-info" title="Thêm Huấn Luyện viên"></i></a>' +
+                                    '<td class="text-center">' + today + '</td><a class="ticket_plus">' +
                                     '<td class="text-center"><a class="ticket-view"><i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Xóa vé"></i></a>' +
                                     '<a class="ticket-delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a></td>'
                                 );
@@ -222,8 +220,7 @@ $(document).ready(function () {
                                     '<td>' + _type_name + '</td>' +price_show+
                                     '<td class="text-center"><span>' + showday + '</span> ngày</td>' +
                                     '<td class="status text-center"><span class="active">Đang bán</span></td>' +
-                                    '<td class="text-center">' + today + '</td><a class="ticket_plus">\n' +
-                                    '<i class="fas fa-plus-circle fa-lg fa-fw me-2 text-info" title="Thêm Huấn Luyện viên"></i></a>' +
+                                    '<td class="text-center">' + today + '</td><a class="ticket_plus">' +
                                     '<td class="text-center"><a class="ticket-view"><i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Xem vé"></i></a>' +
                                     '<a class="ticket-delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a></td>'
                                 );
@@ -241,7 +238,12 @@ $(document).ready(function () {
             }
         }else if(ticket_type.val() === "3"){
             if(list_class.length === 0){
+
+                if ($.trim(_name) === '' || ((_day === '-1' && $.trim(_day_other) === '') || (parseInt(_day_other) < 1 || parseInt(_day_other) > 364))){
+                    Swal.fire('Xin hãy điền đầy đủ thông tin một cách chính xác', '', 'warning');
+                }else{
                 var data = {'_name': _name, '_price': _price, '_day': _day, '_type': _type, '_day_other': _day_other, _csrf: token};
+
                 Swal.fire({ title: 'Bạn chắc chắn thêm vé này?', text: 'Bạn chưa thêm lớp học cho loại vé này',
                     icon: 'question', confirmButtonText: 'Đúng vậy', showCancelButton: true, cancelButtonText: 'Không!'
                 }).then((result) => {
@@ -260,8 +262,7 @@ $(document).ready(function () {
                                 '<td class="text-center">Chưa được xác định</td>' +
                                 '<td class="text-center"><span>' + showday + '</span> ngày</td>' +
                                 '<td class="status text-center"><span class="waiting">Chưa bán - Thiếu huấn luyện viên</span></td>' +
-                                '<td class="text-center">' + today + '</td><a class="ticket_plus">\n' +
-                                '<i class="fas fa-plus-circle fa-lg fa-fw me-2 text-info" title="Thêm Huấn Luyện viên"></i></a>' +
+                                '<td class="text-center">' + today + '</td><a class="ticket_plus">'+
                                 '<td class="text-center"><a class="ticket-view"><i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Xóa vé"></i></a>' +
                                 '<a class="ticket-delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a></td>'
                             );
@@ -274,12 +275,11 @@ $(document).ready(function () {
                         }
                     });
                 }else {Toast.fire({icon: 'info', title: 'Dừng thêm vé!'})}
-            })
+            })}
             }else{
                 var maxPrice, minPrice;
                 var _maxPrice, _minPrice;
                 var price_show;
-
                 var prices = list_class.map(function(item) {
                     return item._price;
                 });
@@ -292,7 +292,6 @@ $(document).ready(function () {
                     var __price = prices[0].toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
                     price_show = '<td class="class-price text-center">'+__price+'</td>'
                 } else {
-
                     // Tìm giá trị lớn nhất và giá trị nhỏ nhất trong mảng `prices`
                     maxPrice = Math.max.apply(null, prices);
                     minPrice = Math.min.apply(null, prices);
@@ -303,10 +302,11 @@ $(document).ready(function () {
                     price_show = '<td class="text-center"><span class="class-price">'+_minPrice+'</span> - <span class="class-price">'+_maxPrice+'</span></td>'
                 }
 
-
                 if ($.trim(_name) === '' || ((_day === '-1' && $.trim(_day_other) === '') || (parseInt(_day_other) < 1 || parseInt(_day_other) > 364))){
                     Swal.fire('Xin hãy điền đầy đủ thông tin một cách chính xác', '', 'warning');
+
                 }else{
+
                     var data = {'_name': _name, '_day': _day, '_type': _type, '_list' : JSON.stringify(list_class),
                         '_day_other': _day_other, _csrf: token};
 
@@ -326,8 +326,7 @@ $(document).ready(function () {
                                     '<td>' + _type_name + '</td>' +price_show+
                                     '<td class="text-center"><span>' + showday + '</span> ngày</td>' +
                                     '<td class="status text-center"><span class="active">Đang bán</span></td>' +
-                                    '<td class="text-center">' + today + '</td><a class="ticket_plus">\n' +
-                                    '<i class="fas fa-plus-circle fa-lg fa-fw me-2 text-info" title="Thêm Huấn Luyện viên"></i></a>' +
+                                    '<td class="text-center">' + today + '</td><a class="ticket_plus">\n'+
                                     '<td class="text-center"><a class="ticket-view"><i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Xem vé"></i></a>' +
                                     '<a class="ticket-delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a></td>'
                                 );
@@ -345,6 +344,7 @@ $(document).ready(function () {
             }
         }else{
             var data = {'_name' : _name, '_price' : _price, '_day' : _day, '_type' : _type ,'_day_other' : _day_other, _csrf: token};
+
             if($.trim(_name) === '' || $.trim(_price) === '' || (parseInt(_price) < 1000 || parseInt(_price) > 50000) ||
                 ((_day === '-1' && $.trim(_day_other) === '') || (parseInt(_day_other) < 1 || parseInt(_day_other) > 364)) ){
                 Swal.fire('Xin hãy điền đầy đủ thông tin một cách chính xác', '', 'warning');
