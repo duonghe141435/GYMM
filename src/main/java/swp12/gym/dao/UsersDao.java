@@ -253,4 +253,33 @@ public class UsersDao {
     }
 
 
+    public String getPasswordOfUser(String username) {
+        try {
+            sql = "SELECT password FROM users WHERE email = ?";
+            return jdbcTemplate.queryForObject(sql, String.class, username);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public int getStatusOfUser(String username) {
+        try {
+            sql = "SELECT enabled FROM users WHERE email = ?";
+            return jdbcTemplate.queryForObject(sql, Integer.class, username);
+        }catch (Exception e){
+            e.printStackTrace();
+            return -99;
+        }
+    }
+
+    public void updatePasswordOfUser(String username, String pass) {
+        try{
+            sql = "UPDATE users SET password = ? WHERE email = ?";
+            jdbcTemplate.update(sql, pass, username);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

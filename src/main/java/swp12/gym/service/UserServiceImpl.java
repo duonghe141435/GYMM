@@ -23,6 +23,14 @@ public class UserServiceImpl implements UserService{
         return usersDao.findAllOfAdmin();
     }
 
+    public String getPasswordOfUser(String username) {
+        return usersDao.getPasswordOfUser(username);
+    }
+
+    public void updatePasswordOfUser(String userDetailsUsername, String pass) {
+        usersDao.updatePasswordOfUser(userDetailsUsername,pass);
+    }
+
     public List<UserDto> findAll() {
         return usersDao.findAll();
     }

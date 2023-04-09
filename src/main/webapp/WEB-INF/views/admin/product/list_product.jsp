@@ -4,9 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Product Table view</title>
+    <title>Quản lý sản phẩm</title>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
 </head>
 

@@ -7,21 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3d17186-d0eb-4305-a02d-e8011fe191b0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dto/UserDtoAdmin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dto/UserDtoAdminMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/security/LoginAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/UsersDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/UsersDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/list_ticket.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/list_ticket.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/modal_ticket_class.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/modal_ticket_class.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_class.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_class.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_ticket.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_ticket.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/product/list_product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/product/list_product.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/change_pass.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/change_pass.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/head_tag.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/head_tag.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/bs-init.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -113,46 +107,51 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="14" />
-          <entry key="java" value="158" />
-          <entry key="js" value="14" />
-          <entry key="jsp" value="35" />
-          <entry key="xml" value="6" />
+          <entry key="java" value="169" />
+          <entry key="js" value="18" />
+          <entry key="jsp" value="43" />
+          <entry key="xml" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="14" />
-          <entry key="JAVA" value="158" />
-          <entry key="JSP" value="35" />
-          <entry key="JavaScript" value="14" />
-          <entry key="XML" value="6" />
+          <entry key="JAVA" value="169" />
+          <entry key="JSP" value="43" />
+          <entry key="JavaScript" value="18" />
+          <entry key="XML" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
+          <entry key="project.closed" value="15" />
           <entry key="project.open.time.0" value="2" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.2" value="4" />
+          <entry key="project.open.time.1" value="5" />
+          <entry key="project.open.time.2" value="5" />
           <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.37" value="1" />
+          <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.40" value="1" />
+          <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1237" />
-          <entry key="jsp" value="437" />
-          <entry key="txt" value="198" />
+          <entry key="java" value="1258" />
+          <entry key="js" value="24" />
+          <entry key="jsp" value="471" />
+          <entry key="txt" value="263" />
           <entry key="xml" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1236" />
-          <entry key="JSP" value="437" />
-          <entry key="PLAIN_TEXT" value="198" />
+          <entry key="JAVA" value="1257" />
+          <entry key="JSP" value="471" />
+          <entry key="JavaScript" value="24" />
+          <entry key="PLAIN_TEXT" value="263" />
           <entry key="SQL" value="1" />
           <entry key="XML" value="10" />
         </counts>
@@ -310,101 +309,91 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/modal_ticket_class.jsp">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="57" column="81" selection-start-line="57" selection-start-column="81" selection-end-line="57" selection-end-column="96" />
+            <state relative-caret-position="136">
+              <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/list_ticket.jsp">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1305">
-              <caret line="608" column="22" selection-start-line="608" selection-start-column="22" selection-end-line="608" selection-end-column="22" />
+            <state relative-caret-position="306">
+              <caret line="30" column="17" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
               <folding>
-                <element signature="e#12108#12357#0#HTML" />
-                <element signature="e#12232#12271#0#HTML" />
-                <element signature="e#12525#13318#0#HTML" />
-                <element signature="e#13795#13848#0#HTML" />
-                <element signature="e#13994#17370#0#HTML" />
-                <element signature="e#14289#14414#0#HTML" />
-                <element signature="e#17570#17637#0#HTML" />
-                <element signature="e#17713#17807#0#HTML" />
-                <element signature="e#17847#18092#0#HTML" />
-                <element signature="e#18098#18760#0#HTML" />
-                <element signature="e#18793#18943#0#HTML" />
-                <element signature="e#18976#19139#0#HTML" />
-                <element signature="e#19208#21207#0#HTML" />
-                <element signature="e#19241#21179#0#HTML" />
-                <element signature="e#24229#24296#0#HTML" />
-                <element signature="e#24370#24464#0#HTML" />
-                <element signature="e#24504#24749#0#HTML" />
-                <element signature="e#24755#25417#0#HTML" />
-                <element signature="e#25631#25794#0#HTML" />
-                <element signature="e#25813#25849#0#HTML" />
-                <element signature="e#25863#27856#0#HTML" />
-                <element signature="e#25896#27832#0#HTML" />
-                <element signature="e#28467#30883#0#HTML" />
-                <element signature="e#28731#30785#0#HTML" />
-                <element signature="e#28764#30757#0#HTML" />
-                <element signature="e#28997#30543#0#HTML" />
-                <element signature="e#30621#30731#0#HTML" />
-                <element signature="e#30957#31407#0#HTML" />
-                <element signature="e#31453#32761#0#HTML" />
-                <element signature="n#style#0;n#td#2;n#!!top" expanded="true" />
-                <element signature="e#32829#33010#0#HTML" />
-                <element signature="n#style#0;n#td#5;n#!!top" expanded="true" />
-                <element signature="e#35058#35239#0#HTML" />
-                <element signature="e#35306#36575#0#HTML" />
-                <element signature="e#36641#36817#0#HTML" />
+                <element signature="e#640#641#0" expanded="true" />
+                <element signature="e#698#699#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/UsersDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="154" column="73" selection-start-line="154" selection-start-column="73" selection-end-line="154" selection-end-column="73" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="31" column="57" selection-start-line="31" selection-start-column="33" selection-end-line="32" selection-end-column="98" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
-              <folding>
-                <element signature="e#648#649#0" expanded="true" />
-                <element signature="e#697#698#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="339">
+              <caret line="272" column="9" lean-forward="true" selection-start-line="272" selection-start-column="9" selection-end-line="272" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/api/BookingTicketsApi.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="134" column="51" selection-start-line="134" selection-start-column="51" selection-end-line="134" selection-end-column="51" />
+            <state relative-caret-position="183">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/security/LoginAPI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="305">
+              <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/change_pass.jsp">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/product/list_product.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-ticket.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="526">
+              <caret line="323" column="56" selection-end-line="556" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/head_tag.jsp">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -443,9 +432,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/index.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dto/ticketDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/BookingTicketsApi.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/common/DataUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketUserDtoDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/model/entity/TicketUser.java" />
@@ -476,24 +462,27 @@
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dto/TicketDtoMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminTicketController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/admin/header.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/head_tag.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminBaseController.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_class.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_ticket.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dto/UserDtoAdmin.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dto/UserDtoAdminMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminUserController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dao/UsersDao.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/modal_ticket.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/modal_ticket_trainer.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/modal_ticket_class.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/list_ticket.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketService.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/list_ticket.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-ticket.js" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_class.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/controller/security/LoginAPI.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/head_tag.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/product/list_product.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dao/UsersDao.java" />
       </list>
     </option>
   </component>
@@ -527,10 +516,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="-7" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -551,6 +539,11 @@
             <path>
               <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
               <item name="GYMM" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
@@ -638,6 +631,17 @@
               <item name="gym" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
               <item name="customer" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gym" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="customer" type="462c0819:PsiDirectoryNode" />
               <item name="base" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -682,6 +686,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
@@ -797,18 +810,21 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="swp12.gym.dao" />
-      <recent name="swp12.gym.dto" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin\user" />
-      <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\layouts" />
-      <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin\ticket" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin\ticket" />
       <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\layouts" />
+      <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin\user" />
+      <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin\ticket" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="swp12.gym.controller.security" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="swp12.gym.dao" />
+      <recent name="swp12.gym.dto" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -928,7 +944,15 @@
       <workItem from="1680785469364" duration="1075000" />
       <workItem from="1680786580660" duration="15184000" />
       <workItem from="1680849820850" duration="51609000" />
-      <workItem from="1680908072963" duration="6372000" />
+      <workItem from="1680908072963" duration="7167000" />
+      <workItem from="1681036744331" duration="101000" />
+      <workItem from="1681038704591" duration="62000" />
+      <workItem from="1681053508950" duration="167000" />
+      <workItem from="1681054593903" duration="319000" />
+      <workItem from="1681061305998" duration="618000" />
+      <workItem from="1681063910839" duration="573000" />
+      <workItem from="1681067214555" duration="343000" />
+      <workItem from="1681071523873" duration="340000" />
     </task>
     <task id="LOCAL-00001" summary="re commit : {fix lost branch}">
       <created>1680241631802</created>
@@ -965,11 +989,25 @@
       <option name="project" value="LOCAL" />
       <updated>1680910635342</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="commit : Update create ticket, ticket triner, ticket class">
+      <created>1680914610565</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1680914610565</updated>
+    </task>
+    <task id="LOCAL-00007" summary="commit : JS ticket">
+      <created>1680915319419</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1680915319419</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155847000" />
+    <option name="totallyTimeSpent" value="159165000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -984,7 +1022,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497545" visible="true" weight="0.25567323" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497545" visible="true" weight="0.22844176" />
       <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.24962178" />
       <window_info id="Web" order="2" sideWeight="0.5008183" side_tool="true" weight="0.24962178" />
       <window_info id="Designer" order="3" />
@@ -1019,40 +1057,6 @@
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497545" visible="true" weight="0.23454158" />
-      <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.24962178" />
-      <window_info id="Web" order="2" sideWeight="0.5008183" side_tool="true" weight="0.24962178" />
-      <window_info id="Designer" order="3" />
-      <window_info id="Favorites" order="4" sideWeight="0.502455" side_tool="true" weight="0.25340393" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Image Layers" order="7" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32786885" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.972885" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Spring" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" />
-      <window_info anchor="bottom" id="Application Servers" order="13" weight="0.3295082" />
-      <window_info anchor="bottom" id="Messages" order="14" weight="0.3286334" />
-      <window_info anchor="right" id="Palette&#9;" order="0" />
-      <window_info anchor="right" id="Database" order="1" visible="true" weight="0.16257995" />
-      <window_info anchor="right" id="Maven Projects" order="2" weight="0.32980332" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="5" weight="0.24962178" />
-      <window_info anchor="right" id="Palette" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Theme Preview" order="8" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1066,7 +1070,9 @@
     <MESSAGE value="commit : time 1 : commit process Product for Admin" />
     <MESSAGE value="commit : font booking trainer" />
     <MESSAGE value="commit : font end ticket admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit : font end ticket admin" />
+    <MESSAGE value="commit : Update create ticket, ticket triner, ticket class" />
+    <MESSAGE value="commit : JS ticket" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit : JS ticket" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1087,80 +1093,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_product.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="das://2f2748b3-9def-4ac8-b5d6-4632fefd8344/schema/ulbfkusu_gym_master/table/trainer">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TrainerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TrainerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#440#441#0" expanded="true" />
-            <element signature="e#505#506#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://2f2748b3-9def-4ac8-b5d6-4632fefd8344/schema/ulbfkusu_gym_master/table/personal_trainer">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/api/BookingTicketTrainerApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="27" column="72" lean-forward="true" selection-start-line="27" selection-start-column="72" selection-end-line="27" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://2f2748b3-9def-4ac8-b5d6-4632fefd8344/schema/ulbfkusu_gym_master/table/ticket">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://2f2748b3-9def-4ac8-b5d6-4632fefd8344/schema/ulbfkusu_gym_master/table/price">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://2f2748b3-9def-4ac8-b5d6-4632fefd8344/schema/ulbfkusu_gym_master/table/users_roles">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketUserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="782">
@@ -1172,19 +1104,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="33" column="12" selection-start-line="33" selection-start-column="12" selection-end-line="33" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://2f2748b3-9def-4ac8-b5d6-4632fefd8344/schema/ulbfkusu_gym_master/table/ticket_user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://2f2748b3-9def-4ac8-b5d6-4632fefd8344/schema/ulbfkusu_gym_master/table/ticket_user" />
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dto/TicketDto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -1196,36 +1119,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/api/BookingTicketsApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="78" column="29" selection-start-line="78" selection-start-column="29" selection-end-line="78" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminTicketController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="747">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminTicketController.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/common/DataUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1243,25 +1144,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/head_tag.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/profile_user.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/user/list_user.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#td#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminProductController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1281,9 +1168,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-171">
           <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1294,20 +1178,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/base/CustomerBaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="52" column="41" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/base/CustomerTicketUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-253">
           <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1339,34 +1213,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_class.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1090">
-          <caret line="76" column="58" selection-start-line="76" selection-start-column="54" selection-end-line="76" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_personal.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="224" column="64" lean-forward="true" selection-start-line="224" selection-start-column="64" selection-end-line="224" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_ticket.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="83" column="61" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminUserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1374,9 +1224,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1384,60 +1231,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1956">
           <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
-          <folding>
-            <element signature="e#1358#1359#0" expanded="true" />
-            <element signature="e#1393#1394#0" expanded="true" />
-            <element signature="e#1434#1435#0" expanded="true" />
-            <element signature="e#1474#1475#0" expanded="true" />
-            <element signature="e#1516#1517#0" expanded="true" />
-            <element signature="e#1558#1559#0" expanded="true" />
-            <element signature="e#1616#1617#0" expanded="true" />
-            <element signature="e#1670#1671#0" expanded="true" />
-            <element signature="e#1708#1709#0" expanded="true" />
-            <element signature="e#1746#1747#0" expanded="true" />
-            <element signature="e#1796#1797#0" expanded="true" />
-            <element signature="e#1842#1843#0" expanded="true" />
-            <element signature="e#1883#1884#0" expanded="true" />
-            <element signature="e#1924#1925#0" expanded="true" />
-            <element signature="e#1980#1981#0" expanded="true" />
-            <element signature="e#2032#2033#0" expanded="true" />
-            <element signature="e#2068#2069#0" expanded="true" />
-            <element signature="e#2104#2105#0" expanded="true" />
-            <element signature="e#2150#2151#0" expanded="true" />
-            <element signature="e#2192#2193#0" expanded="true" />
-            <element signature="e#2228#2229#0" expanded="true" />
-            <element signature="e#2267#2268#0" expanded="true" />
-            <element signature="e#2316#2317#0" expanded="true" />
-            <element signature="e#2364#2365#0" expanded="true" />
-            <element signature="e#2409#2410#0" expanded="true" />
-            <element signature="e#2454#2455#0" expanded="true" />
-            <element signature="e#2518#2519#0" expanded="true" />
-            <element signature="e#2578#2579#0" expanded="true" />
-            <element signature="e#2618#2619#0" expanded="true" />
-            <element signature="e#2658#2659#0" expanded="true" />
-            <element signature="e#2712#2713#0" expanded="true" />
-            <element signature="e#2762#2763#0" expanded="true" />
-            <element signature="e#2798#2799#0" expanded="true" />
-            <element signature="e#2834#2835#0" expanded="true" />
-            <element signature="e#2880#2881#0" expanded="true" />
-            <element signature="e#2922#2923#0" expanded="true" />
-            <element signature="e#2968#2969#0" expanded="true" />
-            <element signature="e#3014#3015#0" expanded="true" />
-            <element signature="e#3080#3081#0" expanded="true" />
-            <element signature="e#3142#3143#0" expanded="true" />
-            <element signature="e#3174#3175#0" expanded="true" />
-            <element signature="e#3209#3210#0" expanded="true" />
-            <element signature="e#3250#3251#0" expanded="true" />
-            <element signature="e#3290#3291#0" expanded="true" />
-            <element signature="e#3326#3327#0" expanded="true" />
-            <element signature="e#3365#3366#0" expanded="true" />
-            <element signature="e#3414#3415#0" expanded="true" />
-            <element signature="e#3462#3463#0" expanded="true" />
-            <element signature="e#3506#3507#0" expanded="true" />
-            <element signature="e#3550#3551#0" expanded="true" />
-            <element signature="e#3612#3613#0" expanded="true" />
-            <element signature="e#3670#3671#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1445,19 +1238,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="175" column="8" selection-start-line="175" selection-start-column="8" selection-end-line="186" selection-end-column="42" />
-          <folding>
-            <element signature="e#3928#3929#0" expanded="true" />
-            <element signature="e#3956#3957#0" expanded="true" />
-            <element signature="e#3995#3996#0" expanded="true" />
-            <element signature="e#4029#4030#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1468,28 +1248,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-          <folding>
-            <element signature="e#536#537#0" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/modal_ticket_trainer.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
           <caret line="54" column="6" lean-forward="true" selection-start-line="54" selection-start-column="6" selection-end-line="54" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/UsersDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1500,54 +1262,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/list_ticket.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="608" column="22" selection-start-line="608" selection-start-column="22" selection-end-line="608" selection-end-column="22" />
-          <folding>
-            <element signature="e#12108#12357#0#HTML" />
-            <element signature="e#12232#12271#0#HTML" />
-            <element signature="e#12525#13318#0#HTML" />
-            <element signature="e#13795#13848#0#HTML" />
-            <element signature="e#13994#17370#0#HTML" />
-            <element signature="e#14289#14414#0#HTML" />
-            <element signature="e#17570#17637#0#HTML" />
-            <element signature="e#17713#17807#0#HTML" />
-            <element signature="e#17847#18092#0#HTML" />
-            <element signature="e#18098#18760#0#HTML" />
-            <element signature="e#18793#18943#0#HTML" />
-            <element signature="e#18976#19139#0#HTML" />
-            <element signature="e#19208#21207#0#HTML" />
-            <element signature="e#19241#21179#0#HTML" />
-            <element signature="e#24229#24296#0#HTML" />
-            <element signature="e#24370#24464#0#HTML" />
-            <element signature="e#24504#24749#0#HTML" />
-            <element signature="e#24755#25417#0#HTML" />
-            <element signature="e#25631#25794#0#HTML" />
-            <element signature="e#25813#25849#0#HTML" />
-            <element signature="e#25863#27856#0#HTML" />
-            <element signature="e#25896#27832#0#HTML" />
-            <element signature="e#28467#30883#0#HTML" />
-            <element signature="e#28731#30785#0#HTML" />
-            <element signature="e#28764#30757#0#HTML" />
-            <element signature="e#28997#30543#0#HTML" />
-            <element signature="e#30621#30731#0#HTML" />
-            <element signature="e#30957#31407#0#HTML" />
-            <element signature="e#31453#32761#0#HTML" />
-            <element signature="n#style#0;n#td#2;n#!!top" expanded="true" />
-            <element signature="e#32829#33010#0#HTML" />
-            <element signature="n#style#0;n#td#5;n#!!top" expanded="true" />
-            <element signature="e#35058#35239#0#HTML" />
-            <element signature="e#35306#36575#0#HTML" />
-            <element signature="e#36641#36817#0#HTML" />
-          </folding>
+        <state relative-caret-position="254">
+          <caret line="134" column="51" selection-start-line="134" selection-start-column="51" selection-end-line="134" selection-end-column="51" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="154" column="73" selection-start-line="154" selection-start-column="73" selection-end-line="154" selection-end-column="73" />
+        <state relative-caret-position="442">
+          <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1558,26 +1283,145 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/TicketServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/api/TicketAPIOfAdmin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
+        <state relative-caret-position="391">
+          <caret line="154" column="73" selection-start-line="154" selection-start-column="73" selection-end-line="154" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/list_ticket.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2074">
+          <caret line="122" column="30" selection-end-line="140" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_ticket.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="33" column="98" selection-start-line="31" selection-start-column="44" selection-end-line="33" selection-end-column="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_product.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dto/TicketTrainerDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_personal.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3808">
+          <caret line="224" column="64" selection-start-line="224" selection-start-column="64" selection-end-line="224" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_class.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_trainer.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="51" selection-end-column="32" />
           <folding>
-            <element signature="e#648#649#0" expanded="true" />
-            <element signature="e#697#698#0" expanded="true" />
+            <element signature="e#511#2579#0#JSP" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/TicketDao.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/base/CustomerBaseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="134" column="51" selection-start-line="134" selection-start-column="51" selection-end-line="134" selection-end-column="51" />
+        <state relative-caret-position="476">
+          <caret line="46" column="48" selection-start-line="46" selection-start-column="48" selection-end-line="46" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/js/lsbook_pt.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/api/BookingTicketTrainerApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="27" column="72" lean-forward="true" selection-start-line="27" selection-start-column="72" selection-end-line="27" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/api/BookingTicketsApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/change_pass.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/head_tag.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-ticket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="323" column="56" selection-end-line="556" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/product/list_product.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/security/LoginAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/service/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="30" column="17" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+          <folding>
+            <element signature="e#640#641#0" expanded="true" />
+            <element signature="e#698#699#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/UsersDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="272" column="9" lean-forward="true" selection-start-line="272" selection-start-column="9" selection-end-line="272" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

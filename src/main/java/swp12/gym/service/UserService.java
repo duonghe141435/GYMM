@@ -11,7 +11,8 @@ import java.util.List;
 public interface UserService {
 
     List<UserDtoAdmin> findAllOfAdmin();
-
+    String getPasswordOfUser(String username);
+    void updatePasswordOfUser(String username, String hashpw);
     //Get All User
     List<UserDto> findAll();
     //Get All Trainer
@@ -49,6 +50,7 @@ public interface UserService {
     void updateExperienceTrainer(int u_id, int year_experience);
 
     UserDto getUserByEmail(String userName);
+
 
 
 }
