@@ -61,15 +61,15 @@ public class LoginController {
                 return "redirect:/admin/dashboard/users";
             }
             if (request.isUserInRole("ROLE_EMPLOYEE")) {
-                return "redirect:/employee/dashboard";
+                return "redirect:/employee/index";
             }
             if (request.isUserInRole("ROLE_TRAINER")) {
-                return "redirect:/trainer/dashboard";
+                return "redirect:/trainer/index";
             }
             // End: Check user's role and then redirect
         }
 
-        return "redirect:/customer/home";
+        return "redirect:/customer/index";
     }
 
     @RequestMapping("/access_denied")
