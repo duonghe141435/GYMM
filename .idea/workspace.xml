@@ -7,16 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e3d17186-d0eb-4305-a02d-e8011fe191b0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/dao/LogUserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/model/entity/LogUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/LogUserMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/gym-spring-security.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/gym-spring-security.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/user/list_user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/user/list_user.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/booking_trainer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/booking_trainer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/homepage.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/homepage.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/index_customer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/index_customer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_trainer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_trainer.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/view_product.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/view_product.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-ticket.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-ticket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-user.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -108,51 +102,51 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="14" />
-          <entry key="java" value="169" />
+          <entry key="java" value="172" />
           <entry key="js" value="21" />
-          <entry key="jsp" value="56" />
+          <entry key="jsp" value="57" />
           <entry key="xml" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="14" />
-          <entry key="JAVA" value="169" />
-          <entry key="JSP" value="56" />
+          <entry key="JAVA" value="172" />
+          <entry key="JSP" value="57" />
           <entry key="JavaScript" value="21" />
           <entry key="XML" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="16" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="5" />
           <entry key="project.open.time.2" value="5" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.37" value="1" />
-          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="18" />
+          <entry key="project.opened" value="19" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1258" />
+          <entry key="java" value="1305" />
           <entry key="js" value="24" />
           <entry key="jsp" value="480" />
-          <entry key="txt" value="276" />
+          <entry key="txt" value="349" />
           <entry key="xml" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1257" />
+          <entry key="JAVA" value="1304" />
           <entry key="JSP" value="480" />
           <entry key="JavaScript" value="24" />
-          <entry key="PLAIN_TEXT" value="276" />
+          <entry key="PLAIN_TEXT" value="349" />
           <entry key="SQL" value="1" />
           <entry key="XML" value="18" />
         </counts>
@@ -310,85 +304,30 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_trainer.jsp">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/LogUserDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
-              <folding>
-                <element signature="e#511#2579#0#JSP" />
-              </folding>
+            <state relative-caret-position="34">
+              <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/view_product.jsp">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/model/entity/LogUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="124" column="78" selection-start-line="124" selection-start-column="78" selection-end-line="124" selection-end-column="78" />
+            <state relative-caret-position="51">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_ticket.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="33" column="98" selection-start-line="31" selection-start-column="44" selection-end-line="33" selection-end-column="98" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/activity_log.jsp">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/change_pass.jsp">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/gym-spring-security.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="44" column="128" selection-start-line="44" selection-start-column="128" selection-end-line="44" selection-end-column="128" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_product.jsp">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-ticket.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="304" lean-forward="true" selection-start-line="304" selection-end-line="304" />
-              <folding>
-                <element signature="n#style#0;n#td#2;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#td#7;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-user.js">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/user/list_user.jsp">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/LogUserMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3247">
-              <caret line="191" column="7" selection-start-line="191" selection-start-column="7" selection-end-line="191" selection-end-column="7" />
+            <state relative-caret-position="204">
+              <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
               <folding>
-                <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#td#1;n#!!top" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -430,8 +369,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dto/TicketTrainerDtoMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/customer/footer.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/customer/header.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/controller/customer/base/CustomerBaseController.java" />
         <option value="$PROJECT_DIR$/src/main/java/swp12/gym/dto/TrainerPersonal.java" />
@@ -481,6 +418,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_trainer.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/gym-spring-security.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/user/list_user.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/model/entity/LogUser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/LogUserMapper.java" />
       </list>
     </option>
   </component>
@@ -513,9 +452,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="61" />
-    <option name="y" value="31" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-50" />
+    <option name="y" value="33" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -530,7 +469,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -542,11 +480,6 @@
             <path>
               <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
               <item name="GYMM" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -569,89 +502,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="gym" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="customer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="customer" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="customer" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
-              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
@@ -669,7 +519,27 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="gym" type="462c0819:PsiDirectoryNode" />
-              <item name="dto" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gym" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GYMM" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="gym" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="GYMM" type="b2602c69:ProjectViewProjectNode" />
@@ -790,6 +660,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -806,6 +677,7 @@
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
@@ -814,10 +686,10 @@
       <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin\ticket" />
       <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\assets\js" />
       <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\layouts" />
       <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin\user" />
-      <recent name="C:\Users\HongWung\Documents\GitHub\GYMM\src\main\webapp\WEB-INF\views\admin\ticket" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="swp12.gym.controller.security" />
@@ -952,7 +824,8 @@
       <workItem from="1681061305998" duration="618000" />
       <workItem from="1681063910839" duration="573000" />
       <workItem from="1681067214555" duration="343000" />
-      <workItem from="1681071523873" duration="660000" />
+      <workItem from="1681071523873" duration="845000" />
+      <workItem from="1681180897605" duration="1007000" />
     </task>
     <task id="LOCAL-00001" summary="re commit : {fix lost branch}">
       <created>1680241631802</created>
@@ -1010,11 +883,25 @@
       <option name="project" value="LOCAL" />
       <updated>1681071898509</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="commit : change security config">
+      <created>1681072219771</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1681072219771</updated>
+    </task>
+    <task id="LOCAL-00010" summary="commit : change font end detail ticket">
+      <created>1681072322233</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1681072322233</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159485000" />
+    <option name="totallyTimeSpent" value="160677000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1029,7 +916,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497545" visible="true" weight="0.22844176" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497545" visible="true" weight="0.2322239" />
       <window_info id="Structure" order="1" sideWeight="0.5008183" side_tool="true" weight="0.24962178" />
       <window_info id="Web" order="2" sideWeight="0.5008183" side_tool="true" weight="0.24962178" />
       <window_info id="Designer" order="3" />
@@ -1080,7 +967,9 @@
     <MESSAGE value="commit : Update create ticket, ticket triner, ticket class" />
     <MESSAGE value="commit : JS ticket" />
     <MESSAGE value="commit : change-pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit : change-pass" />
+    <MESSAGE value="commit : change security config" />
+    <MESSAGE value="commit : change font end detail ticket" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit : change font end detail ticket" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1101,30 +990,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/common/DataUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/admin/header.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2924">
-          <caret line="172" column="6" selection-start-line="172" selection-start-column="6" selection-end-line="172" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/profile_user.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/controller/admin/base/AdminProductController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1303,10 +1168,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="30" column="17" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding>
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#698#699#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1321,9 +1182,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1331,9 +1189,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="34" column="28" lean-forward="true" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1389,60 +1244,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_trainer.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
-          <folding>
-            <element signature="e#511#2579#0#JSP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_ticket.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="33" column="98" selection-start-line="31" selection-start-column="44" selection-end-line="33" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/activity_log.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/change_pass.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-user.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/gym-spring-security.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/ticket/detail_ticket.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="44" column="128" selection-start-line="44" selection-start-column="128" selection-end-line="44" selection-end-column="128" />
+        <state relative-caret-position="-204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-ticket.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="304" selection-start-line="304" selection-end-line="304" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_product.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-ticket.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/gym-spring-security.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="304" lean-forward="true" selection-start-line="304" selection-end-line="304" />
+        <state relative-caret-position="308">
+          <caret line="44" column="128" selection-start-line="44" selection-start-column="128" selection-end-line="44" selection-end-column="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_ticket.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1579">
+          <caret line="51" selection-start-line="51" selection-end-line="55" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list_trainer.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="51" column="32" selection-start-line="51" selection-start-column="32" selection-end-line="51" selection-end-column="32" />
           <folding>
-            <element signature="n#style#0;n#td#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#7;n#!!top" expanded="true" />
+            <element signature="n#c:forEach#0;n#jsp:root#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/assets/js/admin-process-user.js">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/layouts/change_pass.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/admin/user/list_user.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3247">
+        <state relative-caret-position="526">
           <caret line="191" column="7" selection-start-line="191" selection-start-column="7" selection-end-line="191" selection-end-column="7" />
           <folding>
             <element signature="n#style#0;n#td#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#td#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/dao/LogUserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/model/entity/LogUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swp12/gym/model/mapper/LogUserMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
