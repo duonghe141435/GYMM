@@ -30,7 +30,7 @@
                         <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
                             <img src="<c:url value="${productDto.p_img}"/> " class="w-100" />
                             <a class="text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#productModal" data-name="${productDto.p_name}" data-price="${productDto.p_price}" data-image="${productDto.p_img}"
-                               data-description="${productDto.p_description}" data-kind="${productDto.p_kind_name}">
+                               data-description="${productDto.p_description}" data-kind="${productDto.p_kind_name}" data-quantity="${productDto.p_quantity}">
                                 <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                                     <div class="d-flex justify-content-start align-items-start h-30">
                                         <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">${productDto.p_price}</span></h5>
@@ -101,6 +101,7 @@
         var image = button.getAttribute('data-image');
         var kindName = button.getAttribute('data-kind');
         var description = button.getAttribute('data-description');
+        var quantity = button.getAttribute('data-quantity');
 
         // Cập nhật nội dung của modal
         var modalTitle = productModal.querySelector('.modal-title');
@@ -115,6 +116,11 @@
         content += '<p><strong>Giá:</strong> ' + price + '</p>';
         content += '<p><strong>Loại:</strong> ' + kindName + '</p>';
         content += '<p><strong>Mô tả:</strong> ' + description + '</p>';
+        if (quantity == 0) {
+            content += '<p>Hàng tạm thời đang hết, đang nhập hàng</p>';
+        } else {
+            content += '<p><strong>Số lượng:</strong> ' + quantity + '</p>';
+        }
         // Thêm nội dung khác nếu cần thiết
         content += '</div></div>';
         modalBody.innerHTML = content;
