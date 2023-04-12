@@ -1,26 +1,26 @@
 package swp12.gym.model.entity;
 
+import java.sql.Date;
+
 public class Ticket {
 
     private int t_id;
     private String t_name;
     private int tt_id;
     private float t_price;
-    private String t_note;
-    private boolean t_status;
+    private int t_status;
     private int t_total_days; // the day ticket is active
-    private String create_date;
+    private String  create_date;
 
     public Ticket() {
     }
 
     public Ticket(int t_id, String t_name, int tt_id, float t_price, String t_note,
-                  boolean t_status, int t_total_days, String create_day) {
+                  int t_status, int t_total_days, String create_day) {
         this.t_id = t_id;
         this.t_name = t_name;
         this.tt_id = tt_id;
         this.t_price = t_price;
-        this.t_note = t_note;
         this.t_status = t_status;
         this.t_total_days = t_total_days;
         this.create_date = create_day;
@@ -58,19 +58,11 @@ public class Ticket {
         this.t_price = t_price;
     }
 
-    public String getT_note() {
-        return t_note;
-    }
-
-    public void setT_note(String t_note) {
-        this.t_note = t_note;
-    }
-
-    public boolean isT_status() {
+    public int getT_status() {
         return t_status;
     }
 
-    public void setT_status(boolean t_status) {
+    public void setT_status(int t_status) {
         this.t_status = t_status;
     }
 
@@ -97,7 +89,6 @@ public class Ticket {
                 ", t_name='" + t_name + '\'' +
                 ", tt_id=" + tt_id +
                 ", t_price=" + t_price +
-                ", t_note='" + t_note + '\'' +
                 ", t_status=" + t_status +
                 ", t_total_days=" + t_total_days +
                 ", create_date=" + create_date +

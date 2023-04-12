@@ -15,13 +15,14 @@ public class UserDto {
     private String r_name;
     private int u_enable;
     private String u_create_date;
+    private int t_experience;
+    private int tp_price;
+    private int tp_id;
 
     public UserDto() {
     }
 
-    public UserDto(int u_id, String u_full_name, String u_email, String u_password, String u_dob, int u_gender,
-                   String u_phone_number, String u_address, String u_img, String u_identity_card,
-                   int r_id, String r_name, int u_enable, String u_create_date) {
+    public UserDto(int u_id, String u_full_name, String u_email, String u_password, String u_dob, int u_gender, String u_phone_number, String u_address, String u_img, String u_identity_card, int r_id, String r_name, int u_enable, String u_create_date, int t_experience, int tp_price, int tp_id) {
         this.u_id = u_id;
         this.u_full_name = u_full_name;
         this.u_email = u_email;
@@ -36,6 +37,9 @@ public class UserDto {
         this.r_name = r_name;
         this.u_enable = u_enable;
         this.u_create_date = u_create_date;
+        this.t_experience = t_experience;
+        this.tp_price = tp_price;
+        this.tp_id = tp_id;
     }
 
     public int getU_id() {
@@ -141,6 +145,30 @@ public class UserDto {
     public String getR_name() { return r_name; }
 
     public void setR_name(String r_name) { this.r_name = r_name; }
+
+    public int getT_experience() {
+        return t_experience;
+    }
+
+    public void setT_experience(int t_experience) {
+        this.t_experience = t_experience;
+    }
+
+    public int getTp_price() {
+        return tp_price;
+    }
+
+    public void setTp_price(int tp_price) {
+        this.tp_price = tp_price;
+    }
+
+    public int getTp_id() {
+        return tp_id;
+    }
+
+    public void setTp_id(int tp_id) {
+        this.tp_id = tp_id;
+    }
 
     @Override
     public String toString() {

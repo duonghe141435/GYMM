@@ -12,7 +12,6 @@ public class UnitMapper implements RowMapper<Unit> {
 
         unit.setUn_id(resultSet.getInt("unit_id"));
         unit.setUn_name(resultSet.getString("name"));
-        unit.setUn_create_date(resultSet.getDate("create_date"));
         unit.setUn_status(resultSet.getBoolean("status"));
         return unit;
     }

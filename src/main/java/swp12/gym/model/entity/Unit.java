@@ -5,7 +5,6 @@ import java.util.Date;
 public class Unit {
     private long un_id;
     private String un_name;
-    private Date un_create_date;
     private boolean un_status;
 
     public Unit() {
@@ -14,11 +13,7 @@ public class Unit {
     public Unit(long un_id, String un_name, Date un_create_date, boolean un_status) {
         this.un_id = un_id;
         this.un_name = un_name;
-        this.un_create_date = un_create_date;
         this.un_status = un_status;
-    }
-
-    public Unit(int un_id, String cân, String s, boolean un_status) {
     }
 
     public long getUn_id() {
@@ -37,14 +32,6 @@ public class Unit {
         this.un_name = un_name;
     }
 
-    public Date getUn_create_date() {
-        return un_create_date;
-    }
-
-    public void setUn_create_date(Date un_create_date) {
-        this.un_create_date = un_create_date;
-    }
-
     public boolean isUn_status() {
         return un_status;
     }
@@ -53,3 +40,4 @@ public class Unit {
         this.un_status = un_status;
     }
 }
+

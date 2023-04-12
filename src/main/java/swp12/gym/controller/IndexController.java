@@ -13,8 +13,6 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-    @Autowired
-    private ProductService productService;
 
     @RequestMapping(value = "/dang-nhap", method = RequestMethod.GET)
     public String loginPage(@RequestParam(required = false) String message, Model model) {
@@ -33,14 +31,9 @@ public class IndexController {
             }
         }
         System.out.println("dang dang nhap");
-        return "base/login";
+        return "base/homepage";
+//        return "base/homepage";
     }
 
-    @RequestMapping(value = "/product",method = RequestMethod.GET)
-    public String productPage(Model model) {
-        List<ProductDto> productDtos = productService.findAll();
-        model.addAttribute("productDtos", productDtos);
-        return "customer/product";
-    }
 
 }

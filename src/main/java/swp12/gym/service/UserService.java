@@ -2,6 +2,7 @@ package swp12.gym.service;
 
 import org.springframework.stereotype.Service;
 import swp12.gym.dto.UserDto;
+import swp12.gym.dto.UserDtoAdmin;
 import swp12.gym.model.entity.User;
 
 import java.util.List;
@@ -9,10 +10,13 @@ import java.util.List;
 @Service
 public interface UserService {
 
+    List<UserDtoAdmin> findAllOfAdmin();
+    String getPasswordOfUser(String username);
+    void updatePasswordOfUser(String username, String hashpw);
     //Get All User
     List<UserDto> findAll();
     //Get All Trainer
-    List<UserDto> findAllTrainer();
+    List<User> findAllTrainer();
     List<User> findAllTrainerIdAndName();
     //Get All Customer
     List<UserDto> findAllCustomer();
@@ -44,5 +48,9 @@ public interface UserService {
     boolean isExistsTrainer(int u_id);
     //update information of trainer
     void updateExperienceTrainer(int u_id, int year_experience);
+
+    UserDto getUserByEmail(String userName);
+
+
 
 }
