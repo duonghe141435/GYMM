@@ -39,29 +39,34 @@ public class CustomerTicketUser {
 //    }
 
     @RequestMapping(value = "/saveTickerUser", method = RequestMethod.GET)
-    public String goSaveTickerUser(@RequestParam(value = "ticket_id") int ticket_id, @RequestParam(value = "date") String date, @RequestParam(value = "price") int price, @RequestParam(value = "ticket_pt_id") int ticket_pt_id,
-                                   Model model, Authentication authentication){
+    public String goSaveTickerUser(@RequestParam(value = "ticket_id") int ticket_id, @RequestParam(value = "end_date_ticket") String end_date_ticket, @RequestParam(value = "price") int price, @RequestParam(value = "ticket_pt_id") int ticket_pt_id,
+                                   @RequestParam(value = "end_date_ticket_personal") String end_date_ticket_personal, Model model, Authentication authentication){
         System.out.println("save");
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String userName = userDetails.getUsername();
         long userID = userDao.findIdByUsername(userName);
-        ticketUserService.bookTicket(ticket_id, userID, date, 0);
+        if (ticket_id != 0) {
+            ticketUserService.bookTicket(ticket_id, userID, end_date_ticket, 0);
+        }
         if (ticket_pt_id != 0){
-            ticketUserService.bookTicket(ticket_pt_id, userID, date, price);
+            ticketUserService.bookTicket(ticket_pt_id, userID, end_date_ticket_personal, price);
         }
         return "redirect:/customer/home";
     }
 
-    @RequestMapping(value = "/saveTickerUserClass", method = RequestMethod.GET)
-    public String goSaveTickerUserClass(@RequestParam(value = "id") int id, Model model, Authentication authentication){
+//    @RequestMapping(value = "/cart", method = RequestMethod.GET)
 
-        System.out.println("id: " + id);
 
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String userName = userDetails.getUsername();
-        long userID = userDao.findIdByUsername(userName);
-
-//        boolean check = ticketUserService.bookTicket(id, userID);
-        return "redirect:/customer/home";
-    }
+//    @RequestMapping(value = "/saveTickerUserClass", method = RequestMethod.GET)
+//    public String goSaveTickerUserClass(@RequestParam(value = "id") int id, Model model, Authentication authentication){
+//
+//        System.out.println("id: " + id);
+//
+//        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//        String userName = userDetails.getUsername();
+//        long userID = userDao.findIdByUsername(userName);
+//
+////        boolean check = ticketUserService.bookTicket(id, userID);
+//        return "redirect:/customer/home";
+//    }
 }

@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import swp12.gym.dto.TicketDto;
-import swp12.gym.dto.TicketDtoMapper;
-import swp12.gym.dto.TicketTrainerDto;
-import swp12.gym.dto.TicketTrainerDtoMapper;
+import swp12.gym.dto.*;
 import swp12.gym.model.entity.Ticket;
+import swp12.gym.model.entity.User;
+import swp12.gym.model.entity.UserClass;
 import swp12.gym.model.mapper.TicketMapper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -84,6 +85,56 @@ public class TicketDao {
         }catch (Exception e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public List<TicketTrainerDto> findAllTicketClassForCustomer() {
+        try{
+            sql = "SELECT t.id_t as t_id, t.name as t_name, t.id_t as ticket_id, t.tt_id, t.total_days as t_day, " +
+                    "t.status as t_status, t.create_date as t_create_date,  MIN(c.price) as min_price, MAX(c.price) as max_price\n" +
+                    "FROM ticket t join class c on t.id_t = c.ticket_id WHERE t.tt_id = 3 and c.state = 1\n" +
+                    "GROUP BY t.id_t,  t.tt_id, t.total_days, t.create_date";
+            return jdbcTemplate.query(sql, new TicketTrainerDtoMapper());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<ClassDto> findAllClassOfTicketClass(int ticket_id) {
+        try{
+            sql = "SELECT c.class_id as class_id, c.time_id as c_time_id, c.state as c_status, c.start_date as c_start_date, c.end_date as c_end_date, c.max_menber as max_member, c.price as c_price, c.trainer_id as c_trainer_id, u.name as c_trainer_name, c.ticket_id as c_ticket_id, tm.start_time, tm.end_time, COUNT(CASE WHEN uc.position = 1 THEN 1 ELSE NULL END) as total_attendees\n" +
+                    "\n" +
+                    "FROM class c\n" +
+                    "JOIN ticket tk ON c.ticket_id = tk.id_t\n" +
+                    "JOIN trainer tn ON c.trainer_id = tn.trainer_id\n" +
+                    "JOIN users u ON tn.id_u = u.id_u\n" +
+                    "JOIN time tm ON c.time_id = tm.id_time\n" +
+                    "LEFT JOIN user_class uc ON c.class_id = uc.class_id\n" +
+                    "WHERE c.ticket_id = ?\n" +
+                    "GROUP BY c.ticket_id, uc.class_id, c.max_menber";
+            return jdbcTemplate.query(sql, new ClassDtoMapper(), ticket_id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Boolean findAnUserClass(int userID, int class_id){
+        try{
+            sql = "SELECT user_id, class_id FROM user_class WHERE position = 1 AND user_id = ? AND class_id = ?";
+            UserClass userClass = jdbcTemplate.queryForObject(sql, new RowMapper<UserClass>() {
+                public UserClass mapRow(ResultSet resultSet, int i) throws SQLException {
+                    UserClass UserClass = new UserClass();
+                    UserClass.setUser_id(resultSet.getInt("user_id"));
+                    UserClass.setClass_id(resultSet.getInt("class_id"));
+                    return UserClass;
+                }
+            }, userID, class_id);
+            return false;
+        }catch (Exception e){
+            e.printStackTrace();
+            return true;
         }
     }
 

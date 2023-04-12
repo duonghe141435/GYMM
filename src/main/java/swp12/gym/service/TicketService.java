@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import swp12.gym.dto.TicketDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.model.entity.Ticket;
+import swp12.gym.model.entity.UserClass;
 
 import java.util.List;
 
@@ -20,6 +21,10 @@ public interface TicketService {
     List<Ticket> findAllTicketDoor();
 
     List<TicketTrainerDto> findAllTicketTrainer();
+
+    List<TicketTrainerDto> findAllTicketClassForCustomer();
+
+    Boolean checkClassExist(int userID, int class_id);
 
     List<Ticket> findAllTicketClass();
 

@@ -6,6 +6,7 @@ import swp12.gym.dao.TicketDao;
 import swp12.gym.dto.TicketDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.model.entity.Ticket;
+import swp12.gym.model.entity.UserClass;
 
 import java.util.List;
 
@@ -30,6 +31,16 @@ public class TicketServiceImpl implements TicketService{
     public List<Ticket> findAllTicketDoor() { return ticketDao.findAllTicketDoor(); }
 
     public List<TicketTrainerDto> findAllTicketTrainer() { return ticketDao.findAllTicketTrainer(); }
+
+    public List<TicketTrainerDto> findAllTicketClassForCustomer() {
+        return ticketDao.findAllTicketClassForCustomer();
+    }
+
+    public Boolean checkClassExist(int userID, int class_id) {
+        boolean check_impl = ticketDao.findAnUserClass(userID, class_id);
+        System.out.println("check_impl" + check_impl);
+        return ticketDao.findAnUserClass(userID, class_id);
+    }
 
     public List<Ticket> findAllTicketClass() {
         return null;

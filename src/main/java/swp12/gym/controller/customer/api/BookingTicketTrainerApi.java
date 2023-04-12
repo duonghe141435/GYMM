@@ -24,7 +24,6 @@ public class BookingTicketTrainerApi {
     @RequestMapping(value = URL_API, method = RequestMethod.GET)
     public ResponseEntity<List<UserDto>> find_Trainer_Ticket_Personal(@RequestParam(value = "ids") int ticket_id){
         try{
-            System.out.println("API" + ticket_id);
             List<UserDto> trainerPersonal = trainerService.findAllTrainerPersonal(ticket_id);
             return new ResponseEntity<List<UserDto>>(trainerPersonal, HttpStatus.OK);
 //            redirectAttributes.addFlashAttribute("trainerPersonal", trainerPersonal);

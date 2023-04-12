@@ -69,7 +69,7 @@ public class LoginController {
             // End: Check user's role and then redirect
         }
 
-        return "redirect:/customer/index";
+        return "redirect:/customer/home";
     }
 
     @RequestMapping("/access_denied")

@@ -44,6 +44,9 @@ public class CustomerBaseController {
         List<TicketTrainerDto> allTicketTrainer = ticketService.findAllTicketTrainer();
         model.addAttribute("allTicketTrainer", allTicketTrainer);
 
+        List<TicketTrainerDto> allTicketClass = ticketService.findAllTicketClassForCustomer();
+        model.addAttribute("allTicketClass", allTicketClass);
+
         List<User> trainers = userService.findAllTrainer();
         model.addAttribute("trainers",trainers);
 
@@ -52,6 +55,7 @@ public class CustomerBaseController {
 
         return "customer/index_customer";
     }
+
 
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
     public String profileCustomer(Model model, HttpSession s) {
