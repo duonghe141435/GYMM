@@ -3,15 +3,19 @@ package swp12.gym.model.entity;
 public class UserClass {
     private int user_id;
     private int class_id;
-    private int position;
+    private int status;
+    private int ticket_user_id;
+    private String c_class_name;
 
     public UserClass() {
     }
 
-    public UserClass(int user_id, int class_id, int position) {
+    public UserClass(int user_id, int class_id, int status, int ticket_user_id, String c_class_name) {
         this.user_id = user_id;
         this.class_id = class_id;
-        this.position = position;
+        this.status = status;
+        this.ticket_user_id = ticket_user_id;
+        this.c_class_name = c_class_name;
     }
 
     public int getUser_id() {
@@ -30,12 +34,28 @@ public class UserClass {
         this.class_id = class_id;
     }
 
-    public int getPosition() {
-        return position;
+    public int getStatus() {
+        return status;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public int getTicket_user_id() {
+        return ticket_user_id;
+    }
+
+    public void setTicket_user_id(int ticket_user_id) {
+        this.ticket_user_id = ticket_user_id;
+    }
+
+    public String getC_class_name() {
+        return c_class_name;
+    }
+
+    public void setC_class_name(String c_class_name) {
+        this.c_class_name = c_class_name;
     }
 
     @Override
@@ -43,7 +63,9 @@ public class UserClass {
         return "UserClass{" +
                 "user_id=" + user_id +
                 ", class_id=" + class_id +
-                ", position='" + position + '\'' +
+                ", status=" + status +
+                ", ticket_user_id=" + ticket_user_id +
+                ", c_class_name='" + c_class_name + '\'' +
                 '}';
     }
 }

@@ -13,7 +13,7 @@ public class LogUserMapper implements RowMapper<LogUser> {
         logUser.setU_id(resultSet.getInt("user_id"));
         logUser.setType_log(resultSet.getInt("type_log"));
         logUser.setContent(resultSet.getString("content"));
-        logUser.setDate_time_create(resultSet.getString("time"));
+        logUser.setDate_time_create(resultSet.getInt("time"));
 
         return logUser;
     }

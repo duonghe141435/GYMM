@@ -1,13 +1,20 @@
 package swp12.gym.controller.customer.base;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import swp12.gym.common.PaymentConfig;
+import swp12.gym.dao.UsersDao;
+import swp12.gym.model.entity.TicketUser;
+import swp12.gym.model.entity.UserClass;
+import swp12.gym.service.TicketService;
+import swp12.gym.service.TicketUserService;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -21,18 +28,29 @@ import java.util.*;
 @RequestMapping("/homepage")
 public class OnlineHomeController {
 
-    @GetMapping("/checkout")
-    public String checkout(Authentication authentication, Model model){
+    @Autowired
+    private UsersDao userDao;
+    @Autowired
+    private TicketService ticketService;
+    @Autowired
+    private TicketUserService ticketUserService;
+
+    //test
+
+
+    //test
+    @GetMapping("/list_bookPt")
+    public String checkoutlistbookPt(Authentication authentication, Model model){
 //        if(authentication != null){
 //            AccountDetailImpl accountDetail = (AccountDetailImpl) authentication.getPrincipal();
 //            model.addAttribute("auth", accountDetail);
 //        }else{
 //            model.addAttribute("auth", null);
 //        }
-        return "customer/checkout";
+        return "customer/list_bookPt";
     }
 
-    @PostMapping("/create-payment")
+    @GetMapping("/create-payment")
     public ResponseEntity<String> createPayment(@RequestParam(value = "amount") int amount, Authentication authentication) throws UnsupportedEncodingException {
         amount = amount * 100;
         String orderid = PaymentConfig.getRandomNumber(3);
@@ -90,4 +108,19 @@ public class OnlineHomeController {
 
         return ResponseEntity.status(HttpStatus.OK).body(paymentUrl);
     }
+
+    @RequestMapping(value = "/payment-result",method = RequestMethod.GET)
+    public String paymentResult(Authentication authentication){
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String userName = userDetails.getUsername();
+        int userID = userDao.findIdByUsername(userName);
+
+
+        ticketUserService.updateTicketUser(userID);
+        ticketUserService.updateUserClass(userID);
+        ticketUserService.updateUserPersonal(userID);
+
+        return "redirect:/customer/home";
+    }
+
 }

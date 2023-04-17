@@ -13,6 +13,7 @@ import swp12.gym.model.mapper.UserMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -21,6 +22,8 @@ public class UsersDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     private String sql;
+
+    private final LocalDate currentDate = LocalDate.now();
 
     public List<UserDtoAdmin> findAllOfAdmin() {
         try {
@@ -277,6 +280,22 @@ public class UsersDao {
         try{
             sql = "UPDATE users SET password = ? WHERE email = ?";
             jdbcTemplate.update(sql, pass, username);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    //Lay tong so nguoi dung trong he thong
+    public Integer getMaxIdUserInSystem() {
+        sql = "SELECT MAX(id_u) FROM users";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public void saveCustomerForGoogle(int ids, String email, String picture, int enable) {
+        try{
+            sql = "INSERT INTO users (id_u, name, email, enabled,create_date) VALUES (?,?,?,?,?);";
+            jdbcTemplate.update(sql, ids, email,email, 1, currentDate);
         }
         catch (Exception e){
             e.printStackTrace();
