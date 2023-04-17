@@ -27,8 +27,8 @@ for (var i = 0; i < cells.length; i++) {
             })
         }
         else{
-            modalBook.style.display = "none";
-            modal.style.display = "block";
+            modalBook.style.display = "block";
+            modal.style.display = "none";
         }
         console.log(cells[i].value);
 
@@ -37,11 +37,11 @@ for (var i = 0; i < cells.length; i++) {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    modal.style.display = "none";
-}
-span1.onclick = function() {
+    var day = document.getElementById("1").innerText;
+    console.log("day: " + day)
     modalBook.style.display = "none";
 }
+
 
 
 
@@ -211,45 +211,6 @@ for (var i = 0; i <= 6; i++) {
     d.innerHTML = weekDates[i];
 }
 
-
-const dateInput = document.getElementById("date-input");
-dateInput.value = dateText;
-
-
-var mySelect = document.getElementById("ticket_type_buyTicket");
-var perJoinLab = document.getElementById("num");
-var perJoinIn = document.getElementById("num1");
-var timePracIn = document.getElementById("timePracIn");
-var timePracLab = document.getElementById("timePracLab");
-var dateSta = document.getElementById("date-input");
-
-// Bắt sự kiện "change" của select modal
-mySelect.addEventListener("change", function() {
-    // Lấy giá trị được chọn
-    var selectedValue = mySelect.value;
-
-    // Nếu giá trị là "HLV nhóm", hiển thị phần tử
-    if (selectedValue === "nh") {
-        perJoinLab.removeAttribute('hidden');
-        perJoinIn.removeAttribute('hidden');
-        timePracIn.removeAttribute('hidden');
-        timePracLab.removeAttribute('hidden');
-        dateSta.setAttribute('readonly', true);
-        dateInput.value = null; // dùng để lấy ngày bắt đầu từ data base
-    }
-    // Ngược lại, nếu giá trị là "cá nhân", ẩn phần tử
-    else if (selectedValue === "cn") {
-        perJoinLab.setAttribute('hidden',true);
-        perJoinIn.setAttribute('hidden',true);
-        timePracIn.setAttribute('hidden', true);
-        timePracLab.setAttribute('hidden', true);
-        dateSta.removeAttribute('readonly');
-        dateInput.value = dateText;
-        // dateSta.setAttribute('readonly', false);
-        // myElement.style.display = "none";
-        // myElement1.style.display = "none";
-    }
-});
 document.getElementById("week-select").addEventListener("change", function() {
     const selectedDate = new Date();
     const year = yearSelect.value;
@@ -265,4 +226,3 @@ document.getElementById("week-select").addEventListener("change", function() {
     }
     console.log(selectedDate);
 });
-
