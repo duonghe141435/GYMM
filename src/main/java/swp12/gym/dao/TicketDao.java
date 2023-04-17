@@ -6,14 +6,14 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import swp12.gym.dto.*;
 import swp12.gym.model.entity.Ticket;
-import swp12.gym.model.entity.User;
-import swp12.gym.model.entity.UserClass;
 import swp12.gym.model.mapper.TicketMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class TicketDao {
@@ -101,18 +101,18 @@ public class TicketDao {
         }
     }
 
+
     public List<ClassDto> findAllClassOfTicketClass(int ticket_id) {
         try{
-            sql = "SELECT c.class_id as class_id, c.time_id as c_time_id, c.state as c_status, c.start_date as c_start_date, c.end_date as c_end_date, c.max_menber as max_member, c.price as c_price, c.trainer_id as c_trainer_id, u.name as c_trainer_name, c.ticket_id as c_ticket_id, tm.start_time, tm.end_time, COUNT(CASE WHEN uc.position = 1 THEN 1 ELSE NULL END) as total_attendees\n" +
-                    "\n" +
-                    "FROM class c\n" +
-                    "JOIN ticket tk ON c.ticket_id = tk.id_t\n" +
-                    "JOIN trainer tn ON c.trainer_id = tn.trainer_id\n" +
-                    "JOIN users u ON tn.id_u = u.id_u\n" +
-                    "JOIN time tm ON c.time_id = tm.id_time\n" +
-                    "LEFT JOIN user_class uc ON c.class_id = uc.class_id\n" +
-                    "WHERE c.ticket_id = ?\n" +
-                    "GROUP BY c.ticket_id, uc.class_id, c.max_menber";
+            sql = "SELECT c.class_id as class_id, c.name AS c_name, c.create_date AS c_create_date, c.time_id as c_time_id, c.state as c_status, c.start_date as c_start_date, c.end_date as c_end_date, c.max_menber as max_member, c.price as c_price, c.trainer_id as c_trainer_id, u.name as c_trainer_name, c.ticket_id as c_ticket_id, tm.start_time, tm.end_time, COUNT(CASE WHEN uc.status = 1 THEN 1 ELSE NULL END) as total_attendees\n" +
+                    "                    FROM class c\n" +
+                    "                    JOIN ticket tk ON c.ticket_id = tk.id_t\n" +
+                    "                    JOIN trainer tn ON c.trainer_id = tn.trainer_id\n" +
+                    "                    JOIN users u ON tn.id_u = u.id_u\n" +
+                    "                    JOIN time tm ON c.time_id = tm.id_time\n" +
+                    "                    LEFT JOIN user_class uc ON c.class_id = uc.class_id\n" +
+                    "                    WHERE c.state = 1 and c.ticket_id = ?\n" +
+                    "                    GROUP BY c.ticket_id, uc.class_id, c.max_menber";
             return jdbcTemplate.query(sql, new ClassDtoMapper(), ticket_id);
         }catch (Exception e){
             e.printStackTrace();
@@ -120,21 +120,13 @@ public class TicketDao {
         }
     }
 
-    public Boolean findAnUserClass(int userID, int class_id){
+    public int findAnUserClass(int userID, int class_id){
         try{
-            sql = "SELECT user_id, class_id FROM user_class WHERE position = 1 AND user_id = ? AND class_id = ?";
-            UserClass userClass = jdbcTemplate.queryForObject(sql, new RowMapper<UserClass>() {
-                public UserClass mapRow(ResultSet resultSet, int i) throws SQLException {
-                    UserClass UserClass = new UserClass();
-                    UserClass.setUser_id(resultSet.getInt("user_id"));
-                    UserClass.setClass_id(resultSet.getInt("class_id"));
-                    return UserClass;
-                }
-            }, userID, class_id);
-            return false;
+            sql = "SELECT COUNT(*) FROM user_class WHERE user_id = ? AND class_id = ?";
+            return jdbcTemplate.queryForObject(sql, Integer.class, userID, class_id);
         }catch (Exception e){
             e.printStackTrace();
-            return true;
+            return 0;
         }
     }
 
@@ -235,5 +227,152 @@ public class TicketDao {
         }
     }
 
+    public List<Ticket> findAddTicketOfAnCustomer(int ticket_type_id, int id_customer) {
+        try{
+            sql = "SELECT t.name as ticket_name, ticket_user.value_cost as ticket_price, concat(ticket_user.start_date, ' - ', ticket_user.end_date) as time, \n" +
+                    "                    t.status,ticket_user.payment_status, ticket_user.create_date\n" +
+                    "                    FROM ticket_user join ticket t on ticket_user.ticket_id = t.id_t WHERE t.tt_id = ? AND ticket_user.id_u = ?\n" +
+                    "                    ORDER BY ticket_user.ticket_user_id DESC";
+            return jdbcTemplate.query(sql, new RowMapper<Ticket>() {
+                public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
+                    Ticket ticket = new Ticket();
+                    //ghi tạm payment_status vào tt_id
+                    ticket.setTt_id(resultSet.getInt("payment_status"));
+                    ticket.setT_name(resultSet.getString("ticket_name"));
+                    ticket.setT_price(resultSet.getInt("ticket_price"));
+                    //ghi tạm time vào tt_id
+                    ticket.setMax_member(resultSet.getString("time"));
+                    ticket.setT_status(resultSet.getInt("status"));
+                    ticket.setCreate_date(resultSet.getString("create_date"));
+                    return ticket;
+                }
+            },ticket_type_id, id_customer);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
+    public List<Map<Integer, Integer>> getDataOfAnTicket(int id) {
+        try{
+            String sql = "SELECT COUNT(*) as counts, DAY(t2.date_payment) as day FROM ticket t join ticket_user t2 on t.id_t = t2.ticket_id \n" +
+                    "WHERE t2.payment_status =1 AND t.id_t = ? GROUP BY  t2.date_payment, t.id_t;";
+            List<Map<Integer, Integer>> rows = jdbcTemplate.query(sql, new RowMapper<Map<Integer, Integer>>() {
+                public Map<Integer, Integer> mapRow(ResultSet resultSet, int i) throws SQLException {
+                    Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+                    map.put(resultSet.getInt("day"), resultSet.getInt("counts"));
+                    return map;
+                }
+            }, id);
+            return rows;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Ticket findAnTicket(int id_t){
+        try{
+            sql = "SELECT t.id_t as ticket_id, t.tt_id as ticket_type,\n" +
+                    "t.name as ticket_name, t.total_days as ticket_day,\n" +
+                    "IFNULL(MAX(class.max_menber),1) as max_menber, IFNULL(MIN(class.max_menber),1) as min_menber,\n" +
+                    "t.status as ticket_status, t.create_date as ticket_create,\n" +
+                    "IFNULL(t.price,0) as ticket_price, IFNULL(MAX(class.price),0) as class_price_max,\n" +
+                    "IFNULL(MIN(class.price),0) as class_price_min,IFNULL(MAX(t2.price),0) as trainer_price_max,\n" +
+                    "IFNULL(MIN(t2.price),0) as trainer_price_min\n" +
+                    "FROM ticket t left join class on t.id_t = class.ticket_id " +
+                    "left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status <> 0 AND t.id_t = ?\n" +
+                    "GROUP BY t.id_t, t.create_date, t.tt_id, t.name,t.total_days";
+
+            return jdbcTemplate.queryForObject(sql, new RowMapper<Ticket>() {
+                public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
+
+                    Ticket ticket = new Ticket();
+
+                    ticket.setT_id(resultSet.getInt("ticket_id"));
+                    ticket.setTt_id(resultSet.getInt("ticket_type"));
+                    ticket.setT_name(resultSet.getString("ticket_name"));
+                    ticket.setT_total_days(resultSet.getInt("ticket_day"));
+                    ticket.setMin_member(resultSet.getString("min_menber"));
+                    ticket.setMax_member(resultSet.getString("max_menber"));
+                    ticket.setT_price(resultSet.getInt("ticket_price"));
+                    ticket.setClass_price_min(resultSet.getInt("class_price_min"));
+                    ticket.setClass_price_max(resultSet.getInt("class_price_max"));
+                    ticket.setTrainer_price_min(resultSet.getInt("trainer_price_min"));
+                    ticket.setTrainer_price_max(resultSet.getInt("trainer_price_max"));
+                    ticket.setT_status(resultSet.getInt("ticket_status"));
+                    ticket.setCreate_date(resultSet.getString("ticket_create"));
+
+                    return ticket;
+                }
+            }, id_t);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public int getTotalNumberOrderOfTicket(int id) {
+        try{
+            sql = "SELECT COUNT(*) FROM ticket_user WHERE ticket_id = ? and ticket_user.payment_status = 1;";
+            int number = jdbcTemplate.queryForObject(sql, Integer.class, id);
+            return number;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public int getTotalNumberOrderOfTicketClass(int id) {
+        try{
+            sql = "SELECT COUNT(*) FROM user_class WHERE class_id = ?";
+            int number = jdbcTemplate.queryForObject(sql, Integer.class);
+            return number;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public int getTotalNumberOrderOfPersonalTrainerDetail(int id) {
+        try{
+            sql = "SELECT COUNT(*) FROM personal_trainer_detail";
+            int number = jdbcTemplate.queryForObject(sql, Integer.class);
+            return number;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+    public int getTotalNumberOrderOfTicketToday(int id) {
+        try{
+            sql = "SELECT COUNT(*) FROM ticket_user WHERE ticket_id = ? AND date_payment = curdate() and ticket_user.payment_status = 1";
+            return jdbcTemplate.queryForObject(sql, Integer.class, id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public int getTotalNumberOrderOfTicketClasslToday(int id) {
+        try{
+            sql = "SELECT COUNT(*) FROM personal_trainer_detail WHERE personal_trainer_id = ? AND date_payment = curdate()";
+            return jdbcTemplate.queryForObject(sql, Integer.class, id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public int getTotalNumberOrderOfPersonalTrainerDetailToday(int id) {
+        try{
+            sql = "SELECT COUNT(*) FROM user_class WHERE personal_trainer_id = ? AND date_payment = curdate()";
+            return jdbcTemplate.queryForObject(sql, Integer.class, id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

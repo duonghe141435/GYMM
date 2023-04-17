@@ -19,6 +19,13 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserDtoDao userDtoDao;
 
+    @Autowired
+    private UsersDao userDao;
+
+    public int findIdByUsername(String username) {
+        return usersDao.findIdByUsername(username);
+    }
+
     public List<UserDtoAdmin> findAllOfAdmin() {
         return usersDao.findAllOfAdmin();
     }
@@ -94,4 +101,21 @@ public class UserServiceImpl implements UserService{
     public UserDto getUserByEmail(String username) {
         return userDtoDao.findAnUserByEmail(username);
     }
+
+    public UserDto getCustomerByEmail(String username) {
+        return userDtoDao.findAnCustomerByEmail(username);
+    }
+
+    public int getMaxIdUserInSystem() {
+        return userDao.getMaxIdUserInSystem();
+    }
+
+    public void saveCustomerForGoogle(int ids, String email, String picture, int enable) {
+        userDao.saveCustomerForGoogle(ids,email,picture,enable);
+    }
+
+    public void createUserForGuest(User user) {
+
+    }
+
 }

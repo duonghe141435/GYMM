@@ -15,31 +15,35 @@
         <div id="content">
             <%@include file="/WEB-INF/views/layouts/admin/header.jsp" %>
             <div class="container-fluid" style="padding-top: 100px">
-                <div class="card shadow">
+                <div class="card shadow" style="height: 100vh">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width: 90%;/*font-weight: 400;*/text-align: left;margin-top: auto;margin-bottom: auto;">Danh sách vé</p>
-                        <button class="btn btn-primary" id="show-add-ticket" data-bs-toggle="modal"
-                                data-bs-target="#ticket" style="font-weight: 700;">Trở lại</button>
+                        <a class="btn btn-primary" href="<c:url value="/admin/dashboard/ticket"/>" style="font-weight: 700;">Trở lại danh sách vé</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
-
                             <div class="col-lg-8">
                                 <div class="card shadow mb-4">
                                     <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h6 class="text-primary fw-bold m-0">Earnings Overview</h6>
-                                        <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">
-                                            <i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                            <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                                                <p class="text-center dropdown-header">dropdown header:</p>
-                                                <a class="dropdown-item" href="#">&nbsp;Theo tháng</a>
-                                                <a class="dropdown-item" href="#">&nbsp;Theo năm</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">&nbsp;Something else here</a>
+                                        <h6 class="text-primary fw-bold m-0">Doanh thu của vé</h6>
+                                        <div class="d-flex">
+                                            <div class="col-xs-3">
+                                                <select class="form-select" aria-label="Select month">
+                                                    <option selected>Select month</option>
+                                                    <option value="1">Tháng 1</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-3 px-2">
+                                                <select class="form-select" aria-label="Select Year">
+                                                    <option selected>Select Year</option>
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body"  style="height: 500px">
                                         <div class="chart-area">
                                             <canvas id="myChart"></canvas>
                                         </div>
@@ -68,7 +72,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Giá vé</td>
-                                                    <td class="class-price">${tickets.t_price}</td>
+                                                    <td class="class-price">${ticket.t_price}</td>
                                                 </tr>
                                             </c:when>
                                             <c:when test="${ticket.tt_id == 2}">
@@ -112,7 +116,7 @@
                                             <c:otherwise>
                                                 <tr>
                                                     <td>
-                                                        Loại vé:
+                                                        Loại vé: <c:out value="${data}"></c:out>
                                                     </td>
                                                     <td>
                                                         Vé tham gia lớp học
@@ -194,20 +198,64 @@
 </body>
 <script>
 
+    function getDataForMonth(dayInMonth) {
+        // Lấy dữ liệu cho tháng cụ thể từ backend// Ví dụ:
+        var chartData = JSON.parse('${chartData}'); // Dữ liệu cho tháng 4
+        console.log(chartData);
+        // lấy ngày sừ back-end
+        let result = chartData.map(obj => parseInt(Object.keys(obj)[0]));
+        // lấy số vé sừ back-end
+        let result2 = chartData.map(obj => parseInt(Object.values(obj)[0]));
+
+
+        // Tạo mảng dữ liệu cho biểu đồ
+        var chartDataArray = [];
+        var count = 0;
+        //kiểm tra xem ngày có phải là ngày có vé được bán hay không?
+        for (let i = 1; i <= dayInMonth; i++) {
+            if (result.includes(i)) {
+                chartDataArray.push(result2[count]);
+                count++;
+            }else {
+                chartDataArray.push(0);
+            }
+        }
+        console.log(chartDataArray);
+        return chartDataArray;
+    }
+
+
     $(document).ready(function(){
 
-        const MONTHS = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7','Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];
-        const label_day = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
+        var startOfMonth = moment().startOf('month');
+        var daysFromStart = moment().diff(startOfMonth, 'days') + 1;
+        console.log(daysFromStart);
+
+        var chart_data = getDataForMonth(daysFromStart);
+        const days = [];
+
+        //lay lable theo ngày
+        for (let i = 1; i <= daysFromStart; i++) {
+            days.push(moment('2022-04-'+i+'', 'YYYY-MM-DD').format('DD-MM'));
+        }
+        console.log(days);
 
         const data = {
-            labels: MONTHS,
+            labels: days,
             datasets: [{
-                label: 'Tổng số vế trong tháng',
-                data: [65, 59, 80, 81, 55, 55, 40],
+                label: 'Số vé bán được trong ngày',
+                data: chart_data,
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
-            }]
+            }],
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         };
 
         const config = {
@@ -217,7 +265,25 @@
 
         var ctx = $('#myChart');
         var myChart = new Chart(ctx, config);
-    });
 
+        <%--let month = 3; // tháng 4 ở đây tương ứng với index 3 (vì đếm từ 0)--%>
+        <%--let year = 2023; // năm tùy chọn--%>
+        <%--let daysInMonthCount = moment("2023-4", "YYYY-MM").daysInMonth();--%>
+
+
+
+        <%--var labels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];--%>
+        <%--var datas = [2, 6, 0, 0, 7, 0, 20, 0, 0, 1, 0, 0, 0];--%>
+
+        <%--let daysInMonth = [];--%>
+
+
+        <%--const MONTHS = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7','Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];--%>
+
+        <%--&lt;%&ndash;var chartData = ; // Lấy dữ liệu từ biến model của JSP&ndash;%&gt;--%>
+
+
+    });
 </script>
+
 </html>

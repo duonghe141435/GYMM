@@ -5,9 +5,11 @@ import org.springframework.stereotype.Service;
 import swp12.gym.dto.TicketDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.model.entity.Ticket;
+import swp12.gym.model.entity.TicketUser;
 import swp12.gym.model.entity.UserClass;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface TicketService {
@@ -23,6 +25,8 @@ public interface TicketService {
     List<TicketTrainerDto> findAllTicketTrainer();
 
     List<TicketTrainerDto> findAllTicketClassForCustomer();
+
+    List<TicketUser> findTicketsOfUser(int userID);
 
     Boolean checkClassExist(int userID, int class_id);
 
@@ -50,4 +54,21 @@ public interface TicketService {
 
     void deleteTickets(String id);
 
+    List<Ticket> findAddTicketOfAnCustomer(int ticket_type_id, int id_customer);
+
+    List<Map<Integer, Integer>> getDataOfAnTicket(int id);
+
+    Ticket findAnTicket(int id);
+
+    int getTotalNumberOrderOfTicket(int id);
+
+    int getTotalNumberOrderOfTicketToday(int id);
+
+    int getTotalNumberOrderOfPersonalTrainerDetail(int id);
+
+    int getTotalNumberOrderOfPersonalTrainerDetailToday(int id);
+
+    int getTotalNumberOrderOfTicketClass(int id);
+
+    int getTotalNumberOrderOfTicketClasslToday(int id);
 }

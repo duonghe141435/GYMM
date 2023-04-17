@@ -4,14 +4,14 @@ public class LogUser{
 
     private int id_log;
     private int type_log;
-    private String date_time_create;
+    private int date_time_create;
     private String content;
     private int u_id;
 
     public LogUser() {
     }
 
-    public LogUser(int id_log, int type_log, String date_time_create, String content, int u_id) {
+    public LogUser(int id_log, int type_log, int date_time_create, String content, int u_id) {
         this.id_log = id_log;
         this.type_log = type_log;
         this.date_time_create = date_time_create;
@@ -35,11 +35,11 @@ public class LogUser{
         this.type_log = type_log;
     }
 
-    public String getDate_time_create() {
+    public int getDate_time_create() {
         return date_time_create;
     }
 
-    public void setDate_time_create(String date_time_create) {
+    public void setDate_time_create(int date_time_create) {
         this.date_time_create = date_time_create;
     }
 

@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public interface UserService {
 
+    int findIdByUsername(String username);
     List<UserDtoAdmin> findAllOfAdmin();
     String getPasswordOfUser(String username);
     void updatePasswordOfUser(String username, String hashpw);
@@ -51,6 +52,12 @@ public interface UserService {
 
     UserDto getUserByEmail(String userName);
 
+    UserDto getCustomerByEmail(String userName);
 
 
+    int getMaxIdUserInSystem();
+
+    void saveCustomerForGoogle(int ids, String trim, String trim1, int i);
+
+    void createUserForGuest(User user);
 }

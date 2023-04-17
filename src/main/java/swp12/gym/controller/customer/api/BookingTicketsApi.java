@@ -6,9 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import swp12.gym.common.DataUtil;
 import swp12.gym.dao.UsersDao;
@@ -60,6 +58,25 @@ public class BookingTicketsApi {
                 return ResponseEntity.status(HttpStatus.OK).body(result);
             }
 //            redirectAttributes.addFlashAttribute("check_end_date", check);
+        }catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping(value = URL_API + "/delete")
+    public ResponseEntity<String> deleteTicketUser(HttpServletRequest request, Authentication authentication){
+        try{
+
+            System.out.println("ticket user id: " + request.getParameter("_ticketUserID"));
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String userName = userDetails.getUsername();
+            int userID = userDao.findIdByUsername(userName);
+
+            String id = request.getParameter("_ticketUserID");
+            ticketUserService.deleteUserPersonal(id);
+            ticketUserService.deleteUserClass(id);
+            ticketUserService.deleteTicketUser(id);
+            return new ResponseEntity<String>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }

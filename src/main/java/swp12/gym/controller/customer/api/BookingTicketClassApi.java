@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.ClassDto;
+import swp12.gym.model.entity.UserClass;
 import swp12.gym.service.TicketService;
+import swp12.gym.service.TicketUserService;
 import swp12.gym.service.TrainerService;
 
 import java.util.List;
@@ -28,6 +30,9 @@ public class BookingTicketClassApi {
 
     @Autowired
     private TicketService ticketService;
+
+    @Autowired
+    private TicketUserService ticketUserService;
 
     @RequestMapping(value = URL_API + "/Check_ticket_exists", method = RequestMethod.GET)
     public ResponseEntity<String> checkTicketExists(@RequestParam(value = "classID") int classID, Authentication authentication){
@@ -57,4 +62,25 @@ public class BookingTicketClassApi {
             return new ResponseEntity<List<ClassDto>>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @RequestMapping(value = URL_API + "/check_user_class",method = RequestMethod.GET)
+    public ResponseEntity<List<UserClass>> checkUserClass(Authentication authentication){
+        try{
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String userName = userDetails.getUsername();
+            int userID = userDao.findIdByUsername(userName);
+
+            List<UserClass> userClass = ticketUserService.checkUserClass(userID);
+//            if(userClass.isEmpty()) {
+//                return new ResponseEntity<List<UserClass>>(HttpStatus.NO_CONTENT);
+////                return new ResponseEntity<>("No classes found for the user.", HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<List<UserClass>>(userClass, HttpStatus.OK);
+//            }
+            return new ResponseEntity<List<UserClass>>(userClass, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<List<UserClass>>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }
