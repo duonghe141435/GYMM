@@ -105,4 +105,31 @@ public class ClassDao {
             }
         }, user_id);
     }
+
+    public List<ClassDto> findAllClassOfAnTicket(int id) {
+        sql = "SELECT c.class_id as class_id, c.name AS c_name, c.create_date AS c_create_date, c.time_id as c_time_id, c.state as c_status,\n" +
+                "       c.start_date as c_start_date, c.end_date as c_end_date, c.max_menber as max_member, c.price as c_price, c.trainer_id as c_trainer_id,\n" +
+                "       u.name as c_trainer_name, c.ticket_id as c_ticket_id, tm.start_time, tm.end_time, COUNT(CASE WHEN uc.status = 1 THEN 1 ELSE NULL END) as total_attendees\n" +
+                "FROM class c\n" +
+                "       JOIN ticket tk ON c.ticket_id = tk.id_t\n" +
+                "       JOIN trainer tn ON c.trainer_id = tn.trainer_id\n" +
+                "       JOIN users u ON tn.id_u = u.id_u\n" +
+                "       JOIN time tm ON c.time_id = tm.id_time\n" +
+                "       LEFT JOIN user_class uc ON c.class_id = uc.class_id WHERE ticket_id = ? \n" +
+                "GROUP BY c.ticket_id, uc.class_id, c.max_menber";
+        return jdbcTemplate.query(sql, new RowMapper<ClassDto>() {
+            public ClassDto mapRow(ResultSet resultSet, int i) throws SQLException {
+                ClassDto classDto = new ClassDto();
+                classDto.setC_name(resultSet.getString("c_name"));
+                classDto.setClass_id(resultSet.getInt("class_id"));
+                classDto.setC_status(resultSet.getInt("c_status"));
+                classDto.setC_price(resultSet.getInt("c_price"));
+                classDto.setC_start_date(resultSet.getString("c_start_date"));
+                classDto.setC_end_date(resultSet.getString("c_end_date"));
+                classDto.setMax_member(resultSet.getInt("max_member"));
+                classDto.setTotal_attendees(resultSet.getInt("total_attendees"));
+                return classDto;
+            }
+        }, id);
+    }
 }

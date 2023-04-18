@@ -10,8 +10,6 @@ import java.util.TimeZone;
 
 @Component
 public class DataUtil {
-    private final Date now = new Date();
-
     public String convertLocalDateTimeToString(LocalDateTime localDateTime){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = localDateTime.format(formatter);
@@ -24,6 +22,7 @@ public class DataUtil {
         return dateTime;
     }
 
+    private final Date now = new Date();
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MM/yyyy");
 

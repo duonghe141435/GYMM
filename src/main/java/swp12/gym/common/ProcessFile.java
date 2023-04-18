@@ -1,4 +1,4 @@
-package swp12.gym.utils;
+package swp12.gym.common;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -8,7 +8,10 @@ import java.io.FileOutputStream;
 
 public class ProcessFile {
 
-    public static String doSaveImgToService(CommonsMultipartFile file, HttpSession s, String root_file){
+    final int min = 100000;
+    final int max = 999999;
+
+    public static String doSaveImgToService(CommonsMultipartFile file, HttpSession s, String root_file) {
         try {
             byte[] data = file.getBytes();
             //we have to save this file to server...
@@ -26,4 +29,10 @@ public class ProcessFile {
             return "Loi: "+e.getMessage();
         }
     }
+
+    public String generateOTP(){
+        int otp = (int) (Math.random()*(max - min + 1) + min);
+        return String.valueOf(otp);
+    }
+
 }

@@ -24,4 +24,8 @@ public class ClassServiceImlp implements ClassService{
     public List<ClassDto> findAllScheduleClassOfAnUserById(int user_id) {
         return classDao.findAllScheduleClassOfAnUserById(user_id);
     }
+
+    public List<ClassDto> findAllClassOfAnTicket(int id) {
+        return classDao.findAllClassOfAnTicket(id);
+    }
 }
