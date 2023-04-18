@@ -35,6 +35,10 @@ public class TicketUserServiceImpl implements TicketUserService{
         return ticketUserDtoDao.findAnTicket(id);
     }
 
+    public List<TicketUser> findTicketsOfUser(int userID) {
+        return ticketUserDao.findTicketsOfUser(userID);
+    }
+
     public boolean bookTicket(long id, long userID, String date, int price) {
         Ticket ticket = ticketUserDao.findAnTicket1(id);
         TicketUser ticketUser = new TicketUser();

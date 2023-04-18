@@ -86,11 +86,15 @@ public class ClassDao {
     }
 
     public List<ClassDto> findAllScheduleClassOfAnUserById(int user_id){
-        sql = "SELECT c.class_id as class_id, c.name as c_name, c.start_date as c_start_date, c.end_date as c_end_date, c.time_id as c_time_id, tm.start_time, tm.end_time\n" +
+        sql = "SELECT c.class_id, c.name as c_name, c.start_date as c_start_date, c.end_date as c_end_date, u.name, c.time_id, tm.start_time, tm.end_time, w.id_weekdays, w.cn AS sunday, w.thu2 AS monday, w.thu3 AS tuesday, w.thu4 AS wednesday, w.thu5 AS thursday, w.thu6 AS friday, w.thu7 AS saturday\n" +
                 "FROM class c\n" +
-                "join user_class uc on uc.class_id = c.class_id\n" +
                 "JOIN `time` tm ON c.time_id = tm.id_time\n" +
-                "WHERE uc.user_id = ?";
+                "JOIN trainer t ON c.trainer_id = t.trainer_id\n" +
+                "JOIN users u ON t.id_u = u.id_u\n" +
+                "JOIN weekdays w ON c.class_id = w.id_class\n" +
+                "LEFT JOIN user_class uc ON c.class_id = uc.class_id\n" +
+                "WHERE uc.user_id = ?\n" +
+                "GROUP BY uc.class_id, uc.user_id";
         return jdbcTemplate.query(sql, new RowMapper<ClassDto>() {
             public ClassDto mapRow(ResultSet resultSet, int i) throws SQLException {
                 ClassDto classDto = new ClassDto();
@@ -98,9 +102,18 @@ public class ClassDao {
                 classDto.setC_name(resultSet.getString("c_name"));
                 classDto.setC_start_date(resultSet.getString("c_start_date"));
                 classDto.setC_end_date(resultSet.getString("c_end_date"));
-                classDto.setC_time_id(resultSet.getInt("c_time_id"));
+                classDto.setC_trainer_name(resultSet.getString("name"));
+                classDto.setC_time_id(resultSet.getInt("time_id"));
                 classDto.setStart_time(resultSet.getString("start_time"));
                 classDto.setEnd_time(resultSet.getString("end_time"));
+                classDto.setWeekdays_id(resultSet.getInt("id_weekdays"));
+                classDto.setSunday(resultSet.getInt("sunday"));
+                classDto.setMonday(resultSet.getInt("monday"));
+                classDto.setTuesday(resultSet.getInt("tuesday"));
+                classDto.setWednesday(resultSet.getInt("wednesday"));
+                classDto.setThursday(resultSet.getInt("thursday"));
+                classDto.setFriday(resultSet.getInt("friday"));
+                classDto.setSaturday(resultSet.getInt("saturday"));
                 return classDto;
             }
         }, user_id);

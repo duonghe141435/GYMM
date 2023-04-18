@@ -45,15 +45,15 @@ public class AdminUserController {
 
     @RequestMapping(value = "/trainer", method = RequestMethod.GET)
     public String goListTrainer(Model model){
-        List<UserDto> users = userService.findAll();
-
+        List<UserDto> users = userService.findAllTrainerForAdmin();
+        System.out.println(users);
         model.addAttribute("users",users);
         return "admin/user/list_user";
     }
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public String goListCustomer(Model model){
-        List<UserDto> users = userService.findAll();
+        List<UserDto> users = userService.findAllCustomer();
 
         model.addAttribute("users",users);
         return "admin/user/list_user";
