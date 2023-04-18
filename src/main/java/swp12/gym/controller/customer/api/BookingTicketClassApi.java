@@ -59,7 +59,7 @@ public class BookingTicketClassApi {
     @RequestMapping(value = URL_API, method = RequestMethod.GET)
     public ResponseEntity<List<ClassDto>> find_Trainer_Ticket_Class(@RequestParam(value = "ids") int ticket_id){
         try{
-            List<ClassDto> ticket_class = classService.findAllTrainerClass(ticket_id);
+            List<ClassDto> ticket_class = classService.findAllClassOfAnTicketClass(ticket_id);
             return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
 //            return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
         }catch (Exception e){

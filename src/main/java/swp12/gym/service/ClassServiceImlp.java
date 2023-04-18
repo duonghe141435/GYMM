@@ -14,9 +14,6 @@ public class ClassServiceImlp implements ClassService{
     @Autowired
     private ClassDao classDao;
 
-    @Autowired
-    private TicketDao ticketDao;
-
     public List<ClassDto> findAll() {
         return classDao.findAllClass();
     }
@@ -33,7 +30,12 @@ public class ClassServiceImlp implements ClassService{
         return classDao.findDetailAnClass(class_id);
     }
 
-    public List<ClassDto> findAllTrainerClass(int ticket_id) {
-        return ticketDao.findAllClassOfTicketClass(ticket_id);
+
+    public List<ClassDto> findAllClassOfAnTicket(int ticket_id) {
+        return classDao.findAllClassOfAnTicket(ticket_id);
+    }
+
+    public List<ClassDto> findAllClassOfAnTicketClass(int ticket_id) {
+        return classDao.findAllClassOfAnTicketClass(ticket_id);
     }
 }
