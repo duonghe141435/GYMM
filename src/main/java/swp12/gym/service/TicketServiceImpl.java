@@ -19,9 +19,6 @@ public class TicketServiceImpl implements TicketService{
     @Autowired
     private TicketDao ticketDao;
 
-    @Autowired
-    private TicketUserDao ticketUserDao;
-
     public List<Ticket> findAllGymTicket() {
         return ticketDao.findAllGymTickets();
     }
@@ -42,9 +39,7 @@ public class TicketServiceImpl implements TicketService{
         return ticketDao.findAllTicketClassForCustomer();
     }
 
-    public List<TicketUser> findTicketsOfUser(int userID) {
-        return ticketUserDao.findTicketsOfUser(userID);
-    }
+
 
     public Boolean checkClassExist(int userID, int class_id) {
         return ticketDao.findAnUserClass(userID, class_id) == 0;

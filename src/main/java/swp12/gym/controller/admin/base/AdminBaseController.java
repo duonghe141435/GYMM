@@ -114,4 +114,12 @@ public class AdminBaseController {
         model.addAttribute("class_list", class_list);
         return "admin/class/class_list";
     }
+
+    @RequestMapping(value = "/detail-class/{class_id}",method = RequestMethod.GET)
+    public String goDetailCLass(@PathVariable int class_id, Model model) {
+        List<ClassDto> detail_class = classService.findDetailAnClass(class_id);
+        model.addAttribute("detail_class", detail_class);
+        List<User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
+        return "";
+    }
 }

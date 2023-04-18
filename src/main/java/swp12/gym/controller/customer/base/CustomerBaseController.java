@@ -157,10 +157,12 @@ public class CustomerBaseController {
         int userID = userDao.findIdByUsername(userName);
 
         List<ClassDto> scheduleClassOfCustomer = classService.findAllScheduleClassOfAnUserById(userID);
+        System.out.println(scheduleClassOfCustomer);
         model.addAttribute("scheduleClassOfCustomer",scheduleClassOfCustomer);
         List<Time> times = timeService.findAll();
         model.addAttribute("times",times);
         return "customer/book_pt";
     }
+
 }
 

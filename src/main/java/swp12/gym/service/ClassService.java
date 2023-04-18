@@ -14,4 +14,8 @@ public interface ClassService {
     List<ClassDto> findAllScheduleClassOfAnUserById(int id);
 
     List<ClassDto> findAllClassOfAnTicket(int id);
+
+    List<ClassDto> findDetailAnClass(int class_id);
+
+    List<ClassDto> findAllTrainerClass(int ticket_id);
 }
