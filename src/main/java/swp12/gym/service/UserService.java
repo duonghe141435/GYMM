@@ -23,6 +23,8 @@ public interface UserService {
     List<UserDto> findAllCustomer();
     //Get All Employee
     List<UserDto> findAllEmployee();
+    //Get All Trainer
+    List<UserDto> findAllTrainerForAdmin();
     //Get An User By Id
     UserDto findAnUserById(int id);
     //Get Name and Email By email of user
@@ -60,4 +62,6 @@ public interface UserService {
     void saveCustomerForGoogle(int ids, String trim, String trim1, int i);
 
     void createUserForGuest(User user);
+
+    List<User> findAllUserOfAnClass(int class_id);
 }
