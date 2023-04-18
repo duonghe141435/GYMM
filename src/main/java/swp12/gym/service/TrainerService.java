@@ -13,6 +13,7 @@ public interface TrainerService {
 
     List<UserDto> findAllTrainerPersonal(int ticket_id);
 
+    List<ClassDto> findAllTrainerClass(int ticket_id);
 
     List<TrainerDto> findAllTrainerByTicket(int id);
 }

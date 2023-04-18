@@ -37,7 +37,6 @@ public class AdminBaseController {
     @Autowired
     private TrainerService trainerService;
 
-
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
     public String goChangePassForAdmin() {
         return "layouts/change_pass";
@@ -98,6 +97,7 @@ public class AdminBaseController {
         view.addObject("number_order_today",number_order_today);
         view.addObject("number_order",number_order);
         view.addObject("ticket",ticket);
+
         return view;
     }
 

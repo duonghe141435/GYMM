@@ -104,9 +104,9 @@
             <%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
             <div class="container-fluid min-vh-100" style="padding-top: 100px">
                 <%@include file="/WEB-INF/views/customer/list_ticket.jsp" %>
-                <%@include file="/WEB-INF/views/customer/list_trainer.jsp" %>
-                <%@include file="/WEB-INF/views/customer/list_personal.jsp" %>
-                <%@include file="/WEB-INF/views/customer/list_class.jsp" %>
+                <%--<%@include file="/WEB-INF/views/customer/list_trainer.jsp" %>--%>
+                <%--<%@include file="/WEB-INF/views/customer/list_personal.jsp" %>--%>
+                <%--<%@include file="/WEB-INF/views/customer/list_class.jsp" %>--%>
             </div>
         </div>
         <footer class="bg-white sticky-footer">

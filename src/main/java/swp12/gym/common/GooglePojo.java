@@ -1,6 +1,7 @@
 package swp12.gym.common;
 
 public class GooglePojo {
+
     private String id;
     private String email;
     private boolean verified_email;
@@ -85,6 +86,6 @@ public class GooglePojo {
 
     public String toString() {
         return "GooglePojo [id=" + this.id + ", email=" + this.email + ", verified_email=" + this.verified_email + ", pic="
-                + this.picture + ", given_name=" + this.given_name + ", family_name=" + this.family_name + "]";
+                        + this.picture + ", given_name=" + this.given_name + ", family_name=" + this.family_name + "]";
     }
 }

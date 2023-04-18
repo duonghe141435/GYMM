@@ -14,6 +14,9 @@ public class ClassServiceImlp implements ClassService{
     @Autowired
     private ClassDao classDao;
 
+    @Autowired
+    private TicketDao ticketDao;
+
     public List<ClassDto> findAll() {
         return classDao.findAllClass();
     }

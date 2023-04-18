@@ -1,3 +1,5 @@
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -85,20 +87,6 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Huấn luyện viên:</td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-lg-9">
-                                                                <div class="row">Trainer B</div>
-                                                                <div class="row">Trainer B</div>
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <i class="fa fa-plus-circle text-info"></i>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
                                                     <td>
                                                         Giá vé:
                                                     </td>
@@ -120,20 +108,6 @@
                                                     </td>
                                                     <td>
                                                         Vé tham gia lớp học
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Danh sách lớp học:</td>
-                                                    <td>
-                                                        <div class="row">
-                                                            <div class="col-lg-9">
-                                                                <div class="row">Class B</div>
-                                                                <div class="row">Class B</div>
-                                                            </div>
-                                                            <div class="col-lg-3">
-                                                                <i class="fa fa-plus-circle text-info"></i>
-                                                            </div>
-                                                        </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -181,7 +155,11 @@
                                             <td><span>${number_order}</span> người</td>
                                         </tr>
                                         <tr>
-                                            <td><a class="btn btn-info">Hủy vé</a></td>
+                                            <td><a class="btn btn-info" id="delete-ticket">Hủy vé</a></td>
+                                            <c:if test="${ticket.tt_id == 2}"> <td><a class="btn btn-info">Xem danh sách huấn luyện viên</a></td></c:if>
+                                            <c:if test="${ticket.tt_id == 3}"> <td><a class="btn btn-info" data-bs-toggle="modal"
+                                                                                      data-bs-target="#list-class">Xem danh sách lớp học</a></td></c:if>
+
                                         </tr>
                                     </table>
                                 </div>
@@ -192,11 +170,68 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="list-class" tabindex="-1" role="dialog" aria-hidden="true" style="left: -6%;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="min-width: 980px; min-height: 620px">
+                    <div class="modal-header">
+                        <p class="text-primary m-0 fw-bold text-start">Danh sách lớp học</p>
+                        <button id="close-add-class" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="py-4">
+                        <div class="container">
+                            <div class="row">
+                                <table class="table my-0" id="class-table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên lớp</th>
+                                        <th>Giá</th>
+                                        <th>Ngày bắt đầu</th>
+                                        <th>Trạng thái</th>
+                                        <th>Số thành viên</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="display: contents;width: 100%;overflow: auto;">
+                                    <c:if test="${not empty classDtos}">
+                                        <c:forEach items="${classDtos}" var="classDtos">
+                                        <tr>
+                                            <td><count></count></td>
+                                            <td class="ticket-id" hidden aria-readonly="true">${classDtos.class_id}</td>
+                                            <td>${classDtos.c_name}</td>
+                                            <td class="class-price">${classDtos.c_price}</td>
+                                            <td>${classDtos.c_start_date} - ${classDtos.c_end_date}</td>
+                                            <td class="status text-center">
+                                                <c:if test="${classDtos.c_status == 1}"><span class="active">Đang bán</span></c:if>
+                                                <c:if test="${classDtos.c_status == -1}"><span class="waiting">Chưa bán - Thiếu huấn luyện viên</span></c:if>
+                                            </td>
+                                            <td>${classDtos.total_attendees} / ${classDtos.max_member}</td>
+                                            <td class="text-center">
+                                                <a class="class-view">
+                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Thôn tin chi tiết"></i></a>
+
+                                                <a class="class-delete">
+                                                    <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                            </td>
+                                        </tr>
+                                        </c:forEach>
+                                    </c:if>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <%@include file="/WEB-INF/views/layouts/admin/footer.jsp"%>
     </div>
 </div>
 </body>
 <script>
+
 
     function getDataForMonth(dayInMonth) {
         // Lấy dữ liệu cho tháng cụ thể từ backend// Ví dụ:
@@ -265,6 +300,9 @@
 
         var ctx = $('#myChart');
         var myChart = new Chart(ctx, config);
+
+
+
 
         <%--let month = 3; // tháng 4 ở đây tương ứng với index 3 (vì đếm từ 0)--%>
         <%--let year = 2023; // năm tùy chọn--%>
