@@ -106,7 +106,7 @@ public class CustomerTicketUser {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String userName = userDetails.getUsername();
         int userID = userDao.findIdByUsername(userName);
-        List<TicketUser> allTicketOfUser = ticketService.findTicketsOfUser(userID);
+        List<TicketUser> allTicketOfUser = ticketUserService.findTicketsOfUser(userID);
         model.addAttribute("allTicketOfUser", allTicketOfUser);
         return "customer/cart";
     }

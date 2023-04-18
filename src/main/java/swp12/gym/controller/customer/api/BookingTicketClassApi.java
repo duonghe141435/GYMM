@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.ClassDto;
 import swp12.gym.model.entity.UserClass;
+import swp12.gym.service.ClassService;
 import swp12.gym.service.TicketService;
 import swp12.gym.service.TicketUserService;
 import swp12.gym.service.TrainerService;
@@ -34,6 +35,9 @@ public class BookingTicketClassApi {
     @Autowired
     private TicketUserService ticketUserService;
 
+    @Autowired
+    private ClassService classService;
+
     @RequestMapping(value = URL_API + "/Check_ticket_exists", method = RequestMethod.GET)
     public ResponseEntity<String> checkTicketExists(@RequestParam(value = "classID") int classID, Authentication authentication){
         try{
@@ -55,7 +59,7 @@ public class BookingTicketClassApi {
     @RequestMapping(value = URL_API, method = RequestMethod.GET)
     public ResponseEntity<List<ClassDto>> find_Trainer_Ticket_Class(@RequestParam(value = "ids") int ticket_id){
         try{
-            List<ClassDto> ticket_class = trainerService.findAllTrainerClass(ticket_id);
+            List<ClassDto> ticket_class = classService.findAllTrainerClass(ticket_id);
             return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
 //            return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
         }catch (Exception e){

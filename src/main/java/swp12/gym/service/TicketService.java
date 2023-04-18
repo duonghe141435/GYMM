@@ -26,7 +26,6 @@ public interface TicketService {
 
     List<TicketTrainerDto> findAllTicketClassForCustomer();
 
-    List<TicketUser> findTicketsOfUser(int userID);
 
     Boolean checkClassExist(int userID, int class_id);
 

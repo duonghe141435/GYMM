@@ -24,7 +24,4 @@ public class TrainerServiceImpl implements TrainerService{
         return usersDao.findAllTrainerPersonal(ticket_id);
     }
 
-    public List<ClassDto> findAllTrainerClass(int ticket_id) {
-        return ticketDao.findAllClassOfTicketClass(ticket_id);
-    }
 }

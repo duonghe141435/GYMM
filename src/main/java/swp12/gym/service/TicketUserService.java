@@ -12,6 +12,8 @@ import java.util.List;
 public interface TicketUserService {
     TicketDto findAnTicket(long id);
 
+    List<TicketUser> findTicketsOfUser(int userID);
+
     boolean bookTicket(long id, long userID, String date, int price);
 
     long findIDTicketUser();

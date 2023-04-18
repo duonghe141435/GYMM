@@ -52,6 +52,10 @@ public class UserServiceImpl implements UserService{
 
     public List<UserDto> findAllEmployee(){ return usersDao.findAllEmployee(); }
 
+    public List<UserDto> findAllTrainerForAdmin() {
+        return usersDao.findAllTrainerForAdmin();
+    }
+
     public UserDto findAnUserById(int id) { return usersDao.findAnUserById(id); }
 
     public User getNameAndImgByEmail(String email) {
@@ -116,6 +120,10 @@ public class UserServiceImpl implements UserService{
 
     public void createUserForGuest(User user) {
 
+    }
+
+    public List<User> findAllUserOfAnClass(int class_id) {
+        return userDao.findAllUserOfAnClass(class_id);
     }
 
 }
