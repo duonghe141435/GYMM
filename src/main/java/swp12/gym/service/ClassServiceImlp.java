@@ -29,11 +29,7 @@ public class ClassServiceImlp implements ClassService{
         return classDao.findAllScheduleClassOfAnUserById(user_id);
     }
 
-    public List<ClassDto> findDetailAnClass(int class_id) {
-        return classDao.findDetailAnClass(class_id);
-    }
-
-    public List<ClassDto> findAllTrainerClass(int ticket_id) {
-        return ticketDao.findAllClassOfTicketClass(ticket_id);
+    public List<ClassDto> findAllClassOfAnTicket(int id) {
+        return classDao.findAllClassOfAnTicket(id);
     }
 }

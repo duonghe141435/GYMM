@@ -11,7 +11,7 @@ import swp12.gym.dto.UserDtoAdmin;
 import swp12.gym.model.entity.Role;
 import swp12.gym.service.RoleService;
 import swp12.gym.service.UserService;
-import swp12.gym.utils.ProcessFile;
+import swp12.gym.common.ProcessFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

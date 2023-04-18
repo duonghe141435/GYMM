@@ -13,7 +13,7 @@ import swp12.gym.service.PriceService;
 import swp12.gym.service.ProductService;
 import swp12.gym.service.ProductTypeService;
 import swp12.gym.service.UnitService;
-import swp12.gym.utils.ProcessFile;
+import swp12.gym.common.ProcessFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

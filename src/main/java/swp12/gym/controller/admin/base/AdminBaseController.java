@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.TicketDto;
+import swp12.gym.dto.TrainerDto;
 import swp12.gym.dto.UserDto;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.Time;
 import swp12.gym.model.entity.User;
-import swp12.gym.service.ClassService;
-import swp12.gym.service.TicketService;
-import swp12.gym.service.TimeService;
-import swp12.gym.service.UserService;
+import swp12.gym.service.*;
 
 import java.util.List;
 import java.util.Map;
@@ -36,6 +34,8 @@ public class AdminBaseController {
     private TimeService timeService;
     @Autowired
     private ClassService classService;
+    @Autowired
+    private TrainerService trainerService;
 
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
     public String goChangePassForAdmin() {
@@ -76,23 +76,19 @@ public class AdminBaseController {
         ModelAndView view = new ModelAndView("admin/ticket/detail_ticket");
 
 
-        int number_order = 0;
-        int number_order_today = 0;
+        int number_order = ticketService.getTotalNumberOrderOfTicket(id);;
+        int number_order_today = ticketService.getTotalNumberOrderOfTicketToday(id);
         List<Map<Integer, Integer>> data = null;
         Ticket ticket = ticketService.findAnTicket(id);
-        if(ticket.getTt_id() == 1){
-            data = ticketService.getDataOfAnTicket(id);
-            number_order = ticketService.getTotalNumberOrderOfTicket(id);
-            number_order_today = ticketService.getTotalNumberOrderOfTicketToday(id);
+        data = ticketService.getDataOfAnTicket(id);
 
-        }
         if(ticket.getTt_id() == 2){
-            number_order = ticketService.getTotalNumberOrderOfPersonalTrainerDetail(id);
-            number_order_today = ticketService.getTotalNumberOrderOfPersonalTrainerDetailToday(id);
+            List<TrainerDto> dtoList = trainerService.findAllTrainerByTicket(id);
+            view.addObject("dtoList",dtoList);
         }
         if(ticket.getTt_id() == 3){
-            number_order = ticketService.getTotalNumberOrderOfTicketClass(id);
-            number_order_today = ticketService.getTotalNumberOrderOfTicketClasslToday(id);
+            List<ClassDto> classDtos = classService.findAllClassOfAnTicket(id);
+            view.addObject("classDtos",classDtos);
         }
 
         String jsonData = new Gson().toJson(data); // chuyển đổi sang chuỗi JSON
@@ -101,7 +97,6 @@ public class AdminBaseController {
         view.addObject("number_order_today",number_order_today);
         view.addObject("number_order",number_order);
         view.addObject("ticket",ticket);
-
         return view;
     }
 
