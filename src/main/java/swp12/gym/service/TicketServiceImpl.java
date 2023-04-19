@@ -102,24 +102,10 @@ public class TicketServiceImpl implements TicketService{
         return ticketDao.getTotalNumberOrderOfTicket(id);
     }
 
-    public int getTotalNumberOrderOfTicketClass(int id) {
-        return ticketDao.getTotalNumberOrderOfTicketClass(id);
-    }
-
-    public int getTotalNumberOrderOfPersonalTrainerDetail(int id) {
-        return ticketDao.getTotalNumberOrderOfPersonalTrainerDetail(id);
-    }
 
     public int getTotalNumberOrderOfTicketToday(int id) {
         return ticketDao.getTotalNumberOrderOfTicketToday(id);
     }
 
-    public int getTotalNumberOrderOfPersonalTrainerDetailToday(int id) {
-        return ticketDao.getTotalNumberOrderOfPersonalTrainerDetailToday(id);
-    }
-
-    public int getTotalNumberOrderOfTicketClasslToday(int id) {
-        return ticketDao.getTotalNumberOrderOfTicketClasslToday(id);
-    }
 
 }

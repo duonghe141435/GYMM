@@ -376,7 +376,7 @@ public class UsersDao {
 
     public List<User> findAllUserOfAnClass(int class_id) {
         try{
-            sql = "SELECT * \n" +
+            sql = "SELECT u.id_u, u.email, u.name, u.password, u.phone, u.enabled, u.gender, u.address, u.CMND, u.image, u.DOB\n" +
                     "FROM users u\n" +
                     "JOIN user_class uc ON u.id_u = uc.user_id\n" +
                     "WHERE uc.class_id = ?";

@@ -16,7 +16,7 @@
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users"/>">Danh sách người dùng hệ thống</a>
+                        <%--<a class="dropdown-item" href="<c:url value="/admin/dashboard/users"/>">Danh sách người dùng hệ thống</a>--%>
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/employee"/>">Danh sách nhân viên</a>
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/trainer"/>">Danh sách huấn luyện viên</a>
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/customer"/>">Danh sách khách hàng</a>

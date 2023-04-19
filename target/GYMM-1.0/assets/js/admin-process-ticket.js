@@ -550,8 +550,5 @@ $(document).ready(function () {
     })
     });
 
-    table_ticket.on('click', '.ticket-view', function () {
-        var ids = $(this).parent().siblings('.ticket-id').text();
-        window.location.href = 'http://localhost:8080/admin/dashboard/ticket-detail/'+ids;
-    });
+
 });

@@ -9,16 +9,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.TicketDto;
 import swp12.gym.dto.TrainerDto;
 import swp12.gym.dto.UserDto;
+import swp12.gym.model.entity.LogUser;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.Time;
 import swp12.gym.model.entity.User;
 import swp12.gym.service.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +39,8 @@ public class AdminBaseController {
     private ClassService classService;
     @Autowired
     private TrainerService trainerService;
+    @Autowired
+    private LogUserService logUserService;
 
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
     public String goChangePassForAdmin() {
@@ -97,6 +102,7 @@ public class AdminBaseController {
         view.addObject("number_order_today",number_order_today);
         view.addObject("number_order",number_order);
         view.addObject("ticket",ticket);
+
         return view;
     }
 
@@ -115,11 +121,52 @@ public class AdminBaseController {
         return "admin/class/class_list";
     }
 
-    @RequestMapping(value = "/detail-class/{class_id}",method = RequestMethod.GET)
-    public String goDetailCLass(@PathVariable int class_id, Model model) {
+    @RequestMapping(value = "/detail-class",method = RequestMethod.GET)
+    public String goDetailCLass(@RequestParam(value = "class_id") int class_id, Model model) {
+        System.out.println("class_id: " + class_id);
         List<ClassDto> detail_class = classService.findDetailAnClass(class_id);
         model.addAttribute("detail_class", detail_class);
         List<User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
+        model.addAttribute("list_user_of_class", list_user_of_class);
         return "";
     }
+
+
+    //----------------------view detail customer----------
+    @RequestMapping(value = "/booking-ticket-log/{userID}",method = RequestMethod.GET)
+    public String goBookingTicketLog(@PathVariable int userID, Model model, Authentication authentication) {
+        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, userID);
+        model.addAttribute("ticket",ticket);
+        return "admin/customer/ticket_log";
+    }
+
+    @RequestMapping(value = "/booking-trainer-log/{userID}",method = RequestMethod.GET)
+    public String goBookingTrainerLog(@PathVariable int userID, Model model, Authentication authentication) {
+
+        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(2, userID);
+
+        model.addAttribute("ticket",ticket);
+        return "admin/customer/trainer_log";
+    }
+
+    @RequestMapping(value = "/booking-class-log/{userID}",method = RequestMethod.GET)
+    public String goBookingClassCustomer(@PathVariable int userID, Model model, Authentication authentication) {
+        List<ClassDto> classDtos = classService.findAllClassOfAnUserById(userID);
+        model.addAttribute("classDtos",classDtos);
+        return "admin/customer/class_log";
+    }
+
+    @RequestMapping(value = "/activity-log/{userID}",method = RequestMethod.GET)
+    public String goActivityCustomer(@PathVariable int userID, Model model, Authentication authentication) {
+        List<LogUser> logUsers = logUserService.getAnLogOfAnUser(userID);
+        model.addAttribute("logUser",logUsers);
+        return "admin/customer/activity_log";
+    }
+
+//    @RequestMapping(value = "/detail-profile-customer/{userID}",method = RequestMethod.GET)
+//    public String goDetailProfileCustomer(@PathVariable int userID, Model model, HttpSession s) {
+//        UserDto user = userService.getCustomerByEmail(s.getAttribute("display_email").toString());
+//        model.addAttribute("user",user);
+//        return "admin/customer/activity_log";
+//    }
 }
