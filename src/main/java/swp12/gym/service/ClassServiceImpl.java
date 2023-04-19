@@ -16,7 +16,7 @@ class ClassServiceImpl implements ClassService{
     @Autowired
     private TicketDao ticketDao;
 
-    public List<ClassDto> findAll() {
+    public List<ClassDto> findClassAll() {
         return classDao.findAllClass();
     }
 
@@ -38,5 +38,17 @@ class ClassServiceImpl implements ClassService{
 
     public List<ClassDto> findAllTrainerClass(int ticket_id) {
         return ticketDao.findAllClassOfTicketClass(ticket_id);
+    }
+
+    public List<ClassDto> findAllClassNoneTicket() {
+        return null;
+    }
+
+    public List<String[]> findScheduleCheckClass(String id_ticket, String id_trainer, String id_time) {
+        return classDao.findScheduleCheckClass(id_ticket,id_time,id_trainer);
+    }
+
+    public void createNewClass(String class_name, String time_id, int i, String start_date, String end_date, String trainer_id, String ticket_id, int max_member, int price, String dateNowToString) {
+        classDao.createNewClass(class_name,time_id,i,start_date,end_date,trainer_id,ticket_id,max_member,price,dateNowToString);
     }
 }

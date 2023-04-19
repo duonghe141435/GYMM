@@ -46,7 +46,7 @@ public class TicketServiceImpl implements TicketService{
     }
 
     public List<Ticket> findAllTicketClass() {
-        return null;
+        return ticketDao.findAllTicketClass();
     }
 
     public void createTicket(String name, String price, String day, String type_id, int status, int ids) {

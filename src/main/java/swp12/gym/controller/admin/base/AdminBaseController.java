@@ -31,28 +31,11 @@ public class AdminBaseController {
     @Autowired
     private TicketService ticketService;
     @Autowired
-    private TimeService timeService;
-    @Autowired
     private ClassService classService;
     @Autowired
     private TrainerService trainerService;
-
-    @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
-    public String goChangePassForAdmin() {
-        return "layouts/change_pass";
-    }
-
-    @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityAdmin() {
-        return "layouts/change_pass";
-    }
-
-    @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
-    public String profileAdmin(Model model, Authentication authentication) {
-        UserDto user = userService.getUserByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
-        model.addAttribute("user",user);
-        return "base/profile_user";
-    }
+    @Autowired
+    private TimeService timeService;
 
     //Xem tất cả các vé vào cửa - done
     @RequestMapping(value = "/ticket",method = RequestMethod.GET)
@@ -60,11 +43,10 @@ public class AdminBaseController {
         int count = ticketService.getNumberTicketInSystem();
         List<User> trainer = userService.findAllTrainer();
         List<TicketDto> tickets = ticketService.findAllOfAdmin();
-        List<Time> times = timeService.findAll();
+        List<ClassDto> classDtos = classService.findAllClassNoneTicket();
 
         model.addAttribute("trainer", trainer);
         model.addAttribute("count", count);
-        model.addAttribute("times", times);
         model.addAttribute("tickets", tickets);
 
         return "admin/ticket/list_ticket";
@@ -100,20 +82,34 @@ public class AdminBaseController {
         return view;
     }
 
+    // ----------------------------------------------------------------
+    @RequestMapping(value = "/class",method = RequestMethod.GET)
+    public String goClassPage(Model model) {
+        List<ClassDto> class_list = classService.findClassAll();
+        model.addAttribute("class_list", class_list);
+        return "admin/class/class_list";
+    }
+
+    @RequestMapping(value = "/class/new-class",method = RequestMethod.GET)
+    public String createNewClass(Model model) {
+        List<User> trainer = userService.findAllTrainer();
+        List<Ticket> tickets = ticketService.findAllTicketClass();
+        List<Time> times = timeService.findAll();
+
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("trainer", trainer);
+        model.addAttribute("times", times);
+        return "admin/class/create_class";
+    }
+
+    // ----------------------------------------------------------------
     @RequestMapping(value = "/products/save",method = RequestMethod.GET)
     public String addProduct(Model model){
         return "admin/product/list_product";
     }
 
 
-    // ----------------------------------------------------------------
-    @RequestMapping(value = "/class",method = RequestMethod.GET)
-    public String goCLassPage(Model model) {
-        List<ClassDto> class_list = classService.findAll();
 
-        model.addAttribute("class_list", class_list);
-        return "admin/class/class_list";
-    }
 
     @RequestMapping(value = "/detail-class/{class_id}",method = RequestMethod.GET)
     public String goDetailCLass(@PathVariable int class_id, Model model) {
@@ -121,5 +117,22 @@ public class AdminBaseController {
         model.addAttribute("detail_class", detail_class);
         List<User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
         return "";
+    }
+
+    @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
+    public String goChangePassForAdmin() {
+        return "layouts/change_pass";
+    }
+
+    @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
+    public String goActivityAdmin() {
+        return "layouts/change_pass";
+    }
+
+    @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
+    public String profileAdmin(Model model, Authentication authentication) {
+        UserDto user = userService.getUserByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
+        model.addAttribute("user",user);
+        return "base/profile_user";
     }
 }

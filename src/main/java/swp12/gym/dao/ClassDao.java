@@ -188,4 +188,45 @@ public class ClassDao {
         }, class_id);
     }
 
+    public List<String[]> findScheduleCheckClass(String ticket_id, String time_id, String trainer_id) {
+        try {
+            sql = "SELECT class.class_id, class.trainer_id, class.time_id, class.state, class.start_date, class.end_date,\n" +
+                    "w.thu2,w.thu3,w.thu4,w.thu5,w.thu6, w.thu7, w.cn\n" +
+                    "FROM class join ticket t on class.ticket_id = t.id_t\n" +
+                    "join trainer t2 on class.trainer_id = t2.trainer_id\n" +
+                    "join time t3 on class.time_id = t3.id_time\n" +
+                    "join weekdays w on class.class_id = w.id_class\n" +
+                    "WHERE t.id_t = ? AND t2.trainer_id = ? AND t3.id_time = ?;";
+            return jdbcTemplate.query(sql, new RowMapper<String[]>() {
+                public String[] mapRow(ResultSet resultSet, int i) throws SQLException {
+                    String[] result = new String[9];
+                    result[0] = resultSet.getString("start_date");
+                    result[1] = resultSet.getString("end_date");
+                    result[2] = resultSet.getString("thu2");
+                    result[3] = resultSet.getString("thu3");
+                    result[4] = resultSet.getString("thu4");
+                    result[5] = resultSet.getString("thu5");
+                    result[6] = resultSet.getString("thu6");
+                    result[7] = resultSet.getString("thu7");
+                    result[8] = resultSet.getString("cn");
+                    return result;
+                }
+            }, ticket_id, trainer_id, time_id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    public void createNewClass(String class_name, String time_id, int i, String start_date, String end_date,
+                               String trainer_id, String ticket_id, int max_member, int price, String dateNowToString) {
+        try{
+            sql = "INSERT INTO class (name, time_id, state, start_date, end_date, " +
+                    "trainer_id, ticket_id, max_menber, price, create_date) VALUES (?,?,?,?,?,?,?,?,?,?)";
+            jdbcTemplate.update(sql, class_name,time_id,i,start_date,end_date,trainer_id,ticket_id,max_member,price,dateNowToString);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

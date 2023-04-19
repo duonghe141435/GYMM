@@ -30,14 +30,12 @@ public class CustomerBaseController {
 
     @Autowired
     private TimeService timeService;
-
     @Autowired
     private UserService userService;
     @Autowired
     private TicketService ticketService;
     @Autowired
     private ProductService productService;
-
     @Autowired
     private ClassService classService;
     @Autowired
@@ -50,20 +48,16 @@ public class CustomerBaseController {
     @RequestMapping(value = "/home",method = RequestMethod.GET)
     public String indexCustomer(Model model) {
         List<Ticket> ticket = ticketService.findAll();
-        //        List<Ticket> ticket = ticketService.findAllGymTicket();
         model.addAttribute("tickets", ticket);
-
-//        List<Time> times = timeService.findAll();
-//        model.addAttribute("times",times);
-
         return "customer/index_customer";
     }
 
     @RequestMapping(value = "/show-list-personal",method = RequestMethod.GET)
     public String goListPersonal(Model model, HttpSession s) {
         List<Ticket> ticket = ticketService.findAll();
-        model.addAttribute("tickets", ticket);
         List<TicketTrainerDto> allTicketTrainer = ticketService.findAllTicketTrainer();
+
+        model.addAttribute("tickets", ticket);
         model.addAttribute("allTicketTrainer", allTicketTrainer);
         return "customer/list_personal";
     }
@@ -84,22 +78,7 @@ public class CustomerBaseController {
         return "customer/list_trainer";
     }
 
-
-    @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
-    public String profileCustomer(Model model, HttpSession s) {
-
-        UserDto user = userService.getCustomerByEmail(s.getAttribute("display_email").toString());
-
-        model.addAttribute("user",user);
-        return "customer/profile_user";
-    }
-
-    @RequestMapping(value = "/your-profile/update",method = RequestMethod.GET)
-    public String updateCustomer(@ModelAttribute("user") User user, Model model) {
-        System.out.println(user.toString());
-        return "customer/index_customer";
-    }
-
+    //----------------------------------------------
     @RequestMapping(value = "/product",method = RequestMethod.GET)
     public String productPage(Model model) {
         List<ProductDto> productDtos = productService.findAll();
@@ -142,8 +121,6 @@ public class CustomerBaseController {
         return "customer/log/activity_log";
     }
 
-
-
     @RequestMapping(value = "/product-order-log",method = RequestMethod.GET)
     public String goProductOrderLog(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
@@ -164,5 +141,18 @@ public class CustomerBaseController {
         return "customer/book_pt";
     }
 
+    //----------------------------------------------
+    @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
+    public String profileCustomer(Model model, HttpSession s) {
+        UserDto user = userService.getCustomerByEmail(s.getAttribute("display_email").toString());
+        model.addAttribute("user",user);
+        return "customer/profile_user";
+    }
+
+    @RequestMapping(value = "/your-profile/update",method = RequestMethod.GET)
+    public String updateCustomer(@ModelAttribute("user") User user, Model model) {
+        System.out.println(user.toString());
+        return "customer/index_customer";
+    }
 }
 

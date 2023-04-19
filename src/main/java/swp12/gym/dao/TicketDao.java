@@ -132,11 +132,17 @@ public class TicketDao {
 
     public List<Ticket> findAllTicketClass() {
         try{
-            sql = "SELECT t.id_t as t_id, t.name as t_name,t2.tt_id as tt_id, t2.name as tt_name,\n" +
-                    "t.total_days as t_day, t.status as t_status,\n" +
-                    "t.create_date as t_create_date, t.price as t_price\n" +
-                    "FROM ticket t join ticket_type t2 on t.tt_id = t2.tt_id WHERE t.tt_id = 3";
-            return jdbcTemplate.query(sql, new TicketMapper());
+            sql = "SELECT t.id_t as t_id, t.name as t_name, t.total_days as t_day, t.status as t_status,\n" +
+                    "t.create_date as t_create_date FROM ticket t  WHERE t.tt_id = 3";
+            return jdbcTemplate.query(sql, new RowMapper<Ticket>() {
+                public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
+                    Ticket ticket = new Ticket();
+                    ticket.setT_id(resultSet.getInt("t_id"));
+                    ticket.setT_name(resultSet.getString("t_name"));
+                    ticket.setT_total_days(resultSet.getInt("t_day"));
+                    return ticket;
+                }
+            });
         }catch (Exception e){
             e.printStackTrace();
             return null;
