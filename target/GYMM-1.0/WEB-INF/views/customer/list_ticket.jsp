@@ -32,7 +32,7 @@
                                             - Số người đã tham gia: <br/>
                                             - loại vé: vé tập và sử dụng phòng GYM <br/>
                                             - Thời gian sử dụng: ${tickets.t_total_days} Ngày<br/>
-                                        <h5 class="display-5 fw-bold mb-4 price">- Giá vé: ${tickets.t_price}</h5>
+                                        <h5 class="display-7 fw-bold mb-4 price">- Giá vé: ${tickets.t_price}</h5>
                                         </p>
                                     </div>
                                     <div class="card-read-more">
@@ -82,12 +82,36 @@
                                 var show = document.getElementById("shows");
                                 show.scrollIntoView();
                             }else if (result.isDenied) {
-                                Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success').then((result) => {
-                                    if(result.isConfirmed){
-                                    <%--window.location.href = '<c:url value="/CustomerUser/" />' + id--%>
-                                    window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "ticket_id=" + id + "&end_date_ticket="+resultAPI + "&price=" + 0 + "&ticket_pt_id=" + 0 + "&end_date_ticket_personal=" + 0;
-                                }
-                            })
+                                    var token = $("meta[name='_csrf']").attr("content");
+                                    var data = {
+                                        "_ticket_id" : id,
+                                        "_end_date_ticket" : resultAPI,
+                                        "_ticket_pt_id" : 0,
+                                        "_price_ticket_pt" : 0,
+                                        "_personal_trainer_id" : 0,
+                                        "_end_date_ticket_personal" : 0,
+                                        "_ticket_class_id" : 0,
+                                        "_price_ticket_class" : 0,
+                                        "_class_id" : 0,
+                                        _csrf: token};
+                                    $.ajax({
+                                    url: '/CustomerUser/saveTickerUser',
+                                    type: 'post',
+                                    data: data,
+                                    success: function(response) {
+                                        Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');
+                                        console.log(response);
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.log(error);
+                                    }
+                                });
+                                <%--Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success').then((result) => {--%>
+                                    <%--if(result.isConfirmed){--%>
+                                    <%--&lt;%&ndash;window.location.href = '<c:url value="/CustomerUser/" />' + id&ndash;%&gt;--%>
+                                    <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "ticket_id=" + id + "&end_date_ticket="+resultAPI + "&price=" + 0 + "&ticket_pt_id=" + 0 + "&end_date_ticket_personal=" + 0 + "&class_or_personal_id=" + 0;--%>
+                                <%--}--%>
+                            <%--})--%>
                             }
                         })
                         }else{
@@ -113,12 +137,36 @@
                                     show.scrollIntoView()
 
                                 }else if (result.isDenied) {
-                                    Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success').then((result) => {
-                                        if(result.isConfirmed){
-                                        <%--window.location.href = '<c:url value="/CustomerUser/" />' + id--%>
-                                        window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "ticket_id=" + id + "&end_date_ticket="+resultAPI + "&price=" + 0 + "&ticket_pt_id=" + 0 + "&end_date_ticket_personal=" + 0;
-                                    }
-                                })
+                                    var token = $("meta[name='_csrf']").attr("content");
+                                    var data = {
+                                        "_ticket_id" : id,
+                                        "_end_date_ticket" : resultAPI,
+                                        "_ticket_pt_id" : 0,
+                                        "_price_ticket_pt" : 0,
+                                        "_personal_trainer_id" : 0,
+                                        "_end_date_ticket_personal" : 0,
+                                        "_ticket_class_id" : 0,
+                                        "_price_ticket_class" : 0,
+                                        "_class_id" : 0,
+                                        _csrf: token};
+                                    $.ajax({
+                                        url: '/CustomerUser/saveTickerUser',
+                                        type: 'post',
+                                        data: data,
+                                        success: function(response) {
+                                            Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');
+                                            console.log(response);
+                                        },
+                                        error: function(xhr, status, error) {
+                                            console.log(error);
+                                        }
+                                    });
+                                    <%--Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success').then((result) => {--%>
+                                        <%--if(result.isConfirmed){--%>
+                                        <%--&lt;%&ndash;window.location.href = '<c:url value="/CustomerUser/" />' + id&ndash;%&gt;--%>
+                                        <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "ticket_id=" + id + "&end_date_ticket="+resultAPI + "&price=" + 0 + "&ticket_pt_id=" + 0 + "&end_date_ticket_personal=" + 0 + "&class_or_personal_id=" + 0;--%>
+                                    <%--}--%>
+                                <%--})--%>
                                 }
 
                                 <%--Swal.fire('Bạn đã book ticket thành công', '', 'success').then((result) => {--%>

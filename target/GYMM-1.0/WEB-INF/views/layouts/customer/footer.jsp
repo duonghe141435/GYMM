@@ -1,24 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<style>
-    footer img{
-        width: 200px;
-        height: 100px;
-        margin-left: 40px;
-    }
-
-    hr{
-        color: white;
-    }
-
-    footer {
-        width: 100%;
-    }
-</style>
 <footer class="bg-dark sticky-footer">
     <div class="container py-4">
         <div class="row">
             <div class="col-4">
-                <img src="/assets/img/logo/gymm_logo.png">
+                <img src="<c:url value="/assets/img/logo/logo.png"/>">
                 <p class="text-light text-start h5 mt-3">Chúng tôi cung cấp khả năng thực hiện các hoạt động thể thao: Crossfit, Gym và các hoạt động khác
                     , nhằm cải thiện sức khỏe và sức đề kháng thể chất của bạn, thông qua hệ thống đào tạo chuyên nghiệp 100%.
                 </p>

@@ -38,7 +38,7 @@
                                 <label class="form-label" for="ticket-price"><strong>Giá tiền</strong></label>
                                 <input class="form-control" type="text" id="ticket-price-value" placeholder="Nhập giá tiền của vé"/>
                                 <div class="invalid-feedback price-error">
-                                    Giá vé nằm trong khoảng từ 1.000vnd đến 500.000vnd
+                                    Giá vé nằm trong khoảng từ 1.000vnd đến 5.000.000vnd
                                 </div>
                             </div>
                             <div class="mb-3" id="day-other" style="display: none">

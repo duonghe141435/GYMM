@@ -62,12 +62,4 @@ public interface TicketService {
     int getTotalNumberOrderOfTicket(int id);
 
     int getTotalNumberOrderOfTicketToday(int id);
-
-    int getTotalNumberOrderOfPersonalTrainerDetail(int id);
-
-    int getTotalNumberOrderOfPersonalTrainerDetailToday(int id);
-
-    int getTotalNumberOrderOfTicketClass(int id);
-
-    int getTotalNumberOrderOfTicketClasslToday(int id);
 }
