@@ -228,7 +228,7 @@
 
         price.on("input", function () { var input = $(this).val();
             input = input.replace(/\D/g, ""); // loại bỏ tất cả các ký tự không phải số
-            if (parseInt(input) < 1000 || parseInt(input) > 500000) {
+            if (parseInt(input) < 1000 || parseInt(input) > 5000000) {
                 price_error.show();
             }else{ price_error.hide();}
             input = input.replace(/(\d)(?=(\d{3})+$)/g, "$1."); // thêm dấu chấm sau mỗi ba số
@@ -238,7 +238,7 @@
         price_trainer.on("input", function () {
             var input = $(this).val();
             input = input.replace(/\D/g, ""); // loại bỏ tất cả các ký tự không phải số
-            if (parseInt(input) < 1000 || parseInt(input) > 500000) {
+            if (parseInt(input) < 1000 || parseInt(input) > 5000000) {
                 price_error.show();
             } else {
                 price_error.hide();
@@ -250,7 +250,7 @@
         price_class.on("input", function () {
             var input = $(this).val();
             input = input.replace(/\D/g, ""); // loại bỏ tất cả các ký tự không phải số
-            if (parseInt(input) < 1000 || parseInt(input) > 500000) {
+            if (parseInt(input) < 1000 || parseInt(input) > 5000000) {
                 price_error.show();
             } else {
                 price_error.hide();
@@ -418,7 +418,7 @@
                 Swal.fire('Xin hãy điền đầy đủ thông tin một cách chính xác', '', 'warning');
             }else {
                 if(_type == 1) {
-                    if ($.trim(_price) === '' || (parseInt(_price) < 1000 || parseInt(_price) > 50000)) {
+                    if ($.trim(_price) === '' || (parseInt(_price) < 1000 || parseInt(_price) > 5000000)) {
                         Swal.fire('Xin hãy điền giá tiền của vé', '', 'warning');
                     } else {
                         data = {
