@@ -130,69 +130,7 @@
     </div>
 </nav>
 <script>
-    function testAttendance() {
-        window.location.href = '<c:url value="/trainer/attendance-an-class?" />';
 
-        // var token = $("meta[name='_csrf']").attr("content");
-        // var attendence =[
-        //     {
-        //         "_user_id" : 1,
-        //         "_class_id" : 7,
-        //         "_status" : 1,
-        //
-        //     },
-        //     {
-        //         "_user_id" : 2,
-        //         "_class_id" : 7,
-        //         "_status" : 0,
-        //
-        //     },
-        //     {
-        //         "_user_id" : 2,
-        //         "_class_id" : 7,
-        //         "_status" : 1,
-        //
-        //     }
-        // ];
-
-        // var data3 = {
-        //     "_user_id" : 1,
-        //     "_class_id" : 7,
-        //     "_status" : 1,
-        //     "_attendance_date" : "4-18-2023"};
-        // var data1 = {
-        //     "_user_id" : 2,
-        //     "_class_id" : 7,
-        //     "_status" : 0,
-        //     "_attendance_date" : "4-18-2023"};
-        // var data2 = {
-        //     "_user_id" : 3,
-        //     "_class_id" : 7,
-        //     "_status" : 1,
-        //     "_attendance_date" : "4-18-2023"};
-        // var attendence = [];
-        // attendence.push(data3);
-        // attendence.push(data1);
-        // attendence.push(data2);
-        // var data = {
-        //     'attendence': JSON.stringify(attendence),
-        //     _csrf: token
-        // };
-        //
-        // console.log(data);
-        // $.ajax({
-        //
-        //     url: '/trainerApi/attendanceClass',
-        //     type: 'POST',
-        //     data: data,
-        //     success: function(response) {
-        //         Swal.fire('Bạn đã điểm danh thành công', '', 'success');
-        //     },
-        //     error: function(xhr, status, error) {
-        //         console.log(error);
-        //     }
-        // });
-    }
 </script>
 <%--
   Created by IntelliJ IDEA.

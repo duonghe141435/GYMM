@@ -146,7 +146,7 @@
                                                                         <c:if test="${detail_class.c_status == 0}"><span class="waiting" style="font-size: 20px;">Bị hủy - booking class không thành công</span></c:if>
                                                                     </p>
                                                                     <p style="font-size:20px;">${detail_class.start_time} - ${detail_class.end_time}</p>
-                                                                    <p style="font-size:20px;">${detail_class.total_attendees} / ${detail_class.max_member}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button>Danh sách lớp</button></p>
+                                                                    <p style="font-size:20px;">${detail_class.total_attendees} / ${detail_class.max_member}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="showListCustomer(${detail_class.class_id})">Danh sách lớp</button></p>
                                                                     <p class="status text-left">
                                                                         <c:if test="${detail_class.monday == 1}"><span class="active" style="font-size: 20px !important;">monday,</span></c:if>
                                                                         <c:if test="${detail_class.tuesday == 1}"><span class="waiting" style="font-size: 20px;">tuesday,</span> </c:if>
@@ -182,5 +182,9 @@
 </body>
 <script>
 
+    function showListCustomer(classID) {
+        window.location.href = '<c:url value="/customer/show_list_customer?" />' + "class_id=" + classID;
+
+    }
 </script>
 </html>
