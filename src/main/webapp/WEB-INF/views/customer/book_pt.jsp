@@ -9,6 +9,7 @@
     <title><dec:title default="Master-Layout" /></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
+
     <style>
         tbody tr{
             height: 100px !important;
@@ -101,103 +102,64 @@
     <thead>
     <tr>
         <th>Thời gian</th>
-        <th id="0"></th>
-        <th id="1"></th>
-        <th id="2"></th>
-        <th id="3"></th>
-        <th id="4"></th>
-        <th id="5"></th>
-        <th id="6"></th>
+        <th >
+            <p id="0.0" style="margin-top: 10px"></p>
+            <p id="0" style="margin-top: 1px"></p>
+        </th>
+        <th >
+            <p id="1.0" style="margin-top: 10px"></p>
+            <p id="1" style="margin-top: 1px"></p>
+        </th>
+        <th >
+            <p id="2.0" style="margin-top: 10px"></p>
+            <p id="2" style="margin-top: 1px"></p>
+        </th>
+        <th >
+            <p id="3.0" style="margin-top: 10px"></p>
+            <p id="3" style="margin-top: 1px"></p>
+        </th>
+        <th >
+            <p id="4.0" style="margin-top: 10px"></p>
+            <p id="4" style="margin-top: 1px"></p>
+        </th>
+        <th >
+            <p id="5.0" style="margin-top: 10px"></p>
+            <p id="5" style="margin-top: 1px"></p>
+        </th>
+        <th >
+            <p id="6.0" style="margin-top: 10px"></p>
+            <p id="6" style="margin-top: 1px"></p>
+        </th>
+        <%--<th id="1"></th>--%>
+        <%--<th id="2"></th>--%>
+        <%--<th id="3"></th>--%>
+        <%--<th id="4"></th>--%>
+        <%--<th id="5"></th>--%>
+        <%--<th id="6"></th>--%>
     </tr>
     </thead>
     <tbody>
         <c:if test="${not empty times}">
-            <c:forEach items="${times}" var="times">
+            <c:forEach varStatus="index" items="${times}" var="times">
                 <tr>
+                    <script>
+                        var date = document.getElementById("${index.count - 1}").innerText;
+                        console.log(date);
+                    </script>
                     <th>${times.start_time} - ${times.end_time}</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td id="1${times.id_time}">1.${times.id_time}</td>
+                    <td id="2${times.id_time}">2.${times.id_time}</td>
+                    <td id="3${times.id_time}">3.${times.id_time}</td>
+                    <td id="4${times.id_time}">4.${times.id_time}</td>
+                    <td id="5${times.id_time}">5.${times.id_time}</td>
+                    <td id="6${times.id_time}">6.${times.id_time}</td>
+                    <td id="7${times.id_time}">7.${times.id_time}</td>
                 </tr>
             </c:forEach>
         </c:if>
-        <%--<tr>--%>
-            <%--<th>05:00-06:30</th>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th>06:30-08:00</th>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th>08:30-10:00</th>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th>16:00-17:30</th>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th>17:30-19:00</th>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th>19:00-20:30</th>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-        <%--</tr>--%>
-        <%--<tr>--%>
-            <%--<th>20:30-22:00</th>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-            <%--<td></td>--%>
-        <%--</tr>--%>
     </tbody>
 </table>
-
+        <%--<div class="tiva-timetable" data-source="json" data-view="week"></div>--%>
 
 
 <div class="modal" id="myModalBook">
@@ -280,9 +242,11 @@
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<c:url value='/assets/js/bookPT.js'/>"></script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
-<script src="<c:url value='/assets/js/bs-init.js'/>"></script>
+<%--<script src="<c:url value='/assets/js/bs-init.js'/>"></script>--%>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
+<script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
 </html>

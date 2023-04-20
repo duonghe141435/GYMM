@@ -6,10 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.ProductDto;
@@ -163,7 +160,6 @@ public class CustomerBaseController {
         int userID = userDao.findIdByUsername(userName);
 
         List<ClassDto> scheduleClassOfCustomer = classService.findAllScheduleClassOfAnUserById(userID);
-        System.out.println(scheduleClassOfCustomer);
         model.addAttribute("scheduleClassOfCustomer",scheduleClassOfCustomer);
         List<Time> times = timeService.findAll();
         model.addAttribute("times",times);
@@ -183,11 +179,14 @@ public class CustomerBaseController {
     public String goAttendance(Model model) {
         List<User> list_user_of_class = userService.findAllUserOfAnClass(7);
         model.addAttribute("list_user_of_class", list_user_of_class);
-        for (User user: list_user_of_class) {
-            System.out.println(user.getU_email());
-        }
-
         return "customer/attendance";
+    }
+
+    @RequestMapping(value = "/show_list_customer",method = RequestMethod.GET)
+    public String showListCustomerOfAnClass(@RequestParam(value = "class_id") int class_id, Model model) {
+        List<User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
+        model.addAttribute("list_user_of_class", list_user_of_class);
+        return "customer/list_user_of_class";
     }
 
 
