@@ -8,7 +8,7 @@ import swp12.gym.model.entity.Attendance;
 import java.util.List;
 
 @Service
-public class AttendanceServiceImlp implements AttendanceService{
+public class AttendanceServiceImpl implements AttendanceService{
 
     @Autowired
     private AttendanceDao attendanceDao;

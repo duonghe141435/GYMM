@@ -39,7 +39,7 @@
 <div style="margin-left: 13%;">
     <div style="text-align: center">
         <label style="font-weight: bold; font-size: 35px; color: blue;">Bảng điểm danh của lớp</label>
-        <p style="display: none" id="class_id"> 7 </p>
+        <p style="display: none" id="class_id">7</p>
     </div>
     <%--<div class="card-body">--%>
 
@@ -69,14 +69,14 @@
                 <c:forEach varStatus="index" items="${list_user_of_class}" var="list_user_of_class">
                     <tr>
                         <td class="text-center">
-                            <%--<count></count>--%>
-                            ${index.count}
+                            <count></count>
+                                <%--${index.count}--%>
                         </td>
                         <td style="width: 75px;"><img style="width: 70px;height: 90px;" src="${list_user_of_class.u_img}"></td>
                         <td>${list_user_of_class.u_email}</td>
                         <td>${list_user_of_class.u_full_name}</td>
                         <td><input type="checkbox" class="a"></td>
-                        <td style="display: none" id="userID">${list_user_of_class.u_id}</td>
+                        <p style="display: none" id="userID${index.count}">${list_user_of_class.u_id}</p>
                     </tr>
                 </c:forEach>
         </c:if>
@@ -106,28 +106,28 @@
         var checkboxes = document.querySelectorAll("input.a");
 
         var attendence = [];
+        var classId = document.getElementById("class_id").innerText;
+        console.log("classId: " + classId);
         for (var i = 0; i < checkboxes.length; i++) {
-            var id = document.getElementById("userID").innerText;
-            if (!checkboxes[i].checked) {
+            var id = "userID" + (i + 1);
+            var user_id = document.getElementById(id).innerText;
 
-                console.log("classid: " + id);
-                // var data = {
-                //     "_user_id" : 1,
-                //     "_class_id" : 7,
-                //     "_status" : 1,
-                //     "_attendance_date" : "4-18-2023"
-                // };
-                // attendence.push(data);
+            if (!checkboxes[i].checked) {
+                var data = {
+                    "_user_id" : user_id,
+                    "_class_id" : classId,
+                    "_status" : 0
+                };
+                attendence.push(data);
             }
             if (checkboxes[i].checked) {
-                console.log("classid: " + id);
-                // var data = {
-                //             "_user_id" : 1,
-                //             "_class_id" : 7,
-                //             "_status" : 1,
-                //             "_attendance_date" : "4-18-2023"
-                // };
-                // attendence.push(data);
+
+                var data = {
+                            "_user_id" : user_id,
+                            "_class_id" : classId,
+                            "_status" : 1
+                };
+                attendence.push(data);
             }
 
             // checkboxes[i].addEventListener('click', function() {
@@ -142,7 +142,19 @@
             'attendence': JSON.stringify(attendence),
             _csrf: token
         };
+        console.log(data);
+        $.ajax({
 
+                url: '/trainerApi/attendanceClass',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+                    Swal.fire('Bạn đã điểm danh thành công', '', 'success');
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
     }
     function edit() {
         var checkboxes = document.getElementsByClassName("a");

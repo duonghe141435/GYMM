@@ -9,7 +9,7 @@ import swp12.gym.dto.ClassDto;
 import java.util.List;
 
 @Service
-public class ClassServiceImlp implements ClassService{
+public class ClassServiceImpl implements ClassService{
 
     @Autowired
     private ClassDao classDao;
