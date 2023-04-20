@@ -117,7 +117,7 @@ public class TicketDao {
     public List<Ticket> findAllTicketClass() {
         try{
             sql = "SELECT t.id_t as t_id, t.name as t_name, t.total_days as t_day, t.status as t_status,\n" +
-                    "t.create_date as t_create_date FROM ticket t  WHERE t.tt_id = 3";
+                    "t.create_date as t_create_date FROM ticket t  WHERE t.tt_id = 3 AND t.status <> 0";
             return jdbcTemplate.query(sql, new RowMapper<Ticket>() {
                 public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
                     Ticket ticket = new Ticket();
@@ -171,29 +171,9 @@ public class TicketDao {
         }
     }
 
-    public void createClassWeekdays(int ids, int cn, int thu2, int thu3, int thu4, int thu5, int thu6, int thu7, int id_class) {
-        try{
-            sql = "INSERT INTO weekdays (id_weekdays, cn, thu2, thu3, thu4, thu5, thu6, thu7, id_class) VALUES (?,?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql,ids, cn, thu2, thu3, thu4, thu5, thu6, thu7, id_class);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     public int getNumberTicketTrainerInSystem() {
         try{
             sql = "SELECT COUNT(*) FROM personal_trainer";
-            int number = jdbcTemplate.queryForObject(sql, Integer.class);
-            return number;
-        }catch (Exception e){
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    public int getNumberClassWeekendInSystem() {
-        try{
-            sql = "SELECT COUNT(*) FROM weekdays";
             int number = jdbcTemplate.queryForObject(sql, Integer.class);
             return number;
         }catch (Exception e){
@@ -340,5 +320,10 @@ public class TicketDao {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public void updateStatusTicket(String ticket_id) {
+        sql = "UPDATE ticket SET status = 1 WHERE id_t = ?";
+        jdbcTemplate.update(sql,ticket_id);
     }
 }

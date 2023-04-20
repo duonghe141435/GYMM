@@ -16,4 +16,5 @@ public interface TrainerService {
     List<ClassDto> findAllTrainerClass(int ticket_id);
 
     List<TrainerDto> findAllTrainerByTicket(int id);
+
 }

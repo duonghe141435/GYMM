@@ -18,26 +18,10 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-3">
+                            <div class="col-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="class-name"><strong>Tên lớp</strong></label>
                                     <input class="form-control" type="text" id="class-name" placeholder="Nhập tên lớp học" />
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label" for="trainer-class"><strong>Tên huấn luyện viên</strong></label>
-                                    <select id="trainer-class" class="form-select">
-                                        <c:forEach items="${trainer}" var="trainer">
-                                            <option value="${trainer.u_id}">${trainer.u_full_name}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label  class="form-label" for="time-select">Ca tập:</label>
-                                    <select id="time-select" class="form-select" required>
-                                        <c:forEach items="${times}" var="times">
-                                            <option value="${times.id_time}">${times.start_time} - ${times.end_time}</option>
-                                        </c:forEach>
-                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label  class="form-label" for="ticket-select">Danh sách vé:</label>
@@ -56,6 +40,26 @@
                                         <option>5</option>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="trainer-class"><strong>Tên huấn luyện viên</strong></label>
+                                        <select id="trainer-class" class="form-select">
+                                            <c:forEach items="${trainer}" var="trainer">
+                                                <option value="${trainer.u_id}">${trainer.u_full_name}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                    <label  class="form-label" for="time-select">Ca tập:</label>
+                                    <select id="time-select" class="form-select" required>
+                                        <c:forEach items="${times}" var="times">
+                                            <option value="${times.id_time}">${times.start_time} - ${times.end_time}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="date-start">Ngày bắt đầu:</label>
                                     <input type="date" class="form-control" id="date-start" required/>
@@ -68,74 +72,34 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-9">
-                                <div class="row align-items-center">
-                                    <label class="form-label"><strong>Lịch tập</strong></label>
-                                    <table id="schedule">
-                                        <thead>
-                                        <tr>
-                                            <th class="text-center">Thứ 2</th>
-                                            <th class="text-center">Thứ 3</th>
-                                            <th class="text-center">Thứ 4</th>
-                                            <th class="text-center">Thứ 5</th>
-                                            <th class="text-center">Thứ 6</th>
-                                            <th class="text-center">Thứ 7</th>
-                                            <th class="text-center">Chủ nhật</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="text-center"><input  type="checkbox" name="1" id="1"></td>
-                                            <td class="text-center"><input  type="checkbox" name="1" id="2"></td>
-                                            <td class="text-center"><input  type="checkbox" name="1" id="3"></td>
-                                            <td class="text-center"><input  type="checkbox" name="1" id="4"></td>
-                                            <td class="text-center"><input  type="checkbox" name="1" id="5"></td>
-                                            <td class="text-center"><input  type="checkbox" name="1" id="6"></td>
-                                            <td class="text-center"><input  type="checkbox" name="1" id="7"></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <hr/>
-                                <div class="row">
-                                    <table class="table my-0" id="class-table">
-                                        <thead>
-                                        <tr>
-                                            <th>Lớp học</th>
-                                            <th>Thứ 2</th>
-                                            <th>Thứ 3</th>
-                                            <th>Thứ 4</th>
-                                            <th>Thứ 5</th>
-                                            <th>Thứ 6</th>
-                                            <th>Thứ 7</th>
-                                            <th>Chủ nhật</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody style="display: contents;width: 100%;overflow: auto;">
-                                        <tr>
-                                            <td>Lớp Thầy Hùng</td>
-                                            <td>13h30p - 14h45p</td>
-                                            <td>13h30p - 14h45p</td>
-                                            <td>-</td>
-                                            <td>13h30p - 14h45p</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>13h30p - 14h45p</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Lớp Thầy Hùng</td>
-                                            <td>15h30p - 17h45p</td>
-                                            <td>15h30p - 17h45p</td>
-                                            <td>15h30p - 17h45p</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>15h30p - 17h45p</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div class="row align-items-center" style="padding: 10px">
+                                <label class="form-label"><strong>Lịch tập</strong></label>
+                                <table id="schedule">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Thứ 2</th>
+                                        <th class="text-center">Thứ 3</th>
+                                        <th class="text-center">Thứ 4</th>
+                                        <th class="text-center">Thứ 5</th>
+                                        <th class="text-center">Thứ 6</th>
+                                        <th class="text-center">Thứ 7</th>
+                                        <th class="text-center">Chủ nhật</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="text-center"><input  type="checkbox" name="1" id="1"></td>
+                                        <td class="text-center"><input  type="checkbox" name="1" id="2"></td>
+                                        <td class="text-center"><input  type="checkbox" name="1" id="3"></td>
+                                        <td class="text-center"><input  type="checkbox" name="1" id="4"></td>
+                                        <td class="text-center"><input  type="checkbox" name="1" id="5"></td>
+                                        <td class="text-center"><input  type="checkbox" name="1" id="6"></td>
+                                        <td class="text-center"><input  type="checkbox" name="1" id="7"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                            <hr/>
                             <button style="width: 200px;"  class="btn btn-primary" id="btn-add-class">Thêm lớp học</button>
                         </div>
                     </div>
@@ -313,7 +277,14 @@
                     url: 'http://localhost:8080/admin/class-management/check-class-exist',
                     data: data,
                     success: function (respone) {
-                        Swal.fire({ title: respone, text:"", icon: 'info'});
+                        const respone_return = respone.split('-');
+                        if(respone_return[0] === 'true'){
+                            Swal.fire({ title: respone_return[1], text:"", icon: 'info'});
+                            <%--window.location.href = '<c:url value="/admin/dashboard/class" />';--%>
+                        }else {
+                            Swal.fire({ title: respone_return[1], text:"", icon: 'error'});
+                        }
+
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         Swal.fire('Oops...', 'Lỗi hệ thống', 'error');

@@ -160,7 +160,7 @@ public class TicketUserDao {
 
     public void updateTicketUser(int userID){
         try{
-            sql = "UPDATE ticket_User SET payment_status = 1, date_payment = ? WHERE payment_status = 0 AND id_u = ?;";
+            sql = "UPDATE ticket_user SET payment_status = 1, date_payment = ? WHERE payment_status = 0 AND id_u = ?;";
 //            StringBuffer listTicketUserParam = new StringBuffer();
 //            listTicketUserParam.append("(");
 //            for (TicketUser item: listTicketUser) {

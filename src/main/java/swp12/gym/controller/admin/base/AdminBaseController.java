@@ -79,7 +79,6 @@ public class AdminBaseController {
     {
         ModelAndView view = new ModelAndView("admin/ticket/detail_ticket");
 
-
         int number_order = ticketService.getTotalNumberOrderOfTicket(id);;
         int number_order_today = ticketService.getTotalNumberOrderOfTicketToday(id);
         List<Map<Integer, Integer>> data = null;
