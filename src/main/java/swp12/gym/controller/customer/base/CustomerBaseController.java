@@ -6,15 +6,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.ProductDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.dto.UserDto;
+import swp12.gym.model.entity.Attendance;
 import swp12.gym.model.entity.LogUser;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.Time;
@@ -22,6 +20,7 @@ import swp12.gym.model.entity.User;
 import swp12.gym.service.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -45,6 +44,9 @@ public class CustomerBaseController {
 
     @Autowired
     private UsersDao userDao;
+
+    @Autowired
+    private AttendanceService attendanceService;
 
     //Home user
     @RequestMapping(value = "/home",method = RequestMethod.GET)
@@ -104,6 +106,7 @@ public class CustomerBaseController {
     public String productPage(Model model) {
         List<ProductDto> productDtos = productService.findAll();
         model.addAttribute("productDtos", productDtos);
+
         return "customer/view_product";
     }
 
@@ -162,5 +165,30 @@ public class CustomerBaseController {
         model.addAttribute("times",times);
         return "customer/book_pt";
     }
+
+    @RequestMapping(value = "/list_class_of_customer",method = RequestMethod.GET)
+    public String listClassOfCustomer(Model model, Authentication authentication) {
+        int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
+        List<ClassDto> classDtos = classService.findAllClassOfAnUserById(id);
+        model.addAttribute("classDtos",classDtos);
+
+        return "customer/booked_class";
+    }
+
+    @RequestMapping(value = "/attendance-an-class",method = RequestMethod.GET)
+    public String goAttendance(Model model) {
+        List<User> list_user_of_class = userService.findAllUserOfAnClass(7);
+        model.addAttribute("list_user_of_class", list_user_of_class);
+        return "customer/attendance";
+    }
+
+    @RequestMapping(value = "/show_list_customer",method = RequestMethod.GET)
+    public String showListCustomerOfAnClass(@RequestParam(value = "class_id") int class_id, Model model) {
+        List<User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
+        model.addAttribute("list_user_of_class", list_user_of_class);
+        return "customer/list_user_of_class";
+    }
+
+
 }
 

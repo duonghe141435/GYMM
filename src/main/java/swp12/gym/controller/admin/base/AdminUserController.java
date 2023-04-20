@@ -11,7 +11,7 @@ import swp12.gym.dto.UserDtoAdmin;
 import swp12.gym.model.entity.Role;
 import swp12.gym.service.RoleService;
 import swp12.gym.service.UserService;
-import swp12.gym.utils.ProcessFile;
+import swp12.gym.common.ProcessFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -45,15 +45,15 @@ public class AdminUserController {
 
     @RequestMapping(value = "/trainer", method = RequestMethod.GET)
     public String goListTrainer(Model model){
-        List<UserDto> users = userService.findAll();
-
+        List<UserDto> users = userService.findAllTrainerForAdmin();
+        System.out.println(users);
         model.addAttribute("users",users);
         return "admin/user/list_user";
     }
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public String goListCustomer(Model model){
-        List<UserDto> users = userService.findAll();
+        List<UserDto> users = userService.findAllCustomer();
 
         model.addAttribute("users",users);
         return "admin/user/list_user";

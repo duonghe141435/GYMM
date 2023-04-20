@@ -19,10 +19,19 @@ public class ClassDto {
     private String end_time;
     private int total_attendees; //số người đã tham gia vào class
 
+    private int weekdays_id;
+    private int sunday;
+    private int monday;
+    private int tuesday;
+    private int wednesday;
+    private int thursday;
+    private int friday;
+    private int saturday;
+
     public ClassDto() {
     }
 
-    public ClassDto(int class_id, String c_name, String c_create_date, int c_time_id, int c_status, String c_start_date, String c_end_date, int max_member, int c_price, int c_trainer_id, String c_trainer_name, int c_ticket_id, String start_time, String end_time, int total_attendees) {
+    public ClassDto(int class_id, String c_name, String c_create_date, int c_time_id, int c_status, String c_start_date, String c_end_date, int max_member, int c_price, int c_trainer_id, String c_trainer_name, int c_ticket_id, String start_time, String end_time, int total_attendees, int weekdays_id, int sunday, int monday, int tuesday, int wednesday, int thursday, int friday, int saturday) {
         this.class_id = class_id;
         this.c_name = c_name;
         this.c_create_date = c_create_date;
@@ -38,6 +47,14 @@ public class ClassDto {
         this.start_time = start_time;
         this.end_time = end_time;
         this.total_attendees = total_attendees;
+        this.weekdays_id = weekdays_id;
+        this.sunday = sunday;
+        this.monday = monday;
+        this.tuesday = tuesday;
+        this.wednesday = wednesday;
+        this.thursday = thursday;
+        this.friday = friday;
+        this.saturday = saturday;
     }
 
     public int getClass_id() {
@@ -160,6 +177,70 @@ public class ClassDto {
         this.total_attendees = total_attendees;
     }
 
+    public int getWeekdays_id() {
+        return weekdays_id;
+    }
+
+    public void setWeekdays_id(int weekdays_id) {
+        this.weekdays_id = weekdays_id;
+    }
+
+    public int getSunday() {
+        return sunday;
+    }
+
+    public void setSunday(int sunday) {
+        this.sunday = sunday;
+    }
+
+    public int getMonday() {
+        return monday;
+    }
+
+    public void setMonday(int monday) {
+        this.monday = monday;
+    }
+
+    public int getTuesday() {
+        return tuesday;
+    }
+
+    public void setTuesday(int tuesday) {
+        this.tuesday = tuesday;
+    }
+
+    public int getWednesday() {
+        return wednesday;
+    }
+
+    public void setWednesday(int wednesday) {
+        this.wednesday = wednesday;
+    }
+
+    public int getThursday() {
+        return thursday;
+    }
+
+    public void setThursday(int thursday) {
+        this.thursday = thursday;
+    }
+
+    public int getFriday() {
+        return friday;
+    }
+
+    public void setFriday(int friday) {
+        this.friday = friday;
+    }
+
+    public int getSaturday() {
+        return saturday;
+    }
+
+    public void setSaturday(int saturday) {
+        this.saturday = saturday;
+    }
+
     @Override
     public String toString() {
         return "ClassDto{" +
@@ -178,6 +259,14 @@ public class ClassDto {
                 ", start_time='" + start_time + '\'' +
                 ", end_time='" + end_time + '\'' +
                 ", total_attendees=" + total_attendees +
+                ", weekdays_id=" + weekdays_id +
+                ", sunday=" + sunday +
+                ", monday=" + monday +
+                ", tuesday=" + tuesday +
+                ", wednesday=" + wednesday +
+                ", thursday=" + thursday +
+                ", friday=" + friday +
+                ", saturday=" + saturday +
                 '}';
     }
 }

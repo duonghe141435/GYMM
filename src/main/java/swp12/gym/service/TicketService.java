@@ -26,7 +26,6 @@ public interface TicketService {
 
     List<TicketTrainerDto> findAllTicketClassForCustomer();
 
-    List<TicketUser> findTicketsOfUser(int userID);
 
     Boolean checkClassExist(int userID, int class_id);
 
@@ -63,12 +62,4 @@ public interface TicketService {
     int getTotalNumberOrderOfTicket(int id);
 
     int getTotalNumberOrderOfTicketToday(int id);
-
-    int getTotalNumberOrderOfPersonalTrainerDetail(int id);
-
-    int getTotalNumberOrderOfPersonalTrainerDetailToday(int id);
-
-    int getTotalNumberOrderOfTicketClass(int id);
-
-    int getTotalNumberOrderOfTicketClasslToday(int id);
 }
