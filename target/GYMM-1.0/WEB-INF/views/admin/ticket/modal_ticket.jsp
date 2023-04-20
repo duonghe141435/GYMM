@@ -38,7 +38,7 @@
                                 <label class="form-label" for="ticket-price"><strong>Giá tiền</strong></label>
                                 <input class="form-control" type="text" id="ticket-price-value" placeholder="Nhập giá tiền của vé"/>
                                 <div class="invalid-feedback price-error">
-                                    Giá vé nằm trong khoảng từ 1.000vnd đến 500.000vnd
+                                    Giá vé nằm trong khoảng từ 1.000vnd đến 5.000.000vnd
                                 </div>
                             </div>
                             <div class="mb-3" id="day-other" style="display: none">
@@ -54,8 +54,6 @@
                         <button class="btn btn-primary" id="add-ticket">Tạo mới</button>
                         <button class="btn btn-primary" style="display: none" id="show-add-trainer"
                                 data-bs-toggle="modal" data-bs-target="#ticket-trainer">Thêm huấn luyện viên</button>
-                        <button class="btn btn-primary" style="display: none" id="show-add-class"
-                                data-bs-toggle="modal" data-bs-target="#ticket-class">Thêm lớp học</button>
                     </div>
                 </div>
             </div>

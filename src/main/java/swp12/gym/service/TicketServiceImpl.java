@@ -46,7 +46,7 @@ public class TicketServiceImpl implements TicketService{
     }
 
     public List<Ticket> findAllTicketClass() {
-        return null;
+        return ticketDao.findAllTicketClass();
     }
 
     public void createTicket(String name, String price, String day, String type_id, int status, int ids) {
@@ -66,9 +66,6 @@ public class TicketServiceImpl implements TicketService{
         ticketDao.createTicketClass(ids_class,name,id_trainer, ids, _id_time, state, start_date, end_date, _max_member, _price);
     }
 
-    public void createClassWeekdays(int ids_weekdays, int cn, int thu2, int thu3, int thu4, int thu5, int thu6, int thu7, int ids_class) {
-        ticketDao.createClassWeekdays(ids_weekdays,cn,thu2,thu3,thu4,thu5,thu6,thu7,ids_class);
-    }
 
     public int getNumberTicketTrainerInSystem() {
         return ticketDao.getNumberTicketTrainerInSystem();
@@ -94,17 +91,16 @@ public class TicketServiceImpl implements TicketService{
         return ticketDao.findAnTicket(id);
     }
 
-    public int getNumberClassWeekendInSystem() {
-        return ticketDao.getNumberClassWeekendInSystem();
-    }
-
     public int getTotalNumberOrderOfTicket(int id) {
         return ticketDao.getTotalNumberOrderOfTicket(id);
     }
 
-
     public int getTotalNumberOrderOfTicketToday(int id) {
         return ticketDao.getTotalNumberOrderOfTicketToday(id);
+    }
+
+    public void updateStatusTicket(String ticket_id) {
+        ticketDao.updateStatusTicket(ticket_id);
     }
 
 

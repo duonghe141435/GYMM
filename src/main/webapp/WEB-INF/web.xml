@@ -63,11 +63,6 @@
         </param-value>
     </context-param>
 
-
-    <error-page>
-        <location>/errors</location>
-    </error-page>
-
     <!-- Cookie -->
     <session-config>
         <tracking-mode>COOKIE</tracking-mode>

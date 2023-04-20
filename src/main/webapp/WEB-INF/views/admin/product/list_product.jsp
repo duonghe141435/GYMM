@@ -66,7 +66,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
                                 <c:if test="${not empty productDtos}">
                                     <c:forEach items="${productDtos}" var="productDtos">
                                         <tr>

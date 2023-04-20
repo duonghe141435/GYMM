@@ -208,7 +208,7 @@
                                             <td>${classDtos.total_attendees} / ${classDtos.max_member}</td>
                                             <td class="text-center">
                                                 <a class="class-view">
-                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Thôn tin chi tiết"></i></a>
+                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Thôn tin chi tiết" onclick="viewDetailAnClass(${classDtos.class_id})"></i></a>
 
                                                 <a class="class-delete">
                                                     <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
@@ -232,6 +232,10 @@
 </body>
 <script>
 
+    function viewDetailAnClass(class_id) {
+        console.log("class id: " + class_id);
+        window.location.href = '<c:url value="/admin/dashboard/detail-class?" />' + "class_id=" + class_id;
+    }
 
     function getDataForMonth(dayInMonth) {
         // Lấy dữ liệu cho tháng cụ thể từ backend// Ví dụ:

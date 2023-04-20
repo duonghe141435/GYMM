@@ -54,8 +54,6 @@
                         <button class="btn btn-primary" id="add-ticket">Tạo mới</button>
                         <button class="btn btn-primary" style="display: none" id="show-add-trainer"
                                 data-bs-toggle="modal" data-bs-target="#ticket-trainer">Thêm huấn luyện viên</button>
-                        <button class="btn btn-primary" style="display: none" id="show-add-class"
-                                data-bs-toggle="modal" data-bs-target="#ticket-class">Thêm lớp học</button>
                     </div>
                 </div>
             </div>
