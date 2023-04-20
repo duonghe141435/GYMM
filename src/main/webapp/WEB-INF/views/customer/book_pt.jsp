@@ -249,4 +249,29 @@
 <%--<script src="<c:url value='/assets/js/bs-init.js'/>"></script>--%>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
 <script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
+
+<script>
+
+
+    for (var i = 0; i <= 6; i++) {
+        for (var j = 0; j <= 7; j++) {
+            var check = document.getElementById(i).innerText.trim();
+            var shedule = ${jsonData};
+            for (var k = 0; k < shedule.length; k++){
+                console.log(shedule[k].c_end_date);
+            }
+            console.log(check);
+
+            if (check === "17 Thg 4 2023") {
+                document.getElementById((i+1) + "" + (j+1)).textContent = ((i+1) + "and" + (j+1));
+            }
+            // var times =  JSON.parse('${times}');
+            // console.log(times);
+            // times.forEach(function(time) {
+            //     // console.log(${time.start_time});
+            // });
+        }
+
+    }
+</script>
 </html>

@@ -379,7 +379,7 @@ public class UsersDao {
             sql = "SELECT u.id_u, u.email, u.name, u.password, u.phone, u.enabled, u.gender, u.address, u.CMND, u.image, u.DOB\n" +
                     "FROM users u\n" +
                     "JOIN user_class uc ON u.id_u = uc.user_id\n" +
-                    "WHERE uc.class_id = ?";
+                    "WHERE uc.class_id = ? AND uc.status = 1";
             return jdbcTemplate.query(sql, new UserMapper(), class_id);
         }catch (Exception e){
             e.printStackTrace();

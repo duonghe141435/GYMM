@@ -1,5 +1,6 @@
 package swp12.gym.controller.customer.base;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -133,11 +134,12 @@ public class CustomerBaseController {
     @GetMapping("/book_pt")
     public String checkoutbookpt(Authentication authentication, Model model){
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String userName = userDetails.getUsername();
-        int userID = userDao.findIdByUsername(userName);
+        int userID = userDao.findIdByUsername(userDetails.getUsername());
 
         List<ClassDto> scheduleClassOfCustomer = classService.findAllScheduleClassOfAnUserById(userID);
-        model.addAttribute("scheduleClassOfCustomer",scheduleClassOfCustomer);
+        String jsonData = new Gson().toJson(scheduleClassOfCustomer); // chuyển đổi sang chuỗi JSON
+
+        model.addAttribute("jsonData",jsonData);
         List<Time> times = timeService.findAll();
         model.addAttribute("times",times);
         return "customer/book_pt";
