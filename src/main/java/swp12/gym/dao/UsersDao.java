@@ -98,6 +98,7 @@ public class UsersDao {
         }
     }
 
+
     public List<User> findAllTrainerIdAndName() {
         try{
             sql = "SELECT id_u, name FROM users JOIN users_roles ON users.id_u = users_roles.u_id " +
@@ -121,7 +122,25 @@ public class UsersDao {
             sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
                     "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
                     "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 2;";
-            return jdbcTemplate.query(sql, new UserDtoMapper());
+            return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
+                public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+                    UserDto userDto = new UserDto();
+                    userDto.setU_id(resultSet.getInt("id_u"));
+                    userDto.setU_full_name(resultSet.getString("name"));
+                    userDto.setU_email(resultSet.getString("email"));
+                    userDto.setU_password(resultSet.getString("password"));
+                    userDto.setU_gender(resultSet.getInt("gender"));
+                    userDto.setU_address(resultSet.getString("address"));
+                    userDto.setU_img(resultSet.getString("image"));
+                    userDto.setU_enable(resultSet.getInt("enabled"));
+                    userDto.setR_id(resultSet.getInt("id_r"));
+                    userDto.setU_identity_card(resultSet.getString("CMND"));
+                    userDto.setU_dob(resultSet.getString("DOB"));
+                    userDto.setU_phone_number(resultSet.getString("phone"));
+                    userDto.setU_create_date(resultSet.getString("create_date"));
+                    return userDto;
+                }
+            });
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -133,7 +152,60 @@ public class UsersDao {
             sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
                     "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
                     "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 4;";
-            return jdbcTemplate.query(sql, new UserDtoMapper());
+            return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
+                public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+                    UserDto userDto = new UserDto();
+                    userDto.setU_id(resultSet.getInt("id_u"));
+                    userDto.setU_full_name(resultSet.getString("name"));
+                    userDto.setU_email(resultSet.getString("email"));
+                    userDto.setU_password(resultSet.getString("password"));
+                    userDto.setU_gender(resultSet.getInt("gender"));
+                    userDto.setU_address(resultSet.getString("address"));
+                    userDto.setU_img(resultSet.getString("image"));
+                    userDto.setU_enable(resultSet.getInt("enabled"));
+                    userDto.setR_id(resultSet.getInt("id_r"));
+                    userDto.setU_identity_card(resultSet.getString("CMND"));
+                    userDto.setU_dob(resultSet.getString("DOB"));
+                    userDto.setU_phone_number(resultSet.getString("phone"));
+                    userDto.setU_create_date(resultSet.getString("create_date"));
+                    return userDto;
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<UserDto> findAllTrainerForAdmin() {
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+                    "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date, t.Year_of_experience\n" +
+                    "FROM users \n" +
+                    "join users_roles u on users.id_u = u.u_id \n" +
+                    "join roles r on u.r_id = r.id_r \n" +
+                    "JOIN trainer t ON users.id_u = t.id_u\n" +
+                    "WHERE r.id_r = 3;";
+            return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
+                public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+                    UserDto userDto = new UserDto();
+                    userDto.setU_id(resultSet.getInt("id_u"));
+                    userDto.setU_full_name(resultSet.getString("name"));
+                    userDto.setU_email(resultSet.getString("email"));
+                    userDto.setU_password(resultSet.getString("password"));
+                    userDto.setU_gender(resultSet.getInt("gender"));
+                    userDto.setU_address(resultSet.getString("address"));
+                    userDto.setU_img(resultSet.getString("image"));
+                    userDto.setU_enable(resultSet.getInt("enabled"));
+                    userDto.setR_id(resultSet.getInt("id_r"));
+                    userDto.setU_identity_card(resultSet.getString("CMND"));
+                    userDto.setU_dob(resultSet.getString("DOB"));
+                    userDto.setU_phone_number(resultSet.getString("phone"));
+                    userDto.setU_create_date(resultSet.getString("create_date"));
+                    userDto.setT_experience(resultSet.getInt("Year_of_experience"));
+                    return userDto;
+                }
+            });
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -299,6 +371,19 @@ public class UsersDao {
         }
         catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public List<User> findAllUserOfAnClass(int class_id) {
+        try{
+            sql = "SELECT u.id_u, u.email, u.name, u.password, u.phone, u.enabled, u.gender, u.address, u.CMND, u.image, u.DOB\n" +
+                    "FROM users u\n" +
+                    "JOIN user_class uc ON u.id_u = uc.user_id\n" +
+                    "WHERE uc.class_id = ?";
+            return jdbcTemplate.query(sql, new UserMapper(), class_id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 }

@@ -19,7 +19,7 @@
     <mvc:annotation-driven />
     <mvc:resources mapping="/assets/**" location="/assets/" />
 
-    <!-- configuring multipart resolver -->
+     <!--&lt;!&ndash;configuring multipart resolver &ndash;&gt;-->
     <!--<bean name="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />-->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

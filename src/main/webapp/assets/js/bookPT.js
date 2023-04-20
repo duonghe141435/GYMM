@@ -1,12 +1,11 @@
-
 // Get the modal and the <span> element that closes it
-var modal = document.getElementById("myModal");
 var modalBook = document.getElementById("myModalBook");
 var span = document.getElementsByClassName("close")[0];
-var span1 = document.getElementsByClassName("close")[1];
 // Get all the table cells
 var cells = document.getElementsByTagName("td");
 // Loop through the cells and add the click event listener
+
+
 for (var i = 0; i < cells.length; i++) {
     cells[i].addEventListener("click", function() {
 
@@ -37,8 +36,6 @@ for (var i = 0; i < cells.length; i++) {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    var day = document.getElementById("1").innerText;
-    console.log("day: " + day)
     modalBook.style.display = "none";
 }
 
@@ -185,7 +182,8 @@ function getWeekDates(dateString) {
         var dayOfMonth = day.getDate();
         var month = day.toLocaleDateString('vi-VN', { month: 'short' });
         var year = day.getFullYear();
-        var dateString = `${dayOfWeek} <br/> ${dayOfMonth} ${month} ${year}`;
+        // var dateString = `${dayOfWeek} <br/> ${dayOfMonth} ${month} ${year}`;
+        var dateString = `${dayOfMonth} ${month} ${year}`;
         var table = document.getElementsByTagName("table")[0];
         var rows = table.getElementsByTagName("tr");
         if(day.getDate()===today.getDate() && day.getMonth()===today.getMonth() && day.getFullYear()===today.getFullYear()){
@@ -205,10 +203,49 @@ function getWeekDates(dateString) {
     return days;
 }
 
+function getWeeksDates(dateString) {
+    var weeks = [];
+    var date = new Date(dateString);
+    var dayOfWeek = date.getDay()-1;
+    var start = new Date(date);
+    var today = date;
+    start.setDate(date.getDate() - dayOfWeek)+1; // Lấy ngày đầu tiên của tuần
+    var end = new Date(start);
+    end.setDate(start.getDate() + 6);
+
+    for (var i = 0; i <= 6; i++) {
+        var day = new Date(start);
+        day.setDate(start.getDate() + i);
+        var dayOfWeek = day.toLocaleDateString('vi-VN', { weekday: 'long' });
+        // var dateString = `${dayOfWeek} <br/> ${dayOfMonth} ${month} ${year}`;
+        var weekString = `${dayOfWeek}`;
+        var table = document.getElementsByTagName("table")[0];
+        var rows = table.getElementsByTagName("tr");
+        if(day.getDate()===today.getDate() && day.getMonth()===today.getMonth() && day.getFullYear()===today.getFullYear()){
+
+            for(j=0;j<rows.length-1;j++){
+                var cells = rows[j+1].getElementsByTagName("td");
+                cells[i].classList.add("today");
+            }
+        }else if(day<today){
+            for(j=0;j<rows.length-1;j++){
+                var cells = rows[j+1].getElementsByTagName("td");
+                cells[i].classList.add("past");
+            }
+        }
+        weeks.push(weekString);
+    }
+    return weeks;
+}
+
 var weekDates = getWeekDates(dateText);
+var weeksDates = getWeeksDates(dateText);
+
 for (var i = 0; i <= 6; i++) {
     var d = document.getElementById(i);
+    var w = document.getElementById((i+"." + 0));
     d.innerHTML = weekDates[i];
+    w.innerHTML = weeksDates[i];
 }
 
 document.getElementById("week-select").addEventListener("change", function() {
@@ -226,3 +263,21 @@ document.getElementById("week-select").addEventListener("change", function() {
     }
     console.log(selectedDate);
 });
+
+
+
+for (var i = 0; i <= 6; i++) {
+    for (var j = 0; j <= 7; j++) {
+        var check = document.getElementById(i).innerText.trim();
+        console.log(check);
+        if (check === "17 Thg 4 2023") {
+            document.getElementById((i+1) + "" + (j+1)).textContent = ((i+1) + "and" + (j+1));
+        }
+        // var times =  JSON.parse('${times}');
+        // console.log(times);
+        // times.forEach(function(time) {
+        //     // console.log(${time.start_time});
+        // });
+    }
+
+}

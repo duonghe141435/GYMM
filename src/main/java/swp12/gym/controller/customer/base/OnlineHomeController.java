@@ -115,7 +115,6 @@ public class OnlineHomeController {
         String userName = userDetails.getUsername();
         int userID = userDao.findIdByUsername(userName);
 
-
         ticketUserService.updateTicketUser(userID);
         ticketUserService.updateUserClass(userID);
         ticketUserService.updateUserPersonal(userID);

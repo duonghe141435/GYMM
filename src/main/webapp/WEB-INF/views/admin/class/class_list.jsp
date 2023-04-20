@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: a5nam
-  Date: 4/14/2023
-  Time: 5:16 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -20,7 +13,8 @@
             <div class="container-fluid min-vh-100" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:90%">Danh sách lớp học</p>
+                        <p class="text-primary m-0 fw-bold" style="width: 90%;text-align: left;margin-top: auto;margin-bottom: auto;">Danh sách lớp học</p>
+                        <a href="<c:url value='/admin/dashboard/class/new-class'/> " class="btn btn-primary" style="font-weight: 700;">Thêm mới</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -66,10 +60,10 @@
                                             <td class="text-center">${class_list.c_trainer_name}</td>
                                             <td class="text-center">${class_list.c_start_date} - ${class_list.c_end_date}</td>
                                             <td class="text-center">
-                                                <c:if test="${class_list.c_status == 1}">
+                                                <c:if test="${class_list.c_status == 0}">
                                                     Chưa bắt đầu
                                                 </c:if>
-                                                <c:if test="${class_list.c_status == 0}">
+                                                <c:if test="${class_list.c_status == 1}">
                                                     Đang diễn ra
                                                 </c:if>
                                                 <c:if test="${class_list.c_status == -1}">
@@ -104,4 +98,3 @@
 </body>
 
 </html>
-

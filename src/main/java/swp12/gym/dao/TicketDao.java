@@ -102,23 +102,7 @@ public class TicketDao {
     }
 
 
-    public List<ClassDto> findAllClassOfTicketClass(int ticket_id) {
-        try{
-            sql = "SELECT c.class_id as class_id, c.name AS c_name, c.create_date AS c_create_date, c.time_id as c_time_id, c.state as c_status, c.start_date as c_start_date, c.end_date as c_end_date, c.max_menber as max_member, c.price as c_price, c.trainer_id as c_trainer_id, u.name as c_trainer_name, c.ticket_id as c_ticket_id, tm.start_time, tm.end_time, COUNT(CASE WHEN uc.status = 1 THEN 1 ELSE NULL END) as total_attendees\n" +
-                    "                    FROM class c\n" +
-                    "                    JOIN ticket tk ON c.ticket_id = tk.id_t\n" +
-                    "                    JOIN trainer tn ON c.trainer_id = tn.trainer_id\n" +
-                    "                    JOIN users u ON tn.id_u = u.id_u\n" +
-                    "                    JOIN time tm ON c.time_id = tm.id_time\n" +
-                    "                    LEFT JOIN user_class uc ON c.class_id = uc.class_id\n" +
-                    "                    WHERE c.state = 1 and c.ticket_id = ?\n" +
-                    "                    GROUP BY c.ticket_id, uc.class_id, c.max_menber";
-            return jdbcTemplate.query(sql, new ClassDtoMapper(), ticket_id);
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
-    }
+
 
     public int findAnUserClass(int userID, int class_id){
         try{
@@ -132,11 +116,17 @@ public class TicketDao {
 
     public List<Ticket> findAllTicketClass() {
         try{
-            sql = "SELECT t.id_t as t_id, t.name as t_name,t2.tt_id as tt_id, t2.name as tt_name,\n" +
-                    "t.total_days as t_day, t.status as t_status,\n" +
-                    "t.create_date as t_create_date, t.price as t_price\n" +
-                    "FROM ticket t join ticket_type t2 on t.tt_id = t2.tt_id WHERE t.tt_id = 3";
-            return jdbcTemplate.query(sql, new TicketMapper());
+            sql = "SELECT t.id_t as t_id, t.name as t_name, t.total_days as t_day, t.status as t_status,\n" +
+                    "t.create_date as t_create_date FROM ticket t  WHERE t.tt_id = 3 AND t.status <> 0";
+            return jdbcTemplate.query(sql, new RowMapper<Ticket>() {
+                public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
+                    Ticket ticket = new Ticket();
+                    ticket.setT_id(resultSet.getInt("t_id"));
+                    ticket.setT_name(resultSet.getString("t_name"));
+                    ticket.setT_total_days(resultSet.getInt("t_day"));
+                    return ticket;
+                }
+            });
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -181,29 +171,9 @@ public class TicketDao {
         }
     }
 
-    public void createClassWeekdays(int ids, int cn, int thu2, int thu3, int thu4, int thu5, int thu6, int thu7, int id_class) {
-        try{
-            sql = "INSERT INTO weekdays (id_weekdays, cn, thu2, thu3, thu4, thu5, thu6, thu7, id_class) VALUES (?,?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql,ids, cn, thu2, thu3, thu4, thu5, thu6, thu7, id_class);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
     public int getNumberTicketTrainerInSystem() {
         try{
             sql = "SELECT COUNT(*) FROM personal_trainer";
-            int number = jdbcTemplate.queryForObject(sql, Integer.class);
-            return number;
-        }catch (Exception e){
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    public int getNumberClassWeekendInSystem() {
-        try{
-            sql = "SELECT COUNT(*) FROM weekdays";
             int number = jdbcTemplate.queryForObject(sql, Integer.class);
             return number;
         }catch (Exception e){
@@ -323,28 +293,6 @@ public class TicketDao {
         }
     }
 
-    public int getTotalNumberOrderOfTicketClass(int id) {
-        try{
-            sql = "SELECT COUNT(*) FROM user_class WHERE class_id = ?";
-            int number = jdbcTemplate.queryForObject(sql, Integer.class);
-            return number;
-        }catch (Exception e){
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-    public int getTotalNumberOrderOfPersonalTrainerDetail(int id) {
-        try{
-            sql = "SELECT COUNT(*) FROM personal_trainer_detail";
-            int number = jdbcTemplate.queryForObject(sql, Integer.class);
-            return number;
-        }catch (Exception e){
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
 
     public int getTotalNumberOrderOfTicketToday(int id) {
         try{
@@ -356,23 +304,26 @@ public class TicketDao {
         }
     }
 
-    public int getTotalNumberOrderOfTicketClasslToday(int id) {
+    public List<ClassDto> findAllClassOfAnTicketClass(int ticket_id) {
         try{
-            sql = "SELECT COUNT(*) FROM personal_trainer_detail WHERE personal_trainer_id = ? AND date_payment = curdate()";
-            return jdbcTemplate.queryForObject(sql, Integer.class, id);
+            sql = "SELECT c.class_id as class_id, c.name AS c_name, c.create_date AS c_create_date, c.time_id as c_time_id, c.state as c_status, c.start_date as c_start_date, c.end_date as c_end_date, c.max_menber as max_member, c.price as c_price, c.trainer_id as c_trainer_id, u.name as c_trainer_name, c.ticket_id as c_ticket_id, tm.start_time, tm.end_time, COUNT(CASE WHEN uc.status = 1 THEN 1 ELSE NULL END) as total_attendees\n" +
+                    "                    FROM class c\n" +
+                    "                    JOIN ticket tk ON c.ticket_id = tk.id_t\n" +
+                    "                    JOIN trainer tn ON c.trainer_id = tn.trainer_id\n" +
+                    "                    JOIN users u ON tn.id_u = u.id_u\n" +
+                    "                    JOIN time tm ON c.time_id = tm.id_time\n" +
+                    "                    LEFT JOIN user_class uc ON c.class_id = uc.class_id\n" +
+                    "                    WHERE c.state = 1 and c.ticket_id = ?\n" +
+                    "                    GROUP BY c.ticket_id, uc.class_id, c.max_menber";
+            return jdbcTemplate.query(sql, new ClassDtoMapper(), ticket_id);
         }catch (Exception e){
             e.printStackTrace();
-            return 0;
+            return null;
         }
     }
 
-    public int getTotalNumberOrderOfPersonalTrainerDetailToday(int id) {
-        try{
-            sql = "SELECT COUNT(*) FROM user_class WHERE personal_trainer_id = ? AND date_payment = curdate()";
-            return jdbcTemplate.queryForObject(sql, Integer.class, id);
-        }catch (Exception e){
-            e.printStackTrace();
-            return 0;
-        }
+    public void updateStatusTicket(String ticket_id) {
+        sql = "UPDATE ticket SET status = 1 WHERE id_t = ?";
+        jdbcTemplate.update(sql,ticket_id);
     }
 }

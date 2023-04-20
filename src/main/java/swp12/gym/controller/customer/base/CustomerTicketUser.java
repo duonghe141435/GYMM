@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import swp12.gym.dao.TicketUserDao;
 import swp12.gym.dao.UsersDao;
+import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.model.entity.TicketUser;
+import swp12.gym.service.ClassService;
 import swp12.gym.service.TicketService;
 import swp12.gym.service.TicketUserService;
 
@@ -37,6 +39,9 @@ public class CustomerTicketUser {
 
     @Autowired
     private UsersDao userDao;
+
+    @Autowired
+    private ClassService classService;
 
 //    @RequestMapping(value = "/check-ticket-user",method = RequestMethod.GET)
 //    public Boolean checkTicketUser(RedirectAttributes redirectAttributes, Authentication authentication){
@@ -106,7 +111,7 @@ public class CustomerTicketUser {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String userName = userDetails.getUsername();
         int userID = userDao.findIdByUsername(userName);
-        List<TicketUser> allTicketOfUser = ticketService.findTicketsOfUser(userID);
+        List<TicketUser> allTicketOfUser = ticketUserService.findTicketsOfUser(userID);
         model.addAttribute("allTicketOfUser", allTicketOfUser);
         return "customer/cart";
     }
@@ -124,4 +129,12 @@ public class CustomerTicketUser {
 ////        boolean check = ticketUserService.bookTicket(id, userID);
 //        return "redirect:/customer/home";
 //    }
+
+    @RequestMapping(value = "/viewDetailAnClass", method = RequestMethod.GET)
+    public String goViewDetailAnClass(@RequestParam(value = "class_id") int class_id, Model model){
+        List<ClassDto> detail_class = classService.findDetailAnClass(class_id);
+        model.addAttribute("detail_class", detail_class);
+        System.out.println(detail_class);
+        return "/customer/detail_class";
+    }
 }

@@ -57,50 +57,9 @@
                         </div>
                         <button style="width: 200px;"  class="btn btn-primary" id="btn-add-class">Thêm lớp học</button>
                     </div>
-                    <div class="row align-items-center">
-                        <label class="form-label"><strong>Lịch tập</strong></label>
-                        <table>
-                            <thead>
-                            <tr>
-                                <th class="text-center">Chủ nhật</th>
-                                <th class="text-center">Thứ 2</th>
-                                <th class="text-center">Thứ 3</th>
-                                <th class="text-center">Thứ 4</th>
-                                <th class="text-center">Thứ 5</th>
-                                <th class="text-center">Thứ 6</th>
-                                <th class="text-center">Thứ 7</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td class="text-center"><input checked type="checkbox" name="1" id="1"></td>
-                                <td class="text-center"><input checked type="checkbox" name="1" id="2"></td>
-                                <td class="text-center"><input checked type="checkbox" name="1" id="3"></td>
-                                <td class="text-center"><input checked type="checkbox" name="1" id="4"></td>
-                                <td class="text-center"><input checked type="checkbox" name="1" id="5"></td>
-                                <td class="text-center"><input checked type="checkbox" name="1" id="6"></td>
-                                <td class="text-center"><input checked type="checkbox" name="1" id="7"></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+
                     <hr/>
-                    <div class="row">
-                        <table class="table my-0" id="class-table">
-                            <thead>
-                            <tr>
-                                <th>Huấn luyện viên</th>
-                                <th>Ca tập</th>
-                                <th>Giá vé</th>
-                                <th>Ngày bắt đầu</th>
-                                <th>Member</th>
-                                <th>Thao tác</th>
-                            </tr>
-                            </thead>
-                            <tbody style="display: contents;width: 100%;overflow: auto;">
-                            </tbody>
-                        </table>
-                    </div>
+
                 </div>
             </div>
         </div>

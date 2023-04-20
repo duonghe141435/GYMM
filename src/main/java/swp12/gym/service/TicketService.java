@@ -26,7 +26,6 @@ public interface TicketService {
 
     List<TicketTrainerDto> findAllTicketClassForCustomer();
 
-    List<TicketUser> findTicketsOfUser(int userID);
 
     Boolean checkClassExist(int userID, int class_id);
 
@@ -44,11 +43,7 @@ public interface TicketService {
     //Create an tickets personal
     void createPersonalTicket(int id_trainer, int price, int ids);
 
-    void createClassWeekdays(int ids_weekdays, int cn, int thu2, int thu3, int thu4, int thu5, int thu6, int thu7, int ids_class);
-
     int getNumberTicketTrainerInSystem();
-
-    int getNumberClassWeekendInSystem();
 
     int getNumberTicketInSystem();
 
@@ -64,11 +59,5 @@ public interface TicketService {
 
     int getTotalNumberOrderOfTicketToday(int id);
 
-    int getTotalNumberOrderOfPersonalTrainerDetail(int id);
-
-    int getTotalNumberOrderOfPersonalTrainerDetailToday(int id);
-
-    int getTotalNumberOrderOfTicketClass(int id);
-
-    int getTotalNumberOrderOfTicketClasslToday(int id);
+    void updateStatusTicket(String ticket_id);
 }

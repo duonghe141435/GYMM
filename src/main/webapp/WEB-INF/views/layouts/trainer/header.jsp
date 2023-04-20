@@ -8,21 +8,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
     <div class="container-fluid">
-        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="<c:url value="/trainer/index"/>" style="padding: 0 .75rem;">
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="padding: 0 .75rem;">
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i></div>
-            <div class="sidebar-brand-text mx-3">
-                <span>Brand</span>
+                <img style="width: 70px" src="<c:url value="/assets/img/logo/logo-icon.png" />" />
+            </div>
+            <div class="sidebar-brand-text">
+                <span>GYM MASTER</span>
             </div>
         </a>
         <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item dropdown no-arrow mx-1">
-                <div class="nav-item dropdown no-arrow">
-                    <a class="nav-link" href="<c:url value="/trainer/index"/>">
-                        <i class="fas fa-user-alt"></i><span>Trang chủ</span>
-                    </a>
-                </div>
-            </li>
+            <%--<li class="nav-item dropdown no-arrow mx-1">--%>
+                <%--<div class="nav-item dropdown no-arrow">--%>
+                    <%--<a class="nav-link" href="<c:url value="/trainer/index"/>">--%>
+                        <%--<i class="fas fa-user-alt"></i><span>Trang chủ</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+            <%--</li>--%>
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
