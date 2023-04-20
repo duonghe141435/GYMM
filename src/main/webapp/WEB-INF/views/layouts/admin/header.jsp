@@ -3,9 +3,10 @@
     <div class="container-fluid">
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="padding: 0 .75rem;">
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i></div>
-            <div class="sidebar-brand-text mx-3">
-                <span>Brand</span>
+                <img style="width: 70px" src="<c:url value="/assets/img/logo/logo-icon.png" />" />
+            </div>
+            <div class="sidebar-brand-text">
+                <span>GYM MASTER</span>
             </div>
         </a>
         <ul class="navbar-nav text-light" id="accordionSidebar">
@@ -32,9 +33,10 @@
 
                     <div class="dropdown-menu shadow animated--grow-in">
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket"/>">Quản lý vé</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý thiết bị</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý sản phẩm</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý huấn luyện viên</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/class"/>">Quản lý lớp học</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/"/>">Quản lý thiết bị</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/product"/>">Quản lý sản phẩm</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/"/>">Quản lý huấn luyện viên</a>
                     </div>
                 </div>
             </li>

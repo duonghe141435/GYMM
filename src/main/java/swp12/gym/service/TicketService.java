@@ -43,11 +43,7 @@ public interface TicketService {
     //Create an tickets personal
     void createPersonalTicket(int id_trainer, int price, int ids);
 
-    void createClassWeekdays(int ids_weekdays, int cn, int thu2, int thu3, int thu4, int thu5, int thu6, int thu7, int ids_class);
-
     int getNumberTicketTrainerInSystem();
-
-    int getNumberClassWeekendInSystem();
 
     int getNumberTicketInSystem();
 
@@ -62,4 +58,6 @@ public interface TicketService {
     int getTotalNumberOrderOfTicket(int id);
 
     int getTotalNumberOrderOfTicketToday(int id);
+
+    void updateStatusTicket(String ticket_id);
 }

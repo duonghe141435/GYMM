@@ -161,7 +161,7 @@ public class LoginController {
                 return "redirect:/employee/index";
             }
             if (request.isUserInRole("ROLE_TRAINER")) {
-                return "redirect:/trainer/home";
+                return "redirect:/trainer/index";
             }
             // End: Check user's role and then redirect
         }

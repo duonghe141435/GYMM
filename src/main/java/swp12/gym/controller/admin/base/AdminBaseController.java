@@ -34,11 +34,11 @@ public class AdminBaseController {
     @Autowired
     private TicketService ticketService;
     @Autowired
-    private TimeService timeService;
-    @Autowired
     private ClassService classService;
     @Autowired
     private TrainerService trainerService;
+    @Autowired
+    private TimeService timeService;
     @Autowired
     private LogUserService logUserService;
 
@@ -65,11 +65,10 @@ public class AdminBaseController {
         int count = ticketService.getNumberTicketInSystem();
         List<User> trainer = userService.findAllTrainer();
         List<TicketDto> tickets = ticketService.findAllOfAdmin();
-        List<Time> times = timeService.findAll();
+        List<ClassDto> classDtos = classService.findAllClassNoneTicket();
 
         model.addAttribute("trainer", trainer);
         model.addAttribute("count", count);
-        model.addAttribute("times", times);
         model.addAttribute("tickets", tickets);
 
         return "admin/ticket/list_ticket";
@@ -79,7 +78,6 @@ public class AdminBaseController {
     public ModelAndView goDetailTicket(@PathVariable int id)
     {
         ModelAndView view = new ModelAndView("admin/ticket/detail_ticket");
-
 
         int number_order = ticketService.getTotalNumberOrderOfTicket(id);;
         int number_order_today = ticketService.getTotalNumberOrderOfTicketToday(id);
@@ -106,20 +104,34 @@ public class AdminBaseController {
         return view;
     }
 
+    // ----------------------------------------------------------------
+    @RequestMapping(value = "/class",method = RequestMethod.GET)
+    public String goClassPage(Model model) {
+        List<ClassDto> class_list = classService.findClassAll();
+        model.addAttribute("class_list", class_list);
+        return "admin/class/class_list";
+    }
+
+    @RequestMapping(value = "/class/new-class",method = RequestMethod.GET)
+    public String createNewClass(Model model) {
+        List<User> trainer = userService.findAllTrainer();
+        List<Ticket> tickets = ticketService.findAllTicketClass();
+        List<Time> times = timeService.findAll();
+
+        model.addAttribute("tickets", tickets);
+        model.addAttribute("trainer", trainer);
+        model.addAttribute("times", times);
+        return "admin/class/create_class";
+    }
+
+    // ----------------------------------------------------------------
     @RequestMapping(value = "/products/save",method = RequestMethod.GET)
     public String addProduct(Model model){
         return "admin/product/list_product";
     }
 
 
-    // ----------------------------------------------------------------
-    @RequestMapping(value = "/class",method = RequestMethod.GET)
-    public String goCLassPage(Model model) {
-        List<ClassDto> class_list = classService.findAll();
 
-        model.addAttribute("class_list", class_list);
-        return "admin/class/class_list";
-    }
 
     @RequestMapping(value = "/detail-class",method = RequestMethod.GET)
     public String goDetailCLass(@RequestParam(value = "class_id") int class_id, Model model) {

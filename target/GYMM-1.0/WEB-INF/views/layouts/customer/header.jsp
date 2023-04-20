@@ -41,7 +41,7 @@
             </li>
             <!--Thêm mới -->
             <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link" href="<c:url value="/customer/list-class"/>">
+                <a class="nav-link" href="<c:url value="/customer/list_class_of_customer"/>">
                     <span class="fas fa-person-booth">Lớp học</span>
                 </a>
             </li>
@@ -53,6 +53,11 @@
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="<c:url value="/customer/product"/>">
                     <span class="fas fa-boxes">Sản phẩm</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link" href="<c:url value="/customer/attendance-an-class"/>">
+                    <bu class="fas fa-boxes" >Điểm danh</bu>
                 </a>
             </li>
         </ul>
@@ -124,6 +129,9 @@
         </ul>
     </div>
 </nav>
+<script>
+
+</script>
 <%--
   Created by IntelliJ IDEA.
   User: HongWung
