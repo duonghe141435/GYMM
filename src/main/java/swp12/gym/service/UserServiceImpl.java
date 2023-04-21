@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.UserDto;
 import swp12.gym.dto.UserDtoAdmin;
-import swp12.gym.dto.UserDtoDao;
 import swp12.gym.model.entity.User;
 
 import java.util.List;
@@ -15,9 +14,6 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private UsersDao usersDao;
-
-    @Autowired
-    private UserDtoDao userDtoDao;
 
     @Autowired
     private UsersDao userDao;
@@ -103,11 +99,11 @@ public class UserServiceImpl implements UserService{
     }
 
     public UserDto getUserByEmail(String username) {
-        return userDtoDao.findAnUserByEmail(username);
+        return userDao.findAnUserByEmail(username);
     }
 
     public UserDto getCustomerByEmail(String username) {
-        return userDtoDao.findAnCustomerByEmail(username);
+        return userDao.findAnCustomerByEmail(username);
     }
 
     public int getMaxIdUserInSystem() {

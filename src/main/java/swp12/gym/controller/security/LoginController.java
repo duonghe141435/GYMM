@@ -111,15 +111,13 @@ public class LoginController {
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            return "redirect:/customer/index";
+            return "redirect:/customer/home";
         }
 
 
         UserDetails userDetail = googleUtils.buildCustomer(googlePojo);
-
         int ids = userService.getMaxIdUserInSystem() + 1;
         userService.saveCustomerForGoogle(ids,googlePojo.getEmail().trim(), googlePojo.getPicture().trim(),1);
-
         roleService.saveRoleForUser(ids,4);
 
         session.setAttribute("display_email", googlePojo.getEmail().trim());
@@ -131,7 +129,7 @@ public class LoginController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         logUserService.saveLog(ids,1,dateUtlis.getIntToDate(),"Đăng nhập thành công");
-        return "redirect:/customer/index";
+        return "redirect:/customer/home";
     }
 
     @RequestMapping("/login_success")
@@ -178,6 +176,17 @@ public class LoginController {
         return "base/access_denied";
     }
 
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String goRegisterPage(Model model){
+        model.addAttribute("new_users", new User());
+        return "base/register";
+    }
+
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.GET)
+    public String goForgotPassword(Model model){
+        return "base/forgot-password";
+    }
+
 
     @RequestMapping(value = "/register/create_user", method = RequestMethod.POST)
     public String saveNewUsers(@ModelAttribute("new_users")User user, final Model model){
@@ -191,7 +200,7 @@ public class LoginController {
             userService.createUserForGuest(user);
         }else {
             model.addAttribute("new_users", user);
-            model.addAttribute("message", "Email đã tồn tại trong hệ thống");
+            model.addAttribute("message", "Email đã tồn tại xin vui long nhập email khác");
             return "base/register";
         }
 
