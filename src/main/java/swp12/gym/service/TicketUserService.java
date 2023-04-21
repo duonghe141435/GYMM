@@ -2,6 +2,7 @@ package swp12.gym.service;
 
 import org.springframework.stereotype.Service;
 import swp12.gym.dto.TicketDto;
+import swp12.gym.dto.TicketUserDto;
 import swp12.gym.model.entity.TicketUser;
 import swp12.gym.model.entity.UserClass;
 
@@ -13,6 +14,8 @@ public interface TicketUserService {
     TicketDto findAnTicket(long id);
 
     List<TicketUser> findTicketsOfUser(int userID);
+
+    List<TicketUserDto> findTicketUserOfSchedulePersonal(int userID);
 
     boolean bookTicket(long id, long userID, String date, int price);
 

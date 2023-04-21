@@ -26,7 +26,7 @@
                 <li class="nav-item"><a class="nav-link" href="#">Dịch vụ</a></li>
             </ul>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid" style="background-color: seagreen">
             <ul class="navbar-nav flex-nowrap ms-auto">
                 <div class="d-none d-sm-block topbar-divider"></div>
                 <li class="nav-item dropdown no-arrow">

@@ -203,7 +203,7 @@ function getWeekDates(dateString) {
     return days;
 }
 
-function getWeeksDates(dateString) {
+function getWeeks(dateString) {
     var weeks = [];
     var date = new Date(dateString);
     var dayOfWeek = date.getDay()-1;
@@ -239,7 +239,7 @@ function getWeeksDates(dateString) {
 }
 
 var weekDates = getWeekDates(dateText);
-var weeksDates = getWeeksDates(dateText);
+var weeksDates = getWeeks(dateText);
 
 for (var i = 0; i <= 6; i++) {
     var d = document.getElementById(i);
@@ -254,8 +254,6 @@ document.getElementById("week-select").addEventListener("change", function() {
     let dateFirst = this.options[this.selectedIndex].getAttribute('data-timeFirst');
     const month = dateFirst.split("/")[1];
     const day = dateFirst.split("/")[0];
-
-    const dateText = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
     const weekDates = getWeekDates(dateText);
     for (let i = 0; i <= 6; i++) {
         const d = document.getElementById(i);
@@ -265,20 +263,4 @@ document.getElementById("week-select").addEventListener("change", function() {
 });
 
 
-
-for (var i = 0; i <= 6; i++) {
-    for (var j = 0; j <= 7; j++) {
-        var check = document.getElementById(i).innerText.trim();
-        console.log(check);
-        if (check === "17 Thg 4 2023") {
-            document.getElementById((i+1) + "" + (j+1)).textContent = ((i+1) + "and" + (j+1));
-        }
-        // var times =  JSON.parse('${times}');
-        // console.log(times);
-        // times.forEach(function(time) {
-        //     // console.log(${time.start_time});
-        // });
-    }
-
-}
         

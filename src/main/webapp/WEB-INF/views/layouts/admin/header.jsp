@@ -1,6 +1,6 @@
 <!--SHOW MENU --><%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color: seagreen">
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="padding: 0 .75rem;">
             <div class="sidebar-brand-icon rotate-n-15">
                 <img style="width: 70px" src="<c:url value="/assets/img/logo/logo-icon.png" />" />
