@@ -9,6 +9,7 @@ import swp12.gym.common.DataUtil;
 import swp12.gym.dto.TicketDto;
 import swp12.gym.dto.TicketDtoMapper;
 import swp12.gym.dto.TicketTrainerDtoMapper;
+import swp12.gym.dto.TicketUserDto;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.TicketUser;
 import swp12.gym.model.entity.User;
@@ -85,6 +86,28 @@ public class TicketUserDao {
                     TicketUser.setPayment_Status(resultSet.getInt("payment_status"));
                     TicketUser.setValue_Cost(resultSet.getFloat("value_cost"));
                     return TicketUser;
+                }
+            }, userID);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<TicketUserDto> findTicketUserOfSchedulePersonal(int userID) {
+        try{
+            sql = "SELECT tu.name, tu.start_date, tu.end_date\n" +
+                    "FROM ticket_user tu\n" +
+                    "JOIN ticket t ON tu.ticket_id = t.id_t\n" +
+                    "JOIN ticket_type tt ON t.tt_id = tt.tt_id\n" +
+                    "WHERE tt.tt_id = 2 AND tu.id_u = ?";
+            return jdbcTemplate.query(sql, new RowMapper<TicketUserDto>() {
+                public TicketUserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+                    TicketUserDto ticketUserDto = new TicketUserDto();
+                    ticketUserDto.setName(resultSet.getString("name"));
+                    ticketUserDto.setStart_date(resultSet.getString("start_date"));
+                    ticketUserDto.setEnd_date(resultSet.getString("end_date"));
+                    return ticketUserDto;
                 }
             }, userID);
         }catch (Exception e){

@@ -8,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color: seagreen">
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="<c:url value="/trainer/index"/>" style="padding: 0 .75rem;">
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i></div>
@@ -19,13 +19,13 @@
         <ul class="navbar-nav text-light" id="accordionSidebar">
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="<c:url value="/customer/home" />">
-                   <span class="fas fa-home">Trang chủ</span>
+                   <span class="fas fa-home">&nbsp;&nbsp;Trang chủ</span>
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-ticket-alt"></i><span>Vé</span>
+                        <i class="fas fa-ticket-alt"></i><span>&nbsp;&nbsp;Vé</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
@@ -36,38 +36,44 @@
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="<c:url value="/customer/show-list-trainer"/>">
-                    <span class="fas fa-chalkboard-teacher">Huấn Luyện Viên</span>
+                    <span class="fas fa-chalkboard-teacher">&nbsp;&nbsp;Huấn Luyện Viên</span>
                 </a>
             </li>
             <!--Thêm mới -->
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="<c:url value="/customer/list_class_of_customer"/>">
-                    <span class="fas fa-person-booth">Lớp học</span>
+                    <span class="fas fa-person-booth">&nbsp;&nbsp;Lớp học</span>
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="<c:url value="/customer/book_pt"/>">
-                    <span class="fas fa-calendar-alt">Lịch tập</span>
+                    <span class="fas fa-calendar-alt">&nbsp;&nbsp;Lịch tập</span>
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="<c:url value="/customer/product"/>">
-                    <span class="fas fa-boxes">Sản phẩm</span>
+                    <span class="fas fa-boxes">&nbsp;&nbsp;Sản phẩm</span>
                 </a>
             </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link" href="<c:url value="/customer/attendance-an-class"/>">
-                    <bu class="fas fa-boxes" >Điểm danh</bu>
-                </a>
-            </li>
+            <%--<li class="nav-item dropdown no-arrow mx-1">--%>
+                <%--<a class="nav-link" href="<c:url value="/customer/attendance-an-class"/>">--%>
+                    <%--<bu class="fas fa-boxes" >&nbsp;&nbsp;Điểm danh</bu>--%>
+                <%--</a>--%>
+            <%--</li>--%>
         </ul>
         <ul class="navbar-nav flex-nowrap ms-auto">
             <div class="d-none d-sm-block topbar-divider" style="color: white;"></div>
-            <li class="nav-item no-arrow mx-1" style="padding-top: 14px;">
-                <button class="btn btn-info" id="check-in-btn" style="border-radius: 18px">
-                    Check In <span class="tick">&#10004;</span>
-                </button>
+            <%--<li class="nav-item no-arrow mx-1" style="padding-top: auto; display: flex; justify-content: center; align-content: center; height: 60%">--%>
+                <%--<button class="btn btn-info" id="check-in-btn" style="border-radius: 18px">--%>
+                    <%--Check In <span class="tick">&#10004;</span>--%>
+                <%--</button>--%>
+            <%--</li>--%>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link" href="<c:url value="/customer/book_pt"/>">
+                    <span class="fas">Check In&nbsp;&nbsp;<span class="tick">&#10004;</span></span>
+                </a>
             </li>
+
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
@@ -111,7 +117,7 @@
             <div class="d-none d-sm-block topbar-divider"></div>
             <li class="nav-item dropdown no-arrow">
                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                    <span class="d-none d-lg-inline me-2 text-gray-600 small">${display_name}</span>
+                    <span class="d-none d-lg-inline me-2 small" style="color: white">${display_name}</span>
                     <img class="border rounded-circle img-profile" src="<c:url value="${display_img}"/>"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="<c:url value="/customer/your-profile"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>

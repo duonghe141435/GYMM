@@ -1,5 +1,6 @@
 package swp12.gym.controller.customer.base;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,15 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import swp12.gym.dao.UsersDao;
-import swp12.gym.dto.ClassDto;
-import swp12.gym.dto.ProductDto;
-import swp12.gym.dto.TicketTrainerDto;
-import swp12.gym.dto.UserDto;
-import swp12.gym.model.entity.Attendance;
-import swp12.gym.model.entity.LogUser;
-import swp12.gym.model.entity.Ticket;
-import swp12.gym.model.entity.Time;
-import swp12.gym.model.entity.User;
+import swp12.gym.dto.*;
+import swp12.gym.model.entity.*;
 import swp12.gym.service.*;
 
 import javax.servlet.http.HttpSession;
@@ -44,7 +38,12 @@ public class CustomerBaseController {
     private UsersDao userDao;
 
     @Autowired
+    private TicketUserService ticketUserService;
+
+    @Autowired
     private AttendanceService attendanceService;
+    @Autowired
+    private PersonalTrainerDetailService personalTrainerDetailService;
 
     //Home user
     @RequestMapping(value = "/home",method = RequestMethod.GET)
@@ -133,11 +132,24 @@ public class CustomerBaseController {
     @GetMapping("/book_pt")
     public String checkoutbookpt(Authentication authentication, Model model){
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        String userName = userDetails.getUsername();
-        int userID = userDao.findIdByUsername(userName);
+        int userID = userDao.findIdByUsername(userDetails.getUsername());
 
+        //lấy xem lịch của class
         List<ClassDto> scheduleClassOfCustomer = classService.findAllScheduleClassOfAnUserById(userID);
-        model.addAttribute("scheduleClassOfCustomer",scheduleClassOfCustomer);
+        String jsonData = new Gson().toJson(scheduleClassOfCustomer); // chuyển đổi sang chuỗi JSON
+        model.addAttribute("jsonData",jsonData);
+
+        //lấy check lịch personal trainer
+        List<PersonalTrainerDetail> schedulePersonalTrainer = personalTrainerDetailService.findPersonalTrainerDetail(userID);
+        String jsonPersonalDetail = new Gson().toJson(schedulePersonalTrainer);
+        model.addAttribute("jsonPersonalDetail",jsonPersonalDetail);
+
+
+        //lấy set text lên lịch thuê pt cá nhân
+        List<TicketUserDto> ticketUserOfSchedulePersonal = ticketUserService.findTicketUserOfSchedulePersonal(userID);
+        String jsonSchedulePersonal = new Gson().toJson(ticketUserOfSchedulePersonal);
+        model.addAttribute("jsonSchedulePersonal",jsonSchedulePersonal);
+
         List<Time> times = timeService.findAll();
         model.addAttribute("times",times);
         return "customer/book_pt";
