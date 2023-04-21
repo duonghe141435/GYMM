@@ -67,13 +67,13 @@
                 <div class="list-product" style="background-color: #eee">
                     <div class="row">
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="form-search-box form-group row">
-                                <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                                    <div class="input-group"><input class="bg-light form-control border-0 small" id="search_product" type="text"
-                                                                    placeholder="Tìm kiếm sản phẩm" name="pr_name">
-                                        <button class="btn btn-primary py-0" id="btn-search-product" type="button"><i class="fas fa-search"></i></button>
-                                    </div>
-                                </form>
+                            <div class="col-md-6 text-nowrap">
+                                <div class="text-md-end w-50 float-start mx-1">
+                                    <label class="form-label d-flex">
+                                        <input type="search" class="form-control form-control-sm" placeholder="Search" id="search_product">
+                                        <button id="btn-search-product" type="button" style="background: none; border: none"><i class="fa fa-search"></i></button>
+                                    </label>
+                                </div>
                             </div>
                             <nav aria-label="Page navigation">
                                 <ul class="pagination py-2" id="pagination">
@@ -240,26 +240,18 @@
 
     $(document).ready(function () {
         var btn_search = $("#btn-search-product");
-        var input_search = $("#search-product");
+        var input_search = $("#search_product");
         // Thực hiện hành động tìm kiếm tại Danh sách người dùng hệ thống
         input_search.on("input", function (){
             var input = $(this).val();
             if(input.length >=3 ){
                 $.ajax({
-                    url: 'http://localhost:8080/employee/order-product/search',
+                    url: 'http://localhost:8080/employee/product-management/search',
                     method: 'GET',
                     data: {query: input},
                     dataType : 'json',
                     success: function(response) {
-                        $('#product-list').empty(); // remove all child elements, but keep the element
                         console.log(response);
-                        var newContent = $('<div class="d-flex flex-wrap list-product-in" style="height: 320px;" id="product-list"></div>'); // create a new element to replace the old one
-                        $('#product-list').after(newContent); // insert the new element after the old one
-                        newContent.css({ // apply CSS styles to the new element
-                            'display': 'flex',
-                            'height': '320px',
-                            'flex-wrap': 'wrap'
-                        });
                         var productList = '';
                         $.each(response, function(index, productDtos) {
                             productList += '<div class="col-lg-2 col-md-12 mb-4 mx-3">';
@@ -279,9 +271,7 @@
                             productList += '</div>';
                             productList += '</div>';
                         });
-                        var newRow = $('<div class="row"></div>');
-                        newRow.append(productList);
-                        newContent.append(newRow);
+                        $('#product-list').html('<div class="row">' + productList + '</div>');
                     },
                     error: function(xhr, status, error) {
                         console.log(error);
@@ -300,11 +290,11 @@
                 })
             }else if(input.length >= 3){
                 $.ajax({
-                    url: 'http://localhost:8080/employee/order-product/search',
+                    url: 'http://localhost:8080/employee/product-management/search',
                     method: 'GET',
                     data: {query: input},
                     success: function(response) {
-                        window.location.href = "http://localhost:8080/employee/order-product/search/"+input;
+                        window.location.href = "http://localhost:8080/employee/product-management/search/"+input;
                     },
                     error: function(xhr, status, error) {
                         console.log(error);
@@ -313,7 +303,7 @@
             }else {
                 Swal.fire({
                     title: 'Oops...',
-                    text: 'Hãy nhập tối thiểu 5 ký tự vào ô input',
+                    text: 'Hãy nhập tối thiểu 3 ký tự vào ô input',
                     icon: 'error'
                 })
             }
