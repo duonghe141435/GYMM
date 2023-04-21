@@ -1,15 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: HongWung
-  Date: 2/7/2023
-  Time: 5:35 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Đăng nhập</title>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
@@ -35,10 +27,7 @@
                                     <div class="mb-3"><input class="form-control form-control-user" type="password" placeholder="Hãy điền mật khẩu" name="password" required></div>
                                     <div class="mb-3">
                                         <div class="custom-control custom-checkbox small">
-                                            <div class="form-check">
-                                                <input class="form-check-input custom-control-input" type="checkbox" name="remember-me" id="formCheck">
-                                                <label class="form-check-label custom-control-label" for="formCheck">Remember Me</label>
-                                            </div>
+                                            <div class="form-check"><input class="form-check-input custom-control-input" type="checkbox" id="formCheck-1"><label class="form-check-label custom-control-label" for="formCheck-1">Remember Me</label></div>
                                         </div>
                                     </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Đăng nhập</button>
                                     <hr>
@@ -60,23 +49,10 @@
         </div>
     </div>
 </div>
-</body>
 <script>
     <c:if test="${not empty message}">
-    <c:choose>
-    <c:when test="${message eq 'multi'}">
-    </c:when>
-    </c:choose>
+        Swal.fire({icon: 'error', title: 'Oops...', text: '${message}', showConfirmButton: false, timer: 2500});
     </c:if>
-    <c:if test="${not empty message}">
-    <c:if test="${message eq 'logout'}">
-    Swal.fire({icon: 'info', text: 'Đăng xuất thành công!', showConfirmButton: false, timer: 2500});
-    </c:if>
-    <c:if test="${message ne 'logout'}">
-    Swal.fire({icon: 'error', title: 'Oops...', text: '${message}', showConfirmButton: false, timer: 2500});
-    </c:if>
-    </c:if>
-
 </script>
-
+</body>
 </html>
