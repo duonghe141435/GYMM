@@ -7,10 +7,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title><dec:title default="Master-Layout" /></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <%--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--%>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
 
     <style>
+
         tbody tr{
             height: 100px !important;
         }
@@ -75,8 +76,8 @@
             <%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
         </div>
 <div style="margin-left: 13%;">
-    <div style="text-align: center">
-        <label style="font-weight: bold; font-size: 35px; color: blue;">Chọn huấn luyện viên</label>
+    <div style="margin-left: 40%">
+        <label style=" font-weight: bold; font-size: 35px; color: blue;">Lịch Tập</label>
     </div>
     <div class="card-body">
         <button class="btn-hover" id="myBook" style="box-shadow: 1px 3px;" type="button" title="Xem lịch tập với HLV của bản thân">Lịch huấn luyện</button>
@@ -98,7 +99,7 @@
 
     </div>
 </div>
-<table class="table-bordered border-collapse table-responsive " id="time_book_table"  style=" margin-left: 13%; text-align: center; width: 74%;margin-bottom: 100px;">
+<table class="table-bordered border-collapse table-responsive " id="time_book_table"  style=" margin-left: 8%; text-align: center; width: 86%;margin-bottom: 100px;">
     <thead>
     <tr>
         <th>Thời gian</th>
@@ -142,10 +143,6 @@
         <c:if test="${not empty times}">
             <c:forEach varStatus="index" items="${times}" var="times">
                 <tr>
-                    <script>
-                        var date = document.getElementById("${index.count - 1}").innerText;
-                        console.log(date);
-                    </script>
                     <th>${times.start_time} - ${times.end_time}</th>
                     <td id="1${times.id_time}">1.${times.id_time}</td>
                     <td id="2${times.id_time}">2.${times.id_time}</td>
@@ -254,24 +251,91 @@
 
 
     for (var i = 0; i <= 6; i++) {
-        for (var j = 0; j <= 7; j++) {
-            var check = document.getElementById(i).innerText.trim();
-            var shedule = ${jsonData};
-            for (var k = 0; k < shedule.length; k++){
-                console.log(shedule[k].c_end_date);
-            }
-            console.log(check);
+        var getDate = document.getElementById(i).innerText.trim();
+        var dateParts = getDate.split(' ');
+        var dayy = dateParts[0];
+        var monthh = dateParts[2];
+        var yearr = dateParts[3];
 
-            if (check === "17 Thg 4 2023") {
-                document.getElementById((i+1) + "" + (j+1)).textContent = ((i+1) + "and" + (j+1));
+        var dateObject = new Date(yearr, monthh - 1, dayy);
+        dateObject.setDate(dateObject.getDate() + 1);
+        var formattedDate = dateObject.toISOString().slice(0,10);
+
+        // console.log(formattedDate);
+        for (var j = 0; j <= 7; j++) {
+            document.getElementById((i+1) + "" + (j+1)).innerHTML  = "";
+            var shedule = ${jsonData};
+            for (var k = 0; k < shedule.length; k++) {
+                if (formattedDate >= shedule[k].c_start_date && formattedDate <= shedule[k].c_end_date) {
+                    checkWeekdays();
+                } else {
+                    console.log("no");
+                }
             }
-            // var times =  JSON.parse('${times}');
-            // console.log(times);
-            // times.forEach(function(time) {
-            //     // console.log(${time.start_time});
-            // });
+            document.getElementById((i+1) + "" + (j+1)).style.color = "# CDB38B"; //#363636 , # CDB38B, # 473C8B, #33CC33
+            document.getElementById((i+1) + "" + (j+1)).style.fontWeight = "bold";
+            // for (var k = 0; k < shedule.length; k++){
+            //     if (shedule[k].c_start_date === formattedDate && shedule[k].c_time_id === j){
+            //
+            //         checkWeekdays();
+            //         checkStatusClass();
+            //         document.getElementById((i+1) + "" + (j+1)).style.background = "#C7CEEA";
+            //         document.getElementById((i+1) + "" + (j+1)).style.color = "green";
+            //     }
+            // }
+
         }
 
+    }
+
+    function checkWeekdays() {
+        if (shedule[k].monday === 1 && i === 0) {
+            if (shedule[k].c_time_id === j){
+                checkStatusClass();
+            }
+        }
+        if (shedule[k].tuesday === 1 && i === 1) {
+            if (shedule[k].c_time_id === j){
+                checkStatusClass();
+            }
+        }
+        if (shedule[k].wednesday === 1 && i === 2) {
+            if (shedule[k].c_time_id === j){
+                checkStatusClass();
+            }
+        }
+        if (shedule[k].thursday === 1 && i === 3) {
+            if (shedule[k].c_time_id === j){
+                checkStatusClass();
+            }
+        }
+        if (shedule[k].friday === 1 && i === 4) {
+            if (shedule[k].c_time_id === j){
+                checkStatusClass();
+            }
+        }
+        if (shedule[k].saturday === 1 && i === 5) {
+            if (shedule[k].c_time_id === j){
+                checkStatusClass();
+            }
+        }
+        if (shedule[k].sunday === 1 && i === 6) {
+            if (shedule[k].c_time_id === j){
+                checkStatusClass();
+            }
+        }
+    }
+
+    function checkStatusClass() {
+        if (shedule[k].c_status === 0) {
+            document.getElementById((i+1) + "" + (j+1)).innerHTML  = shedule[k].c_name + "<br>" + "Lớp chưa bắt đầu";
+        }
+        if (shedule[k].c_status === 1) {
+            document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đang học";
+        }
+        if (shedule[k].c_status === -1) {
+            document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
+        }
     }
 </script>
 </html>

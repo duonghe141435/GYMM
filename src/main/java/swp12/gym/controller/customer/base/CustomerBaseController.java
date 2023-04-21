@@ -137,6 +137,7 @@ public class CustomerBaseController {
         int userID = userDao.findIdByUsername(userDetails.getUsername());
 
         List<ClassDto> scheduleClassOfCustomer = classService.findAllScheduleClassOfAnUserById(userID);
+
         String jsonData = new Gson().toJson(scheduleClassOfCustomer); // chuyển đổi sang chuỗi JSON
 
         model.addAttribute("jsonData",jsonData);

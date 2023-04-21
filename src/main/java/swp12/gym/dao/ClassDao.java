@@ -137,7 +137,7 @@ public class ClassDao {
                     "                    JOIN users u ON tn.id_u = u.id_u\n" +
                     "                    JOIN time tm ON c.time_id = tm.id_time\n" +
                     "                    LEFT JOIN user_class uc ON c.class_id = uc.class_id\n" +
-                    "                    WHERE c.state = 1 and c.ticket_id = ?\n" +
+                    "                    WHERE c.state = 0 and c.ticket_id = ?\n" +
                     "                    GROUP BY c.ticket_id, uc.class_id, c.max_menber";
             return jdbcTemplate.query(sql, new ClassDtoMapper(), ticket_id);
         }catch (Exception e){

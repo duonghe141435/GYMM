@@ -203,7 +203,7 @@ function getWeekDates(dateString) {
     return days;
 }
 
-function getWeeksDates(dateString) {
+function getWeeks(dateString) {
     var weeks = [];
     var date = new Date(dateString);
     var dayOfWeek = date.getDay()-1;
@@ -239,7 +239,7 @@ function getWeeksDates(dateString) {
 }
 
 var weekDates = getWeekDates(dateText);
-var weeksDates = getWeeksDates(dateText);
+var weeksDates = getWeeks(dateText);
 
 for (var i = 0; i <= 6; i++) {
     var d = document.getElementById(i);
