@@ -57,7 +57,7 @@ public class UsersDao {
 
     public List<User> findAllTrainer() {
         try{
-            sql = "SELECT t.trainer_id, name, email, gender, phone, address, image, DOB FROM users JOIN trainer t on users.id_u = t.id_u";
+            sql = "SELECT t.trainer_id, name, email, gender, phone, address, image, DOB, users.id_u FROM users JOIN trainer t on users.id_u = t.id_u";
             return jdbcTemplate.query(sql, new RowMapper<User>() {
                 public User mapRow(ResultSet resultSet, int i) throws SQLException {
                     User user = new User();
@@ -69,6 +69,7 @@ public class UsersDao {
                     user.setU_address(resultSet.getString("address"));
                     user.setU_img(resultSet.getString("image"));
                     user.setU_dob(resultSet.getString("DOB"));
+                    user.setU_enable(resultSet.getInt("id_u"));
                     return user;
                 }
             });
@@ -246,10 +247,11 @@ public class UsersDao {
 
     public User getNameAndImgByEmail(String userName) {
         try{
-            sql = "SELECT name, image FROM users WHERE email = ?";
+            sql = "SELECT id_u, name, image FROM users WHERE email = ?";
             return jdbcTemplate.queryForObject(sql, new RowMapper<User>() {
                 public User mapRow(ResultSet resultSet, int i) throws SQLException {
                     User user = new User();
+                    user.setU_id(resultSet.getLong("id_u"));
                     user.setU_full_name(resultSet.getString("name"));
                     user.setU_img(resultSet.getString("image"));
                     return user;
