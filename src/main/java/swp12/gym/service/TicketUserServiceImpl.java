@@ -8,6 +8,7 @@ import swp12.gym.dao.TicketUserDao;
 import swp12.gym.dao.TicketUserDtoDao;
 import swp12.gym.dao.UserPersonalTrainerDao;
 import swp12.gym.dto.TicketDto;
+import swp12.gym.dto.TicketUserDto;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.TicketUser;
 import swp12.gym.model.entity.UserClass;
@@ -37,6 +38,10 @@ public class TicketUserServiceImpl implements TicketUserService{
 
     public List<TicketUser> findTicketsOfUser(int userID) {
         return ticketUserDao.findTicketsOfUser(userID);
+    }
+
+    public List<TicketUserDto> findTicketUserOfSchedulePersonal(int userID) {
+        return ticketUserDao.findTicketUserOfSchedulePersonal(userID);
     }
 
     public boolean bookTicket(long id, long userID, String date, int price) {
