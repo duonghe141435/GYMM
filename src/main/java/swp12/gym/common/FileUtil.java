@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 
-public class ProcessFile {
+public class FileUtil {
 
     final int min = 100000;
     final int max = 999999;
