@@ -143,6 +143,7 @@ public class LoginController {
             User user = userService.getNameAndImgByEmail(userName);
 
             session.setAttribute("display_email", userName);
+            session.setAttribute("display_id", user.getU_id());
             session.setAttribute("display_name", user.getU_full_name());
             session.setAttribute("display_img", user.getU_img());
 

@@ -1,5 +1,6 @@
 package swp12.gym.controller;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import swp12.gym.dto.ProductDto;
+import swp12.gym.dto.UserDto;
+import swp12.gym.model.entity.User;
 import swp12.gym.service.ProductService;
+import swp12.gym.service.UserService;
 
 import java.util.List;
 
@@ -34,6 +38,5 @@ public class IndexController {
         return "base/homepage";
 //        return "base/homepage";
     }
-
 
 }
