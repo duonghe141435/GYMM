@@ -17,7 +17,6 @@
     <title>Product</title>
     <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
     <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/assets/sweetalert2/sweetalert2.min.css'/>">
     <script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
@@ -130,8 +129,9 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <div>
-                                <span>Lương</span>
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                                <span id="empName">${display_name}</span>
+                                <span class="d-none" id="empId">${display_id}</span>
+                                <img src="<c:url value="${display_img}"/>"
                                      class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
                             </div>
                             <input type="datetime-local" id="date-order" class="fa fa-calendar">
@@ -139,19 +139,34 @@
 
                         <form class="mt-4">
                             <div class="row form-outline form-white mb-4">
-                                <div class="col-4">
-                                    <label class="form-label mt-2" for="orderCode">Mã hóa đơn:</label>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <label class="form-label col-sm-5 mt-3" for="pt_name">Chọn khách hàng</label>
+                                        <div class="col-sm-7">
+                                            <select class="form-select"  id="pt_name" style="width: 82%;float:left;">
+                                                <option disabled selected hidden>Chọn</option>
+                                                <option id="1">Trainer</option>
+                                                <option id="2">Customer</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-8">
-                                    <input type="text" id="orderCode" class="form-control"
-                                           placeholder="Mã hóa đơn tự sinh" />
-                                </div>
+                                    <div class="form-group">
+                                        <div class="row d-flex justify-content-center">
+                                            <label class="form-label col-sm-5 mt-3" for="checkas">Tên khách hàng</label>
+                                            <div class="col-sm-7">
+                                                <select class="form-select"  id="checkas" style="width: 82%;float:left;">
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
 
                             <div class="row form-outline form-white mb-4">
                                 <div class="col-6">
                                     <label class="form-label mt-3" for="orderPrice">Tổng tiền hàng:</label>
-                                    <label class="mx-2 mt-3 bg-white text-dark text-center" style="display: inline-block;
+                                    <label class="mx-2 mt-3 bg-white text-dark text-center" id="totalOrder" style="display: inline-block;
                                                             border-radius: 2px;">0</label>
                                 </div>
                                 <div class="col-6">
@@ -207,7 +222,7 @@
 
                         <hr class="my-4">
 
-                        <button type="button" class="btn btn-active btn-block btn-lg" style="background-color: #85ffdb">
+                        <button type="button" class="btn btn-active btn-block btn-lg" id="btn-add-order" style="background-color: #85ffdb">
                             <div class="d-flex justify-content-between">
                                 <span>Tạo hóa đơn <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                             </div>
@@ -222,6 +237,89 @@
     </div>
 </div>
 <script>
+
+    $(document).ready(function () {
+        var btn_search = $("#btn-search-product");
+        var input_search = $("#search-product");
+        // Thực hiện hành động tìm kiếm tại Danh sách người dùng hệ thống
+        input_search.on("input", function (){
+            var input = $(this).val();
+            if(input.length >=3 ){
+                $.ajax({
+                    url: 'http://localhost:8080/employee/order-product/search',
+                    method: 'GET',
+                    data: {query: input},
+                    dataType : 'json',
+                    success: function(response) {
+                        $('#product-list').empty(); // remove all child elements, but keep the element
+                        console.log(response);
+                        var newContent = $('<div class="d-flex flex-wrap list-product-in" style="height: 320px;" id="product-list"></div>'); // create a new element to replace the old one
+                        $('#product-list').after(newContent); // insert the new element after the old one
+                        newContent.css({ // apply CSS styles to the new element
+                            'display': 'flex',
+                            'height': '320px',
+                            'flex-wrap': 'wrap'
+                        });
+                        var productList = '';
+                        $.each(response, function(index, productDtos) {
+                            productList += '<div class="col-lg-2 col-md-12 mb-4 mx-3">';
+                            productList += '<div class="bg-image hover-zoom ripple shadow-1-strong rounded">';
+                            productList += '<img src="' + productDtos.p_img + '" class="w-100" />';
+                            productList += '<div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">';
+                            productList += '<div class="d-flex justify-content-start align-items-start h-30">';
+                            productList += '<h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark pro_price">' + productDtos.p_price + '</span></h5>';
+                            productList += '</div>';
+                            productList += '<p class="text-light text-center fw-bold pro_name">' + productDtos.p_name + '</p>';
+                            productList += '<p class="d-none pro_id">' + productDtos.p_id + '</p>';
+                            productList += '<p class="d-none pro_quantity">' + productDtos.p_quantity + '</p>';
+                            productList += '</div>';
+                            productList += '<div class="hover-overlay">';
+                            productList += '<div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>';
+                            productList += '</div>';
+                            productList += '</div>';
+                            productList += '</div>';
+                        });
+                        var newRow = $('<div class="row"></div>');
+                        newRow.append(productList);
+                        newContent.append(newRow);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+        btn_search.click(function (e) {
+            var input = input_search.val();
+            // Thực hiện hành động khi thẻ input thay đổi
+            if(input === ''){
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Bạn cần nhập thông tin vào ô tìm kiếm',
+                    icon: 'error'
+                })
+            }else if(input.length >= 3){
+                $.ajax({
+                    url: 'http://localhost:8080/employee/order-product/search',
+                    method: 'GET',
+                    data: {query: input},
+                    success: function(response) {
+                        window.location.href = "http://localhost:8080/employee/order-product/search/"+input;
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }else {
+                Swal.fire({
+                    title: 'Oops...',
+                    text: 'Hãy nhập tối thiểu 5 ký tự vào ô input',
+                    icon: 'error'
+                })
+            }
+        });
+    });
+
     document.getElementById("date-order").readOnly = true;
 
     var now = new Date();
@@ -234,81 +332,78 @@
     document.getElementById('date-order').value = datetime;
 
 
-    $(document).ready(function() {
-        var btn_search = $("#btn-search-product");
 
-        // Thực hiện hành động tìm kiếm sản phẩm
-        btn_search.click(function(e) {
-            var input_search = $("#search_product").val();
-            // Thực hiện hành động khi thẻ input thay đổi
-            if (input_search == "") {
-                Swal.fire({
-                    title: "Oops...",
-                    text: "Bạn cần nhập thông tin vào ô tìm kiếm",
-                    icon: "error",
-                });
-            } else if (input_search.length >= 3) {
-                $.ajax({
-                    url: "http://localhost:8080/emp-product/search",
-                    method: "GET",
-                    data: { keyword: input_search },
-                    success: function(response) {
-                        // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
-                        if (response.status === "success") {
-                            var products = response.data;
-                            var product_list = $("#product-list");
-                            var product_html = "";
+    $(document).ready(function ({}) {
+        var name = document.getElementById("pt_name");
+        var checks = document.getElementById("checkas");
+        name.addEventListener("change", function() {
+            checks.innerHTML = "";
+            var selectedOption = this.options[this.selectedIndex];
+            if (selectedOption.id === "1") {
 
-                            // Lặp qua từng sản phẩm để tạo HTML
-                            products.forEach(function(product) {
-                                product_html += `<div class="col-lg-2 col-md-12 mb-4 mx-3">
-                <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-                  <img src="${product.p_img}" class="w-100" />
-                  <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
-                    <div class="d-flex justify-content-start align-items-start h-30">
-                      <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark pro_price">${product.p_price}</span></h5>
-                    </div>
-                    <p class="text-light text-center fw-bold pro_name">${product.p_name}</p>
-                    <p class="d-none pro_id">${product.p_id}</p>
-                  </div>
-                  <div class="hover-overlay">
-                    <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
-                  </div>
-                </div>
-              </div>`;
-                            });
+                var trainers = ${jsonTrainer};
 
-                            // Thay đổi nội dung HTML của danh sách sản phẩm
-                            product_list.html(product_html);
-                            alert("OK")
-                        } else {
-                            Swal.fire({
-                                title: "Oops...",
-                                text: "Không tìm thấy sản phẩm",
-                                icon: "error",
-                            });
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    },
-                });
-            } else {
-                Swal.fire({
-                    title: "Oops...",
-                    text: "Hãy nhập tối thiểu 3 ký tự vào ô input",
-                    icon: "error",
-                });
+                for (var k = 0; k < trainers.length; k++){
+                    var optionTrainer = document.createElement("option");
+                    optionTrainer.innerText = trainers[k].u_full_name;
+                    optionTrainer.value = trainers[k].u_enable;
+                    checks.appendChild(optionTrainer);
+                }
             }
+            if (selectedOption.id === "2") {
+
+                var customer = ${jsonCustomer};
+
+                for (var k = 0; k < customer.length; k++){
+                    var optionCustomer = document.createElement("option");
+                        optionCustomer.innerText = customer[k].u_full_name;
+                        optionCustomer.value = customer[k].u_id;
+                        checks.appendChild(optionCustomer);
+                }
+            }
+        });
+    })
+
+    $(document).ready(function() {
+        $('#btn-add-order').click(function() {
+            // Thêm mã JavaScript để tạo hóa đơn ở đây
+            var empId = document.getElementById("empId").innerText;
+            var checks = document.getElementById("checkas");
+            var selectedCusId = $('#checkas').val();
+            var totalOrder = document.getElementById("totalOrder").innerText;
+            var orderPrice = document.getElementById("orderPrice").innerHTML;
+            var cus_paid = document.getElementById("cus_paid").innerText;
+            var discountInput = document.getElementById('discount');
+            discountPercent = parseInt(discountInput.value);
+            var spendPriceInput = document.getElementById("spendPrice");
+            spendPrice = parseInt(spendPriceInput.value);
+            var refunds = document.getElementById("refunds").innerText;
+            var proName = document.querySelectorAll('td.proName');
+            var product_list = document.querySelectorAll('.detail_product');
+
+            for (var i = 0; i < product_list.length; i++) {
+                var td_list = product_list[i].querySelectorAll('td');
+                var data = {
+                    '_product_id': td_list[0].textContent,
+                    '_quantity': td_list[2].textContent,
+                    '_price': td_list[3].textContent,
+                    '_totalprice': td_list[5].textContent
+                }
+                console.log("data" + data);
+                // for (var j = 0; j < td_list.length; j++) {
+                //     var td_text = td_list[j].textContent;
+                //     console.log(td_text);
+                // }
+            }
+
+
         });
     });
 
-
 </script>
-<script src="<c:url value='/assets/sweetalert2/sweetalert2.all.min.js'/> "></script>
+
 <script src="<c:url value='/assets/js/order-product.js'/>"></script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
-<script src="<c:url value='/assets/js/bs-init.js'/>"></script>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
 </body>
 </html>

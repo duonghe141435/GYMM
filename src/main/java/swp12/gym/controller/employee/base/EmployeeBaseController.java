@@ -1,5 +1,6 @@
 package swp12.gym.controller.employee.base;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,9 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import swp12.gym.dto.ProductDto;
 import swp12.gym.dto.UserDto;
 import swp12.gym.model.entity.User;
+import swp12.gym.service.ProductService;
 import swp12.gym.service.UserService;
+
+import java.util.List;
 
 
 @Controller
@@ -19,6 +24,10 @@ public class EmployeeBaseController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ProductService productService;
+
     //done
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
     public String goChangePassForEmployee() {
@@ -56,5 +65,20 @@ public class EmployeeBaseController {
     public String updateEmployee(@ModelAttribute("user") User user, Model model) {
         System.out.println(user.toString());
         return "employee/index_employee";
+    }
+
+    @RequestMapping(value = "/order-product",method = RequestMethod.GET)
+    public String productPage(Model model) {
+        List<ProductDto> productDtos = productService.findAll();
+        model.addAttribute("productDtos", productDtos);
+        List<UserDto> customers = userService.findAllCustomer();
+        //${customers.u_id} là user_ID
+        List<User> trainers = userService.findAllTrainer();
+        //${trainers.u_enable} là user_ID
+        String jsonCustomer = new Gson().toJson(customers);
+        String jsonTrainer = new Gson().toJson(trainers);
+        model.addAttribute("jsonCustomer",jsonCustomer);
+        model.addAttribute("jsonTrainer",jsonTrainer);
+        return "employee/order-product";
     }
 }

@@ -85,10 +85,11 @@ productList.forEach(function(product) {
 
         else if (!existingItem) {
             var newRow = document.createElement('tr');
+            newRow.classList.add('detail_product');
             newRow.innerHTML = `
         <td><i class="fas fa-trash delete-row"></i></td>
         <td>${productId}</td>
-        <td>${productName}</td>
+        <td class="proName">${productName}</td>
         <td class="item-quantity">1</td>
         <td>${productPrice}</td>
         <td class="item-price">${productPrice}</td>
