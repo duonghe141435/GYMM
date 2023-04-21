@@ -2,12 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Tạo tài khoản nhân viên mới</title>
-    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
-    <script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
+    <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
 </head>
 <body id="page-top">
 <div id="wrapper">

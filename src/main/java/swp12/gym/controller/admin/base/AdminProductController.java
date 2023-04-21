@@ -13,7 +13,7 @@ import swp12.gym.service.PriceService;
 import swp12.gym.service.ProductService;
 import swp12.gym.service.ProductTypeService;
 import swp12.gym.service.UnitService;
-import swp12.gym.common.ProcessFile;
+import swp12.gym.common.FileUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -62,7 +62,7 @@ public class AdminProductController {
         System.out.println(productDto.toString());
         productService.createProduct(productDto);
         priceService.createAnPrice(productDto.getP_price(),productDto.getP_Oprice(),p_id);
-        ProcessFile.doSaveImgToService(file,s,"products");
+        FileUtil.doSaveImgToService(file,s,"products");
         return "redirect:/admin/dashboard/products";
     }
 
@@ -87,7 +87,7 @@ public class AdminProductController {
         if(!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null){
             String u_img = "/assets/img/products/"+file.getOriginalFilename();
             if(!u_img.equalsIgnoreCase(productDto.getP_img())){
-                ProcessFile.doSaveImgToService(file,s,"products");
+                FileUtil.doSaveImgToService(file,s,"products");
                 productDto.setP_img(u_img);
             }
         }
