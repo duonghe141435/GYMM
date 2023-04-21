@@ -1,6 +1,7 @@
 package swp12.gym.controller.security;
 
 import swp12.gym.common.DataUtil;
+import swp12.gym.common.EmailUtil;
 import swp12.gym.common.GooglePojo;
 import swp12.gym.common.GoogleUtils;
 import swp12.gym.dto.UserDto;
@@ -36,14 +37,16 @@ public class LoginController {
     @Autowired
     private GoogleUtils googleUtils;
     @Autowired
-    private DataUtil dateUtlis;
+    private DataUtil dataUtil;
     @Autowired
     private LogUserService logUserService;
+    @Autowired
+    private EmailUtil emailUtil;
+
 
 
     @RequestMapping("/login")
     public String login(@RequestParam(required = false) String message, final Model model) {
-
         if (message != null && !message.equals("")) {
             if (message.equals("logout")) {
                 model.addAttribute("message", "logout");
@@ -77,7 +80,7 @@ public class LoginController {
         UserDto userDto = userService.getUserByEmail(googlePojo.getEmail().trim());
 
         if(userDto != null){
-            logUserService.saveLog(userDto.getU_id(),1,dateUtlis.getIntToDate(),"Đăng nhập thành công");
+            logUserService.saveLog(userDto.getU_id(),1,dataUtil.getIntToDate(),"Đăng nhập thành công");
 
             session.setAttribute("display_email", userDto.getU_email());
             session.setAttribute("display_name", userDto.getU_full_name());
@@ -128,7 +131,7 @@ public class LoginController {
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        logUserService.saveLog(ids,1,dateUtlis.getIntToDate(),"Đăng nhập thành công");
+        logUserService.saveLog(ids,1,dataUtil.getIntToDate(),"Đăng nhập thành công");
         return "redirect:/customer/home";
     }
 
@@ -149,7 +152,7 @@ public class LoginController {
             int ids = userService.findIdByUsername(userName);
 
 //            sendMail.sendMail();
-            logUserService.saveLog(ids,1,dateUtlis.getIntToDate(),"Đăng nhập thành công");
+            logUserService.saveLog(ids,1,dataUtil.getIntToDate(),"Đăng nhập thành công");
 
             // Check user's role and then redirect
             if (request.isUserInRole("ROLE_ADMIN")) {
@@ -183,10 +186,23 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/forgot-password", method = RequestMethod.GET)
-    public String goForgotPassword(Model model){
+    public String goForgotPassword(){
         return "base/forgot-password";
     }
 
+    @RequestMapping(value = "/forgot-password/sent_pass", method = RequestMethod.GET)
+    public String goSentNewPasswordForUser(){
+        String subject = "Test send mail";
+        String text = "Example email";
+
+        boolean check = emailUtil.sentMail("luonghdhe141257@fpt.edu.vn", subject,text);
+        if(check){
+            System.out.println("finish");
+        }else {
+            System.out.println("NO");
+        }
+        return "base/forgot-password";
+    }
 
     @RequestMapping(value = "/register/create_user", method = RequestMethod.POST)
     public String saveNewUsers(@ModelAttribute("new_users")User user, final Model model){
@@ -206,5 +222,4 @@ public class LoginController {
 
         return "redirect:/login";
     }
-
 }
