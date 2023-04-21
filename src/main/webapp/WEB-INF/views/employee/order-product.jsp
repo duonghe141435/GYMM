@@ -246,7 +246,7 @@
             var input = $(this).val();
             if(input.length >=3 ){
                 $.ajax({
-                    url: 'http://localhost:8080/order-product/search',
+                    url: 'http://localhost:8080/employee/order-product/search',
                     method: 'GET',
                     data: {query: input},
                     dataType : 'json',
@@ -300,11 +300,11 @@
                 })
             }else if(input.length >= 3){
                 $.ajax({
-                    url: 'http://localhost:8080/order-product/search',
+                    url: 'http://localhost:8080/employee/order-product/search',
                     method: 'GET',
                     data: {query: input},
                     success: function(response) {
-                        window.location.href = "http://localhost:8080/order-product/search/"+input;
+                        window.location.href = "http://localhost:8080/employee/order-product/search/"+input;
                     },
                     error: function(xhr, status, error) {
                         console.log(error);
@@ -378,6 +378,25 @@
             var spendPriceInput = document.getElementById("spendPrice");
             spendPrice = parseInt(spendPriceInput.value);
             var refunds = document.getElementById("refunds").innerText;
+            var proName = document.querySelectorAll('td.proName');
+            var product_list = document.querySelectorAll('.detail_product');
+
+            for (var i = 0; i < product_list.length; i++) {
+                var td_list = product_list[i].querySelectorAll('td');
+                var data = {
+                    '_product_id': td_list[0].textContent,
+                    '_quantity': td_list[2].textContent,
+                    '_price': td_list[3].textContent,
+                    '_totalprice': td_list[5].textContent
+                }
+                console.log("data" + data);
+                // for (var j = 0; j < td_list.length; j++) {
+                //     var td_text = td_list[j].textContent;
+                //     console.log(td_text);
+                // }
+            }
+
+
         });
     });
 
