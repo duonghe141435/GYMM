@@ -35,4 +35,8 @@ public class ProductServiceImpl implements ProductService{
     public void updateProduct(String p_img, String p_description, int p_kind, int p_unit, int p_id) {
 
     }
+
+    public List<ProductDto> searchProduct(String query) {
+        return productDtoDao.searchProduct(query);
+    }
 }

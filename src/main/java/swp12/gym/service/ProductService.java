@@ -16,4 +16,6 @@ public interface ProductService {
     ProductDto findAnProduct(int id);
 
     void updateProduct(String p_img, String p_description, int p_kind, int p_unit, int p_id);
+
+    List<ProductDto> searchProduct(String query);
 }
