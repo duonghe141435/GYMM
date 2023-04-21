@@ -26,11 +26,11 @@
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>Quản lý lớp học</span>
+                        <i class="fas fa-user-alt"></i><span>Bán hàng</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket"/>">Điển danh học viên</a>
+                        <a class="dropdown-item" href="<c:url value="/employee/order-product"/>">Tạo hóa đơn</a>
                     </div>
                 </div>
             </li>
