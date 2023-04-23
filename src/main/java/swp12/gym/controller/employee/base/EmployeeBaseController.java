@@ -1,6 +1,7 @@
 package swp12.gym.controller.employee.base;
 
 import com.google.gson.Gson;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import swp12.gym.dto.ProductDto;
 import swp12.gym.dto.UserDto;
 import swp12.gym.model.entity.User;
+import swp12.gym.service.OrderService;
 import swp12.gym.service.ProductService;
 import swp12.gym.service.UserService;
 
@@ -27,6 +29,9 @@ public class EmployeeBaseController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private OrderService orderService;
 
     //done
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
@@ -46,14 +51,17 @@ public class EmployeeBaseController {
         return "employee/notify";
     }
 
+
+
+
     @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityEmployee() {
+    public String goActivityAdmin() {
         return "employee/change_pass";
     }
 
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
     public String profileEmployee(Model model, Authentication authentication) {
-        UserDto user = userService.getCustomerByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
+        UserDto user = userService.getUserByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
         model.addAttribute("user",user);
         return "employee/profile_user";
     }
@@ -76,6 +84,21 @@ public class EmployeeBaseController {
         String jsonTrainer = new Gson().toJson(trainers);
         model.addAttribute("jsonCustomer",jsonCustomer);
         model.addAttribute("jsonTrainer",jsonTrainer);
+        int order_id = orderService.getIdOrder();
+        String rand = RandomStringUtils.randomNumeric(4);
+        if (order_id < 10){
+            String code = "00" + order_id + rand;
+            model.addAttribute("code",code);
+        }
+        if (order_id < 100 && order_id >= 10){
+            String code = "0" + order_id + rand;
+            model.addAttribute("code",code);
+        }
+        if (order_id > 100){
+            String code = order_id + rand;
+            model.addAttribute("code",code);
+        }
         return "employee/order-product";
     }
 }
+

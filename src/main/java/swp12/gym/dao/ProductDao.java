@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import swp12.gym.dto.ProductDto;
+import swp12.gym.model.entity.OrderDetail;
 import swp12.gym.model.entity.Product;
 import swp12.gym.model.mapper.ProductMapper;
 
@@ -13,6 +14,7 @@ import swp12.gym.model.mapper.ProductMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public class ProductDao {
@@ -61,6 +63,23 @@ public class ProductDao {
     public void deleteProduct(int id_p) {
         sql = "UPDATE product SET status = 0 WHERE product_id = ?";
         jdbcTemplate.update(sql, id_p);
+    }
+
+    public void updateQuantityProdcut(List<OrderDetail> orderDetail){
+        StringBuffer sql = new StringBuffer("UPDATE product SET quantity = quantity - \n" +
+                "CASE product_id \n");
+        for (OrderDetail listOrderDetail: orderDetail) {
+            sql.append("WHEN " + listOrderDetail.getProduct_id() + " THEN " + listOrderDetail.getQuantity() + "\n");
+        }
+        sql.append("END" + "\n");
+        sql.append("WHERE product_id IN (" );
+        for (OrderDetail orderDetails: orderDetail) {
+            sql.append(orderDetails.getProduct_id() + ",");
+        }
+        sql.deleteCharAt(sql.length()-1);
+        sql.append(");");
+        String sqlRs = sql.substring(0, sql.length());
+        jdbcTemplate.update(sqlRs);
     }
 }
 

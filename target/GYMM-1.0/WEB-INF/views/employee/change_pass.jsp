@@ -16,7 +16,7 @@
 <div id="wrapper">
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
-            <%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
+            <%@include file="/WEB-INF/views/layouts/employee/header.jsp" %>
             <div class="container-fluid w-75 m-auto" style="padding-top: 100px">
                 <div class="card shadow" style="height: 74vh;">
                     <div class="card-header py-3" style="display: flex;">
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <%@include file="/WEB-INF/views/layouts/customer/footer.jsp"%>
+        <%@include file="/WEB-INF/views/layouts/employee/footer.jsp"%>
     </div>
 </div>
 </body>
@@ -90,7 +90,13 @@
                     url: 'http://localhost:8080/users/user-management/change-pass',
                     data: data,
                     success: function (respone) {
-                        Swal.fire(respone, '', 'info');
+                        const respone_return = respone.split('-');
+                        if(respone_return[0] === 'success'){
+                            Swal.fire({ title: respone_return[1], text:"", icon: 'info'});
+                            <%--window.location.href = '<c:url value="/admin/dashboard/class" />';--%>
+                        }else {
+                            Swal.fire({ title: respone_return[1], text:"", icon: 'error'});
+                        }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         Swal.fire('Oops...', 'Lỗi hệ thống', 'error');

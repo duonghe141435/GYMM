@@ -78,16 +78,16 @@
     <div class="card-body">
         <button class="btn-hover" id="myBook" style="box-shadow: 1px 3px;" type="button" title="Xem lịch tập với HLV của bản thân">Lịch huấn luyện</button>
 
-        <select name="typePt" id="ptType">
-            <option value="">HLV cá nhân</option>
-            <option value="">HLV nhóm</option>
-        </select>
+        <%--<select name="typePt" id="ptType">--%>
+            <%--<option value="">HLV cá nhân</option>--%>
+            <%--<option value="">HLV nhóm</option>--%>
+        <%--</select>--%>
 
-        <select name="pt" id="pt">
-            <option value="" hidden>Chọn HLV</option>
-            <option value="">Nguyen Van A</option>
-            <option value="">Nguyen Van B</option>
-        </select>
+        <%--<select name="pt" id="pt">--%>
+            <%--<option value="" hidden>Chọn HLV</option>--%>
+            <%--<option value="">Nguyen Van A</option>--%>
+            <%--<option value="">Nguyen Van B</option>--%>
+        <%--</select>--%>
 
         <select id="week-select"></select>
 
@@ -394,7 +394,6 @@
             var jsonPersonalDetail = ${jsonPersonalDetail};
             var jsonSchedulePersonal = ${jsonSchedulePersonal};
             for (var k = 0; k < jsonPersonalDetail.length; k++) {
-
                 if (jsonPersonalDetail[k].current_date === formattedDate && jsonPersonalDetail[k].time_id === j){
                     for (var h = 0; h < jsonSchedulePersonal.length; h++) {
                         if (formattedDate >= jsonSchedulePersonal[h].start_date && formattedDate <= jsonSchedulePersonal[h].end_date) {

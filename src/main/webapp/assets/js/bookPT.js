@@ -162,7 +162,11 @@ function getWeekDates(dateString) {
     var dayOfWeek = date.getDay()-1;
     var start = new Date(date);
     var today = date;
-    start.setDate(date.getDate() - dayOfWeek)+1; // Lấy ngày đầu tiên của tuần
+    if (dayOfWeek+1 === 0) {
+        start.setDate(date.getDate()-6); // Điều chỉnh đầu ngày bắt đầu của tuần
+    } else {
+        start.setDate(date.getDate() - dayOfWeek)+1; // Lấy ngày đầu tiên của tuần
+    }
     var end = new Date(start);
     end.setDate(start.getDate() + 6);
 
@@ -254,22 +258,22 @@ document.getElementById("week-select").addEventListener("change", function() {
         var table = document.getElementsByTagName("table")[0];
         var rows = table.getElementsByTagName("tr");
         const today = new Date();
-        for(j=0;j<=6;j++){
+        for(j=0;j<rows.length-1;j++){
             var cells = rows[j+1].getElementsByTagName("td");
             cells[i].classList.remove("today");
             cells[i].classList.remove("past");
         }
 
         let dateObj = new Date(year, month - 1, dayChseck)
-        console.log(dateObj);
-        console.log(today);
         if(today.getDate()===dayChseck&&today.getMonth()===month-1&&today.getFullYear()==year){
-            for(j=0;j<=6;j++){
+            console.log(rows.length);
+
+            for(j=0;j<rows.length-1;j++){
                 var cells = rows[j+1].getElementsByTagName("td");
                 cells[i].classList.add("today");
             }
         }else if(dateObj<today){
-            for(j=0;j<=6;j++){
+            for(j=0;j<rows.length-1;j++){
                 var cells = rows[j+1].getElementsByTagName("td");
                 cells[i].classList.add("past");
             }

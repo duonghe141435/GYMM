@@ -49,7 +49,15 @@ spendPriceInput.addEventListener("input", function() {
     if (isNaN(spendPrice) || isNaN(cusPaid)) {
         // Nếu không hợp lệ thì đặt giá trị của refunds bằng 0
         var refunds = 0;
-    } else {
+    } else if(spendPrice < cusPaid){
+        var errorLabel = document.getElementById('errorLabel');
+        errorLabel.innerHTML = 'Không thể nhập giá nhỏ hơn giá khách phải trả';
+        errorLabel.style.color = 'red';
+    }
+    else {
+
+        var errorLabel = document.getElementById('errorLabel');
+        errorLabel.innerHTML = '';
         // Tính toán refunds
         var refunds = spendPrice - cusPaid;
 
@@ -85,10 +93,12 @@ productList.forEach(function(product) {
 
         else if (!existingItem) {
             var newRow = document.createElement('tr');
+            newRow.classList.add('detail_product');
             newRow.innerHTML = `
         <td><i class="fas fa-trash delete-row"></i></td>
-        <td>${productId}</td>
-        <td>${productName}</td>
+        <td><count></count></td>
+        <td class="d-none proId">${productId}</td>
+        <td class="proName">${productName}</td>
         <td class="item-quantity">1</td>
         <td>${productPrice}</td>
         <td class="item-price">${productPrice}</td>
