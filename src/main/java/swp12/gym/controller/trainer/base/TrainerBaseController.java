@@ -85,5 +85,14 @@ public class TrainerBaseController {
         return "trainer/profile_user";
     }
 
+    @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
+    public String goChangePassForTrainer() {
+        return "trainer/change_pass";
+    }
+
+    @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
+    public String goActivityOfTrainer() {
+        return "trainer/change_pass";
+    }
 
 }

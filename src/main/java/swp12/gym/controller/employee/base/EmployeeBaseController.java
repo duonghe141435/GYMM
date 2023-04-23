@@ -46,11 +46,8 @@ public class EmployeeBaseController {
         return "employee/notify";
     }
 
-
-
-
     @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityAdmin() {
+    public String goActivityEmployee() {
         return "employee/change_pass";
     }
 

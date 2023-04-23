@@ -3,25 +3,17 @@ package swp12.gym.common;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
 
+import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Random;
-import java.util.TimeZone;
+import java.util.*;
+import java.util.function.Supplier;
 
 @Component
 public class DataUtil {
-    public static final String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    public static final String lower = upper.toLowerCase(Locale.ROOT);
-
-    public static final String digits = "0123456789";
-
-    public static final String alphanum = upper + lower + digits;
-
     private final Date now = new Date();
 
     private final int min_length_password = 6;
@@ -75,5 +67,9 @@ public class DataUtil {
             e.printStackTrace();
         }
         return password;
+    }
+
+    public String GenerateToken(){
+        return RandomStringUtils.randomAlphanumeric(32);
     }
 }
