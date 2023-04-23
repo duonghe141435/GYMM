@@ -33,13 +33,10 @@ public class CustomerBaseController {
     private ClassService classService;
     @Autowired
     private LogUserService logUserService;
-
     @Autowired
     private UsersDao userDao;
-
     @Autowired
     private TicketUserService ticketUserService;
-
     @Autowired
     private AttendanceService attendanceService;
     @Autowired
@@ -100,9 +97,7 @@ public class CustomerBaseController {
     @RequestMapping(value = "/booking-trainer-log",method = RequestMethod.GET)
     public String goBookingTrainerLog(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-
         List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(2, id);
-
         model.addAttribute("ticket",ticket);
         return "customer/log/trainer_log";
     }
@@ -191,6 +186,11 @@ public class CustomerBaseController {
     public String updateCustomer(@ModelAttribute("user") User user, Model model) {
         System.out.println(user.toString());
         return "customer/index_customer";
+    }
+
+    @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
+    public String goChangePassForCustomer() {
+        return "customer/change_pass";
     }
 }
 

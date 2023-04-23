@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import swp12.gym.common.DataUtil;
 import swp12.gym.dto.UserDto;
 import swp12.gym.dto.UserDtoAdmin;
 import swp12.gym.dto.UserDtoAdminMapper;
@@ -13,17 +14,17 @@ import swp12.gym.model.mapper.UserMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository
 public class UsersDao {
 
     @Autowired
+    private DataUtil dataUtil;
+    @Autowired
     private JdbcTemplate jdbcTemplate;
     private String sql;
-
-    private final LocalDate currentDate = LocalDate.now();
+    ;
 
     public List<UserDtoAdmin> findAllOfAdmin() {
         try {
@@ -378,7 +379,7 @@ public class UsersDao {
     public void saveCustomerForGoogle(int ids, String email, String picture, int enable) {
         try{
             sql = "INSERT INTO users (id_u, name, email, enabled,create_date) VALUES (?,?,?,?,?);";
-            jdbcTemplate.update(sql, ids, email,email, 1, currentDate);
+            jdbcTemplate.update(sql, ids, email,email, 1, dataUtil.getDateNowToString());
         }
         catch (Exception e){
             e.printStackTrace();
@@ -426,5 +427,15 @@ public class UsersDao {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public int createNewUser(User user) {
+        sql = "INSERT INTO users (id_u,name, email,password, enabled, create_date) VALUES (?,?,?,?,?,?)";
+        return jdbcTemplate.update(sql, user.getU_id(), user.getU_full_name(), user.getU_email(), user.getU_password(), 0, dataUtil.getDateNowToString());
+    }
+
+    public void updateStatusUser(int id_u) {
+        sql = "UPDATE users SET enabled = 1 WHERE id_u = ?";
+        jdbcTemplate.update(sql,id_u);
     }
 }

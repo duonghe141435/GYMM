@@ -66,9 +66,11 @@ public class LoginAPI {
                 userService.updatePasswordOfUser(email,
                         BCrypt.hashpw(new_pass, BCrypt.gensalt(10)));
 
-                emailUtil.sentMailRestPassWord(email,userDto.getU_full_name(),new_pass);
-                notify = "success-Mật khẩu mới đã được gửi đến Email của bạn";
-                logUserService.saveLog(userDto.getU_id(),1,dataUtil.getIntToDate(),"Thay đổi mật khẩu");
+                boolean flag = emailUtil.sentMailRestPassWord(email,userDto.getU_full_name(),new_pass);
+                if(flag){
+                    notify = "success-Mật khẩu mới đã được gửi đến Email của bạn";
+                    logUserService.saveLog(userDto.getU_id(),1,dataUtil.getIntToDate(),"Thay đổi mật khẩu");
+                }
             }else {
                 notify = "fail-Email của bạn không tồn tại trong hệ thống";
             }

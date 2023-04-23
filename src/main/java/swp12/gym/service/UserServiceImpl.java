@@ -15,9 +15,6 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UsersDao usersDao;
 
-    @Autowired
-    private UsersDao userDao;
-
     public int findIdByUsername(String username) {
         return usersDao.findIdByUsername(username);
     }
@@ -99,27 +96,31 @@ public class UserServiceImpl implements UserService{
     }
 
     public UserDto getUserByEmail(String username) {
-        return userDao.findAnUserByEmail(username);
+        return usersDao.findAnUserByEmail(username);
     }
 
     public UserDto getCustomerByEmail(String username) {
-        return userDao.findAnCustomerByEmail(username);
+        return usersDao.findAnCustomerByEmail(username);
     }
 
     public int getMaxIdUserInSystem() {
-        return userDao.getMaxIdUserInSystem();
+        return usersDao.getMaxIdUserInSystem();
     }
 
     public void saveCustomerForGoogle(int ids, String email, String picture, int enable) {
-        userDao.saveCustomerForGoogle(ids,email,picture,enable);
+        usersDao.saveCustomerForGoogle(ids,email,picture,enable);
     }
 
     public void createUserForGuest(User user) {
-
+        usersDao.createNewUser(user);
     }
 
     public List<User> findAllUserOfAnClass(int class_id) {
-        return userDao.findAllUserOfAnClass(class_id);
+        return usersDao.findAllUserOfAnClass(class_id);
+    }
+
+    public void updateStatusUser(int id_u) {
+        usersDao.updateStatusUser(id_u);
     }
 
 }
