@@ -70,7 +70,7 @@
                                                 </c:if>
                                             </td>
                                             <td>
-                                                <a class="class-attendance">Điểm danh</a>
+                                                <a class="class-attendance" href="<c:url value="/trainer/attendance-an-class/${class_list.class_id}"/>">Điểm danh</a>
                                             </td>
                                             <td class="text-center">
                                                 <a class="class-view"><i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>

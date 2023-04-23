@@ -97,17 +97,10 @@ yearSelect.addEventListener('change', function() {
     weekSelect.appendChild(option); // Thêm option vào weekSelect
 });
     const dateTime = weekSelect.firstChild.getAttribute('data-timeFirst').split("/");
-    innerTable(selectedYear,dateTime[1], dateTime[0] )
+    // innerTable(selectedYear,dateTime[1], dateTime[0] );
 
 });
-function innerTable(year, month, day){
-    const dateText = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
-    const weekDates = getWeekDates(dateText);
-    for (let i = 0; i <= 6; i++) {
-        const d = document.getElementById(i);
-        d.innerHTML = weekDates[i];
-    }
-}
+
 
 
 // Kích hoạt sự kiện change trên year-select để tạo danh sách tuần mặc định khi load lần đầu
@@ -163,8 +156,6 @@ const currentDate = new Date();
 const year = currentDate.getFullYear();
 const month = currentDate.getMonth() + 1;
 const day = currentDate.getDate();
-const dateText = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
-const fromToText = `${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
 function getWeekDates(dateString) {
     var days = [];
     var date = new Date(dateString);
@@ -180,10 +171,9 @@ function getWeekDates(dateString) {
         day.setDate(start.getDate() + i);
         var dayOfWeek = day.toLocaleDateString('vi-VN', { weekday: 'long' });
         var dayOfMonth = day.getDate();
-        var month = day.toLocaleDateString('vi-VN', { month: 'short' });
+        var month = day.getMonth() + 1;
         var year = day.getFullYear();
-        // var dateString = `${dayOfWeek} <br/> ${dayOfMonth} ${month} ${year}`;
-        var dateString = `${dayOfMonth} ${month} ${year}`;
+        var dateString = `${dayOfMonth}-${month}-${year}`;
         var table = document.getElementsByTagName("table")[0];
         var rows = table.getElementsByTagName("tr");
         if(day.getDate()===today.getDate() && day.getMonth()===today.getMonth() && day.getFullYear()===today.getFullYear()){
@@ -202,9 +192,8 @@ function getWeekDates(dateString) {
     }
     return days;
 }
-
 function getWeeks(dateString) {
-    var weeks = [];
+    var weeks  = [];
     var date = new Date(dateString);
     var dayOfWeek = date.getDay()-1;
     var start = new Date(date);
@@ -217,8 +206,10 @@ function getWeeks(dateString) {
         var day = new Date(start);
         day.setDate(start.getDate() + i);
         var dayOfWeek = day.toLocaleDateString('vi-VN', { weekday: 'long' });
-        // var dateString = `${dayOfWeek} <br/> ${dayOfMonth} ${month} ${year}`;
-        var weekString = `${dayOfWeek}`;
+        var dayOfMonth = day.getDate();
+        var month = day.getMonth() + 1;
+        var year = day.getFullYear();
+        var dateString = `${dayOfWeek}`;
         var table = document.getElementsByTagName("table")[0];
         var rows = table.getElementsByTagName("tr");
         if(day.getDate()===today.getDate() && day.getMonth()===today.getMonth() && day.getFullYear()===today.getFullYear()){
@@ -233,34 +224,59 @@ function getWeeks(dateString) {
                 cells[i].classList.add("past");
             }
         }
-        weeks.push(weekString);
+        weeks.push(dateString);
     }
     return weeks;
 }
-
-var weekDates = getWeekDates(dateText);
-var weeksDates = getWeeks(dateText);
-
+const dateText = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+const weekDates = getWeekDates(dateText);
+const weeksDates = getWeeks(dateText);
 for (var i = 0; i <= 6; i++) {
     var d = document.getElementById(i);
+    // console.log(weekDates[i]);
     var w = document.getElementById((i+"." + 0));
     d.innerHTML = weekDates[i];
     w.innerHTML = weeksDates[i];
 }
 
 document.getElementById("week-select").addEventListener("change", function() {
-    const selectedDate = new Date();
+    let today = new Date();
     const year = yearSelect.value;
     let dateFirst = this.options[this.selectedIndex].getAttribute('data-timeFirst');
     const month = dateFirst.split("/")[1];
     const day = dateFirst.split("/")[0];
+
+    const dateText = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
     const weekDates = getWeekDates(dateText);
     for (let i = 0; i <= 6; i++) {
+        let dayChseck = parseInt(day)+i;
         const d = document.getElementById(i);
+        var table = document.getElementsByTagName("table")[0];
+        var rows = table.getElementsByTagName("tr");
+        const today = new Date();
+        for(j=0;j<=6;j++){
+            var cells = rows[j+1].getElementsByTagName("td");
+            cells[i].classList.remove("today");
+            cells[i].classList.remove("past");
+        }
+
+        let dateObj = new Date(year, month - 1, dayChseck)
+        console.log(dateObj);
+        console.log(today);
+        if(today.getDate()===dayChseck&&today.getMonth()===month-1&&today.getFullYear()==year){
+            for(j=0;j<=6;j++){
+                var cells = rows[j+1].getElementsByTagName("td");
+                cells[i].classList.add("today");
+            }
+        }else if(dateObj<today){
+            for(j=0;j<=6;j++){
+                var cells = rows[j+1].getElementsByTagName("td");
+                cells[i].classList.add("past");
+            }
+        }
+
         d.innerHTML = weekDates[i];
     }
-    console.log(selectedDate);
 });
-
 
         

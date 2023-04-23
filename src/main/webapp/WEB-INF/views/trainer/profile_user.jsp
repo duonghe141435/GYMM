@@ -26,7 +26,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="text-center">
-                                            <img src="https://via.placeholder.com/150"
+                                            <img src="${user.u_img}"
                                                  class="rounded-circle" width="150" height="150">
                                             <div class="mt-2">
                                                 <label class="btn btn-primary">
@@ -47,12 +47,11 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label"
-                                                   for="role"><strong>Chức vụ</strong></label>
-                                            <form:select path="r_id" class="form-select" id="role" name="role" required="required">
-                                                <option value="" selected>Chọn chức vụ người dùng</option>
-                                                <form:option value="2">Nhân viên</form:option>
-                                                <form:option value="3">Huấn luyện viên</form:option>
-                                            </form:select>
+                                                   for="role_name"><strong>Chức vụ</strong></label>
+                                            <%--<form:input class="form-control" type="number" id="role_name"--%>
+                                                        <%--value="Huấn luyện viên" name="full-name"--%>
+                                                        <%--path="u_id" readonly="true" />--%>
+                                            <input id="role_name" class="form-control" value="Huyến luyện viên" readonly>
                                         </div>
                                     </div>
                                     <div class="col-8">
