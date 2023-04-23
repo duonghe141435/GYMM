@@ -26,7 +26,9 @@
                                     <p class="mb-4">Một mật khẩu mới sẽ được gửi đến hộp thư của bạn</p>
                                 </div>
                                 <form class="user">
-                                    <div class="mb-3"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="email"></div><button class="btn btn-primary d-block btn-user w-100" type="submit">Reset Password</button>
+                                    <div class="mb-3">
+                                        <input class="form-control form-control-user" type="email" id="email-reset" aria-describedby="emailHelp" placeholder="Nhập địa chỉ email của bạn" name="email">
+                                    </div><button class="btn btn-primary d-block btn-user w-100" id="reset-btn">Gửi mật khẩu mới</button>
                                 </form>
                                 <div class="text-center">
                                     <hr><a class="small" href="<c:url value='/register'/>">Tạo một tài khoản</a>
@@ -41,4 +43,38 @@
     </div>
 </div>
 </body>
+<script>
+    $(document).ready(function () {
+        var email = $("#email-reset");
+        var btn_reset = $("#reset-btn");
+
+        btn_reset.click(function (e) {
+            e.preventDefault();
+            var _email = email.val();
+            var token = $("meta[name='_csrf']").attr("content");
+            var data = {'email' : _email, _csrf: token};
+
+            $.ajax({
+                type: "POST",
+                url: '<c:url value="/reset-pass" />',
+                data: data,
+                success: function (respone) {
+                    const respone_return = respone.split('-');
+                    if(respone_return[0] === 'success'){
+                        Swal.fire({ title: respone_return[1], text:"", icon: 'info'});
+                    <%--window.location.href = '<c:url value="/admin/dashboard/class" />';--%>
+                    }else {
+                    Swal.fire({ title: respone_return[1], text:"", icon: 'error'});
+                    }
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                }
+            });
+        });
+
+
+    })
+</script>
 </html>

@@ -83,7 +83,13 @@
                     url: 'http://localhost:8080/users/user-management/change-pass',
                     data: data,
                     success: function (respone) {
-                        Swal.fire(respone, '', 'info');
+                        const respone_return = respone.split('-');
+                        if(respone_return[0] === 'success'){
+                            Swal.fire({ title: respone_return[1], text:"", icon: 'info'});
+                            <%--window.location.href = '<c:url value="/admin/dashboard/class" />';--%>
+                        }else {
+                            Swal.fire({ title: respone_return[1], text:"", icon: 'error'});
+                        }
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         Swal.fire('Oops...', 'Lỗi hệ thống', 'error');

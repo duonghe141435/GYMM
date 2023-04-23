@@ -13,10 +13,11 @@ public class EmailUtil {
     private final String username = "gymmasterg12";
     private final String password = "tkizkludycmdbzwr";
 
-    public boolean sentMail(String email_to, String subject, String content){
-        boolean flag = false;
+    private Properties properties = new Properties();
 
-        Properties properties = new Properties();
+
+    public boolean sentMailRestPassWord(String email_to, String name, String new_pass){
+        boolean flag = false;
         properties.put("mail.smtp.auth", true);
         properties.put("mail.smtp.starttls.enable", true);
         properties.put("mail.smtp.port", "587");
@@ -33,9 +34,19 @@ public class EmailUtil {
             Message message = new MimeMessage(session);
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(email_to));
             message.setFrom(new InternetAddress(email_form));
-            message.setSubject(subject);
-            message.setText(content);
 
+            message.setSubject("Mật khẩu của bạn đã được thay đổi");
+            String htmlContent = "<html><body>"
+                    + "<p>Xin chào, "+ name + "</p>"
+                    + "<p><em>Đây là tin nhắn tự động-- vui lòng không trả lời vì bạn sẽ không nhận được phản hồi.</em></p>"
+                    + "<p>Bạn đã yêu cầu reset lại mật khẩu."
+                    + "<p>Mật khẩu mới của bạn là: <strong>" + new_pass + "</strong> </p>"
+                    + "<p>Trân trọng,</p>"
+                    + "<p>Gym Master</p>" +
+                    "</body></html>";
+
+            // Thiết lập nội dung của email với đoạn mã HTML
+            message.setContent(htmlContent, "text/html; charset=utf-8");
             Transport.send(message);
             flag = true;
         }catch (Exception e){
