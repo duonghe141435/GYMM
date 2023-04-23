@@ -90,7 +90,7 @@ public class TrainerBaseController {
         return "trainer/change_pass";
     }
 
-    @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
+    @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
     public String goActivityOfTrainer() {
         return "trainer/change_pass";
     }

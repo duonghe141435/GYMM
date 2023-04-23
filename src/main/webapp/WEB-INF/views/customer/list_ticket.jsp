@@ -7,6 +7,17 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<style>
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .row > * {
+        flex: 0 0 auto;
+    }
+</style>
 <section class="wrapper">
     <div class="container-fostrap">
         <div>

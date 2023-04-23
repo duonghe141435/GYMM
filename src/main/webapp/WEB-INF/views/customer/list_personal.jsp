@@ -101,6 +101,16 @@
             font-weight:600;
             text-transform: uppercase
         }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row > * {
+            flex: 0 0 auto;
+        }
     </style>
 </head>
 
@@ -109,7 +119,7 @@
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
-            <div class="container-fluid min-vh-100" style="padding-top: 100px">
+            <div class="container min-vh-100" style="padding-top: 100px">
                 <%--<%@include file="/WEB-INF/views/customer/list_ticket.jsp" %>--%>
                 <%--<%@include file="/WEB-INF/views/customer/list_trainer.jsp" %>--%>
                 <%--<%@include file="/WEB-INF/views/customer/list_personal.jsp" %>--%>
@@ -120,7 +130,7 @@
                             Tập với PT
                         </h1>
                     </div>
-                    <div class="content">
+                    <div class="content  ">
                         <div class="container">
                             <div id="show-ticket-trainer">
                                 <div class="row" id="shows">
