@@ -237,7 +237,6 @@ public class UsersDao {
                 }
             }, username);
         }catch (Exception e) {
-            e.printStackTrace();
             return null;
         }
     }
