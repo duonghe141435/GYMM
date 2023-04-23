@@ -6,10 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.TicketDto;
@@ -53,11 +50,12 @@ public class AdminBaseController {
     }
 
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
-    public String profileAdmin(Model model, Authentication authentication) {
-        UserDto user = userService.getUserByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
+    public String profileEmployee(Model model, Authentication authentication) {
+        UserDto user = userService.getCustomerByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
         model.addAttribute("user",user);
-        return "base/profile_user";
+        return "admin/profile_user";
     }
+
 
     //Xem tất cả các vé vào cửa - done
     @RequestMapping(value = "/ticket",method = RequestMethod.GET)

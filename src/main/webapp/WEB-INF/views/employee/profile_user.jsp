@@ -13,20 +13,20 @@
 <div id="wrapper">
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
-            <%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
+            <%@include file="/WEB-INF/views/layouts/employee/header.jsp" %>
             <div class="container-fluid" style="padding-top: 80px">
                 <div class="card shadow">
                     <div class="card-header py-3">
                         <p class="text-primary m-0 fw-bold">Thông tin người</p>
                     </div>
 
-                    <div class="card-body"><c:url value="/customer/your-profile/update" var="updateUserUrl"/>
+                    <div class="card-body"><c:url value="/employee/your-profile/update" var="updateUserUrl"/>
                         <form:form method="POST" modelAttribute="user" enctype="multipart/form-data" action="${updateUserUrl}" >
                             <div class="container">
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="text-center">
-                                            <img src="https://via.placeholder.com/150"
+                                            <img src="${user.u_img}"
                                                  class="rounded-circle" width="150" height="150">
                                             <div class="mt-2">
                                                 <label class="btn btn-primary">
@@ -47,12 +47,8 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label"
-                                                   for="role"><strong>Chức vụ</strong></label>
-                                            <form:select path="r_id" class="form-select" id="role" name="role" required="required">
-                                                <option value="" selected>Chọn chức vụ người dùng</option>
-                                                <form:option value="2">Nhân viên</form:option>
-                                                <form:option value="3">Huấn luyện viên</form:option>
-                                            </form:select>
+                                                   for="role_name"><strong>Chức vụ</strong></label>
+                                            <input id="role_name" class="form-control" value="Nhân viên" readonly>
                                         </div>
                                     </div>
                                     <div class="col-8">

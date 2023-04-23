@@ -56,7 +56,7 @@ public class EmployeeBaseController {
 
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
     public String profileEmployee(Model model, Authentication authentication) {
-        UserDto user = userService.getUserByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
+        UserDto user = userService.getCustomerByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
         model.addAttribute("user",user);
         return "employee/profile_user";
     }
