@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import swp12.gym.dto.ClassDto;
+import swp12.gym.dto.ProductDto;
+import swp12.gym.dto.UserDto;
+import swp12.gym.model.entity.User;
 import swp12.gym.service.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -24,6 +28,8 @@ public class TrainerBaseController {
     private ClassService classService;
     @Autowired
     private TrainerService trainerService;
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String indexTrainer(Model model, Authentication authentication) {
@@ -48,6 +54,14 @@ public class TrainerBaseController {
         return "trainer/class_detail";
     }
 
+    @RequestMapping(value = "/product",method = RequestMethod.GET)
+    public String productPage(Model model) {
+        List<ProductDto> productDtos = productService.findAll();
+        model.addAttribute("productDtos", productDtos);
+
+        return "trainer/view_product";
+    }
+
 //    @RequestMapping(value = "/attendance-an-class/{class_id}",method = RequestMethod.GET)
 //    public String goAttendance(@PathVariable int class_id, Model model) {
 //        List<swp12.gym.model.entity.User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
@@ -57,13 +71,18 @@ public class TrainerBaseController {
 //        return "customer/index_customer";
 //    }
 
-    @RequestMapping(value = "/attendance-an-class",method = RequestMethod.GET)
-    public String goAttendance(Model model) {
-//        List<swp12.gym.model.entity.User> list_user_of_class = userService.findAllUserOfAnClass(7);
-//        model.addAttribute("list_user_of_class", list_user_of_class);
-//        System.out.println(list_user_of_class);
-        System.out.println("test");
-        return "customer/attendance";
+    @RequestMapping(value = "/attendance-an-class/{class_id}",method = RequestMethod.GET)
+    public String goAttendance(@PathVariable int class_id, Model model) {
+        List<User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
+        model.addAttribute("list_user_of_class", list_user_of_class);
+        return "trainer/trainer_attendance";
+    }
+
+    @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
+    public String profileCustomer(Model model, HttpSession s) {
+        UserDto user = userService.getCustomerByEmail(s.getAttribute("display_email").toString());
+        model.addAttribute("user",user);
+        return "trainer/profile_user";
     }
 
 
