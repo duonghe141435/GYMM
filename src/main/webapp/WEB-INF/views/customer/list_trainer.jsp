@@ -101,6 +101,16 @@
             font-weight:600;
             text-transform: uppercase
         }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row > * {
+            flex: 0 0 auto;
+        }
     </style>
 </head>
 
@@ -109,14 +119,13 @@
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
-            <div class="container-fluid min-vh-100" style="padding-top: 100px">
+            <div class="container" style="padding-top: 100px">
                 <%--<%@include file="/WEB-INF/views/customer/list_ticket.jsp" %>--%>
                 <%--&lt;%&ndash;<%@include file="/WEB-INF/views/customer/list_trainer.jsp" %>&ndash;%&gt;--%>
                 <%--<%@include file="/WEB-INF/views/customer/list_personal.jsp" %>--%>
                 <%--<%@include file="/WEB-INF/views/customer/list_class.jsp" %>--%>
-                    <div class="container-fostrap" >
                         <div>
-                            <h1 class="heading">
+                            <h1 class="heading d-flex justify-content-center align-items-center">
                                 Huấn Luyện Viên
                             </h1>
                         </div>
@@ -148,7 +157,7 @@
                                                         - Năm kinh nghiệm:  <br/>
                                                     </p>
                                                 </div>
-                                                <div class="card-read-more">
+                                                <div class="card-read-more d-flex justify-content-center align-items-center">
                                                     <a class="btn btn-link btn-block">
                                                         Read More
                                                     </a>
@@ -160,7 +169,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
             </div>
         </div>
         <footer class="bg-white sticky-footer">
