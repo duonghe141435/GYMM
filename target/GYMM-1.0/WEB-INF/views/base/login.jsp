@@ -11,12 +11,8 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Đăng nhập</title>
-    <link rel="stylesheet" href="<c:url value="/assets/bootstrap/css/bootstrap.min.css"/>">
-    <link rel="stylesheet" href="<c:url value="/assets/fonts/fontawesome-all.min.css"/>">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
 </head>
 
 <body class="bg-gradient-primary">
@@ -45,11 +41,16 @@
                                             </div>
                                         </div>
                                     </div><button class="btn btn-primary d-block btn-user w-100" type="submit">Đăng nhập</button>
-                                    <hr><a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"><i class="fab fa-google"></i>&nbsp; Đăng nhập với Google</a>
+                                    <hr>
+                                    <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"
+                                       href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/login-google&response_type=code
+    &client_id=183838572195-7pihdf1po39ofnqomot2iohs5ok5dmjf.apps.googleusercontent.com&approval_prompt=force">
+                                        <i class="fab fa-google"></i>&nbsp; Đăng nhập với Google
+                                    </a>
                                     <hr>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 </form>
-                                <div class="text-center"><a class="small" href="<c:url value="/forgot-password'"/>">Bạn đã quên mật khẩu?</a></div>
+                                <div class="text-center"><a class="small" href="<c:url value="/forgot-password"/>">Bạn đã quên mật khẩu?</a></div>
                                 <div class="text-center"><a class="small" href="<c:url value='/register'/>">Tạo một tài khoản</a></div>
                             </div>
                         </div>
@@ -59,18 +60,9 @@
         </div>
     </div>
 </div>
-<script src="<c:url value="/assets/bootstrap/js/bootstrap.min.js"/>"></script>
-<script src="<c:url value="/assets/js/bs-init.js"/>"></script>
-<script src="<c:url value="/assets/js/theme.js"/>"></script>
 </body>
 <script>
-    <c:if test="${not empty message}">
-    <c:choose>
-    <c:when test="${message eq 'multi'}">
 
-    </c:when>
-    </c:choose>
-    </c:if>
     <c:if test="${not empty message}">
     <c:if test="${message eq 'logout'}">
     Swal.fire({icon: 'info', text: 'Đăng xuất thành công!', showConfirmButton: false, timer: 2500});

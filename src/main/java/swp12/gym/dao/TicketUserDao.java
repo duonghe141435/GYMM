@@ -99,7 +99,6 @@ public class TicketUserDao {
             sql = "SELECT tu.name, tu.start_date, tu.end_date\n" +
                     "FROM ticket_user tu\n" +
                     "JOIN ticket t ON tu.ticket_id = t.id_t\n" +
-                    "JOIN ticket_type tt ON t.tt_id = tt.tt_id\n" +
                     "WHERE tt.tt_id = 2 AND tu.id_u = ?";
             return jdbcTemplate.query(sql, new RowMapper<TicketUserDto>() {
                 public TicketUserDto mapRow(ResultSet resultSet, int i) throws SQLException {

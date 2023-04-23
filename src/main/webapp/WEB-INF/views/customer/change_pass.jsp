@@ -16,7 +16,7 @@
 <div id="wrapper">
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
-            <%@include file="/WEB-INF/views/layouts/employee/header.jsp" %>
+            <%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
             <div class="container-fluid w-75 m-auto" style="padding-top: 100px">
                 <div class="card shadow" style="height: 74vh;">
                     <div class="card-header py-3" style="display: flex;">
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <%@include file="/WEB-INF/views/layouts/employee/footer.jsp"%>
+        <%@include file="/WEB-INF/views/layouts/customer/footer.jsp"%>
     </div>
 </div>
 </body>

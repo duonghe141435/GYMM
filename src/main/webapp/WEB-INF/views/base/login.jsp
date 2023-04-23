@@ -62,12 +62,7 @@
 </div>
 </body>
 <script>
-    <c:if test="${not empty message}">
-    <c:choose>
-    <c:when test="${message eq 'multi'}">
-    </c:when>
-    </c:choose>
-    </c:if>
+
     <c:if test="${not empty message}">
     <c:if test="${message eq 'logout'}">
     Swal.fire({icon: 'info', text: 'Đăng xuất thành công!', showConfirmButton: false, timer: 2500});
