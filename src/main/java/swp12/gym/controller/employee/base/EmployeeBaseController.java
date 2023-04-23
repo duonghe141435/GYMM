@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import swp12.gym.dto.ProductDto;
 import swp12.gym.dto.UserDto;
 import swp12.gym.model.entity.User;
+import swp12.gym.service.OrderService;
 import swp12.gym.service.ProductService;
 import swp12.gym.service.UserService;
 
@@ -27,6 +28,9 @@ public class EmployeeBaseController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private OrderService orderService;
 
     //done
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
@@ -79,6 +83,10 @@ public class EmployeeBaseController {
         String jsonTrainer = new Gson().toJson(trainers);
         model.addAttribute("jsonCustomer",jsonCustomer);
         model.addAttribute("jsonTrainer",jsonTrainer);
+        int order_id = orderService.getIdOrder();
+        System.out.println("order_id" + order_id);
+
+
         return "employee/order-product";
     }
 }

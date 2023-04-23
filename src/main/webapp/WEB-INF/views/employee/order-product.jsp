@@ -371,7 +371,10 @@
             var proName = document.querySelectorAll('td.proName');
             var product_list = document.querySelectorAll('.detail_product');
 
+            var token = $("meta[name='_csrf']").attr("content");
             for (var i = 0; i < product_list.length; i++) {
+
+
                 var td_list = product_list[i].querySelectorAll('td');
                 var data = {
                     '_product_id': td_list[0].textContent,

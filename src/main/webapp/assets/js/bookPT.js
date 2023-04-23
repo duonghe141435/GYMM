@@ -254,22 +254,22 @@ document.getElementById("week-select").addEventListener("change", function() {
         var table = document.getElementsByTagName("table")[0];
         var rows = table.getElementsByTagName("tr");
         const today = new Date();
-        for(j=0;j<=6;j++){
+        for(j=0;j<rows.length-1;j++){
             var cells = rows[j+1].getElementsByTagName("td");
             cells[i].classList.remove("today");
             cells[i].classList.remove("past");
         }
 
         let dateObj = new Date(year, month - 1, dayChseck)
-        console.log(dateObj);
-        console.log(today);
         if(today.getDate()===dayChseck&&today.getMonth()===month-1&&today.getFullYear()==year){
-            for(j=0;j<=6;j++){
+            console.log(rows.length);
+
+            for(j=0;j<rows.length-1;j++){
                 var cells = rows[j+1].getElementsByTagName("td");
                 cells[i].classList.add("today");
             }
         }else if(dateObj<today){
-            for(j=0;j<=6;j++){
+            for(j=0;j<rows.length-1;j++){
                 var cells = rows[j+1].getElementsByTagName("td");
                 cells[i].classList.add("past");
             }
