@@ -41,16 +41,16 @@ public class AdminBaseController {
 
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
     public String goChangePassForAdmin() {
-        return "layouts/change_pass";
+        return "admin/change_pass";
     }
 
     @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
     public String goActivityAdmin() {
-        return "layouts/change_pass";
+        return "admin/activity_log";
     }
 
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
-    public String profileEmployee(Model model, Authentication authentication) {
+    public String profileAdmin(Model model, Authentication authentication) {
         UserDto user = userService.getCustomerByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
         model.addAttribute("user",user);
         return "admin/profile_user";
@@ -129,8 +129,6 @@ public class AdminBaseController {
     }
 
 
-
-
     @RequestMapping(value = "/detail-class",method = RequestMethod.GET)
     public String goDetailCLass(@RequestParam(value = "class_id") int class_id, Model model) {
         System.out.println("class_id: " + class_id);
@@ -140,7 +138,6 @@ public class AdminBaseController {
         model.addAttribute("list_user_of_class", list_user_of_class);
         return "";
     }
-
 
     //----------------------view detail customer----------
     @RequestMapping(value = "/booking-ticket-log/{userID}",method = RequestMethod.GET)
@@ -165,7 +162,6 @@ public class AdminBaseController {
         model.addAttribute("classDtos",classDtos);
         return "admin/customer/class_log";
     }
-
     @RequestMapping(value = "/activity-log/{userID}",method = RequestMethod.GET)
     public String goActivityCustomer(@PathVariable int userID, Model model, Authentication authentication) {
         List<LogUser> logUsers = logUserService.getAnLogOfAnUser(userID);
