@@ -1,5 +1,6 @@
 package swp12.gym.common;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
@@ -7,10 +8,28 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
 
 @Component
 public class DataUtil {
+    public static final String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    public static final String lower = upper.toLowerCase(Locale.ROOT);
+
+    public static final String digits = "0123456789";
+
+    public static final String alphanum = upper + lower + digits;
+
+    private final Date now = new Date();
+
+    private final int min_length_password = 6;
+
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+    SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+
     public String convertLocalDateTimeToString(LocalDateTime localDateTime){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String formattedDateTime = localDateTime.format(formatter);
@@ -22,10 +41,6 @@ public class DataUtil {
         LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
         return dateTime;
     }
-
-    private final Date now = new Date();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-    SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
 
     public int getIntToDate(){
         long timestampInSeconds = now.getTime() / 1000;
@@ -50,5 +65,15 @@ public class DataUtil {
             e.printStackTrace();
         }
         return date;
+    }
+
+    public String generatePassword () {
+      String password = "Gm12ha";
+        try {
+            password = RandomStringUtils.randomAlphanumeric(min_length_password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return password;
     }
 }

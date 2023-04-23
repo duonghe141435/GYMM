@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
     <div class="container-fluid" style="background-color: seagreen">
-        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="<c:url value="/trainer/index"/>" style="padding: 0 .75rem;">
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="<c:url value="/customer/home"/>" style="padding: 0 .75rem;">
             <div class="sidebar-brand-icon rotate-n-15">
                 <%--<i class="fas fa-laugh-wink"></i>--%>
                 <img style="width: 62px" src="<c:url value="/assets/img/logo/logo-icon.png" />" />

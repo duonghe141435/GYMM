@@ -43,8 +43,6 @@ public class LoginController {
     @Autowired
     private EmailUtil emailUtil;
 
-
-
     @RequestMapping("/login")
     public String login(@RequestParam(required = false) String message, final Model model) {
         if (message != null && !message.equals("")) {
@@ -187,21 +185,7 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/forgot-password", method = RequestMethod.GET)
-    public String goForgotPassword(){
-        return "base/forgot-password";
-    }
-
-    @RequestMapping(value = "/forgot-password/sent_pass", method = RequestMethod.GET)
-    public String goSentNewPasswordForUser(){
-        String subject = "Test send mail";
-        String text = "Example email";
-
-        boolean check = emailUtil.sentMail("luonghdhe141257@fpt.edu.vn", subject,text);
-        if(check){
-            System.out.println("finish");
-        }else {
-            System.out.println("NO");
-        }
+    public String goForgotPassword(@RequestParam(required = false) String message,final Model model){
         return "base/forgot-password";
     }
 
