@@ -7,48 +7,42 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color: seagreen">
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#" style="padding: 0 .75rem;">
             <div class="sidebar-brand-icon rotate-n-15">
                 <img style="width: 70px" src="<c:url value="/assets/img/logo/logo-icon.png" />" />
             </div>
             <div class="sidebar-brand-text">
-                <span>GYM MASTER</span>
+                <span style="font-weight: bold">GYM MASTER</span>
             </div>
         </a>
         <ul class="navbar-nav text-light" id="accordionSidebar">
             <%--<li class="nav-item dropdown no-arrow mx-1">--%>
                 <%--<div class="nav-item dropdown no-arrow">--%>
                     <%--<a class="nav-link" href="<c:url value="/trainer/index"/>">--%>
-                        <%--<i class="fas fa-user-alt"></i><span>Trang chủ</span>--%>
+                        <%--<i class="fas fa-home"></i><span>&nbsp;&nbsp;Trang chủ</span>--%>
                     <%--</a>--%>
                 <%--</div>--%>
             <%--</li>--%>
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
-                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>Quản lý lớp học</span>
+                    <a class="dropdown-toggle nav-link" href="<c:url value="/trainer/index"/>">
+                        <i class="fas fa-person-booth"></i><span>&nbsp;&nbsp;Quản lý lớp học</span>
                     </a>
-
-                    <div class="dropdown-menu shadow animated--grow-in">
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/ticket"/>">Quản lý vé</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/equipment"/>">Quản lý thiết bị</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/product"/>">Quản lý sản phẩm</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/class"/>">Quản lý lớp</a>
-                    </div>
                 </div>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
-                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>Quản lý học viên</span>
+                    <a class="dropdown-toggle nav-link" >
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Quản lý học viên</span>
                     </a>
-
-                    <div class="dropdown-menu shadow animated--grow-in">
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý người dùng hệ thống</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý nhân viên</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý huấn luyện viên</a>
-                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <div class="nav-item dropdown no-arrow">
+                    <a class="dropdown-toggle nav-link" href="<c:url value="/trainer/product"/>">
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Sản phẩm</span>
+                    </a>
                 </div>
             </li>
         </ul>
@@ -81,7 +75,7 @@
             <div class="d-none d-sm-block topbar-divider"></div>
             <li class="nav-item dropdown no-arrow">
                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                    <span class="d-none d-lg-inline me-2 text-gray-600 small">${display_name}</span>
+                    <span class="d-none d-lg-inline me-2 small" style="color: white">${display_name}</span>
                     <img class="border rounded-circle img-profile" src="<c:url value="${display_img}"/>"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="<c:url value="/trainer/your-profile"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>

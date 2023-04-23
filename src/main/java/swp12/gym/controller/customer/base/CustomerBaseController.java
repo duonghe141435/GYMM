@@ -164,12 +164,12 @@ public class CustomerBaseController {
         return "customer/booked_class";
     }
 
-    @RequestMapping(value = "/attendance-an-class",method = RequestMethod.GET)
-    public String goAttendance(Model model) {
-        List<User> list_user_of_class = userService.findAllUserOfAnClass(7);
-        model.addAttribute("list_user_of_class", list_user_of_class);
-        return "customer/attendance";
-    }
+//    @RequestMapping(value = "/attendance-an-class",method = RequestMethod.GET)
+//    public String goAttendance(Model model) {
+//        List<User> list_user_of_class = userService.findAllUserOfAnClass(7);
+//        model.addAttribute("list_user_of_class", list_user_of_class);
+//        return "customer/attendance";
+//    }
 
     @RequestMapping(value = "/show_list_customer",method = RequestMethod.GET)
     public String showListCustomerOfAnClass(@RequestParam(value = "class_id") int class_id, Model model) {
