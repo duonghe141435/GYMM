@@ -64,4 +64,6 @@ public interface UserService {
     void createUserForGuest(User user);
 
     List<User> findAllUserOfAnClass(int class_id);
+
+    void updateStatusUser(int id_u);
 }

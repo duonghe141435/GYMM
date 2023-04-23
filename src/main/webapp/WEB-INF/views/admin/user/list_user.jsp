@@ -65,7 +65,7 @@
                                             <td>${users.u_full_name}</td>
                                             <td class="text-center">${users.u_phone_number}</td>
                                             <c:if test="${users.u_enable == 0}">
-
+                                                <td class="status text-center"><span class="warning">Chưa kích hoạt</span></td>
                                             </c:if>
                                             <c:if test="${users.u_enable == -1}">
                                                 <td class="status text-center"><span class="danger">Khóa</span></td>

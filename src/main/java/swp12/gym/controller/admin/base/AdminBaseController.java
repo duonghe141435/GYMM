@@ -6,10 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.TicketDto;
@@ -44,20 +41,21 @@ public class AdminBaseController {
 
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
     public String goChangePassForAdmin() {
-        return "layouts/change_pass";
+        return "admin/change_pass";
     }
 
     @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
     public String goActivityAdmin() {
-        return "layouts/change_pass";
+        return "admin/activity_log";
     }
 
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
     public String profileAdmin(Model model, Authentication authentication) {
-        UserDto user = userService.getUserByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
+        UserDto user = userService.getCustomerByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
         model.addAttribute("user",user);
-        return "base/profile_user";
+        return "admin/profile_user";
     }
+
 
     //Xem tất cả các vé vào cửa - done
     @RequestMapping(value = "/ticket",method = RequestMethod.GET)
@@ -131,8 +129,6 @@ public class AdminBaseController {
     }
 
 
-
-
     @RequestMapping(value = "/detail-class",method = RequestMethod.GET)
     public String goDetailCLass(@RequestParam(value = "class_id") int class_id, Model model) {
         System.out.println("class_id: " + class_id);
@@ -142,7 +138,6 @@ public class AdminBaseController {
         model.addAttribute("list_user_of_class", list_user_of_class);
         return "";
     }
-
 
     //----------------------view detail customer----------
     @RequestMapping(value = "/booking-ticket-log/{userID}",method = RequestMethod.GET)
@@ -167,7 +162,6 @@ public class AdminBaseController {
         model.addAttribute("classDtos",classDtos);
         return "admin/customer/class_log";
     }
-
     @RequestMapping(value = "/activity-log/{userID}",method = RequestMethod.GET)
     public String goActivityCustomer(@PathVariable int userID, Model model, Authentication authentication) {
         List<LogUser> logUsers = logUserService.getAnLogOfAnUser(userID);

@@ -50,17 +50,14 @@ public class EmployeeBaseController {
         return "employee/notify";
     }
 
-
-
-
     @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityAdmin() {
+    public String goActivityEmployee() {
         return "employee/change_pass";
     }
 
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
     public String profileEmployee(Model model, Authentication authentication) {
-        UserDto user = userService.getUserByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
+        UserDto user = userService.getCustomerByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
         model.addAttribute("user",user);
         return "employee/profile_user";
     }

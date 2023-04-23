@@ -14,19 +14,19 @@
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <%@include file="/WEB-INF/views/layouts/admin/header.jsp" %>
-            <div class="container-fluid" style="padding-top: 100px">
+            <div class="container-fluid" style="padding-top: 80px">
                 <div class="card shadow">
                     <div class="card-header py-3">
                         <p class="text-primary m-0 fw-bold">Thông tin người</p>
                     </div>
 
-                    <div class="card-body"><c:url value="/customer/your-profile/update" var="updateUserUrl"/>
+                    <div class="card-body"><c:url value="/admin/your-profile/update" var="updateUserUrl"/>
                         <form:form method="POST" modelAttribute="user" enctype="multipart/form-data" action="${updateUserUrl}" >
                             <div class="container">
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="text-center">
-                                            <img src="https://via.placeholder.com/150"
+                                            <img src="${user.u_img}"
                                                  class="rounded-circle" width="150" height="150">
                                             <div class="mt-2">
                                                 <label class="btn btn-primary">
@@ -47,14 +47,13 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label"
-                                                   for="role"><strong>Chức vụ</strong></label>
-                                            <select class="form-select" id="role" name="role" required disabled>
-                                                <option selected disabled>Admin</option>
-                                            </select>
+                                                   for="role_name"><strong>Chức vụ</strong></label>
+                                            <input id="role_name" class="form-control" value="Admin" readonly>
                                         </div>
                                     </div>
                                     <div class="col-8">
                                         <div class="mb-3" style="display:none;">
+                                            <label class="form-label" for="user-id"><strong>#</strong></label>
                                             <form:input class="form-control" type="number" id="user-id"
                                                         placeholder="Enter your full name" name="full-name"
                                                         path="u_id" readonly="true" />
@@ -70,9 +69,19 @@
                                                    for="email"><strong>Email</strong></label>
                                             <form:input class="form-control" type="email" id="email"
                                                         placeholder="Nhập địa chỉ email của bạn"
-                                                        path="u_email" name="email" readonly="true" />
+                                                        path="u_email" name="email" required="required" />
                                             <div class="invalid-feedback email-error">
                                                 Vui lòng nhập địa chỉ email hợp lệ.
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label"
+                                                   for="password"><strong>Mật khẩu</strong></label>
+                                            <form:input class="form-control" type="password" id="password"
+                                                        placeholder="Nhập mật khẩu của bạn"
+                                                        path="u_password" name="email" required="required" />
+                                            <div class="invalid-feedback password-error">
+                                                Vui lòng nhập mật khẩu hợp lệ.
                                             </div>
                                         </div>
                                         <div class="mb-3">
@@ -202,4 +211,7 @@
 
 
 </script>
+<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/assets/js/bs-init.js'/>"></script>
+<script src="<c:url value='/assets/js/theme.js'/>"></script>
 </html>

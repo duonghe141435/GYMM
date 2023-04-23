@@ -55,10 +55,10 @@
                                             placeholder="Nhập mật khẩu của bạn" name="password" />
                             </div>
                             <div class="form-field">
-                                <label for="exampleRepeatPasswordInput">Confirm-password:</label>
+                                <label for="register-pass">Confirm-password:</label>
                                 <small style="font-size: 15px"></small>
                                 <input class="form-control form-control-user" type="password"
-                                       id="exampleRepeatPasswordInput"
+                                       id="register-pass"
                                        placeholder="Nhập lại mật khẩu" name="password_repeat">
                             </div>
                             <button class="btn btn-primary d-block btn-user w-100" id="btn-register" type="submit">Đăng ký tài khoản</button>
@@ -83,6 +83,6 @@
     Swal.fire({icon: 'error', title: 'Oops...', text: '${message}', showConfirmButton: false, timer: 2500});
     </c:if>
 </script>
-<script src="<c:url value='/assets/js/register-validate.js'/>"></script>
+<%--<script src="<c:url value='/assets/js/register-validate.js'/>"></script>--%>
 </body>
 </html>
