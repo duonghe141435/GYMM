@@ -11,9 +11,11 @@
     <div class="container-fluid" style="background-color: seagreen">
         <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="<c:url value="/trainer/index"/>" style="padding: 0 .75rem;">
             <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-laugh-wink"></i></div>
+                <%--<i class="fas fa-laugh-wink"></i>--%>
+                <img style="width: 62px" src="<c:url value="/assets/img/logo/logo-icon.png" />" />
+            </div>
             <div class="sidebar-brand-text mx-3">
-                <span>Brand</span>
+                <span style="font-weight: bold">GYM MASTER</span>
             </div>
         </a>
         <ul class="navbar-nav text-light" id="accordionSidebar">

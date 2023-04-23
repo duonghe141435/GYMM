@@ -16,28 +16,28 @@
             </div>
         </a>
         <ul class="navbar-nav text-light" id="accordionSidebar">
+            <%--<li class="nav-item dropdown no-arrow mx-1">--%>
+                <%--<div class="nav-item dropdown no-arrow">--%>
+                    <%--<a class="nav-link" href="<c:url value="/employee/index"/>">--%>
+                        <%--<i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Trang chủ</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+            <%--</li>--%>
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
-                    <a class="nav-link" href="<c:url value="/employee/index"/>">
-                        <i class="fas fa-user-alt"></i><span>Trang chủ</span>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <div class="nav-item dropdown no-arrow">
-                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>Bán hàng</span>
+                    <a class="dropdown-toggle nav-link" href="<c:url value="/employee/order-product"/>">
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Bán hàng</span>
                     </a>
 
-                    <div class="dropdown-menu shadow animated--grow-in">
-                        <a class="dropdown-item" href="<c:url value="/employee/order-product"/>">Tạo hóa đơn</a>
-                    </div>
+                    <%--<div class="dropdown-menu shadow animated--grow-in">--%>
+                        <%--<a class="dropdown-item" href="<c:url value="/employee/order-product"/>">Tạo hóa đơn</a>--%>
+                    <%--</div>--%>
                 </div>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>Quản lý học viên</span>
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Quản lý học viên</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">

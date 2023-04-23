@@ -6,14 +6,14 @@
                 <img style="width: 70px" src="<c:url value="/assets/img/logo/logo-icon.png" />" />
             </div>
             <div class="sidebar-brand-text">
-                <span>GYM MASTER</span>
+                <span style="font-weight: bold">GYM MASTER</span>
             </div>
         </a>
         <ul class="navbar-nav text-light" id="accordionSidebar">
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>Người dùng hệ thống</span>
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Người dùng hệ thống</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
@@ -28,7 +28,7 @@
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>Phòng tập</span>
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Phòng tập</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
@@ -43,7 +43,7 @@
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>Sổ quỹ</span>
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Sổ quỹ</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
@@ -56,7 +56,7 @@
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>Báo cáo</span>
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Báo cáo</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
@@ -155,7 +155,7 @@
             <div class="d-none d-sm-block topbar-divider"></div>
             <li class="nav-item dropdown no-arrow">
                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                    <span class="d-none d-lg-inline me-2 text-gray-600 small">${display_name}</span>
+                    <span class="d-none d-lg-inline me-2 small" style="color: white">${display_name}</span>
                     <img class="border rounded-circle img-profile" src="<c:url value="${display_img}"/>"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="<c:url value="/admin/dashboard/your-profile"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>

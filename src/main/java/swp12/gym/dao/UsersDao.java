@@ -261,7 +261,7 @@ public class UsersDao {
             return jdbcTemplate.queryForObject(sql, new RowMapper<User>() {
                 public User mapRow(ResultSet resultSet, int i) throws SQLException {
                     User user = new User();
-                    user.setU_id(resultSet.getLong("id_u"));
+                    user.setU_id(Long.valueOf(resultSet.getInt("id_u")));
                     user.setU_full_name(resultSet.getString("name"));
                     user.setU_img(resultSet.getString("image"));
                     return user;
