@@ -308,7 +308,7 @@
         if (check_total_attendees === "full") {
             Swal.fire({
                 title: 'Hiện tại lớp đã đủ học viên',
-                icon: 'success',
+                icon: 'info',
                 text: 'Vui lòng chọn lớp khác',
             });
         }
@@ -381,7 +381,7 @@
                                 <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "ticket_id=" + 0 + "&end_date_ticket=" + 0 + "&price=" + price_class+ "&ticket_pt_id=" + ticket_class_id + "&end_date_ticket_personal=" + end_date_class + "&class_or_personal_id=" + ticketClassID;--%>
                             }
                         } else {
-                            Swal.fire('Bạn đã tham gia vào lớp này', '', 'success')
+                            Swal.fire('Bạn đã tham gia vào lớp này', '', 'info')
                         }
                     },
                     error: function () {

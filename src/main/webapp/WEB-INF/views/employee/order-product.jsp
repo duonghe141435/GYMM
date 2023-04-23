@@ -15,10 +15,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Product</title>
-    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
-    <script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
     <style>
         .fa-trash {
             color: red;
@@ -127,6 +124,15 @@
 
                 <div class="card bg-primary text-white rounded-3">
                     <div class="card-body">
+                        <div class="row form-outline form-white mb-4">
+                            <div class="col-6">
+                                <label class="form-label mt-3" for="orderPrice">Hóa đơn:</label>
+                                <label class="mx-2 mt-3 text-white text-center" id="code" style="display: inline-block;
+                                                            border-radius: 2px;">${code}</label>
+                            </div>
+
+
+                        </div>
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <div>
                                 <span id="empName">${display_name}</span>
@@ -167,7 +173,7 @@
                                 <div class="col-6">
                                     <label class="form-label mt-3" for="orderPrice">Tổng tiền hàng:</label>
                                     <label class="mx-2 mt-3 bg-white text-dark text-center" id="totalOrder" style="display: inline-block;
-                                                            border-radius: 2px;">0</label>
+                                                            border-radius: 2px;"></label>
                                 </div>
                                 <div class="col-6">
                                     <label class="mt-3 float-end" id="orderPrice">0</label>
@@ -182,7 +188,7 @@
                                 <div class="col-8">
                                     <div class="row">
                                         <input type="number" id="discount" class="form-control"
-                                               style="width: 195px;"/>
+                                               style="width: 195px;" value="0"/>
                                         <label class="text-white text-center mx-1 py-2" style="background-color: #1fa750; height: 37px;
                                                                 width: 60px;">%</label>
                                     </div>
@@ -208,6 +214,7 @@
                                                                 width: 60px;">VNĐ</label>
                                     </div>
                                 </div>
+                                <span id="errorLabel"></span>
                             </div>
                             <div class="row form-outline form-white mb-4">
                                 <div class="col-6">
@@ -323,7 +330,7 @@
 
 
 
-    $(document).ready(function ({}) {
+    $(document).ready(function () {
         var name = document.getElementById("pt_name");
         var checks = document.getElementById("checkas");
         name.addEventListener("change", function() {
@@ -363,31 +370,80 @@
             var totalOrder = document.getElementById("totalOrder").innerText;
             var orderPrice = document.getElementById("orderPrice").innerHTML;
             var cus_paid = document.getElementById("cus_paid").innerText;
-            var discountInput = document.getElementById('discount');
-            discountPercent = parseInt(discountInput.value);
-            var spendPriceInput = document.getElementById("spendPrice");
-            spendPrice = parseInt(spendPriceInput.value);
+            var discountInput = document.getElementById('discount').value;
+            // discountPercent = parseInt(discountInput.value);
+            var spendPriceInput = document.getElementById("spendPrice").value;
+            // spendPrice = parseInt(spendPriceInput.value);
             var refunds = document.getElementById("refunds").innerText;
             var proName = document.querySelectorAll('td.proName');
+            var proId = document.querySelectorAll('td.proId');
             var product_list = document.querySelectorAll('.detail_product');
+            var code = document.getElementById("code").innerText;
 
             var token = $("meta[name='_csrf']").attr("content");
-            for (var i = 0; i < product_list.length; i++) {
 
 
-                var td_list = product_list[i].querySelectorAll('td');
-                var data = {
-                    '_product_id': td_list[0].textContent,
-                    '_quantity': td_list[2].textContent,
-                    '_price': td_list[3].textContent,
-                    '_totalprice': td_list[5].textContent
+            var data_order = {
+                "_code" : code,
+                "_staff" : empId,
+                "_customer" : selectedCusId,
+                "_total_amount" : orderPrice,
+                "_discount" : discountInput,
+                "_total_payment" : cus_paid,
+                "_customer_paying" : spendPriceInput,
+                "_change" : refunds
+            };
+            var data = {
+                '_order': JSON.stringify(data_order),
+                _csrf: token
+            };
+
+            $.ajax({
+                url: '/employeeApi/save_order',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+
+                    var listProduct = [];
+                    // lấy data product thêm vào bảng order detail
+                    for (var i = 0; i < product_list.length; i++) {
+                        var td_list = product_list[i].querySelectorAll('td');
+
+                        var dataProducts = {
+                            '_product_id': td_list[2].textContent,
+                            '_quantity': td_list[4].textContent,
+                            '_price_original': td_list[5].textContent,
+                            '_price_sale': td_list[6].textContent,
+                            '_totalprice': td_list[7].textContent,
+                            '_order_id': response
+                        }
+                        listProduct.push(dataProducts);
+                    }
+                    var datas = {
+                        'listProduct': JSON.stringify(listProduct),
+                        _csrf: token
+                    };
+                    $.ajax({
+                        url: '/employeeApi/save_order_detail',
+                        type: 'POST',
+                        data: datas,
+                        success: function(response) {
+                            Swal.fire({
+                                icon: 'sucsess',
+                                title: 'Bạn đã tạo bill thành công',
+                            })
+                        },
+                        error: function(xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
                 }
-                console.log("data" + data);
-                // for (var j = 0; j < td_list.length; j++) {
-                //     var td_text = td_list[j].textContent;
-                //     console.log(td_text);
-                // }
-            }
+            });
+
+
 
 
         });

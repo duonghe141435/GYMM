@@ -394,7 +394,6 @@
             var jsonPersonalDetail = ${jsonPersonalDetail};
             var jsonSchedulePersonal = ${jsonSchedulePersonal};
             for (var k = 0; k < jsonPersonalDetail.length; k++) {
-
                 if (jsonPersonalDetail[k].current_date === formattedDate && jsonPersonalDetail[k].time_id === j){
                     for (var h = 0; h < jsonSchedulePersonal.length; h++) {
                         if (formattedDate >= jsonSchedulePersonal[h].start_date && formattedDate <= jsonSchedulePersonal[h].end_date) {

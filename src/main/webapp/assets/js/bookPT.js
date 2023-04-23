@@ -162,7 +162,11 @@ function getWeekDates(dateString) {
     var dayOfWeek = date.getDay()-1;
     var start = new Date(date);
     var today = date;
-    start.setDate(date.getDate() - dayOfWeek)+1; // Lấy ngày đầu tiên của tuần
+    if (dayOfWeek+1 === 0) {
+        start.setDate(date.getDate()-6); // Điều chỉnh đầu ngày bắt đầu của tuần
+    } else {
+        start.setDate(date.getDate() - dayOfWeek)+1; // Lấy ngày đầu tiên của tuần
+    }
     var end = new Date(start);
     end.setDate(start.getDate() + 6);
 

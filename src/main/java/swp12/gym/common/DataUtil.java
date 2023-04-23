@@ -3,17 +3,18 @@ package swp12.gym.common;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
 
-import java.security.MessageDigest;
-import java.security.SecureRandom;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.function.Supplier;
+import java.util.Date;
+import java.util.Locale;
+import java.util.Random;
+import java.util.TimeZone;
 
 @Component
 public class DataUtil {
+
     private final Date now = new Date();
 
     private final int min_length_password = 6;
@@ -34,9 +35,6 @@ public class DataUtil {
         return dateTime;
     }
 
-    private final Date now = new Date();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-    SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
 
     public int getIntToDate(){
         long timestampInSeconds = now.getTime() / 1000;

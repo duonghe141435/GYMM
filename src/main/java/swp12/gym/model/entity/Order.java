@@ -6,18 +6,18 @@ public class Order {
     private String code;
     private String order_date;
     private int status;
-    private int total_amount;
+    private float total_amount;
     private int discount;
-    private int total_payment;
-    private int customer_paying;
-    private int change;
+    private float total_payment;
+    private float customer_paying;
+    private float change;
     private int staff_id;
     private int customer_id;
 
     public Order() {
     }
 
-    public Order(int order_id, String code, String order_date, int status, int total_amount, int discount, int total_payment, int customer_paying, int change, int staff_id, int customer_id) {
+    public Order(int order_id, String code, String order_date, int status, float total_amount, int discount, float total_payment, float customer_paying, float change, int staff_id, int customer_id) {
         this.order_id = order_id;
         this.code = code;
         this.order_date = order_date;
@@ -63,11 +63,11 @@ public class Order {
         this.status = status;
     }
 
-    public int getTotal_amount() {
+    public float getTotal_amount() {
         return total_amount;
     }
 
-    public void setTotal_amount(int total_amount) {
+    public void setTotal_amount(float total_amount) {
         this.total_amount = total_amount;
     }
 
@@ -79,27 +79,27 @@ public class Order {
         this.discount = discount;
     }
 
-    public int getTotal_payment() {
+    public float getTotal_payment() {
         return total_payment;
     }
 
-    public void setTotal_payment(int total_payment) {
+    public void setTotal_payment(float total_payment) {
         this.total_payment = total_payment;
     }
 
-    public int getCustomer_paying() {
+    public float getCustomer_paying() {
         return customer_paying;
     }
 
-    public void setCustomer_paying(int customer_paying) {
+    public void setCustomer_paying(float customer_paying) {
         this.customer_paying = customer_paying;
     }
 
-    public int getChange() {
+    public float getChange() {
         return change;
     }
 
-    public void setChange(int change) {
+    public void setChange(float change) {
         this.change = change;
     }
 

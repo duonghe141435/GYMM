@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import swp12.gym.dao.ProductDao;
 import swp12.gym.dao.ProductDtoDao;
 import swp12.gym.dto.ProductDto;
+import swp12.gym.model.entity.OrderDetail;
 
 import java.util.List;
 
@@ -38,5 +39,9 @@ public class ProductServiceImpl implements ProductService{
 
     public List<ProductDto> searchProduct(String query) {
         return productDtoDao.searchProduct(query);
+    }
+
+    public void updateQuantityProduct(List<OrderDetail> orderDetail) {
+        productDao.updateQuantityProdcut(orderDetail);
     }
 }

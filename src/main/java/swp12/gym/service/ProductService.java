@@ -2,6 +2,7 @@ package swp12.gym.service;
 
 import org.springframework.stereotype.Service;
 import swp12.gym.dto.ProductDto;
+import swp12.gym.model.entity.OrderDetail;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ public interface ProductService {
     void updateProduct(String p_img, String p_description, int p_kind, int p_unit, int p_id);
 
     List<ProductDto> searchProduct(String query);
+
+    void updateQuantityProduct(List<OrderDetail> orderDetail);
 }
