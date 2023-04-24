@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: HongWung
-  Date: 3/20/2023
-  Time: 7:39 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -12,27 +5,21 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Cập nhập tài khoản nhân viên</title>
-    <link rel="stylesheet" href="<c:url value='/assets/bootstrap/css/bootstrap.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/assets/fonts/fontawesome-all.min.css'/>">
-    <link rel="stylesheet" href="<c:url value='/assets/dist/toasty.css'/>">
-    <script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
+    <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
+    <title>Cập nhập tài khoản</title>
 </head>
 
 <body id="page-top">
 <div id="wrapper">
-    <%@include file="/WEB-INF/views/layouts/admin/menu.jsp" %>
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <%@include file="/WEB-INF/views/layouts/admin/header.jsp" %>
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
-                    <div class="card-header py-3">
+                    <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold">Cập nhập thông tin người dùng</p>
                     </div>
-                    <div class="card-body"><c:url value="/admin/dashboard/users/update-user?{_csrf.parameterName}=${_csrf.token}" var="updateUserUrl"/>
+                    <div class="card-body"><c:url value="/admin/users/update-user?${_csrf.parameterName}=${_csrf.token}" var="updateUserUrl"/>
                         <form:form method="POST" modelAttribute="user" enctype="multipart/form-data" action="${updateUserUrl}" >
                             <div class="container">
                                 <div class="row">
@@ -55,24 +42,24 @@
                                                 <option value="" selected>Chọn giới tính</option>
                                                 <form:option value="1">Nam</form:option>
                                                 <form:option value="2">Nữ</form:option>
-                                                <form:option value="3">Khác</form:option>
                                             </form:select>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label"
-                                                   for="role"><strong>Chức vụ</strong></label>
-                                            <form:select path="r_id" class="form-select" id="role" name="role" required="required">
-                                                <option value="" selected>Chọn chức vụ người dùng</option>
-                                                <form:option value="2">Nhân viên</form:option>
-                                                <form:option value="3">Huấn luyện viên</form:option>
+                                        <div class="mb-3" hidden readonly="true" aria-readonly="true">
+                                            <label class="form-label" for="role"><strong>Chức vụ</strong></label>
+                                            <form:select path="r_id" class="form-select" id="role" required="required">
+
+                                                <c:forEach items="${roles}" var="roles">
+                                                    <c:if test="${user.r_id == roles.id}">
+                                                        <form:option value="${roles.r_id}">${roles.r_description}</form:option>
+                                                    </c:if>
+                                                    <form:option value="${roles.r_id}">${roles.r_description}</form:option>
+                                                </c:forEach>
                                             </form:select>
                                         </div>
                                     </div>
                                     <div class="col-8">
                                         <div class="mb-3" style="display:none;">
-                                            <label class="form-label" for="user-id"><strong>#</strong></label>
                                             <form:input class="form-control" type="number" id="user-id"
-                                                        placeholder="Enter your full name" name="full-name"
                                                         path="u_id" readonly="true" />
                                         </div>
                                         <div class="mb-3">
@@ -87,19 +74,6 @@
                                             <form:input class="form-control" type="email" id="email"
                                                         placeholder="Nhập địa chỉ email của bạn"
                                                         path="u_email" name="email" readonly="true"/>
-                                            <div class="invalid-feedback email-error">
-                                                Vui lòng nhập địa chỉ email hợp lệ.
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label"
-                                                   for="password"><strong>Mật khẩu</strong></label>
-                                            <form:input class="form-control" type="password" id="password"
-                                                        placeholder="Nhập mật khẩu của bạn"
-                                                        path="u_password" name="email" required="required" />
-                                            <div class="invalid-feedback password-error">
-                                                Vui lòng nhập mật khẩu hợp lệ.
-                                            </div>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label"
@@ -131,13 +105,6 @@
                                                         placeholder="Nhập số CCCD" name="full-name"
                                                         path="u_identity_card" required="required" />
                                         </div>
-                                            <%--<div class="mb-3">--%>
-                                            <%--<label class="form-label"--%>
-                                            <%--for="city"><strong>Thành phố</strong></label>--%>
-                                            <%--<input class="form-control" type="text"--%>
-                                            <%--id="city" placeholder="Enter your city"--%>
-                                            <%--name="city" required>--%>
-                                            <%--</div>--%>
                                         <div class="mb-3">
                                             <button class="btn btn-primary" type="submit"
                                                     id="save-btn">Cập nhập</button>
@@ -166,8 +133,6 @@
         // Xác định định dạng email của Google
         var googleEmailRegex = /^[a-zA-Z0-9._%+-]+@(gmail|googlemail)\.com$/;
 
-        var toast = new Toasty();
-
         $("#avatars").attr('src', 'http://localhost:8080'+$("#u-img").val());
 
         $('#profile-image').change(function () {
@@ -181,21 +146,10 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     // Cập nhật giá trị của thuộc tính src của thẻ img
-                    $('img').attr('src', e.target.result);
+                    $('avatars').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(this.files[0]);
                 $("#submit-btn").prop("disabled", false);
-            }
-        });
-
-        $("#role").on("change", function () {
-            // Nếu giá trị được chọn là "Male"
-            if ($(this).val() === "3") {
-                // Tạo một thẻ input mới với id là "male-info" và thêm nó vào sau gender-select
-                $('<label class="form-label" for="extra-info"><strong>Kinh nhiệm trainer</strong></label><input class="form-control" type="text" id="extra-info" placeholder="Số năm kinh nhiệm" name="extra-info" required="required">').insertAfter($(this));
-            } else {
-                // Nếu giá trị được chọn không phải là "Male", xoá thẻ input có id là "male-info" nếu nó đã tồn tại
-                $("#male-info").remove();
             }
         });
 
@@ -216,32 +170,8 @@
                 $("#submit-btn").prop("disabled", true);
             }
         });
-
-        // Lắng nghe sự kiện khi người dùng nhập email
-        $('#email').on('input', function () {
-            // Lấy giá trị email từ form
-            var email = $(this).val();
-            // Kiểm tra email có đúng định dạng của Google hay không
-            if (googleEmailRegex.test(email)) {
-                // Email hợp lệ, ẩn thông báo lỗi
-                $(this).removeClass("is-invalid");
-                $(this).addClass("is-valid");
-                $('#email-error').hide();
-                $("#submit-btn").prop("disabled", false);
-            } else {
-                // Email không hợp lệ, hiển thị thông báo lỗi
-                $(this).removeClass("is-valid");
-                $(this).addClass("is-invalid");
-                $('#email-error').show();
-                $("#submit-btn").prop("disabled", true);
-            }
-        });
     });
 
 
 </script>
-<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
-<script src="<c:url value='/assets/js/bs-init.js'/>"></script>
-<script src="<c:url value='/assets/js/theme.js'/>"></script>
-<script src="<c:url value='/assets/dist/toasty.js'/>"></script>
 </html>

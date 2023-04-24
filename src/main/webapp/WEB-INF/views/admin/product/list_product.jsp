@@ -17,7 +17,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width: 90%;text-align: left;margin-top: auto;margin-bottom: auto;">Danh sách sản phẩm</p>
-                        <a href="<c:url value='/admin/dashboard/products/new-product'/> " class="btn btn-primary" style="font-weight: 700;">Thêm mới</a>
+                        <a href="<c:url value='/admin/product/new-product'/> " class="btn btn-primary" style="font-weight: 700;">Thêm mới</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -89,7 +89,7 @@
                                             </td>
                                             <td class="product_kind">${productDtos.p_kind_name}</td>
                                             <td>
-                                                <a href="<c:url value='/admin/dashboard/products/${productDtos.p_id}'/> ">
+                                                <a href="<c:url value='/admin/product/${productDtos.p_id}'/> ">
                                                     <i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i>
                                                 </a>
                                                 <a class="product_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>

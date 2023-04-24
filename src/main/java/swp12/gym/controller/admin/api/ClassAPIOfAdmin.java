@@ -4,9 +4,13 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MimeTypeUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import swp12.gym.common.DataUtil;
+import swp12.gym.dto.ClassDto;
 import swp12.gym.service.ClassService;
 import swp12.gym.service.TicketService;
 
@@ -26,6 +30,17 @@ public class ClassAPIOfAdmin {
     private DataUtil dataUtil;
     @Autowired
     private TicketService ticketService;
+
+
+    @GetMapping(value = URL_API+"/{id}", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ClassDto> createProductType(@PathVariable int id) {
+        try {
+            ClassDto orderDetail = classService.findDetailAnClass(id);
+            return new ResponseEntity<ClassDto>(orderDetail, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<ClassDto>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 
     @PostMapping(value = URL_API+"/check-class-exist", produces = "text/plain;charset=UTF-8")

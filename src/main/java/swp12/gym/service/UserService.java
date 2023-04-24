@@ -66,4 +66,14 @@ public interface UserService {
     List<User> findAllUserOfAnClass(int class_id);
 
     void updateStatusUser(int id_u);
+
+    //Admin Employee
+    int getNumberEmployeeInSystem();
+    UserDto getEmployeeById(int employee_id);
+
+    List<UserDto> searchUser(String query);
+
+    int deleteAnUser(int id);
+
+    int getNumberTrainerInSystem();
 }

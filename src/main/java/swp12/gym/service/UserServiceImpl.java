@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public void updateUser(UserDto user) {
-
+        usersDao.updateUser(user);
     }
 
     public void createStaff(int id_u) {
@@ -122,5 +122,21 @@ public class UserServiceImpl implements UserService{
     public void updateStatusUser(int id_u) {
         usersDao.updateStatusUser(id_u);
     }
+
+    //Admin Employee
+    public int getNumberEmployeeInSystem() { return usersDao.getNumberEmployeeInSystem(); }
+    public UserDto getEmployeeById(int employee_id) { return usersDao.getEmployeeById(employee_id); }
+
+    //Admin trainer
+    public int getNumberTrainerInSystem() { return usersDao.getNumberTrainerInSystem(); }
+
+    public List<UserDto> searchUser(String query) {
+        return usersDao.searchUser(query);
+    }
+
+    public int deleteAnUser(int id) {
+        return usersDao.deleteAnUser(id);
+    }
+
 
 }

@@ -29,36 +29,6 @@ public class AdminUserController {
     @Autowired
     private RoleService roleService;
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String goListUser(Model model){
-        List<UserDtoAdmin> users = userService.findAllOfAdmin();
-        model.addAttribute("users",users);
-        return "admin/user/list_user";
-    }
-
-    @RequestMapping(value = "/employee", method = RequestMethod.GET)
-    public String goListEmployee(Model model){
-        List<UserDto> users = userService.findAllEmployee();
-        model.addAttribute("users",users);
-        return "admin/user/list_user";
-    }
-
-    @RequestMapping(value = "/trainer", method = RequestMethod.GET)
-    public String goListTrainer(Model model){
-        List<UserDto> users = userService.findAllTrainerForAdmin();
-        System.out.println(users);
-        model.addAttribute("users",users);
-        return "admin/user/list_user";
-    }
-
-    @RequestMapping(value = "/customer", method = RequestMethod.GET)
-    public String goListCustomer(Model model){
-        List<UserDto> users = userService.findAllCustomer();
-
-        model.addAttribute("users",users);
-        return "admin/user/list_user";
-    }
-
     @RequestMapping(value = "/users/new-user", method = RequestMethod.GET)
     public String goCreateUser(Model model) {
         List<Role> roles = roleService.findAll();
@@ -92,40 +62,5 @@ public class AdminUserController {
         return "redirect:/admin/dashboard/users";
     }
 
-    @RequestMapping(value = "/update-user", method = RequestMethod.POST)
-    public String goUpdateUser(@RequestParam("file-up") CommonsMultipartFile file,
-                               @ModelAttribute("user") UserDto user, HttpSession s, HttpServletRequest request) {
 
-        int year_experience;
-
-        if (!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null) {
-            String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
-            if (!u_img.equalsIgnoreCase(user.getU_img())) {
-            FileUtil.doSaveImgToService(file,s,"avatars");
-                user.setU_img(u_img);
-            }
-        }
-        userService.updateUser(user);
-        roleService.updateRoleForUser(user.getU_id(), user.getR_id());
-
-        if (user.getR_id() == 3) {
-            //kiểm tra xem người dùng này có phải là trainer không
-            year_experience = Integer.parseInt(request.getParameter("extra-info"));
-            if (userService.isExistsTrainer(user.getU_id())) {
-                userService.updateExperienceTrainer(user.getU_id(), year_experience);
-            } else {
-                userService.deleteStaff(user.getU_id());
-                userService.createTrainer(user.getU_id(), year_experience);
-            }
-
-        } else if (user.getR_id() == 2) {
-            //kiểm tra xem người dùng này có phải là nhân viên hay không
-            if (userService.isExistsStaff(user.getU_id())) {
-                userService.deleteTrainer(user.getU_id());
-                userService.createStaff(user.getU_id());
-            }
-
-        }
-        return "redirect:/admin/dashboard/users";
-    }
 }

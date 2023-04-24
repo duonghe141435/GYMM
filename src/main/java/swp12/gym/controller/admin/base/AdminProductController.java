@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin/dashboard/products")
+@RequestMapping("/admin/product")
 public class AdminProductController {
 
     @Autowired
