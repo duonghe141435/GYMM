@@ -42,7 +42,6 @@
                                                 <option value="" selected>Chọn giới tính</option>
                                                 <form:option value="1">Nam</form:option>
                                                 <form:option value="2">Nữ</form:option>
-                                                <form:option value="3">Khác</form:option>
                                             </form:select>
                                         </div>
                                         <div class="mb-3">
@@ -55,7 +54,6 @@
                                         <div class="mb-3" style="display:none;">
                                             <label class="form-label" for="user-id"><strong>#</strong></label>
                                             <form:input class="form-control" type="number" id="user-id"
-                                                        placeholder="Enter your full name" name="full-name"
                                                         path="u_id" readonly="true" />
                                         </div>
                                         <div class="mb-3">
@@ -69,10 +67,7 @@
                                                    for="email"><strong>Email</strong></label>
                                             <form:input class="form-control" type="email" id="email"
                                                         placeholder="Nhập địa chỉ email của bạn"
-                                                        path="u_email" name="email" required="required" />
-                                            <div class="invalid-feedback email-error">
-                                                Vui lòng nhập địa chỉ email hợp lệ.
-                                            </div>
+                                                        path="u_email" name="email" readonly="true"/>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label"
@@ -172,26 +167,6 @@
             }
         });
 
-        // Lắng nghe sự kiện khi người dùng nhập email
-        $('#email').on('input', function () {
-            // Lấy giá trị email từ form
-            var email = $(this).val();
-            // Kiểm tra email có đúng định dạng của Google hay không
-            if (googleEmailRegex.test(email)) {
-                // Email hợp lệ, ẩn thông báo lỗi
-                $(this).removeClass("is-invalid");
-                $(this).addClass("is-valid");
-                $('#email-error').hide();
-                $("#submit-btn").prop("disabled", false);
-            } else {
-                // Email không hợp lệ, hiển thị thông báo lỗi
-                $(this).removeClass("is-valid");
-                $(this).addClass("is-invalid");
-                $('#email-error').show();
-                $("#submit-btn").prop("disabled", true);
-            }
-        });
-
         $('#profile-image').change(function () {
             var fileExtension = ['png', 'jpg', 'jpeg'];
             if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
@@ -211,7 +186,4 @@
 
 
 </script>
-<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
-<script src="<c:url value='/assets/js/bs-init.js'/>"></script>
-<script src="<c:url value='/assets/js/theme.js'/>"></script>
 </html>

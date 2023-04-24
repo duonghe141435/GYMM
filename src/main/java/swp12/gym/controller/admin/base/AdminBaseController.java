@@ -80,12 +80,24 @@ public class AdminBaseController {
     public String goDetailProfileEmployess(@PathVariable int userID, Model model, HttpSession s) {
         UserDto user = userService.getEmployeeById(userID);
         List<Role> roles = roleService.findAll();
+
         model.addAttribute("user",user);
         model.addAttribute("roles",roles);
         model.addAttribute("urls","employee");
         return "admin/user/update_user";
     }
 
+    @RequestMapping(value = "/profile-trainer/{userID}",method = RequestMethod.GET)
+    public String goDetailProfileTrainer(@PathVariable int userID, Model model, HttpSession s) {
+        UserDto user = userService.getEmployeeById(userID);
+        List<Role> roles = roleService.findAll();
+
+        model.addAttribute("user",user);
+        model.addAttribute("roles",roles);
+        model.addAttribute("urls","trainer");
+        model.addAttribute("title", "huấn luyện viên");
+        return "admin/user/update_user";
+    }
     @RequestMapping(value = "/trainer", method = RequestMethod.GET)
     public String goListTrainer(Model model){
         List<UserDto> users = userService.findAllTrainerForAdmin();
@@ -104,6 +116,7 @@ public class AdminBaseController {
 
         model.addAttribute("user",user);
         model.addAttribute("classDtos",classDtos);
+        model.addAttribute("title", "huấn luyện viên");
         return "admin/user/detail_trainer";
     }
 
@@ -119,23 +132,26 @@ public class AdminBaseController {
     public String goCustomerDetail(Model model, @PathVariable int customer_id){
         UserDto user = userService.getEmployeeById(customer_id);
 
+        model.addAttribute("title", "khách hàng");
+
         model.addAttribute("user",user);
         return "admin/user/list_customer";
     }
 
     @RequestMapping(value = "/users/update-user", method = RequestMethod.POST)
-    public String goUpdateUser(@ModelAttribute("user") UserDto user, HttpSession s, HttpServletRequest request) {
+    public String goUpdateUser(@ModelAttribute("user") UserDto user, HttpSession s,
+                               @RequestParam("file-up") CommonsMultipartFile file) {
+
 
         int year_experience;
-        System.out.println(user.getR_id());
 
-//        if (!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null) {
-//            String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
-//            if (!u_img.equalsIgnoreCase(user.getU_img())) {
-//                FileUtil.doSaveImgToService(file,s,"avatars");
-//                user.setU_img(u_img);
-//            }
-//        }
+        if (!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null) {
+            String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
+            if (!u_img.equalsIgnoreCase(user.getU_img())) {
+                FileUtil.doSaveImgToService(file,s,"avatars");
+                user.setU_img(u_img);
+            }
+        }
         userService.updateUser(user);
 //        roleService.updateRoleForUser(user.getU_id(), user.getR_id());
 
@@ -178,7 +194,10 @@ public class AdminBaseController {
     }
 
     @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityAdmin() {
+    public String goActivityAdmin(Model model, Authentication authentication) {
+        int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
+        List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id);
+        model.addAttribute("logUser",logUsers);
         return "admin/activity_log";
     }
 
@@ -187,6 +206,12 @@ public class AdminBaseController {
         UserDto user = userService.getCustomerByEmail(((UserDetails) authentication.getPrincipal()).getUsername());
         model.addAttribute("user",user);
         return "admin/profile_user";
+    }
+
+    @RequestMapping(value = "/your-profile/update",method = RequestMethod.GET)
+    public String updateCustomer(@ModelAttribute("user") User user, Model model) {
+        System.out.println(user.toString());
+        return "customer/index_customer";
     }
 
 
@@ -296,19 +321,4 @@ public class AdminBaseController {
         return "admin/customer/class_log";
     }
 
-
-
-//    @RequestMapping(value = "/detail-trainer/{userID}",method = RequestMethod.GET)
-//    public String goDetailProfileTrainer(@PathVariable int userID, Model model, HttpSession s) {
-//        UserDto user = userService.getCustomerByEmail(s.getAttribute("display_email").toString());
-//        model.addAttribute("user",user);
-//        return "admin/user/detail_customer";
-//    }
-
-//    @RequestMapping(value = "/detail-employee/{userID}",method = RequestMethod.GET)
-//    public String goDetailProfileEmployee(@PathVariable int userID, Model model, HttpSession s) {
-//        UserDto user = userService.getCustomerByEmail(s.getAttribute("display_email").toString());
-//        model.addAttribute("user",user);
-//        return "admin/user/detail_customer";
-//    }
 }

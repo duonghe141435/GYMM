@@ -17,10 +17,10 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold">Cập nhập thông tin người dùng</p>
+                        <p class="text-primary m-0 fw-bold">Cập nhập thông tin ${title}</p>
                     </div>
-                    <div class="card-body"><c:url value="/admin/users/update-user?${_csrf.parameterName}=${_csrf.token}" var="updateUserUrl"/>
-                        <form:form method="POST" modelAttribute="user" enctype="multipart/form-data" action="${updateUserUrl}" >
+                    <div class="card-body"><c:url value="/admin/users/update-user" var="updateUserUrl"/>
+                        <form:form method="POST" action="${updateUserUrl}" modelAttribute="user" enctype="multipart/form-data">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-4">
@@ -44,14 +44,10 @@
                                                 <form:option value="2">Nữ</form:option>
                                             </form:select>
                                         </div>
-                                        <div class="mb-3" hidden readonly="true" aria-readonly="true">
+                                        <div class="mb-3">
                                             <label class="form-label" for="role"><strong>Chức vụ</strong></label>
                                             <form:select path="r_id" class="form-select" id="role" required="required">
-
                                                 <c:forEach items="${roles}" var="roles">
-                                                    <c:if test="${user.r_id == roles.id}">
-                                                        <form:option value="${roles.r_id}">${roles.r_description}</form:option>
-                                                    </c:if>
                                                     <form:option value="${roles.r_id}">${roles.r_description}</form:option>
                                                 </c:forEach>
                                             </form:select>
