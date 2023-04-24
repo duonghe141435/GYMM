@@ -132,7 +132,7 @@
         var user = $("#user");
         user.on('click', '.delete-user', function () {
             Swal.fire({
-                title: 'Bạn chắc chắn xóa nhân viên này?',
+                title: 'Bạn chắc chắn xóa huấn luyện viên này?',
                 icon: 'question',
                 confirmButtonText: 'Đúng vậy',
                 showCancelButton: true,
