@@ -176,12 +176,21 @@
                     </div>
                     <div class="form-group">
                         <div class="row d-flex justify-content-center">
-                            <label class="form-label col-sm-2 mt-3" for="date-input">Ngày đặt:</label>
-                            <div class="col-sm-6">
-                                <input type="date" class="form-control" readonly value="2023-03-16">
-                            </div>
+                        <label class="form-label col-sm-2 mt-3" for="book_date">Ngày đặt:</label>
+                        <div class="col-sm-6">
+                            <input id="book_date" type="date" class="form-control" readonly>
                         </div>
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row d-flex justify-content-center">
+                        <label class="form-label col-sm-2 mt-3" for="timePractice">Giờ tập:</label>
+                        <div class="col-sm-6">
+                            <input id="timePractice" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
 
                     <div class="form-group">
                         <div class="row d-flex justify-content-center">
@@ -244,6 +253,136 @@
 <script src="<c:url value='/assets/js/jquery.min.js'/>"></script>
 
 <script>
+
+    $(document).ready(function () {
+        var selectYear = document.getElementById("year-select");
+        selectYear.addEventListener("change", function() {
+            for (var i = 0; i <= 6; i++) {
+                var getDate = document.getElementById(i).innerText.trim();
+                var dateParts = getDate.split('-');
+                var dayy = dateParts[0];
+                var monthh = dateParts[1];
+                var yearr = dateParts[2];
+                var dateObject = new Date(yearr, monthh - 1, dayy);
+                dateObject.setDate(dateObject.getDate() + 1);
+                var formattedDate = dateObject.toISOString().slice(0,10);
+                for (var j = 0; j <= 7; j++) {
+                    document.getElementById((i+1) + "" + (j+1)).innerHTML  = "";
+                    //pt cá nhân
+                    var jsonPersonalDetail = ${jsonPersonalDetail};
+                    var jsonSchedulePersonal = ${jsonSchedulePersonal};
+                    for (var k = 0; k < jsonPersonalDetail.length; k++) {
+                        if (jsonPersonalDetail[k].current_date === formattedDate && jsonPersonalDetail[k].time_id === j){
+                            for (var h = 0; h < jsonSchedulePersonal.length; h++) {
+                                if (formattedDate >= jsonSchedulePersonal[h].start_date && formattedDate <= jsonSchedulePersonal[h].end_date) {
+                                    document.getElementById((i+1) + "" + (j+1)).innerHTML  = jsonSchedulePersonal[h].name;
+                                }
+                            }
+                        }
+                    }
+                    //class
+                    var shedule = ${jsonData};
+                    for (var k = 0; k < shedule.length; k++) {
+                        if (formattedDate >= shedule[k].c_start_date && formattedDate <= shedule[k].c_end_date) {
+                            if (shedule[k].monday === 1 && i === 0) {
+                                if (shedule[k].c_time_id === j){
+                                    if (shedule[k].c_status === 0) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML  = shedule[k].c_name + "<br>" + "Lớp chưa bắt đầu";
+                                    }
+                                    if (shedule[k].c_status === 1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đang học";
+                                    }
+                                    if (shedule[k].c_status === -1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
+                                    }
+                                }
+                            }
+                            if (shedule[k].tuesday === 1 && i === 1) {
+                                if (shedule[k].c_time_id === j){
+                                    if (shedule[k].c_status === 0) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML  = shedule[k].c_name + "<br>" + "Lớp chưa bắt đầu";
+                                    }
+                                    if (shedule[k].c_status === 1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đang học";
+                                    }
+                                    if (shedule[k].c_status === -1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
+                                    }
+                                }
+                            }
+                            if (shedule[k].wednesday === 1 && i === 2) {
+                                if (shedule[k].c_time_id === j){
+                                    if (shedule[k].c_status === 0) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML  = shedule[k].c_name + "<br>" + "Lớp chưa bắt đầu";
+                                    }
+                                    if (shedule[k].c_status === 1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đang học";
+                                    }
+                                    if (shedule[k].c_status === -1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
+                                    }
+                                }
+                            }
+                            if (shedule[k].thursday === 1 && i === 3) {
+                                if (shedule[k].c_time_id === j){
+                                    if (shedule[k].c_status === 0) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML  = shedule[k].c_name + "<br>" + "Lớp chưa bắt đầu";
+                                    }
+                                    if (shedule[k].c_status === 1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đang học";
+                                    }
+                                    if (shedule[k].c_status === -1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
+                                    }
+                                }
+                            }
+                            if (shedule[k].friday === 1 && i === 4) {
+                                if (shedule[k].c_time_id === j){
+                                    if (shedule[k].c_status === 0) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML  = shedule[k].c_name + "<br>" + "Lớp chưa bắt đầu";
+                                    }
+                                    if (shedule[k].c_status === 1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đang học";
+                                    }
+                                    if (shedule[k].c_status === -1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
+                                    }
+                                }
+                            }
+                            if (shedule[k].saturday === 1 && i === 5) {
+                                if (shedule[k].c_time_id === j){
+                                    if (shedule[k].c_status === 0) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML  = shedule[k].c_name + "<br>" + "Lớp chưa bắt đầu";
+                                    }
+                                    if (shedule[k].c_status === 1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đang học";
+                                    }
+                                    if (shedule[k].c_status === -1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
+                                    }
+                                }
+                            }
+                            if (shedule[k].sunday === 1 && i === 6) {
+                                if (shedule[k].c_time_id === j){
+                                    if (shedule[k].c_status === 0) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML  = shedule[k].c_name + "<br>" + "Lớp chưa bắt đầu";
+                                    }
+                                    if (shedule[k].c_status === 1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đang học";
+                                    }
+                                    if (shedule[k].c_status === -1) {
+                                        document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    document.getElementById((i+1) + "" + (j+1)).style.color = "# CDB38B"; //#363636 , # CDB38B, # 473C8B, #33CC33
+                    document.getElementById((i+1) + "" + (j+1)).style.fontWeight = "bold";
+                }
+            }
+        });
+    });
 
     $(document).ready(function () {
         var select = document.getElementById("week-select");

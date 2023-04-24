@@ -4,10 +4,106 @@ var span = document.getElementsByClassName("close")[0];
 // Get all the table cells
 var cells = document.getElementsByTagName("td");
 // Loop through the cells and add the click event listener
-
+var tbody = document.getElementsByTagName("tbody")[0];
+var thList = tbody.getElementsByTagName("th");
 
 for (var i = 0; i < cells.length; i++) {
-    cells[i].addEventListener("click", function() {
+    cells[i].addEventListener("click", function(event) {
+        var z = Array.prototype.indexOf.call(cells, event.currentTarget);
+        for(var l = 0; l < cells.length; l++){
+            if(z<7){
+                document.getElementById("timePractice").value = thList[0].innerHTML;
+            }
+            if(z>7&&z<14){
+                document.getElementById("timePractice").value = thList[1].innerHTML;
+            }
+            if(z>14&&z<21){
+                document.getElementById("timePractice").value = thList[2].innerHTML;
+            }
+            if(z>21&&z<28){
+                document.getElementById("timePractice").value = thList[3].innerHTML;
+            }
+            if(z>28&&z<35){
+                document.getElementById("timePractice").value = thList[4].innerHTML;
+            }
+            if(z>35&&z<42){
+                document.getElementById("timePractice").value = thList[5].innerHTML;
+            }
+            if(z>42&&z<49){
+                document.getElementById("timePractice").value = thList[6].innerHTML;
+            }
+
+        }
+        for(var k = 0; k < cells.length; k=k+7){
+            if(z===k){
+                var dateString = document.getElementById("0").innerHTML.split(" ")[3];
+                var dateParts = dateString.split("-");
+                var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+            }
+        }
+        for(var k = 1; k < cells.length; k=k+7){
+            if(z===k){
+                var dateString = document.getElementById("1").innerHTML.split(" ")[3];
+                var dateParts = dateString.split("-");
+                var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+            }
+        }
+        for(var k = 2; k < cells.length; k=k+7){
+            if(z===k){
+                var dateString = document.getElementById("2").innerHTML.split(" ")[3];
+                var dateParts = dateString.split("-");
+                var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+            }
+        }
+        for(var k = 3; k < cells.length; k=k+7){
+            if(z===k){
+                var dateString = document.getElementById("3").innerHTML.split(" ")[3];
+                var dateParts = dateString.split("-");
+                var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                document.getElementById("book_date").value = date.toISOString().split('T')[0];
+            }
+        }
+        for(var k = 4; k < cells.length; k=k+7){
+            if(z===k){
+                var dateString = document.getElementById("4").innerHTML.split(" ")[3];
+                var dateParts = dateString.split("-");
+                var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+            }
+        }
+        for(var k = 5; k < cells.length; k=k+7){
+            if(z===k){
+                var dateString = document.getElementById("5").innerHTML.split(" ")[3];
+                var dateParts = dateString.split("-");
+                var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+            }
+        }
+        for(var k = 6; k < cells.length; k=k+7){
+            if(z===k){
+                var dateString = document.getElementById("6").innerHTML.split(" ")[3];
+                var dateParts = dateString.split("-");
+                var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+            }
+        }
+
 
 
         // Populate the modal with the data
@@ -27,9 +123,7 @@ for (var i = 0; i < cells.length; i++) {
         }
         else{
             modalBook.style.display = "block";
-            modal.style.display = "none";
         }
-        console.log(cells[i].value);
 
     });
 }
@@ -68,6 +162,9 @@ let dayT = 0 ;
 yearSelect.addEventListener('change', function() {
     // Xóa tất cả các tùy chọn hiện có trong week-select
     weekSelect.innerHTML = '';
+    let today = new Date();
+    const year = yearSelect.value;
+    const dayMonth = document.getElementById(weekSelect);
 
     // Lấy giá trị năm được chọn
     const selectedYear = yearSelect.value;
@@ -75,7 +172,7 @@ yearSelect.addEventListener('change', function() {
     // Tạo danh sách các tuần
     const weeks = createWeekOptions(selectedYear);
 
-    const dateSelectStop = null;
+
     // Thêm các tùy chọn mới vào week-select
     weeks.forEach(week => {
         const dateSelectStop = week.stopDate.getMonth();
@@ -95,14 +192,63 @@ yearSelect.addEventListener('change', function() {
     }
 
     weekSelect.appendChild(option); // Thêm option vào weekSelect
+
+    const selectElement = document.getElementById("week-select");
+    const selectedIndex = selectElement.selectedIndex;
+    const selectedOption = selectElement.options[selectedIndex];
+    let dateFirst = selectedOption.getAttribute('data-timeFirst');
+    const month1 = dateFirst.split("/")[1];
+    const day1 = dateFirst.split("/")[0];
+
+
+    for (let i = 0; i <= 6; i++) {
+        let dayChseck = parseInt(day1)+i;
+
+        const d = document.getElementById(i);
+        var table = document.getElementsByTagName("table")[0];
+        var rows = table.getElementsByTagName("tr");
+        const today = new Date();
+        for(let j=0;j<rows.length-1;j++){
+            var cells = rows[j+1].getElementsByTagName("td");
+            cells[i].classList.remove("today");
+            cells[i].classList.remove("past");
+        }
+
+        let dateObj = new Date(year, month1 - 1, dayChseck)
+        if(today.getDate()===dayChseck&&today.getMonth()===month1-1&&today.getFullYear()==year){
+            console.log(rows.length);
+
+            for(j=0;j<rows.length-1;j++){
+                var cells = rows[j+1].getElementsByTagName("td");
+                cells[i].classList.add("today");
+            }
+        }else if(dateObj<today){
+            for(j=0;j<rows.length-1;j++){
+                var cells = rows[j+1].getElementsByTagName("td");
+                cells[i].classList.add("past");
+            }
+        }
+    }
 });
+    const selectElement = document.getElementById("week-select");
+    const selectedIndex = selectElement.selectedIndex;
+    const selectedOption = selectElement.options[selectedIndex];
+    let dateFirst = selectedOption.getAttribute('data-timeFirst');
+    const month1 = dateFirst.split("/")[1];
+    const day1 = dateFirst.split("/")[0];
     const dateTime = weekSelect.firstChild.getAttribute('data-timeFirst').split("/");
-    // innerTable(selectedYear,dateTime[1], dateTime[0] );
+    innerTable(selectedYear,month1, day1 )
 
 });
+function innerTable(year, month, day){
+    const dateText = `${year}-${month < 10 ? '0' : ''}${month}-${day < 10 ? '0' : ''}${day}`;
+    const weekDates = getWeekDates(dateText);
+    for (let i = 0; i <= 6; i++) {
+        const d = document.getElementById(i);
+        d.innerHTML = weekDates[i];
 
-
-
+    }
+}
 // Kích hoạt sự kiện change trên year-select để tạo danh sách tuần mặc định khi load lần đầu
 const event = new Event('change');
 yearSelect.dispatchEvent(event);
@@ -160,6 +306,7 @@ function getWeekDates(dateString) {
     var days = [];
     var date = new Date(dateString);
     var dayOfWeek = date.getDay()-1;
+
     var start = new Date(date);
     var today = date;
     if (dayOfWeek+1 === 0) {
@@ -175,7 +322,7 @@ function getWeekDates(dateString) {
         day.setDate(start.getDate() + i);
         var dayOfWeek = day.toLocaleDateString('vi-VN', { weekday: 'long' });
         var dayOfMonth = day.getDate();
-        var month = day.getMonth() + 1;
+        var month = day.getMonth()+1;
         var year = day.getFullYear();
         var dateString = `${dayOfMonth}-${month}-${year}`;
         var table = document.getElementsByTagName("table")[0];
@@ -237,7 +384,6 @@ const weekDates = getWeekDates(dateText);
 const weeksDates = getWeeks(dateText);
 for (var i = 0; i <= 6; i++) {
     var d = document.getElementById(i);
-    // console.log(weekDates[i]);
     var w = document.getElementById((i+"." + 0));
     d.innerHTML = weekDates[i];
     w.innerHTML = weeksDates[i];
@@ -283,4 +429,5 @@ document.getElementById("week-select").addEventListener("change", function() {
     }
 });
 
-        
+
+
