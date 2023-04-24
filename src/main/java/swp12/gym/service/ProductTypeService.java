@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProductTypeService {
     List<ProductType> findAll();
 
-    int getTotalItemInSystem();
+    int getMaxIdKindInSystem();
 
     void createProductType(int id, String type);
 }
