@@ -173,7 +173,7 @@ public class ClassDao {
         }, id);
     }
 
-    public List<ClassDto> findDetailAnClass(int class_id) {
+    public ClassDto findDetailAnClass(int class_id) {
         sql = "SELECT c.class_id, c.time_id, c.name, c.state, c.start_date, c.end_date, tm.start_time, tm.end_time, c.trainer_id, u.name AS c_trainer_name, c.max_menber, c.price, COUNT(CASE WHEN uc.status = 1 THEN 1 ELSE NULL END) as total_attendees, w.id_weekdays, w.cn AS sunday, w.thu2 AS monday, w.thu3 AS tuesday, w.thu4 AS wednesday, w.thu5 AS thursday, w.thu6 AS friday, w.thu7 AS saturday\n" +
                 "FROM class c\n" +
                 "JOIN `time` tm ON c.time_id = tm.id_time\n" +
@@ -183,7 +183,7 @@ public class ClassDao {
                 "LEFT JOIN user_class uc ON c.class_id = uc.class_id\n" +
                 "WHERE c.class_id = ?\n" +
                 "GROUP BY c.class_id, uc.class_id, c.max_menber";
-        return jdbcTemplate.query(sql, new RowMapper<ClassDto>() {
+        return jdbcTemplate.queryForObject(sql, new RowMapper<ClassDto>() {
             public ClassDto mapRow(ResultSet resultSet, int i) throws SQLException {
                 ClassDto classDto = new ClassDto();
 

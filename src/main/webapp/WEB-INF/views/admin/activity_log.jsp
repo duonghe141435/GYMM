@@ -18,7 +18,7 @@
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
                                 <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                    <label class="form-label">Show&nbsp;
+                                    <label class="form-label">Loại hoạt động&nbsp;
                                         <select class="d-inline-block form-select form-select-sm">
                                             <option value="10" selected="">10</option>
                                             <option value="25">25</option>

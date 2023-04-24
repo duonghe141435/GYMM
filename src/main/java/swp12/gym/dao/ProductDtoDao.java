@@ -22,7 +22,7 @@ public class ProductDtoDao {
                 "                p.image as p_img,\n" +
                 "                p2.price_id as p_price_id,\n" +
                 "                p2.price_sale as p_price,\n" +
-                "                p2.price_Oprice as p_Oprice,\n" +
+                "                p2.price_original as p_Oprice,\n" +
                 "                p.added_date as p_create,\n" +
                 "                p.quantity as p_quantity,\n" +
                 "                u.unit_id as p_unit,\n" +
@@ -46,8 +46,8 @@ public class ProductDtoDao {
                 "p.name as p_name,\n" +
                 "p.image as p_img,\n" +
                 "p2.price_id as p_price_id,\n" +
-                "p2.price as p_price,\n" +
-                "p2.price_Oprice as p_Oprice,\n" +
+                "p2.price_sale as p_price,\n" +
+                "p2.price_original as p_Oprice,\n" +
                 "p.added_date as p_create,\n" +
                 "p.quantity as p_quantity,\n" +
                 "u.unit_id as p_unit,\n" +
@@ -72,7 +72,7 @@ public class ProductDtoDao {
                     "                p.image as p_img,\n" +
                     "                p2.price_id as p_price_id,\n" +
                     "                p2.price_sale as p_price,\n" +
-                    "                p2.price_Oprice as p_Oprice,\n" +
+                    "                p2.price_original as p_Oprice,\n" +
                     "                p.added_date as p_create,\n" +
                     "                p.quantity as p_quantity,\n" +
                     "                u.unit_id as p_unit,\n" +

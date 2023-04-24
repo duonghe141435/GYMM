@@ -4,20 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import swp12.gym.common.DataUtil;
+import swp12.gym.dto.OrderDto;
 import swp12.gym.model.entity.Order;
+import swp12.gym.model.entity.OrderDetail;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public class OrderDao {
 
     @Autowired
+    private DataUtil dataUtil;
+    @Autowired
     private JdbcTemplate jdbcTemplate;
     private String sql;
-
-    private final LocalDate currentDate = LocalDate.now();
 
     public int getIdOrder() {
         try{
@@ -39,10 +42,59 @@ public class OrderDao {
     public void insertAnOrder(Order order){
         try{
             sql = "INSERT INTO `order` (order_date, status, total_amount, staff, customer, discount, total_payment, customer_paying, `change`, `code`) VALUES(?,?,?,?,?,?,?,?,?,?);";
-            jdbcTemplate.update(sql, currentDate, 1, order.getTotal_amount(), order.getStaff_id(), order.getCustomer_id(), order.getDiscount(), order.getTotal_payment(), order.getCustomer_paying(), order.getChange(), order.getCode());
+            jdbcTemplate.update(sql, dataUtil.getDateNowToString(), 1, order.getTotal_amount(), order.getStaff_id(), order.getCustomer_id(), order.getDiscount(), order.getTotal_payment(), order.getCustomer_paying(), order.getChange(), order.getCode());
 
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public List<OrderDto> getAllOrderOfEmployee(int id) {
+        try{
+            sql = "SELECT `order`.order_id as order_id, `order`.code as code, " +
+                    "`order`.total_amount as total_amount, `order`.order_date as order_date, u.name as name\n" +
+                    "from `order` join order_details on order_details.order_id = `order`.order_id\n" +
+                    "             join users u on `order`.customer = u.id_u\n" +
+                    "             join  users u2 on `order`.staff = u2.id_u\n" +
+                    "WHERE u2.id_u = ?\n" +
+                    "GROUP BY `order`.order_id, `order`.code, `order`.order_date, u.name";
+            return jdbcTemplate.query(sql, new RowMapper<OrderDto>() {
+                public OrderDto mapRow(ResultSet resultSet, int i) throws SQLException {
+                    OrderDto orderDto = new OrderDto();
+                    orderDto.setOrder_id(resultSet.getInt("order_id"));
+                    orderDto.setOrder_code(resultSet.getString("code"));
+                    orderDto.setCustomer_name(resultSet.getString("name"));
+                    orderDto.setOrder_date(resultSet.getString("order_date"));
+                    orderDto.setTotal_price(resultSet.getInt("total_amount"));
+                    return orderDto;
+                }
+            }, id);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public List<OrderDetail> getDetailOfAnOrder(int id) {
+        try{
+            sql = "SELECT order_details.product_id, p.name, order_details.price_sale, order_details.quantity, \n" +
+                    "       order_details.total_price\n" +
+                    "FROM `order` join order_details on `order`.order_id = order_details.order_id\n" +
+                    "join product p on order_details.product_id = p.product_id\n" +
+                    "WHERE order_details.order_id = ?";
+            return jdbcTemplate.query(sql, new RowMapper<OrderDetail>() {
+                public OrderDetail mapRow(ResultSet resultSet, int i) throws SQLException {
+                    OrderDetail orderDetail = new OrderDetail();
+
+                    orderDetail.setProduct_id(resultSet.getInt("product_id"));
+                    orderDetail.setPrice_sale(resultSet.getInt("price_sale"));
+                    orderDetail.setQuantity(resultSet.getInt("quantity"));
+                    orderDetail.setTotal_price(resultSet.getInt("total_price"));
+                    orderDetail.setProduct_name(resultSet.getString("name"));
+                    return orderDetail;
+                }
+            }, id);
+        }catch (Exception e){
+            return null;
         }
     }
 }

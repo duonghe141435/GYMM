@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Danh sách người dùng</title>
+    <title>Danh sách ${title}</title>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
 </head>
 <body id="page-top">
@@ -13,19 +13,18 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:90%">Thông tin nhân viên</p>
+                        <p class="text-primary m-0 fw-bold" style="width:90%">Danh sách ${title}</p>
                         <a href="<c:url value='/admin/dashboard/users/new-user'/> " class="btn btn-primary" style="font-weight: 700;">Thêm mới</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
                                 <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                    <label class="form-label">Show&nbsp;
+                                    <label class="form-label">Trạng thái&nbsp;
                                         <select class="d-inline-block form-select form-select-sm">
-                                            <option value="10" selected="">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
+                                            <option value="-1" selected="">Bị khóa</option>
+                                            <option value="1" selected>Đang hoạt động</option>
+                                            <option value="0">Chưa kích hoạt</option>
                                         </select>&nbsp;</label>
                                 </div>
                             </div>
@@ -39,12 +38,12 @@
                             </div>
                         </div>
                         <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
-                            <table class="table my-0" id="dataTable">
+                            <table class="table my-0" id="list-user">
                                 <thead>
                                 <tr>
                                     <th class="text-center">#</th>
                                     <th>Email</th>
-                                    <th>Tên người dùng</th>
+                                    <th>Tên ${title}</th>
                                     <th class="text-center">SĐT</th>
                                     <th class="text-center">Trạng thái</th>
                                     <th class="text-center">Thao tác</th>
@@ -55,6 +54,7 @@
                                     <c:forEach items="${users}" var="users">
                                         <tr>
                                             <td class="text-center"><count></count></td>
+                                            <td class="user_id" aria-readonly="true" readonly="true" hidden>${users.u_id}</td>
                                             <td class="d-flex align-items-center" style="border: none;">
                                                 <div class="img" style="background-image: url('<c:url value="${users.u_img}"/> ');"></div>
                                                 <div class="pl-3 email">
@@ -73,10 +73,10 @@
                                             <c:if test="${users.u_enable == 1}">
                                                 <td class="status text-center"><span class="active">Hoạt động</span></td>
                                             </c:if>
-                                            <td class="text-center"><a class="user_view" data-bs-toggle="modal" data-bs-target="#vew_user_modal">
-                                                <i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
-                                                <a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>
-                                                <a class="ticket_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                            <td class="text-center">
+                                                <a class="user_view">
+                                                <i class="fas fa-eye fa-lg fa-fw me-2 text-info"></i></a>
+                                                <a class="delete_user"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -103,6 +103,7 @@
 <script>
 
     $(document).ready(function () {
+        var list_user = $("#list-user");
         var btn_search = $("#btn-search-user");
         var input_search = $("#input-search");
         // Thực hiện hành động tìm kiếm tại Danh sách người dùng hệ thống
@@ -185,6 +186,12 @@
                     icon: 'error'
                 })
             }
+        });
+
+        list_user.on('click', '.user_view', function () {
+            var currentUrl = window.location.href;
+            var ids = $(this).parent().siblings('.user_id').text();
+            window.location.href = currentUrl + "/"+ids;
         });
     });
 

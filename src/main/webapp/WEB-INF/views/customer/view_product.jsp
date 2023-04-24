@@ -23,7 +23,7 @@
 
 
 
-        <div class="row">
+        <div class="row d-flex justify-content-center align-items-center">
             <c:if test="${not empty productDtos}">
                 <c:forEach items="${productDtos}" var="productDto">
                     <div class="col-lg-4 col-md-12 mb-4">

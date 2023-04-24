@@ -15,7 +15,7 @@ public class RoleServiceImpl implements RoleService{
     private RoleDao roleDao;
 
     public List<Role> findAll() {
-        return null;
+        return roleDao.findAll();
     }
 
     public void saveRoleForUser(int id_u, int r_id) {

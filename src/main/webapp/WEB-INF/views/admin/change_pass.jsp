@@ -91,7 +91,7 @@
                     success: function (respone) {
                         const respone_return = respone.split('-');
                         if(respone_return[0] === 'success'){
-                            Swal.fire({ title: respone_return[1], text:"", icon: 'info'});
+                            Swal.fire({ title: respone_return[1], text:"", icon: 'success'});
                             <%--window.location.href = '<c:url value="/admin/dashboard/class" />';--%>
                         }else {
                             Swal.fire({ title: respone_return[1], text:"", icon: 'error'});
