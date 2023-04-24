@@ -1,6 +1,7 @@
 package swp12.gym.model.entity;
 
 public class OrderDetail {
+    private String product_name;
     private int quantity;
     private int price_sale;
     private int price_original;
@@ -68,15 +69,11 @@ public class OrderDetail {
         this.total_price = total_price;
     }
 
-    @Override
-    public String toString() {
-        return "OrderDetail{" +
-                "quantity=" + quantity +
-                ", price_sale=" + price_sale +
-                ", price_original=" + price_original +
-                ", order_id=" + order_id +
-                ", product_id=" + product_id +
-                ", total_price=" + total_price +
-                '}';
+    public String getProduct_name() {
+        return product_name;
+    }
+
+    public void setProduct_name(String product_name) {
+        this.product_name = product_name;
     }
 }
