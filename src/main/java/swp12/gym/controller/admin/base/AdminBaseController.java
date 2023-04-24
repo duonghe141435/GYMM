@@ -49,13 +49,6 @@ public class AdminBaseController {
         return "admin/dashboard";
     }
 
-    @RequestMapping(value = "/detail-customer/{userID}",method = RequestMethod.GET)
-    public String goDetailProfileCustomer(@PathVariable int userID, Model model, HttpSession s) {
-        UserDto user = userService.getCustomerByEmail(s.getAttribute("display_email").toString());
-        model.addAttribute("user",user);
-        return "admin/user/detail_customer";
-    }
-
     @RequestMapping(value = "/employee", method = RequestMethod.GET)
     public String goListEmployee(Model model){
         List<UserDto> users = userService.findAllEmployee();
@@ -77,7 +70,7 @@ public class AdminBaseController {
     }
 
     @RequestMapping(value = "/profile-employee/{userID}",method = RequestMethod.GET)
-    public String goDetailProfileEmployess(@PathVariable int userID, Model model, HttpSession s) {
+    public String goDetailProfileEmployee(@PathVariable int userID, Model model, HttpSession s) {
         UserDto user = userService.getEmployeeById(userID);
         List<Role> roles = roleService.findAll();
 
@@ -125,7 +118,7 @@ public class AdminBaseController {
         List<UserDto> users = userService.findAllCustomer();
         model.addAttribute("users",users);
         model.addAttribute("title", "khách hàng");
-        return "admin/user/list_customer";
+        return "admin/user/list_user";
     }
 
     @RequestMapping(value = "/customer/{customer_id}", method = RequestMethod.GET)
@@ -133,10 +126,18 @@ public class AdminBaseController {
         UserDto user = userService.getEmployeeById(customer_id);
 
         model.addAttribute("title", "khách hàng");
-
+        model.addAttribute("urls","customer");
         model.addAttribute("user",user);
-        return "admin/user/list_customer";
+        return "admin/user/detail_customer";
     }
+
+    @RequestMapping(value = "/profile-customer/{userID}",method = RequestMethod.GET)
+    public String goDetailProfileCustomer(Model model,  @PathVariable int userID){
+        UserDto user = userService.getEmployeeById(userID);
+        model.addAttribute("user",user);
+        return "admin/user/update_user";
+    }
+
 
     @RequestMapping(value = "/users/update-user", method = RequestMethod.POST)
     public String goUpdateUser(@ModelAttribute("user") UserDto user, HttpSession s,

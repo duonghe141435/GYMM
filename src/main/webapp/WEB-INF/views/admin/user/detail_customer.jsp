@@ -13,13 +13,13 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:90%">Danh sách ${title}</p>
+                        <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của ${title}</p>
                         <a href="<c:url value='/admin/customer'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4 card">
-                                <table class="table my-0">
+                                <table class="table my-0" id="user">
                                     <tr>
                                         <td>Họ và tên</td>
                                         <td>${user.u_full_name}</td>
@@ -49,8 +49,8 @@
                                         </c:if>
                                     </tr>
                                     <tr>
-                                        <td>Xóa huấn khách hàng này</td>
-                                        <td>Chỉnh sửa thông tin</td>
+                                        <td><a class="btn btn-danger delete-user">Xóa nhân viên</a></td>
+                                        <td><a class="btn btn-info update-user">Chỉnh sửa thông tin</a></td>
                                     </tr>
                                 </table>
                             </div>
@@ -108,25 +108,55 @@
 <script>
     $(document).ready(function () {
         var list_order = $("#list-order");
-
-        list_user.on('click', '.user_view', function () {
-            var ids = $(this).parent().siblings('.user_id').text();
-
-            $.ajax({
-                url: 'http://localhost:8080/admin/order-management/'+ids,
-                method: 'GET',
-                dataType : 'json',
-                success: function(response) {
-                    // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
-                    Swal.fire({
-                        text: 'Hãy nhập tối thiểu /n5 ký tự vào ô input',
-                        icon: 'error'
-                    })
-                },
-                error: function(xhr, status, error) {
-                    console.log(error);
-                }
-            });
+        var user = $("#user");
+        user.on('click', '.delete-user', function () {
+            Swal.fire({
+                title: 'Bạn chắc chắn xóa khách hàng này?',
+                icon: 'question',
+                confirmButtonText: 'Đúng vậy',
+                showCancelButton: true,
+                cancelButtonText: 'Không!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                $.ajax({
+                    type: "GET",
+                    url: '/admin/user-management/delete/'+${user.u_id},
+                    success: function (respone) {
+                        Swal.fire(respone,'', 'error');
+                        window.location.href = "http://localhost:8080/admin/trainer";
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                    }
+                });
+            }else{
+                Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
+            }
+        })
         });
+
+        user.on('click', '.update-user', function () {
+            window.location.href = "http://localhost:8080/admin/profile-customer/"+${user.u_id};
+        });
+        // list_order.on('click', '.user_view', function () {
+        //     var ids = $(this).parent().siblings('.user_id').text();
+        //
+        //     $.ajax({
+        //         url: 'http://localhost:8080/admin/order-management/'+ids,
+        //         method: 'GET',
+        //         dataType : 'json',
+        //         success: function(response) {
+        //             // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
+        //             Swal.fire({
+        //                 text: 'Hãy nhập tối thiểu /n5 ký tự vào ô input',
+        //                 icon: 'error'
+        //             })
+        //         },
+        //         error: function(xhr, status, error) {
+        //             console.log(error);
+        //         }
+        //     });
+        // });
+    })
 </script>
 </html>
