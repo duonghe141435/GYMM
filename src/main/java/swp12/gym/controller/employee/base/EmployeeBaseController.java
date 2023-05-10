@@ -10,9 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import swp12.gym.dto.CheckInDto;
 import swp12.gym.dto.ProductDto;
 import swp12.gym.dto.UserDto;
+import swp12.gym.model.entity.CheckIn;
 import swp12.gym.model.entity.User;
+import swp12.gym.service.CheckInService;
 import swp12.gym.service.OrderService;
 import swp12.gym.service.ProductService;
 import swp12.gym.service.UserService;
@@ -32,6 +35,9 @@ public class EmployeeBaseController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private CheckInService checkInService;
 
     //done
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
@@ -99,6 +105,14 @@ public class EmployeeBaseController {
             model.addAttribute("code",code);
         }
         return "employee/order-product";
+    }
+
+    @RequestMapping(value = "/list-checkIn", method = RequestMethod.GET)
+    public String goListEmployee(Model model){
+        List<CheckInDto> allCheckIn = checkInService.findAllCheckIn();
+        model.addAttribute("allCheckIn", allCheckIn);
+        System.out.println("allCheckIn: " + allCheckIn);
+        return "employee/list_checkIn";
     }
 }
 

@@ -10,7 +10,7 @@
 <html>
 <head>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
-    <title>Lịch sử hoạt động</title>
+    <title></title>
     <style>
         .left {
             flex: 10%;
@@ -67,55 +67,55 @@
                                 <div class="text-nowrap">
                                     <div class="card-body" style="padding-top: 0;">
                                         <div class="card-body" style="padding-top: 0;">
-                                            <c:if test="${not empty detail_class}">
+                                            <c:if test="${not empty detailClassOfCustomer}">
                                                 <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;" >
                                                     <table class="table my-0" style="border: 1px">
                                                         <thead>
                                                         <tr>
                                                             <th class="text-left">
-                                                                <tr>
-                                                                    <th class="text-center"></th>
-                                                                    <th class="text-center"></th>
+                                                        <tr>
+                                                            <th class="text-center"></th>
+                                                            <th class="text-center"></th>
 
-                                                                </tr>
-                                                            </th>
+                                                        </tr>
+                                                        </th>
                                                             <%--<th class="text-center"></th>--%>
 
                                                         </tr>
                                                         </thead>
                                                         <tbody style="display: contents;width: 100%;overflow: auto;">
-                                                        <c:forEach items="${detail_class}" var="detail_class">
+                                                        <%--<c:forEach items="${detail_class}" var="detail_class">--%>
 
                                                             <%--<table style="width: 800px; height: 400px">--%>
-                                                                <%--<tbody>--%>
-                                                                <%--<tr style="border-bottom: 0 none">--%>
-                                                                    <%--<td>--%>
-                                                                        <%--<div>--%>
-                                                                            <%--<h2>.............</h2>--%>
-                                                                            <%--<center style="text-align: -webkit-center">--%>
-                                                                                <%--<div >--%>
-                                                                                    <%--<table style="font-size: 23px;width: 800px; border-bottom: 0 none">--%>
-                                                                                        <%--<tbody>--%>
-                                                                                        <%--<tr align="left" >--%>
-                                                                                            <%--<td>Tên lớp: </td>--%>
-                                                                                            <%--<td style="">${detail_class.c_name}</td>--%>
-                                                                                        <%--</tr>--%>
-                                                                                        <%--<tr align="left">--%>
-                                                                                            <%--<td>Tên PT: </td>--%>
-                                                                                            <%--<td>${detail_class.c_trainer_name} </td>--%>
-                                                                                        <%--</tr>--%>
-                                                                                        <%--<tr align="left">--%>
-                                                                                            <%--<td>Giá thuê:</td>--%>
-                                                                                            <%--<td class="class-price">${detail_class.c_price}</td>--%>
-                                                                                        <%--</tr>--%>
-                                                                                        <%--</tbody>--%>
-                                                                                    <%--</table>--%>
-                                                                                <%--</div>--%>
-                                                                            <%--</center>--%>
-                                                                        <%--</div>--%>
-                                                                    <%--</td>--%>
-                                                                <%--</tr>--%>
-                                                                <%--</tbody>--%>
+                                                            <%--<tbody>--%>
+                                                            <%--<tr style="border-bottom: 0 none">--%>
+                                                            <%--<td>--%>
+                                                            <%--<div>--%>
+                                                            <%--<h2>.............</h2>--%>
+                                                            <%--<center style="text-align: -webkit-center">--%>
+                                                            <%--<div >--%>
+                                                            <%--<table style="font-size: 23px;width: 800px; border-bottom: 0 none">--%>
+                                                            <%--<tbody>--%>
+                                                            <%--<tr align="left" >--%>
+                                                            <%--<td>Tên lớp: </td>--%>
+                                                            <%--<td style="">${detail_class.c_name}</td>--%>
+                                                            <%--</tr>--%>
+                                                            <%--<tr align="left">--%>
+                                                            <%--<td>Tên PT: </td>--%>
+                                                            <%--<td>${detail_class.c_trainer_name} </td>--%>
+                                                            <%--</tr>--%>
+                                                            <%--<tr align="left">--%>
+                                                            <%--<td>Giá thuê:</td>--%>
+                                                            <%--<td class="class-price">${detail_class.c_price}</td>--%>
+                                                            <%--</tr>--%>
+                                                            <%--</tbody>--%>
+                                                            <%--</table>--%>
+                                                            <%--</div>--%>
+                                                            <%--</center>--%>
+                                                            <%--</div>--%>
+                                                            <%--</td>--%>
+                                                            <%--</tr>--%>
+                                                            <%--</tbody>--%>
                                                             <%--</table>--%>
                                                             <tr>
                                                                 <td class="text-left" >
@@ -129,36 +129,36 @@
                                                                     <p class="bold">- Lịch tập: <br/>
 
                                                                 </td>
-                                                                <%--<td class="text-center class-price">--%>
-                                                                        <%--${classDtos.c_price}--%>
-                                                                <%--</td>--%>
+                                                                    <%--<td class="text-center class-price">--%>
+                                                                    <%--${classDtos.c_price}--%>
+                                                                    <%--</td>--%>
 
                                                                 <td class="text-left">
-                                                                    <p style="font-size:20px;">${detail_class.c_name} <p/>
-                                                                    <p style="font-size:20px;">${detail_class.c_trainer_name}<p/>
+                                                                    <p style="font-size:20px;">${detailClassOfCustomer.c_name} <p/>
+                                                                    <p style="font-size:20px;">${detailClassOfCustomer.c_trainer_name}<p/>
                                                                     <p class="text-left class-price" style="font-size:20px;">
-                                                                        ${detail_class.c_price}
+                                                                            ${detailClassOfCustomer.c_price}
                                                                     </p>
-                                                                    <p style="font-size:20px;">${detail_class.c_start_date} - ${detail_class.c_end_date}</p>
+                                                                    <p style="font-size:20px;">${detailClassOfCustomer.c_start_date} - ${detailClassOfCustomer.c_end_date}</p>
                                                                     <p class="status text-left" style="font-size: 20px">
-                                                                        <c:if test="${detail_class.c_status == 1}"><span class="active" style="font-size: 20px;">Đang bán / còn hạn</span></c:if>
-                                                                        <c:if test="${detail_class.c_status == -1}"><span class="waiting" style="font-size: 20px;">Hết hạn</span></c:if>
-                                                                        <c:if test="${detail_class.c_status == 0}"><span class="waiting" style="font-size: 20px;">Bị hủy - booking class không thành công</span></c:if>
+                                                                        <c:if test="${detailClassOfCustomer.c_status == 1}"><span class="active" style="font-size: 20px;">Lớp đã bắt đầu</span></c:if>
+                                                                        <c:if test="${detailClassOfCustomer.c_status == -1}"><span class="waiting" style="font-size: 20px;">Bị hủy</span></c:if>
+                                                                        <c:if test="${detailClassOfCustomer.c_status == 0}"><span class="waiting" style="font-size: 20px;">Lớp chưa bắt đầu - Đang bán / còn hạn</span></c:if>
                                                                     </p>
-                                                                    <p style="font-size:20px;">${detail_class.start_time} - ${detail_class.end_time}</p>
-                                                                    <p style="font-size:20px;">${detail_class.total_attendees} / ${detail_class.max_member}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="showListCustomer(${detail_class.class_id})">Danh sách lớp</button></p>
+                                                                    <p style="font-size:20px;">${detailClassOfCustomer.start_time} - ${detailClassOfCustomer.end_time}</p>
+                                                                    <p style="font-size:20px;">${detailClassOfCustomer.total_attendees} / ${detailClassOfCustomer.max_member}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="showListCustomer(${detailClassOfCustomer.class_id})">Danh sách lớp</button></p>
                                                                     <p class="status text-left">
-                                                                        <c:if test="${detail_class.monday == 1}"><span class="active" style="font-size: 20px !important;">monday,</span></c:if>
-                                                                        <c:if test="${detail_class.tuesday == 1}"><span class="waiting" style="font-size: 20px;">tuesday,</span> </c:if>
-                                                                        <c:if test="${detail_class.wednesday == 1}"><span class="waiting" style="font-size: 20px;">wednesday</span>, </c:if>
-                                                                        <c:if test="${detail_class.thursday == 1}"><span class="waiting" style="font-size: 20px;">thursday,</span> </c:if>
-                                                                        <c:if test="${detail_class.friday == 1}"><span class="waiting" style="font-size: 20px;">friday,</span> </c:if>
-                                                                        <c:if test="${detail_class.saturday == 1}"><span class="waiting" style="font-size: 20px;">saturday, </span></c:if>
-                                                                        <c:if test="${detail_class.sunday == 1}"><span class="waiting" style="font-size: 20px;">sunday</span></c:if>
+                                                                        <c:if test="${detailClassOfCustomer.monday == 1}"><span class="active" style="font-size: 20px !important;">monday,</span></c:if>
+                                                                        <c:if test="${detailClassOfCustomer.tuesday == 1}"><span class="waiting" style="font-size: 20px;">tuesday,</span> </c:if>
+                                                                        <c:if test="${detailClassOfCustomer.wednesday == 1}"><span class="waiting" style="font-size: 20px;">wednesday</span>, </c:if>
+                                                                        <c:if test="${detailClassOfCustomer.thursday == 1}"><span class="waiting" style="font-size: 20px;">thursday,</span> </c:if>
+                                                                        <c:if test="${detailClassOfCustomer.friday == 1}"><span class="waiting" style="font-size: 20px;">friday,</span> </c:if>
+                                                                        <c:if test="${detailClassOfCustomer.saturday == 1}"><span class="waiting" style="font-size: 20px;">saturday, </span></c:if>
+                                                                        <c:if test="${detailClassOfCustomer.sunday == 1}"><span class="waiting" style="font-size: 20px;">sunday</span></c:if>
                                                                     </p>
                                                                 </td>
                                                             </tr>
-                                                        </c:forEach>
+                                                        <%--</c:forEach>--%>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -180,6 +180,7 @@
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
 </body>
+
 <script>
 
     function showListCustomer(classID) {

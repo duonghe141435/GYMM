@@ -112,7 +112,7 @@
                                                                 <td class="text-center">
                                                                         ${classDtos.c_create_date}
                                                                 </td>
-                                                                <td onclick="viewDetailClass(${classDtos.class_id})">Xem chi tiết</td>
+                                                                <td style="cursor: pointer" onclick="viewDetailClass(${classDtos.class_id})">Xem chi tiết</td>
                                                             </tr>
                                                         </c:forEach>
                                                         </tbody>
@@ -143,7 +143,6 @@
     function viewDetailClass(class_id) {
         console.log("class_id: " + class_id);
         window.location.href = '<c:url value="/CustomerUser/viewDetailAnClass?" />' + "class_id=" + class_id;
-
     }
 </script>
 </html>

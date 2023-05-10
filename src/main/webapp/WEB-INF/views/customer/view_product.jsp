@@ -33,9 +33,10 @@
                                data-description="${productDto.p_description}" data-kind="${productDto.p_kind_name}" data-quantity="${productDto.p_quantity}">
                                 <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                                     <div class="d-flex justify-content-start align-items-start h-30">
-                                        <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">${productDto.p_price}</span></h5>
+                                        <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark">${productDto.p_name}</span></h5>
+                                        <h5><span class="badge bg-light pt-2 mt-3 text-dark" style="margin-left: 180px">${productDto.p_price}</span></h5>
                                     </div>
-                                    <p class="text-light text-center fw-bold">${productDto.p_name}</p>
+                                    <p class="text-light text-center fw-bold">${productDto.p_description}</p>
                                 </div>
                                 <div class="hover-overlay">
                                     <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>

@@ -2,6 +2,8 @@ package swp12.gym.controller.customer.base;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -41,6 +43,9 @@ public class CustomerBaseController {
     private AttendanceService attendanceService;
     @Autowired
     private PersonalTrainerDetailService personalTrainerDetailService;
+
+    @Autowired
+    private CheckInService checkInService;
 
     //Home user
     @RequestMapping(value = "/home",method = RequestMethod.GET)
@@ -191,6 +196,27 @@ public class CustomerBaseController {
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
     public String goChangePassForCustomer() {
         return "customer/change_pass";
+    }
+
+    @RequestMapping(value = "/checkIn",method = RequestMethod.POST)
+    public ResponseEntity<String> insertCheckIn(Authentication authentication) {
+        try{
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String userName = userDetails.getUsername();
+            int userID = userDao.findIdByUsername(userName);
+            String result = checkInService.checkIn(userID);
+            if (result.equals("YES")){
+                checkInService.insertCheckIn(userID, 1);
+                return new ResponseEntity<String>("YES", HttpStatus.OK);
+            }else if (result.equals("NO")){
+                checkInService.insertCheckIn(userID, 0);
+                return new ResponseEntity<String>("NO", HttpStatus.OK);
+            }else {
+                return new ResponseEntity<String>("NULL", HttpStatus.OK);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
 
