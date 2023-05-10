@@ -71,16 +71,6 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label"
-                                                   for="password"><strong>Mật khẩu</strong></label>
-                                            <form:input class="form-control" type="password" id="password"
-                                                        placeholder="Nhập mật khẩu của bạn"
-                                                        path="u_password" name="email" required="required" />
-                                            <div class="invalid-feedback password-error">
-                                                Vui lòng nhập mật khẩu hợp lệ.
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label"
                                                    for="phone-number"><strong>Số điện thoại</strong></label>
                                             <form:input class="form-control" type="text"
                                                         id="phone-number"

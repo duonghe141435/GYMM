@@ -615,7 +615,7 @@
                                     table_ticket.prepend(newrow);
                                     btn_close_ticket.click();
                                     Toast.fire({icon: 'success', title: 'Thêm vé thành công!'});
-                                    window.location.href = '<c:url value="/admin/dashboard/class/new-class"/>'
+                                    window.location.href = '<c:url value="/admin/class/new-class"/>'
                                 },
                                 error: function (xhr, ajaxOptions, thrownError) {
                                     Swal.fire('Oops...', 'Lỗi hệ thống', 'error');

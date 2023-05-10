@@ -23,7 +23,7 @@ public class ProductAPIOfAdmin {
     @PostMapping(value = URL_API+"/type", produces = "text/plain;charset=UTF-8")
     public ResponseEntity<String> createProductType(@RequestBody String type) {
         try {
-            int id = productTypeService.getTotalItemInSystem() + 1;
+            int id = productTypeService.getMaxIdKindInSystem() + 1;
             productTypeService.createProductType(id,type);
             return new ResponseEntity<String>(id+"", HttpStatus.OK);
         } catch (Exception e) {
