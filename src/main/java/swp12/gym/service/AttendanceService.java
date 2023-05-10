@@ -7,5 +7,10 @@ import java.util.List;
 
 @Service
 public interface AttendanceService {
+
+    String checkDateAttendanceClass(int class_id);
+
     void saveAttendance(List<Attendance> listAttendance);
+
+
 }

@@ -209,7 +209,6 @@ public class ClassDao {
                 classDto.setThursday(resultSet.getInt("thursday"));
                 classDto.setFriday(resultSet.getInt("friday"));
                 classDto.setSaturday(resultSet.getInt("saturday"));
-
                 return classDto;
             }
         }, class_id);

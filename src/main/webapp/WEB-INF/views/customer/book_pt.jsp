@@ -259,10 +259,10 @@
         selectYear.addEventListener("change", function() {
             for (var i = 0; i <= 6; i++) {
                 var getDate = document.getElementById(i).innerText.trim();
-                var dateParts = getDate.split('-');
-                var dayy = dateParts[0];
-                var monthh = dateParts[1];
-                var yearr = dateParts[2];
+                var datePartssss = getDate.split('-');
+                var dayy = datePartssss[0];
+                var monthh = datePartssss[1];
+                var yearr = datePartssss[2];
                 var dateObject = new Date(yearr, monthh - 1, dayy);
                 dateObject.setDate(dateObject.getDate() + 1);
                 var formattedDate = dateObject.toISOString().slice(0,10);
@@ -389,10 +389,10 @@
         select.addEventListener("change", function() {
             for (var i = 0; i <= 6; i++) {
                 var getDate = document.getElementById(i).innerText.trim();
-                var dateParts = getDate.split('-');
-                var dayy = dateParts[0];
-                var monthh = dateParts[1];
-                var yearr = dateParts[2];
+                var datePartsss = getDate.split('-');
+                var dayy = datePartsss[0];
+                var monthh = datePartsss[1];
+                var yearr = datePartsss[2];
                 var dateObject = new Date(yearr, monthh - 1, dayy);
                 dateObject.setDate(dateObject.getDate() + 1);
                 var formattedDate = dateObject.toISOString().slice(0,10);
@@ -516,10 +516,10 @@
 
     for (var i = 0; i <= 6; i++) {
         var getDate = document.getElementById(i).innerText.trim();
-        var dateParts = getDate.split('-');
-        var dayy = dateParts[0];
-        var monthh = dateParts[1];
-        var yearr = dateParts[2];
+        var datePartss = getDate.split('-');
+        var dayy = datePartss[0];
+        var monthh = datePartss[1];
+        var yearr = datePartss[2];
 
         var dateObject = new Date(yearr, monthh - 1, dayy);
         dateObject.setDate(dateObject.getDate() + 1);

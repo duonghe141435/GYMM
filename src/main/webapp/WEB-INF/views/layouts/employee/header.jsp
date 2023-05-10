@@ -49,6 +49,17 @@
                     </div>
                 </div>
             </li>
+                <li class="nav-item dropdown no-arrow mx-1">
+                    <div class="nav-item dropdown no-arrow">
+                        <a class="dropdown-toggle nav-link" href="<c:url value="/employee/list-checkIn"/>">
+                            <i class="fas fa-list"></i><span>&nbsp;&nbsp;Danh sách CheckIn</span>
+                        </a>
+
+                        <%--<div class="dropdown-menu shadow animated--grow-in">--%>
+                        <%--<a class="dropdown-item" href="<c:url value="/employee/order-product"/>">Tạo hóa đơn</a>--%>
+                        <%--</div>--%>
+                    </div>
+                </li>
         </ul>
         <ul class="navbar-nav flex-nowrap ms-auto">
             <li class="nav-item dropdown no-arrow mx-1">

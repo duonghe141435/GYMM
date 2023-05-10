@@ -1,6 +1,8 @@
 package swp12.gym.controller.trainer.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -11,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.ProductDto;
+import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.dto.UserDto;
+import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.User;
 import swp12.gym.service.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -31,14 +36,64 @@ public class TrainerBaseController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private TicketService ticketService;
+
+    @Autowired
+    private AttendanceService attendanceService;
+
+    @RequestMapping(value = "/home",method = RequestMethod.GET)
+    public String homeTrainer(Model model, Authentication authentication) {
+
+        String email = ((UserDetails) authentication.getPrincipal()).getUsername();
+//        List<ClassDto> class_list = classService.findClassAllOfAnTrainer(email);
+
+        List<Ticket> ticket = ticketService.findAll();
+        model.addAttribute("tickets", ticket);
+
+//        model.addAttribute("class_list", class_list);
+        return "trainer/index_trainer";
+    }
+
+    @RequestMapping(value = "/show-list-personal",method = RequestMethod.GET)
+    public String goListPersonal(Model model, HttpSession s) {
+        List<Ticket> ticket = ticketService.findAll();
+        List<TicketTrainerDto> allTicketTrainer = ticketService.findAllTicketTrainer();
+
+        model.addAttribute("tickets", ticket);
+        model.addAttribute("allTicketTrainer", allTicketTrainer);
+        return "trainer/list_personal";
+    }
+
+    @RequestMapping(value = "/show-list-class",method = RequestMethod.GET)
+    public String goListClass(Model model, HttpSession s) {
+        List<Ticket> ticket = ticketService.findAll();
+        model.addAttribute("tickets", ticket);
+        List<TicketTrainerDto> allTicketClass = ticketService.findAllTicketClassForCustomer();
+        model.addAttribute("allTicketClass", allTicketClass);
+        return "trainer/list_class";
+    }
+
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String indexTrainer(Model model, Authentication authentication) {
 
+//        String email = ((UserDetails) authentication.getPrincipal()).getUsername();
+//        List<ClassDto> class_list = classService.findClassAllOfAnTrainer(email);
+//        model.addAttribute("class_list", class_list);
+        List<Ticket> ticket = ticketService.findAll();
+        model.addAttribute("tickets", ticket);
+
+
+        return "trainer/index_trainer";
+    }
+
+    @RequestMapping(value = "/manage_class",method = RequestMethod.GET)
+    public String goManageClass(Model model, Authentication authentication) {
+
         String email = ((UserDetails) authentication.getPrincipal()).getUsername();
         List<ClassDto> class_list = classService.findClassAllOfAnTrainer(email);
-
         model.addAttribute("class_list", class_list);
-        return "trainer/index_trainer";
+        return "trainer/manage_class";
     }
 
     @RequestMapping(value = "/class-attendance/{id}",method = RequestMethod.GET)
@@ -58,7 +113,7 @@ public class TrainerBaseController {
     public String productPage(Model model) {
         List<ProductDto> productDtos = productService.findAll();
         model.addAttribute("productDtos", productDtos);
-
+        System.out.println("productDtos: " + productDtos);
         return "trainer/view_product";
     }
 
@@ -93,6 +148,19 @@ public class TrainerBaseController {
     @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
     public String goActivityOfTrainer() {
         return "trainer/change_pass";
+    }
+
+    @RequestMapping(value = "/checkAttendance",method = RequestMethod.GET)
+    public ResponseEntity<String> checkDateAttendanceClass(HttpServletRequest request) {
+        try{
+            System.out.println("Class id: " + request.getParameter("_classID"));
+            int class_id = Integer.parseInt(request.getParameter("_classID"));
+//            ClassDto classDto = classService.findDetailAnClass(class_id);
+            String results = attendanceService.checkDateAttendanceClass(class_id);
+            return new ResponseEntity<String>(results, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

@@ -132,9 +132,9 @@ public class CustomerTicketUser {
 
     @RequestMapping(value = "/viewDetailAnClass", method = RequestMethod.GET)
     public String goViewDetailAnClass(@RequestParam(value = "class_id") int class_id, Model model){
-        ClassDto detail_class = classService.findDetailAnClass(class_id);
-        model.addAttribute("detail_class", detail_class);
-        System.out.println(detail_class);
-        return "/customer/detail_class";
+        ClassDto detailClassOfCustomer = classService.findDetailAnClass(class_id);
+        model.addAttribute("detailClassOfCustomer", detailClassOfCustomer);
+        System.out.println(detailClassOfCustomer);
+        return "customer/detail_class";
     }
 }

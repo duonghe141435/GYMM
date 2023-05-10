@@ -8,7 +8,9 @@ var tbody = document.getElementsByTagName("tbody")[0];
 var thList = tbody.getElementsByTagName("th");
 
 for (var i = 0; i < cells.length; i++) {
-    cells[i].addEventListener("click", function(event) {
+
+    (function(index) { //để chuyển sang index không dùng i, addEventListener không được giữ nguyên giá trị ở i trong mỗi vòng lặp
+    cells[index].addEventListener("click", function(event) {
         var z = Array.prototype.indexOf.call(cells, event.currentTarget);
         for(var l = 0; l < cells.length; l++){
             if(z<7){
@@ -36,7 +38,7 @@ for (var i = 0; i < cells.length; i++) {
         }
         for(var k = 0; k < cells.length; k=k+7){
             if(z===k){
-                var dateString = document.getElementById("0").innerHTML.split(" ")[3];
+                var dateString = document.getElementById("0").innerHTML;
                 var dateParts = dateString.split("-");
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
@@ -46,7 +48,7 @@ for (var i = 0; i < cells.length; i++) {
         }
         for(var k = 1; k < cells.length; k=k+7){
             if(z===k){
-                var dateString = document.getElementById("1").innerHTML.split(" ")[3];
+                var dateString = document.getElementById("1").innerHTML;
                 var dateParts = dateString.split("-");
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
@@ -56,7 +58,7 @@ for (var i = 0; i < cells.length; i++) {
         }
         for(var k = 2; k < cells.length; k=k+7){
             if(z===k){
-                var dateString = document.getElementById("2").innerHTML.split(" ")[3];
+                var dateString = document.getElementById("2").innerHTML;
                 var dateParts = dateString.split("-");
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
@@ -66,7 +68,7 @@ for (var i = 0; i < cells.length; i++) {
         }
         for(var k = 3; k < cells.length; k=k+7){
             if(z===k){
-                var dateString = document.getElementById("3").innerHTML.split(" ")[3];
+                var dateString = document.getElementById("3").innerHTML;
                 var dateParts = dateString.split("-");
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
@@ -75,7 +77,7 @@ for (var i = 0; i < cells.length; i++) {
         }
         for(var k = 4; k < cells.length; k=k+7){
             if(z===k){
-                var dateString = document.getElementById("4").innerHTML.split(" ")[3];
+                var dateString = document.getElementById("4").innerHTML;
                 var dateParts = dateString.split("-");
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
@@ -85,7 +87,7 @@ for (var i = 0; i < cells.length; i++) {
         }
         for(var k = 5; k < cells.length; k=k+7){
             if(z===k){
-                var dateString = document.getElementById("5").innerHTML.split(" ")[3];
+                var dateString = document.getElementById("5").innerHTML;
                 var dateParts = dateString.split("-");
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
@@ -95,7 +97,7 @@ for (var i = 0; i < cells.length; i++) {
         }
         for(var k = 6; k < cells.length; k=k+7){
             if(z===k){
-                var dateString = document.getElementById("6").innerHTML.split(" ")[3];
+                var dateString = document.getElementById("6").innerHTML;
                 var dateParts = dateString.split("-");
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
@@ -114,6 +116,7 @@ for (var i = 0; i < cells.length; i++) {
         //modal.style.display = "block";
         //modalBook.style.display = "none";
         //else if(da mua ve)
+
         if(this.classList.contains("past"))  {
             Swal.fire({
                 icon: 'error',
@@ -122,10 +125,21 @@ for (var i = 0; i < cells.length; i++) {
             })
         }
         else{
-            modalBook.style.display = "block";
+            //check xem td đó đã có data hay có lịch tập ha chưa
+            if (cells[index].textContent !== "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Bạn đã có lịch',
+                    text: 'Vui lòng chọn thời gian khác!',
+                })
+            }else{
+                modalBook.style.display = "block";
+            }
+            //modalBook.style.display = "block";
         }
 
     });
+})(i);
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -216,7 +230,7 @@ yearSelect.addEventListener('change', function() {
 
         let dateObj = new Date(year, month1 - 1, dayChseck)
         if(today.getDate()===dayChseck&&today.getMonth()===month1-1&&today.getFullYear()==year){
-            console.log(rows.length);
+            // console.log(rows.length);
 
             for(j=0;j<rows.length-1;j++){
                 var cells = rows[j+1].getElementsByTagName("td");
@@ -412,7 +426,7 @@ document.getElementById("week-select").addEventListener("change", function() {
 
         let dateObj = new Date(year, month - 1, dayChseck)
         if(today.getDate()===dayChseck&&today.getMonth()===month-1&&today.getFullYear()==year){
-            console.log(rows.length);
+            // console.log(rows.length);
 
             for(j=0;j<rows.length-1;j++){
                 var cells = rows[j+1].getElementsByTagName("td");

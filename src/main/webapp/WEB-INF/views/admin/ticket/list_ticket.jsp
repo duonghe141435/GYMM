@@ -180,7 +180,7 @@
 
         table_ticket.on('click', '.ticket-view', function () {
             var ids = $(this).parent().siblings('.ticket-id').text();
-            window.location.href = 'http://localhost:8080/admin/dashboard/ticket-detail/'+ids;
+            window.location.href = 'http://localhost:8080/admin/ticket-detail/'+ids;
         });
 
         btn_close_trainer.click(function () {

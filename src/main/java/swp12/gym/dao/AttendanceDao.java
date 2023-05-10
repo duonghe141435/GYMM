@@ -14,8 +14,19 @@ public class AttendanceDao {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-//    private String sql;
+    private String sql;
     private final LocalDate currentDate = LocalDate.now();
+
+    public String checkDateAttendanceClass(int class_id) {
+        try{
+            sql = "";
+            String isExpired = jdbcTemplate.queryForObject(sql, String.class, class_id);
+            return isExpired;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public void insertAttendance(List<Attendance> listAttendance){
         try{

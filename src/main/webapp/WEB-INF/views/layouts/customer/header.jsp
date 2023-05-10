@@ -71,8 +71,8 @@
                 <%--</button>--%>
             <%--</li>--%>
             <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link" href="<c:url value="/customer/book_pt"/>">
-                    <span class="fas">Check In&nbsp;&nbsp;<span class="tick">&#10004;</span></span>
+                <a class="nav-link">
+                    <span class="fas" id="check-in-btn">Check In&nbsp;&nbsp;<span class="tick">&#10004;</span></span>
                 </a>
             </li>
 
@@ -240,16 +240,30 @@
 <%--</nav>--%>
 <script>
     $(document).ready(function () {
+        // Lấy CSRF token
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        // Thiết lập CSRF token cho mọi ajax request
+        $(document).ajaxSend(function(e, xhr, options) {
+            xhr.setRequestHeader(header, token);
+        });
+
         $('#check-in-btn').click(function (e) {
 
             $.ajax({
-                type: "GET",
-                url: '<c:url value="/customer/customer-management/check-in" />',
-                dataType: "text",
-                contentType: "text/plain",
+                url: '/customer/checkIn',
+                type: "POST",
                 success: function (respone) {
-                    Swal.fire(respone, '', 'info');
-
+                    if (respone === 'YES') {
+                        Swal.fire("Bạn đã CheckIn thành công", '', 'success');
+                    }
+                    if (respone === 'NO') {
+                        Swal.fire("Vé của bạn đã hết hạn", 'Vui lòng mua vé mới', 'info');
+                    }
+                    if (respone === 'NULL') {
+                        Swal.fire("Bạn chưa có vé", 'Vui lòng mua vé mới', 'info');
+                    }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     Swal.fire('Lỗi hệ thống!!', 'Mã lỗi: ' + xhr.status + ', thông điệp lỗi: ' + thrownError, 'error');

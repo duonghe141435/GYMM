@@ -20,7 +20,7 @@
                 <div class="card shadow" style="height: 100vh">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width: 90%;/*font-weight: 400;*/text-align: left;margin-top: auto;margin-bottom: auto;">Danh sách vé</p>
-                        <a class="btn btn-primary" href="<c:url value="/admin/dashboard/ticket"/>" style="font-weight: 700;">Trở lại danh sách vé</a>
+                        <a class="btn btn-primary" href="<c:url value="/admin/ticket"/>" style="font-weight: 700;">Trở lại danh sách vé</a>
                     </div>
                     <div class="card-body">
                         <div class="row">

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -33,6 +34,12 @@ public class DataUtil {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
         return dateTime;
+    }
+
+    public LocalDateTime convertStringDateToLocalDateTime(String date){
+        LocalDate localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDateTime localDateTime = localDate.atStartOfDay();
+        return localDateTime;
     }
 
 
