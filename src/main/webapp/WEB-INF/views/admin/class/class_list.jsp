@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <div class="table-responsive table mt-2">
-                            <table class="table my-0" id="product_table">
+                            <table class="table my-0" id="list-class-table">
                                 <thead>
                                 <tr>
                                     <th class="text-center">#</th>
@@ -52,7 +52,7 @@
                                             <td class="text-center">
                                                 <count></count>
                                             </td>
-                                            <td class="product_id" style="display: none" aria-readonly="true">${class_list.class_id}</td>
+                                            <td class="class-id" style="display: none" aria-readonly="true">${class_list.class_id}</td>
                                             <td class="text-center">${class_list.c_name}</td>
                                             <td class="class-price">${class_list.c_price}</td>
                                             <td class="text-center">${class_list.total_attendees} / ${class_list.max_member}</td>
@@ -72,8 +72,8 @@
                                             </td>
                                             <td class="text-center"> ${class_list.c_create_date}</td>
                                             <td class="text-center">
-                                                <a class="class_view"><i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
-                                                <a class="class_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                                <a class="class_view" style="cursor: pointer"><i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
+                                                <a class="class_delete" style="cursor: pointer"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -96,5 +96,13 @@
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
 </body>
-
+<script>
+    $(document).ready(function () {
+        var class_table = $("#list-class-table");
+        class_table.on('click', '.class_view', function () {
+            var class_id = $(this).parent().siblings('.class-id').text();
+            window.location.href = '<c:url value="/admin/detail-class/" />'+ class_id;
+        });
+    });
+</script>
 </html>

@@ -84,8 +84,8 @@
                                                 <a class="class-attendance" style="cursor: pointer">Điểm danh</a>
                                             </td>
                                             <td class="text-center">
-                                                <a class="class-view"><i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
-                                                <a class="class-delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                                <a class="class-view" style="cursor: pointer"><i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
+                                                <a class="class-delete" style="cursor: pointer"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
                                             </td>
                                             <td class="CStatus" style="display: none">${class_list.c_status}</td>
                                         </tr>

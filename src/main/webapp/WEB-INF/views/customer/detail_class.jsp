@@ -123,7 +123,7 @@
                                                                     <p class="bold">- Tên PT: <p/>
                                                                     <p class="bold">- Giá thuê: <br/>
                                                                     <p class="bold">- thời Hạn: <br/>
-                                                                    <p class="bold">- Tình trạng thanh toán: <br/>
+                                                                    <p class="bold">- Trạng thái lớp: <br/>
                                                                     <p class="bold">- Thời gian: <br/>
                                                                     <p class="bold">- Số thành viên lớp: <br/>
                                                                     <p class="bold">- Lịch tập: <br/>
@@ -148,12 +148,12 @@
                                                                     <p style="font-size:20px;">${detailClassOfCustomer.start_time} - ${detailClassOfCustomer.end_time}</p>
                                                                     <p style="font-size:20px;">${detailClassOfCustomer.total_attendees} / ${detailClassOfCustomer.max_member}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="showListCustomer(${detailClassOfCustomer.class_id})">Danh sách lớp</button></p>
                                                                     <p class="status text-left">
-                                                                        <c:if test="${detailClassOfCustomer.monday == 1}"><span class="active" style="font-size: 20px !important;">monday,</span></c:if>
-                                                                        <c:if test="${detailClassOfCustomer.tuesday == 1}"><span class="waiting" style="font-size: 20px;">tuesday,</span> </c:if>
-                                                                        <c:if test="${detailClassOfCustomer.wednesday == 1}"><span class="waiting" style="font-size: 20px;">wednesday</span>, </c:if>
-                                                                        <c:if test="${detailClassOfCustomer.thursday == 1}"><span class="waiting" style="font-size: 20px;">thursday,</span> </c:if>
-                                                                        <c:if test="${detailClassOfCustomer.friday == 1}"><span class="waiting" style="font-size: 20px;">friday,</span> </c:if>
-                                                                        <c:if test="${detailClassOfCustomer.saturday == 1}"><span class="waiting" style="font-size: 20px;">saturday, </span></c:if>
+                                                                        <c:if test="${detailClassOfCustomer.monday == 1}"><span class="active" style="font-size: 20px !important;">monday</span></c:if>
+                                                                        <c:if test="${detailClassOfCustomer.tuesday == 1}"><span class="waiting" style="font-size: 20px;">, tuesday</span> </c:if>
+                                                                        <c:if test="${detailClassOfCustomer.wednesday == 1}"><span class="waiting" style="font-size: 20px;">, wednesday</span> </c:if>
+                                                                        <c:if test="${detailClassOfCustomer.thursday == 1}"><span class="waiting" style="font-size: 20px;">, thursday</span> </c:if>
+                                                                        <c:if test="${detailClassOfCustomer.friday == 1}"><span class="waiting" style="font-size: 20px;">, friday</span> </c:if>
+                                                                        <c:if test="${detailClassOfCustomer.saturday == 1}"><span class="waiting" style="font-size: 20px;">, saturday</span></c:if>
                                                                         <c:if test="${detailClassOfCustomer.sunday == 1}"><span class="waiting" style="font-size: 20px;">sunday</span></c:if>
                                                                     </p>
                                                                 </td>

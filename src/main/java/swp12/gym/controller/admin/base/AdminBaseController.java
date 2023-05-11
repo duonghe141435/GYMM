@@ -39,6 +39,8 @@ public class AdminBaseController {
     private OrderService orderService;
     @Autowired
     private RoleService roleService;
+    @Autowired
+    private AttendanceService attendanceService;
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String goDashboard(Model model){
@@ -281,14 +283,24 @@ public class AdminBaseController {
         return "admin/class/create_class";
     }
 
-    @RequestMapping(value = "/detail-class",method = RequestMethod.GET)
-    public String goDetailCLass(@RequestParam(value = "class_id") int class_id, Model model) {
-        System.out.println("class_id: " + class_id);
+    @RequestMapping(value = "/detail-class/{class_id}",method = RequestMethod.GET)
+    public String goDetailCLass(@PathVariable int class_id, Model model) {
+        //detail class
         ClassDto detail_class = classService.findDetailAnClass(class_id);
-        model.addAttribute("detail_class", detail_class);
+        model.addAttribute("classDto", detail_class);
+        //list user of class
         List<User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
         model.addAttribute("list_user_of_class", list_user_of_class);
-        return "";
+        String jsonDetailClass = new Gson().toJson(detail_class);
+        model.addAttribute("jsonDetailClass",jsonDetailClass);
+
+        //list attendance of class
+        List<Attendance> list_attendance = attendanceService.listAttendance(class_id);
+        String jsonListAttendance = new Gson().toJson(list_attendance);
+        model.addAttribute("jsonListAttendance",jsonListAttendance);
+        System.out.println("list_attendance: " + list_attendance);
+
+        return "admin/class/detail_class";
     }
 
     // ----------------------------------------------------------------
