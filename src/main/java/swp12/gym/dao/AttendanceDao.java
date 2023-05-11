@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import swp12.gym.model.entity.Attendance;
+import swp12.gym.model.mapper.AttendanceMapper;
 
 
 import java.time.LocalDate;
@@ -46,4 +47,15 @@ public class AttendanceDao {
         }
     }
 
+    public List<Attendance> listAttendance(int class_id) {
+        try {
+            sql = "SELECT * \n" +
+                    "FROM attendance a\n" +
+                    "WHERE a.class_id = ?";
+            return jdbcTemplate.query(sql, new AttendanceMapper(), class_id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

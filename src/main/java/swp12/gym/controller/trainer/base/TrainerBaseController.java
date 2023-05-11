@@ -1,5 +1,6 @@
 package swp12.gym.controller.trainer.base;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.ProductDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.dto.UserDto;
+import swp12.gym.model.entity.Attendance;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.User;
 import swp12.gym.service.*;
@@ -104,8 +106,22 @@ public class TrainerBaseController {
     @RequestMapping(value = "/class/{id}",method = RequestMethod.GET)
     public String goDetailClassOfTrainer(Model model, @PathVariable int id) {
         //Thông tin lớp
-//        ClassDto classDto = classService.findDetailAnClass(id);
+        ClassDto classDto = classService.findDetailAnClass(id);
+        model.addAttribute("classDto", classDto);
         //Danh sách hội viên
+        List<User> list_user_of_class = userService.findAllUserOfAnClass(id);
+        model.addAttribute("list_user_of_class", list_user_of_class);
+
+        String jsonDetailClass = new Gson().toJson(classDto);
+        model.addAttribute("jsonDetailClass",jsonDetailClass);
+
+        //list attendance of class
+        List<Attendance> list_attendance = attendanceService.listAttendance(id);
+
+        String jsonListAttendance = new Gson().toJson(list_attendance);
+        model.addAttribute("jsonListAttendance",jsonListAttendance);
+        System.out.println("list_attendance: " + list_attendance);
+
         return "trainer/class_detail";
     }
 

@@ -31,6 +31,8 @@ public class AttendanceServiceImpl implements AttendanceService{
 
         LocalDateTime start_date = new DataUtil().convertStringDateToLocalDateTime(classDto.getC_start_date());
         LocalDateTime end_date = new DataUtil().convertStringDateToLocalDateTime(classDto.getC_end_date());
+        end_date = end_date.plusDays(1);
+        start_date = start_date.minusDays(1);
 
         // Để tìm hôm nay là thứ mấy trong tuần, sẽ được tính từ 2 đến 8, 2 là t2, 8 là chủ nhật
         DayOfWeek dayOfWeek = currentDate.getDayOfWeek();
@@ -63,5 +65,9 @@ public class AttendanceServiceImpl implements AttendanceService{
 
     public void saveAttendance(List<Attendance> listAttendance) {
         attendanceDao.insertAttendance(listAttendance);
+    }
+
+    public List<Attendance> listAttendance(int class_id) {
+        return attendanceDao.listAttendance(class_id);
     }
 }
