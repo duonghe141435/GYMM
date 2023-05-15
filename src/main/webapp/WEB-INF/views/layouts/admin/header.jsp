@@ -47,7 +47,7 @@
 
                     <div class="dropdown-menu shadow animated--grow-in">
                         <a class="dropdown-item" href="<c:url value="/admin/revenue/ticket"/>">Doanh thu vé</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/renvenue/product"/>">Doang thu bán hàng</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/revenue/product"/>">Doang thu bán hàng</a>
                     </div>
                 </div>
             </li>

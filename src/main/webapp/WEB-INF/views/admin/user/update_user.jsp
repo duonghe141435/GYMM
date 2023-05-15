@@ -19,7 +19,7 @@
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold">Cập nhập thông tin ${title}</p>
                     </div>
-                    <div class="card-body"><c:url value="/admin/users/update-user" var="updateUserUrl"/>
+                    <div class="card-body"><c:url value="/admin/users/update-user?${_csrf.parameterName}=${_csrf.token}" var="updateUserUrl"/>
                         <form:form method="POST" action="${updateUserUrl}" modelAttribute="user" enctype="multipart/form-data">
                             <div class="container">
                                 <div class="row">

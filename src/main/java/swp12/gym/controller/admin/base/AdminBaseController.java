@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import swp12.gym.common.DataUtil;
 import swp12.gym.common.FileUtil;
 import swp12.gym.dto.*;
 import swp12.gym.model.entity.*;
@@ -41,13 +42,19 @@ public class AdminBaseController {
     private RoleService roleService;
     @Autowired
     private AttendanceService attendanceService;
+    @Autowired
+    private DashBoardService dashBoardService;
+    @Autowired
+    private DataUtil dataUtil;
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public String goDashboard(Model model){
-        //Số tiền, lợi nhuận
-        //Số vé trong ngày
-        //Số sản phầm tồn kho, tình trang
-        //Tình trạng dụng cụ
+
+        int total_of_day = dashBoardService.TotalRevenueOfDay(dataUtil.getDateNowToString());
+        int total_of_month = dashBoardService.TotalRevenueOfMonth(dataUtil.getCurrentYear(),dataUtil.getCurrentMonth());
+        int total_of_year = dashBoardService.TotalRevenueOfThisYear(dataUtil.getCurrentYear());
+        int number_user = dashBoardService.getNumberAccountNew(dataUtil.getDateNowToString());
+        // san pham
         return "admin/dashboard";
     }
 
