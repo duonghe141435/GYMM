@@ -12,6 +12,7 @@ for (var i = 0; i < cells.length; i++) {
     (function(index) { //để chuyển sang index không dùng i, addEventListener không được giữ nguyên giá trị ở i trong mỗi vòng lặp
     cells[index].addEventListener("click", function(event) {
         var z = Array.prototype.indexOf.call(cells, event.currentTarget);
+        console.log("z: " + z);
         for(var l = 0; l < cells.length; l++){
             if(z<7){
                 document.getElementById("timePractice").value = thList[0].innerHTML;
@@ -43,7 +44,12 @@ for (var i = 0; i < cells.length; i++) {
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
                 document.getElementById("book_date").value = date.toISOString().split('T')[0];
-                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                var dateConvert = (
+                    (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                    (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                    (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                );
             }
         }
         for(var k = 1; k < cells.length; k=k+7){
@@ -53,7 +59,12 @@ for (var i = 0; i < cells.length; i++) {
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
                 document.getElementById("book_date").value = date.toISOString().split('T')[0];
-                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                var dateConvert = (
+                    (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                    (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                    (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                );
             }
         }
         for(var k = 2; k < cells.length; k=k+7){
@@ -63,7 +74,12 @@ for (var i = 0; i < cells.length; i++) {
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
                 document.getElementById("book_date").value = date.toISOString().split('T')[0];
-                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                var dateConvert = (
+                    (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                    (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                    (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                );
             }
         }
         for(var k = 3; k < cells.length; k=k+7){
@@ -73,6 +89,11 @@ for (var i = 0; i < cells.length; i++) {
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
                 document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                var dateConvert = (
+                    (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                    (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                    (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                );
             }
         }
         for(var k = 4; k < cells.length; k=k+7){
@@ -82,7 +103,12 @@ for (var i = 0; i < cells.length; i++) {
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
                 document.getElementById("book_date").value = date.toISOString().split('T')[0];
-                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                var dateConvert = (
+                    (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                    (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                    (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                );
             }
         }
         for(var k = 5; k < cells.length; k=k+7){
@@ -92,7 +118,12 @@ for (var i = 0; i < cells.length; i++) {
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
                 document.getElementById("book_date").value = date.toISOString().split('T')[0];
-                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                var dateConvert = (
+                    (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                    (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                    (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                );
             }
         }
         for(var k = 6; k < cells.length; k=k+7){
@@ -102,7 +133,12 @@ for (var i = 0; i < cells.length; i++) {
                 var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
                 date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
                 document.getElementById("book_date").value = date.toISOString().split('T')[0];
-                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0])
+                console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                var dateConvert = (
+                    (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                    (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                    (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                );
             }
         }
 

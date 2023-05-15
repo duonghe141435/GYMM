@@ -26,6 +26,23 @@
                 <%--</div>--%>
             <%--</li>--%>
             <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link" href="<c:url value="/employee/home" />">
+                    <span class="fas fa-home">&nbsp;&nbsp;Trang chủ</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <div class="nav-item dropdown no-arrow">
+                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                        <i class="fas fa-ticket-alt"></i><span>&nbsp;&nbsp;Vé</span>
+                    </a>
+
+                    <div class="dropdown-menu shadow animated--grow-in">
+                        <a class="dropdown-item" href="<c:url value="/employee/show-list-personal"/>">Vé tập với PT</a>
+                        <a class="dropdown-item" href="<c:url value="/employee/show-list-class"/>">Vé lớp</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" href="<c:url value="/employee/order-product"/>">
                         <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Bán hàng</span>
@@ -36,30 +53,30 @@
                     <%--</div>--%>
                 </div>
             </li>
+            <%--<li class="nav-item dropdown no-arrow mx-1">--%>
+                <%--<div class="nav-item dropdown no-arrow">--%>
+                    <%--<a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">--%>
+                        <%--<i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Quản lý học viên</span>--%>
+                    <%--</a>--%>
+
+                    <%--<div class="dropdown-menu shadow animated--grow-in">--%>
+                        <%--<a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý người dùng hệ thống</a>--%>
+                        <%--<a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý nhân viên</a>--%>
+                        <%--<a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý huấn luyện viên</a>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</li>--%>
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
-                    <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Quản lý học viên</span>
+                    <a class="dropdown-toggle nav-link" href="<c:url value="/employee/list-checkIn"/>">
+                        <i class="fas fa-list"></i><span>&nbsp;&nbsp;Danh sách CheckIn</span>
                     </a>
 
-                    <div class="dropdown-menu shadow animated--grow-in">
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý người dùng hệ thống</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý nhân viên</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/dashboard/users/trainer"/>">Quản lý huấn luyện viên</a>
-                    </div>
+                    <%--<div class="dropdown-menu shadow animated--grow-in">--%>
+                    <%--<a class="dropdown-item" href="<c:url value="/employee/order-product"/>">Tạo hóa đơn</a>--%>
+                    <%--</div>--%>
                 </div>
             </li>
-                <li class="nav-item dropdown no-arrow mx-1">
-                    <div class="nav-item dropdown no-arrow">
-                        <a class="dropdown-toggle nav-link" href="<c:url value="/employee/list-checkIn"/>">
-                            <i class="fas fa-list"></i><span>&nbsp;&nbsp;Danh sách CheckIn</span>
-                        </a>
-
-                        <%--<div class="dropdown-menu shadow animated--grow-in">--%>
-                        <%--<a class="dropdown-item" href="<c:url value="/employee/order-product"/>">Tạo hóa đơn</a>--%>
-                        <%--</div>--%>
-                    </div>
-                </li>
         </ul>
         <ul class="navbar-nav flex-nowrap ms-auto">
             <li class="nav-item dropdown no-arrow mx-1">

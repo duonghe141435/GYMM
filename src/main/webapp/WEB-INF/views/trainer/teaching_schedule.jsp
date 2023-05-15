@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: a5nam
+  Date: 5/15/2023
+  Time: 11:48 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -69,176 +76,176 @@
 <div id="wrapper">
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
-            <%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
+            <%@include file="/WEB-INF/views/layouts/trainer/header.jsp" %>
         </div>
-<div style="margin-left: 13%;">
-    <div style="margin-left: 40%">
-        <label style=" font-weight: bold; font-size: 35px; color: blue;">Lịch Tập</label>
-    </div>
-    <div class="card-body">
-        <button class="btn-hover" id="myBook" style="box-shadow: 1px 3px;" type="button" title="Xem lịch tập với HLV của bản thân">Lịch huấn luyện</button>
+        <div style="margin-left: 13%;">
+            <div style="margin-left: 40%">
+                <label style=" font-weight: bold; font-size: 35px; color: blue;">Lịch Tập</label>
+            </div>
+            <div class="card-body">
+                <button class="btn-hover" id="myBook" style="box-shadow: 1px 3px;" type="button" title="Xem lịch tập với HLV của bản thân">Lịch huấn luyện</button>
 
-        <%--<select name="typePt" id="ptType">--%>
-            <%--<option value="">HLV cá nhân</option>--%>
-            <%--<option value="">HLV nhóm</option>--%>
-        <%--</select>--%>
+                <%--<select name="typePt" id="ptType">--%>
+                <%--<option value="">HLV cá nhân</option>--%>
+                <%--<option value="">HLV nhóm</option>--%>
+                <%--</select>--%>
 
-        <%--<select name="pt" id="pt">--%>
-            <%--<option value="" hidden>Chọn HLV</option>--%>
-            <%--<option value="">Nguyen Van A</option>--%>
-            <%--<option value="">Nguyen Van B</option>--%>
-        <%--</select>--%>
+                <%--<select name="pt" id="pt">--%>
+                <%--<option value="" hidden>Chọn HLV</option>--%>
+                <%--<option value="">Nguyen Van A</option>--%>
+                <%--<option value="">Nguyen Van B</option>--%>
+                <%--</select>--%>
 
-        <select id="week-select"></select>
+                <select id="week-select"></select>
 
-        <select id="year-select"></select>
+                <select id="year-select"></select>
 
-    </div>
-</div>
-<table class="table-bordered border-collapse table-responsive " id="time_book_table"  style=" margin-left: 8%; text-align: center; width: 86%;margin-bottom: 100px;">
-    <thead>
-    <tr>
-        <th>Thời gian</th>
-        <th >
-            <p id="0.0" style="margin-top: 10px"></p>
-            <p id="0" style="margin-top: 1px"></p>
-        </th>
-        <th >
-            <p id="1.0" style="margin-top: 10px"></p>
-            <p id="1" style="margin-top: 1px"></p>
-        </th>
-        <th >
-            <p id="2.0" style="margin-top: 10px"></p>
-            <p id="2" style="margin-top: 1px"></p>
-        </th>
-        <th >
-            <p id="3.0" style="margin-top: 10px"></p>
-            <p id="3" style="margin-top: 1px"></p>
-        </th>
-        <th >
-            <p id="4.0" style="margin-top: 10px"></p>
-            <p id="4" style="margin-top: 1px"></p>
-        </th>
-        <th >
-            <p id="5.0" style="margin-top: 10px"></p>
-            <p id="5" style="margin-top: 1px"></p>
-        </th>
-        <th >
-            <p id="6.0" style="margin-top: 10px"></p>
-            <p id="6" style="margin-top: 1px"></p>
-        </th>
-        <%--<th id="1"></th>--%>
-        <%--<th id="2"></th>--%>
-        <%--<th id="3"></th>--%>
-        <%--<th id="4"></th>--%>
-        <%--<th id="5"></th>--%>
-        <%--<th id="6"></th>--%>
-    </tr>
-    </thead>
-    <tbody>
-        <c:if test="${not empty times}">
-            <c:forEach varStatus="index" items="${times}" var="times">
-                <tr>
-                    <th>${times.start_time} - ${times.end_time}</th>
-                    <td id="1${times.id_time}">1.${times.id_time}</td>
-                    <td id="2${times.id_time}">2.${times.id_time}</td>
-                    <td id="3${times.id_time}">3.${times.id_time}</td>
-                    <td id="4${times.id_time}">4.${times.id_time}</td>
-                    <td id="5${times.id_time}">5.${times.id_time}</td>
-                    <td id="6${times.id_time}">6.${times.id_time}</td>
-                    <td id="7${times.id_time}">7.${times.id_time}</td>
-                </tr>
-            </c:forEach>
-        </c:if>
-    </tbody>
-</table>
+            </div>
+        </div>
+        <table class="table-bordered border-collapse table-responsive " id="time_book_table"  style=" margin-left: 8%; text-align: center; width: 86%;margin-bottom: 100px;">
+            <thead>
+            <tr>
+                <th>Thời gian</th>
+                <th >
+                    <p id="0.0" style="margin-top: 10px"></p>
+                    <p id="0" style="margin-top: 1px"></p>
+                </th>
+                <th >
+                    <p id="1.0" style="margin-top: 10px"></p>
+                    <p id="1" style="margin-top: 1px"></p>
+                </th>
+                <th >
+                    <p id="2.0" style="margin-top: 10px"></p>
+                    <p id="2" style="margin-top: 1px"></p>
+                </th>
+                <th >
+                    <p id="3.0" style="margin-top: 10px"></p>
+                    <p id="3" style="margin-top: 1px"></p>
+                </th>
+                <th >
+                    <p id="4.0" style="margin-top: 10px"></p>
+                    <p id="4" style="margin-top: 1px"></p>
+                </th>
+                <th >
+                    <p id="5.0" style="margin-top: 10px"></p>
+                    <p id="5" style="margin-top: 1px"></p>
+                </th>
+                <th >
+                    <p id="6.0" style="margin-top: 10px"></p>
+                    <p id="6" style="margin-top: 1px"></p>
+                </th>
+                <%--<th id="1"></th>--%>
+                <%--<th id="2"></th>--%>
+                <%--<th id="3"></th>--%>
+                <%--<th id="4"></th>--%>
+                <%--<th id="5"></th>--%>
+                <%--<th id="6"></th>--%>
+            </tr>
+            </thead>
+            <tbody>
+            <c:if test="${not empty times}">
+                <c:forEach varStatus="index" items="${times}" var="times">
+                    <tr>
+                        <th>${times.start_time} - ${times.end_time}</th>
+                        <td id="1${times.id_time}">1.${times.id_time}</td>
+                        <td id="2${times.id_time}">2.${times.id_time}</td>
+                        <td id="3${times.id_time}">3.${times.id_time}</td>
+                        <td id="4${times.id_time}">4.${times.id_time}</td>
+                        <td id="5${times.id_time}">5.${times.id_time}</td>
+                        <td id="6${times.id_time}">6.${times.id_time}</td>
+                        <td id="7${times.id_time}">7.${times.id_time}</td>
+                    </tr>
+                </c:forEach>
+            </c:if>
+            </tbody>
+        </table>
         <%--<div class="tiva-timetable" data-source="json" data-view="week"></div>--%>
 
 
-<div class="modal" id="myModalBook">
-    <div class="modal-dialog" style="max-width: 98%;">
-        <div class="modal-content" style="margin: 5% auto;">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Đặt lịch</h5>
-                <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="py-5">
-                <div class="container">
-                    <p id="title_ticket_form" class="text-dark h2 text-center">Đặt lịch tập với HLV</p>
+        <div class="modal" id="myModalBook">
+            <div class="modal-dialog" style="max-width: 98%;">
+                <div class="modal-content" style="margin: 5% auto;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Đặt lịch</h5>
+                        <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="py-5">
+                        <div class="container">
+                            <p id="title_ticket_form" class="text-dark h2 text-center">Đặt lịch tập với HLV</p>
 
-                    <div class="form-group">
-                        <div class="row d-flex justify-content-center">
-                            <label class="form-label col-sm-2 mt-3" for="ticket_type">Loại vé HLV:</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" readonly id="ticket_type" value="HLV cá nhân"/>
+                            <div class="form-group">
+                                <div class="row d-flex justify-content-center">
+                                    <label class="form-label col-sm-2 mt-3" for="ticket_type">Loại vé HLV:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" readonly id="ticket_type" value="HLV cá nhân"/>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row d-flex justify-content-center">
-                        <label class="form-label col-sm-2 mt-3" for="book_date">Ngày đặt:</label>
-                        <div class="col-sm-6">
-                            <input id="book_date" type="date" class="form-control" readonly>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="row d-flex justify-content-center">
-                        <label class="form-label col-sm-2 mt-3" for="timePractice">Giờ tập:</label>
-                        <div class="col-sm-6">
-                            <input id="timePractice" type="text" class="form-control" readonly>
-                        </div>
-                    </div>
-                </div>
-
-                    <div class="form-group">
-                        <div class="row d-flex justify-content-center">
-                            <label class="form-label col-sm-2 mt-3" for="ticket_day">Hạn sử dụng:</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" readonly id="ticket_day_book" value="5 ngày"/>
+                            <div class="form-group">
+                                <div class="row d-flex justify-content-center">
+                                    <label class="form-label col-sm-2 mt-3" for="book_date">Ngày đặt:</label>
+                                    <div class="col-sm-6">
+                                        <input id="book_date" type="date" class="form-control" readonly>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="row d-flex justify-content-center">
-                            <label class="form-label col-sm-2 mt-3" for="ticket_day">Thời gian còn lại:</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" readonly id="ticket_day" value="4 ngày"/>
+                            <div class="form-group">
+                                <div class="row d-flex justify-content-center">
+                                    <label class="form-label col-sm-2 mt-3" for="timePractice">Giờ tập:</label>
+                                    <div class="col-sm-6">
+                                        <input id="timePractice" type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="row d-flex justify-content-center">
-                            <label class="form-label col-sm-2 mt-3" for="ticket_turn">Lặp lại:</label>
-                            <div class="col-sm-6">
-                                <select id="ticket_turn" class="form-select" required>
-                                    <option value="">Không lặp lại</option>
-                                    <option value="">Hàng ngày</option>
-                                    <option value="">Sau 2 ngày</option>
-                                    <option value="">Sau 3 ngày</option>
-                                </select>
+                            <div class="form-group">
+                                <div class="row d-flex justify-content-center">
+                                    <label class="form-label col-sm-2 mt-3" for="ticket_day">Hạn sử dụng:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" readonly id="ticket_day_book" value="5 ngày"/>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="row d-flex justify-content-center">
-                            <button style="width: 200px;" id="btnTickets" value="create"
-                                    class="btn btn-primary btn-block mt-5">Đặt lịch
-                            </button>
+                            <div class="form-group">
+                                <div class="row d-flex justify-content-center">
+                                    <label class="form-label col-sm-2 mt-3" for="ticket_day">Thời gian còn lại:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" readonly id="ticket_day" value="4 ngày"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row d-flex justify-content-center">
+                                    <label class="form-label col-sm-2 mt-3" for="ticket_turn">Lặp lại:</label>
+                                    <div class="col-sm-6">
+                                        <select id="ticket_turn" class="form-select" required>
+                                            <option value="">Không lặp lại</option>
+                                            <option value="">Hàng ngày</option>
+                                            <option value="">Sau 2 ngày</option>
+                                            <option value="">Sau 3 ngày</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row d-flex justify-content-center">
+                                    <button style="width: 200px;" id="btnTickets" value="create"
+                                            class="btn btn-primary btn-block mt-5">Đặt lịch
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
         <footer class="bg-white sticky-footer">
             <div class="container my-auto">
-                <%@include file="/WEB-INF/views/layouts/customer/footer.jsp" %>
+                <%@include file="/WEB-INF/views/layouts/trainer/footer.jsp" %>
             </div>
         </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
@@ -246,7 +253,7 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="<c:url value='/assets/js/bookPT.js'/>"></script>
+<script src="<c:url value='/assets/js/teaching_schedule.js'/>"></script>
 <script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
 <%--<script src="<c:url value='/assets/js/bs-init.js'/>"></script>--%>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
@@ -270,14 +277,10 @@
                     document.getElementById((i+1) + "" + (j+1)).innerHTML  = "";
                     //pt cá nhân
                     var jsonPersonalDetail = ${jsonPersonalDetail};
-                    var jsonSchedulePersonal = ${jsonSchedulePersonal};
+                    <%--var jsonSchedulePersonal = ${jsonSchedulePersonal};--%>
                     for (var k = 0; k < jsonPersonalDetail.length; k++) {
                         if (jsonPersonalDetail[k].current_date === formattedDate && jsonPersonalDetail[k].time_id - 1 === j){
-                            for (var h = 0; h < jsonSchedulePersonal.length; h++) {
-                                if (formattedDate >= jsonSchedulePersonal[h].start_date && formattedDate <= jsonSchedulePersonal[h].end_date) {
-                                    document.getElementById((i+1) + "" + (j+1)).innerHTML  = jsonSchedulePersonal[h].name;
-                                }
-                            }
+                            document.getElementById((i+1) + "" + (j+1)).innerHTML  = jsonPersonalDetail[k].ticket_name + "<br>" + jsonPersonalDetail[k].u_email;
                         }
                     }
                     //class
@@ -400,14 +403,10 @@
                     document.getElementById((i+1) + "" + (j+1)).innerHTML  = "";
                     //pt cá nhân
                     var jsonPersonalDetail = ${jsonPersonalDetail};
-                    var jsonSchedulePersonal = ${jsonSchedulePersonal};
+                    <%--var jsonSchedulePersonal = ${jsonSchedulePersonal};--%>
                     for (var k = 0; k < jsonPersonalDetail.length; k++) {
                         if (jsonPersonalDetail[k].current_date === formattedDate && jsonPersonalDetail[k].time_id - 1 === j){
-                            for (var h = 0; h < jsonSchedulePersonal.length; h++) {
-                                if (formattedDate >= jsonSchedulePersonal[h].start_date && formattedDate <= jsonSchedulePersonal[h].end_date) {
-                                    document.getElementById((i+1) + "" + (j+1)).innerHTML  = jsonSchedulePersonal[h].name;
-                                }
-                            }
+                            document.getElementById((i+1) + "" + (j+1)).innerHTML  = jsonPersonalDetail[k].ticket_name + "<br>" + jsonPersonalDetail[k].u_email;
                         }
                     }
                     //class
@@ -531,14 +530,10 @@
 
             //pt cá nhân
             var jsonPersonalDetail = ${jsonPersonalDetail};
-            var jsonSchedulePersonal = ${jsonSchedulePersonal};
+            <%--var jsonSchedulePersonal = ${jsonSchedulePersonal};--%>
             for (var k = 0; k < jsonPersonalDetail.length; k++) {
-                if (jsonPersonalDetail[k].current_date === formattedDate && jsonPersonalDetail[k].time_id - 1 === j){
-                    for (var h = 0; h < jsonSchedulePersonal.length; h++) {
-                        if (formattedDate >= jsonSchedulePersonal[h].start_date && formattedDate <= jsonSchedulePersonal[h].end_date) {
-                            document.getElementById((i+1) + "" + (j+1)).innerHTML  = jsonSchedulePersonal[h].name;
-                        }
-                    }
+                if (jsonPersonalDetail[k].current_date === formattedDate && jsonPersonalDetail[k].time_id -1 === j){
+                    document.getElementById((i+1) + "" + (j+1)).innerHTML  = jsonPersonalDetail[k].ticket_name + "<br>" + jsonPersonalDetail[k].u_email;
                 }
             }
 
@@ -616,5 +611,8 @@
             document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
         }
     }
+</script>
+</html>
+
 </script>
 </html>

@@ -25,6 +25,10 @@ public class ClassServiceImpl implements ClassService{
         return classDao.findAllScheduleClassOfAnUserById(user_id);
     }
 
+    public List<ClassDto> findAllScheduleClassOfAnTrainer(int id) {
+        return classDao.findAllScheduleClassOfAnTrainer(id);
+    }
+
     public ClassDto findDetailAnClass(int class_id) {
         return classDao.findDetailAnClass(class_id);
     }
