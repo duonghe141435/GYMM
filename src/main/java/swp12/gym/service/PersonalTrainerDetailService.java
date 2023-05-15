@@ -8,4 +8,6 @@ import java.util.List;
 @Service
 public interface PersonalTrainerDetailService {
     List<PersonalTrainerDetail> findPersonalTrainerDetail(int user_id);
+
+    List<PersonalTrainerDetail> findAllSchedulePersonalOfAnTrainer(int user_id);
 }

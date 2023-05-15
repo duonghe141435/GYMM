@@ -48,10 +48,17 @@
                     </a>
                 </div>
             </li>
+            <%--<li class="nav-item dropdown no-arrow mx-1">--%>
+                <%--<div class="nav-item dropdown no-arrow">--%>
+                    <%--<a class="dropdown-toggle nav-link" >--%>
+                        <%--<i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Quản lý học viên</span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
+            <%--</li>--%>
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
-                    <a class="dropdown-toggle nav-link" >
-                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Quản lý học viên</span>
+                    <a class="nav-link" href="<c:url value="/trainer/schedule"/>">
+                        <span class="fas fa-calendar-alt">&nbsp;&nbsp;Lịch dạy</span>
                     </a>
                 </div>
             </li>
