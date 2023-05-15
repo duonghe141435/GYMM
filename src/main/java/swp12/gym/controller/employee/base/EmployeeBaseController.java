@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import swp12.gym.dto.CheckInDto;
 import swp12.gym.dto.ProductDto;
+import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.dto.UserDto;
 import swp12.gym.model.entity.CheckIn;
+import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.entity.User;
-import swp12.gym.service.CheckInService;
-import swp12.gym.service.OrderService;
-import swp12.gym.service.ProductService;
-import swp12.gym.service.UserService;
+import swp12.gym.service.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -38,6 +38,35 @@ public class EmployeeBaseController {
 
     @Autowired
     private CheckInService checkInService;
+    @Autowired
+    private TicketService ticketService;
+
+    @RequestMapping(value = "/home",method = RequestMethod.GET)
+    public String homeTrainer(Model model, Authentication authentication) {
+        List<Ticket> ticket = ticketService.findAll();
+        model.addAttribute("tickets", ticket);
+        return "employee/index_employee";
+    }
+
+    @RequestMapping(value = "/show-list-personal",method = RequestMethod.GET)
+    public String goListPersonal(Model model, HttpSession s) {
+        List<Ticket> ticket = ticketService.findAll();
+        List<TicketTrainerDto> allTicketTrainer = ticketService.findAllTicketTrainer();
+
+        model.addAttribute("tickets", ticket);
+        model.addAttribute("allTicketTrainer", allTicketTrainer);
+        return "employee/list_personal";
+    }
+
+    @RequestMapping(value = "/show-list-class",method = RequestMethod.GET)
+    public String goListClass(Model model, HttpSession s) {
+        List<Ticket> ticket = ticketService.findAll();
+        model.addAttribute("tickets", ticket);
+        List<TicketTrainerDto> allTicketClass = ticketService.findAllTicketClassForCustomer();
+        model.addAttribute("allTicketClass", allTicketClass);
+        return "employee/list_class";
+    }
+
 
     //done
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
@@ -49,6 +78,9 @@ public class EmployeeBaseController {
     public String indexEmployee(Model model) {
         //man index employee se la man ban hang
         //Ngoai ra employee con co DK khach hang tai quay
+//        return "employee/index_employee";
+        List<Ticket> ticket = ticketService.findAll();
+        model.addAttribute("tickets", ticket);
         return "employee/index_employee";
     }
 

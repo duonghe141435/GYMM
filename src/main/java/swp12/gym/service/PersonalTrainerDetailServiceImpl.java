@@ -16,4 +16,8 @@ public class PersonalTrainerDetailServiceImpl implements PersonalTrainerDetailSe
     public List<PersonalTrainerDetail> findPersonalTrainerDetail(int user_id) {
         return personalTrainerDetailDao.findAllPersonalOfAnUserById(user_id);
     }
+
+    public List<PersonalTrainerDetail> findAllSchedulePersonalOfAnTrainer(int user_id) {
+        return personalTrainerDetailDao.findAllSchedulePersonalOfAnTrainer(user_id);
+    }
 }
