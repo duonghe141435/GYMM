@@ -126,7 +126,6 @@
         // Sử dụng biểu thức chính quy để kiểm tra số điện thoại
         var regex = /^(03|05|07|08|09)+([0-9]{8})$/;
         // Xác định định dạng email của Google
-        var googleEmailRegex = /^[a-zA-Z0-9._%+-]+@(gmail|googlemail)\.com$/;
 
         $("#role").on("change", function () {
             // Nếu giá trị được chọn là "Male"

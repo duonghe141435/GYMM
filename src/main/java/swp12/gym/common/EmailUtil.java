@@ -29,7 +29,6 @@ public class EmailUtil {
         });
     }
 
-
     public boolean sentMailRestPassWord(String email_to, String name, String new_pass){
         boolean flag = false;
         try{

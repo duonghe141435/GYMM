@@ -10,83 +10,62 @@
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <%@include file="/WEB-INF/views/layouts/admin/header.jsp" %>
-            <div class="container-fluid" style="padding-top: 100px">
+            <div class="container-fluid" style="padding-top: 95px">
+
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:90%">Doanh thu từ việc bán sản phẩm</p>
+                        <p class="text-primary m-0 fw-bold" style="width:90%">Doanh thu từ bán vé</p>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
                                 <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                    <label class="form-label">Show&nbsp;
+                                    <label class="form-label">Năm&nbsp;
                                         <select class="d-inline-block form-select form-select-sm">
-                                            <option value="10" selected="">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
+                                            <c:forEach items="${year}" var="year">
+                                                <option selected="" value="${year}">${year}</option>
+                                            </c:forEach>
                                         </select>&nbsp;</label>
                                 </div>
                             </div>
-                            <div class="col-md-6 text-nowrap">
-                                <div class="text-md-end w-25 float-end">
-                                    <label class="form-label d-flex">
-                                        <input type="search" class="form-control form-control-sm" placeholder="Search" id="input-search">
-                                        <button id="btn-search-user" type="button" style="background: none; border: none"><i class="fa fa-search"></i></button>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
-                            <table class="table my-0" id="dataTable">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th>Tên vé</th>
-                                    <th>Số người đặt</th>
-                                    <th>Tổng số tiền</th>
-                                </tr>
-                                </thead>
-                                <tbody style="display: contents;width: 100%;overflow: auto;">
-                                <c:if test="${not empty users}">
-                                    <c:forEach items="${users}" var="users">
-                                        <tr>
-                                            <td class="text-center"><count></count></td>
-                                            <td class="d-flex align-items-center" style="border: none;">
-                                                <div class="img" style="background-image: url('<c:url value="${users.u_img}"/> ');"></div>
-                                                <div class="pl-3 email">
-                                                    <span>${users.u_email}</span>
-                                                    <span>Added: ${users.u_create_date}</span>
-                                                </div>
-                                            </td>
-                                            <td>${users.u_full_name}</td>
-                                            <td class="text-center">${users.u_phone_number}</td>
-                                            <c:if test="${users.u_enable == 0}">
-
-                                            </c:if>
-                                            <c:if test="${users.u_enable == -1}">
-                                                <td class="status text-center"><span class="danger">Khóa</span></td>
-                                            </c:if>
-                                            <c:if test="${users.u_enable == 1}">
-                                                <td class="status text-center"><span class="active">Hoạt động</span></td>
-                                            </c:if>
-                                            <td class="text-center"><a class="user_view" data-bs-toggle="modal" data-bs-target="#vew_user_modal">
-                                                <i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
-                                                <a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>
-                                                <a class="ticket_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:if>
-                                </tbody>
-                            </table>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 align-self-center">
-                                <p>Tổng số bản ghi: <span>${count}</span></p>
+                            <div class="mb-4">
+                                <div class="card shadow border-start-primary py-2">
+                                    <div class="card-body">
+                                        <div class="row align-items-center no-gutters">
+                                            <div class="col me-2">
+                                                <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Doanh thu cả năm</span></div>
+                                                <div class="text-dark fw-bold h5 mb-0"><span>$40,000</span></div>
+                                            </div>
+                                            <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-
+                            <div class="col-10 table-responsive table mt-2" role="grid" style="max-height: 55vh;">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Tháng</th>
+                                        <th class="text-center">Tổng số tiền</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="display: contents;width: 100%;overflow: auto;">
+                                    <c:forEach items="${revenues}" var="revenues">
+                                        <tr>
+                                            <td class="text-center">Tháng ${revenues.month}</td>
+                                            <td class="class-price text-center"> ${revenues.total_money}</td>
+                                            <c:if test="${revenues.year != null}">
+                                                <td class="text-center">
+                                                    <a href="/admin/revenue/ticket/${revenues.year}-${revenues.month}">Xem chi tiết</a>
+                                                </td>
+                                            </c:if>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -97,93 +76,4 @@
     </div>
 </div>
 </body>
-<script>
-
-    $(document).ready(function () {
-        var btn_search = $("#btn-search-user");
-        var input_search = $("#input-search");
-        // Thực hiện hành động tìm kiếm tại Danh sách người dùng hệ thống
-        input_search.on("input", function (){
-            var input = $(this).val();
-            if(input.length >=5 ){
-                $.ajax({
-                    url: 'http://localhost:8080/admin/user-management/search',
-                    method: 'GET',
-                    data: {query: input},
-                    dataType : 'json',
-                    success: function(response) {
-                        $('#dataTable tbody').remove();
-                        console.log(response);
-                        var tbody = $('<tbody>');
-                        $('#dataTable').append(tbody);
-                        $('#dataTable tbody').css({
-                            'display': 'contents',
-                            'width': '100%',
-                            'overflow': 'auto'
-                        });
-                        $.each(response, function(index, users) {
-                            var newrow = $("<tr>");
-                            var row = '<td class="text-center"><count></count></td><td class="d-flex align-items-center" style="border: none;">\n' +
-                                '<div class="img" style="background-image: url(http://localhost:8080'+users.u_img+')"></div>\n' +
-                                '<div class="pl-3 email"><span>'+users.u_email+'</span><span>Added:'+users.u_create_date+'</span>\n' +
-                                '</div></td><td>'+users.u_full_name+'</td><td class="text-center">'+users.u_phone_number+'</td>';
-
-                            if(users.u_enable === -1){
-                                row += ' <td class="status text-center"><span class="waiting">Chưa kích hoạt</span></td>';
-                            }
-                            if(users.u_enable === 0){
-                                row += '<td class="status text-center"><span class="danger">Khóa</span></td>';
-                            }
-                            if(users.u_enable === 1){
-                                row += '<td class="status text-center"><span class="active">Hoạt động</span></td>';
-                            }
-                            row += '<td class="text-center"><a class="user_view" data-bs-toggle="modal" data-bs-target="#vew_user_modal">\n' +
-                                '<i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>\n' +
-                                '<a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>\n' +
-                                '<a class="ticket_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>\n' +
-                                '</td>';
-                            newrow.append(row);
-                            $('#dataTable tbody').append(newrow);
-                        });
-
-                        // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            }
-        });
-        btn_search.click(function (e) {
-            var input = input_search.val();
-            // Thực hiện hành động khi thẻ input thay đổi
-            if(input === ''){
-                Swal.fire({
-                    title: 'Oops...',
-                    text: 'Bạn cần nhập thông tin vào ô tìm kiếm',
-                    icon: 'error'
-                })
-            }else if(input.length >= 5){
-                $.ajax({
-                    url: 'http://localhost:8080/admin/user-management/search',
-                    method: 'GET',
-                    data: {query: input},
-                    success: function(response) {
-                        window.location.href = "http://localhost:8080/admin/dashboard/users/search/"+input;
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            }else {
-                Swal.fire({
-                    title: 'Oops...',
-                    text: 'Hãy nhập tối thiểu 5 ký tự vào ô input',
-                    icon: 'error'
-                })
-            }
-        });
-    });
-
-</script>
 </html>

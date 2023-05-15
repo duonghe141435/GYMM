@@ -225,7 +225,6 @@
                 </div>
             </div>
         </div>
-
         <%@include file="/WEB-INF/views/layouts/admin/footer.jsp"%>
     </div>
 </div>
