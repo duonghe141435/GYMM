@@ -18,8 +18,13 @@ public class RoleDao {
     private String sql;
 
     public void saveRoleForUser(int id_u, int r_id) {
-        sql = "INSERT INTO users_roles (u_id, r_id) VALUES (?,?)";
-        jdbcTemplate.update(sql,id_u,r_id);
+        try {
+            sql = "INSERT INTO users_roles (u_id, r_id) VALUES (?,?)";
+            jdbcTemplate.update(sql,id_u,r_id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public List<Role> findAll(){

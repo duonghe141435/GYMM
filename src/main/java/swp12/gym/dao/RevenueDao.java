@@ -86,5 +86,9 @@ public class RevenueDao {
     }
 
 
-
+    public int getAllRevenueTicketOfYear(int currentYear) {
+        sql = "SELECT SUM(value_cost) as value FROM ticket_user" +
+                " WHERE YEAR(date_payment) = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, currentYear);
+    }
 }

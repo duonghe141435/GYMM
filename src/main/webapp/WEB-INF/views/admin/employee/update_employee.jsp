@@ -6,7 +6,7 @@
 
 <head>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
-    <title>Tạo mới tài khoản</title>
+    <title>Cập nhập tài khoản</title>
 </head>
 
 <body id="page-top">
@@ -17,10 +17,10 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold">Tạo mới tài khoản</p>
+                        <p class="text-primary m-0 fw-bold">Cập nhập thông tin nhân viên</p>
                     </div>
-                    <div class="card-body"> <c:url value="/admin/users/save?${_csrf.parameterName}=${_csrf.token}" var="saveUserUrl"/>
-                            <form:form method="POST" action="${saveUserUrl}" modelAttribute="user" enctype="multipart/form-data">
+                    <div class="card-body"><c:url value="/admin/employee/update-employee?${_csrf.parameterName}=${_csrf.token}" var="updateUserUrl"/>
+                        <form:form method="POST" action="${updateUserUrl}" modelAttribute="user" enctype="multipart/form-data">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-4">
@@ -61,7 +61,7 @@
                                                    for="email"><strong>Email</strong></label>
                                             <form:input class="form-control" type="email" id="email"
                                                         placeholder="Nhập địa chỉ email của bạn"
-                                                        path="u_email" name="email"/>
+                                                        path="u_email" name="email" readonly="true"/>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label"
@@ -95,7 +95,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <button class="btn btn-primary" type="submit"
-                                                    id="submit-btn">Tạo mới</button>
+                                                    id="save-btn">Cập nhập</button>
                                         </div>
                                     </div>
                                 </div>
@@ -115,19 +115,15 @@
 </body>
 <script>
 
-    <c:if test="${not empty error}">
-        Swal.fire({icon: 'info', text: 'Email này đã tồn tại!', showConfirmButton: false, timer: 2500});
-    </c:if>
-
     $(document).ready(function () {
         // Sử dụng biểu thức chính quy để kiểm tra số điện thoại
         var regex = /^(03|05|07|08|09)+([0-9]{8})$/;
         // Xác định định dạng email của Google
-        var googleEmailRegex = /^[a-zA-Z0-9._%+-]+@(gmail|googlemail)\.com$/;
+        $("#avatars").attr('src', 'http://localhost:8080'+$("#u-img").val());
 
         $('#profile-image').change(function () {
             var fileExtension = ['png', 'jpg', 'jpeg'];
-            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) === -1) {
+            if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
                 toast.transition("scale");
                 toast.error("File ảnh của bạn không hợp lệ");
                 $("#submit-btn").prop("disabled", true);

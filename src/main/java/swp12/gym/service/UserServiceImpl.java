@@ -43,8 +43,6 @@ public class UserServiceImpl implements UserService{
 
     public List<UserDto> findAllCustomer(){ return usersDao.findAllCustomer(); }
 
-    public List<UserDto> findAllEmployee(){ return usersDao.findAllEmployee(); }
-
     public List<UserDto> findAllTrainerForAdmin() {
         return usersDao.findAllTrainerForAdmin();
     }
@@ -56,7 +54,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public int getNumberUserInSystem() {
-        return 0;
+        return usersDao.getMaxIdUserInSystem();
     }
 
     public void createUser(UserDto user) {
@@ -124,14 +122,47 @@ public class UserServiceImpl implements UserService{
     }
 
     //Admin Employee
-    public int getNumberEmployeeInSystem() { return usersDao.getNumberEmployeeInSystem(); }
-    public UserDto getEmployeeById(int employee_id) { return usersDao.getEmployeeById(employee_id); }
+    //Get All Employee by status
+    public List<UserDto> findAllEmployee(int status, int pagination_value){
+        return usersDao.findAllEmployee(status, pagination_value);
+    }
+    //Get number of Employee by status
+    public int getNumberEmployeeInSystem(int status) {
+        return usersDao.getNumberEmployeeInSystem(status);
+    }
+    //Get detail employee
+    public UserDto getEmployeeById(int employee_id) {
+        return usersDao.getEmployeeById(employee_id);
+    }
+    public List<UserDto> searchEmployee(String query){
+        return usersDao.searchEmployee(query);
+    }
 
     //Admin trainer
-    public int getNumberTrainerInSystem() { return usersDao.getNumberTrainerInSystem(); }
+    public List<UserDto> findAllTrainer(int status, int pagination_value) {
+       return usersDao.findAllTrainer(status, pagination_value);
+    }
+
+    public int getNumberTrainerInSystem(int status) {
+        return usersDao.getNumberTrainerInSystem(status);
+    }
+
+    public UserDto getTrainerId(int employee_id) {
+        return null;
+    }
+
+    public List<UserDto> searchTrainer(String query) {
+        return usersDao.searchTrainer(query);
+    }
 
     public List<UserDto> searchUser(String query) {
         return usersDao.searchUser(query);
+    }
+
+
+
+    public int lockAnUser(int id) {
+        return 0;
     }
 
     public int deleteAnUser(int id) {

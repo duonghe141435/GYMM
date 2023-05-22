@@ -25,4 +25,8 @@ public class RevenueServiceImpl {
     public List<TicketUser> getDetailRevenueInMonth(int year, int month) {
         return revenueDao.getDetailRevenueInMonth(year,month);
     }
+
+    public int getAllRevenueTicketOfYear(int currentYear) {
+        return revenueDao.getAllRevenueTicketOfYear(currentYear);
+    }
 }

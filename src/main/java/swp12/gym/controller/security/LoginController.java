@@ -110,7 +110,7 @@ public class LoginController {
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null, userDetail.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                return "redirect:/admin/dashboard";
+                return "redirect:/admin/ticket";
             }
             if(userDto.getR_id() == 2){
                 UserDetails userDetail = googleUtils.buildEmployee(googlePojo);
@@ -177,7 +177,7 @@ public class LoginController {
 
             // Check user's role and then redirect
             if (request.isUserInRole("ROLE_ADMIN")) {
-                return "redirect:/admin/dashboard";
+                return "redirect:/admin/ticket";
             }
             if (request.isUserInRole("ROLE_EMPLOYEE")) {
                 return "redirect:/employee/index";

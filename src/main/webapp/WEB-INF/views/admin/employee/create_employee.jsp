@@ -5,7 +5,7 @@
 <html>
 
 <head>
-    <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
+    <%@include file="/WEB-INF/views/layouts/admin/head_form.jsp" %>
     <title>Tạo mới tài khoản</title>
 </head>
 
@@ -19,8 +19,8 @@
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold">Tạo mới tài khoản</p>
                     </div>
-                    <div class="card-body"> <c:url value="/admin/users/save?${_csrf.parameterName}=${_csrf.token}" var="saveUserUrl"/>
-                            <form:form method="POST" action="${saveUserUrl}" modelAttribute="user" enctype="multipart/form-data">
+                    <div class="card-body"> <c:url value="/admin/employee/save?${_csrf.parameterName}=${_csrf.token}" var="saveUserUrl"/>
+                        <form:form method="POST" action="${saveUserUrl}" modelAttribute="user" enctype="multipart/form-data">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-4">

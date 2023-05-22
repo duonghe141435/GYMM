@@ -11,7 +11,7 @@
         <div class="modal-content">
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                    <h6 class="text-primary fw-bold m-0">Thêm mới đơn vị sản phầm</h6>
+                    <h6 class="text-primary fw-bold m-0">Thêm mới đơn vị sản phẩm</h6>
                     <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="card-body row">
