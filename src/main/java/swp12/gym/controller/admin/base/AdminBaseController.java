@@ -37,8 +37,6 @@ public class AdminBaseController {
     @Autowired
     private LogUserService logUserService;
     @Autowired
-    private OrderService orderService;
-    @Autowired
     private RoleService roleService;
     @Autowired
     private AttendanceService attendanceService;
@@ -47,80 +45,16 @@ public class AdminBaseController {
     @Autowired
     private DataUtil dataUtil;
 
-    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-    public String goDashboard(Model model){
-
-        int total_of_day = dashBoardService.TotalRevenueOfDay(dataUtil.getDateNowToString());
-        int total_of_month = dashBoardService.TotalRevenueOfMonth(dataUtil.getCurrentYear(),dataUtil.getCurrentMonth());
-        int total_of_year = dashBoardService.TotalRevenueOfThisYear(dataUtil.getCurrentYear());
-        int number_user = dashBoardService.getNumberAccountNew(dataUtil.getDateNowToString());
-        // san pham
-        return "admin/dashboard";
-    }
-
-    @RequestMapping(value = "/employee", method = RequestMethod.GET)
-    public String goListEmployee(Model model){
-        List<UserDto> users = userService.findAllEmployee();
-        int count_employee = userService.getNumberEmployeeInSystem();
-        model.addAttribute("users",users);
-        model.addAttribute("title", "nhân viên");
-        model.addAttribute("count", count_employee);
-        return "admin/user/list_user";
-    }
-
-    @RequestMapping(value = "/employee/{employee_id}", method = RequestMethod.GET)
-    public String goDetailEmployee(Model model,  @PathVariable int employee_id){
-        UserDto user = userService.getEmployeeById(employee_id);
-        List<OrderDto> orderDtos = orderService.getAllOrderOfEmployee(employee_id);
-
-        model.addAttribute("user",user);
-        model.addAttribute("orderDtos",orderDtos);
-        return "admin/user/detail_employee";
-    }
-
-    @RequestMapping(value = "/profile-employee/{userID}",method = RequestMethod.GET)
-    public String goDetailProfileEmployee(@PathVariable int userID, Model model, HttpSession s) {
-        UserDto user = userService.getEmployeeById(userID);
-        List<Role> roles = roleService.findAll();
-
-        model.addAttribute("user",user);
-        model.addAttribute("roles",roles);
-        model.addAttribute("urls","employee");
-        return "admin/user/update_user";
-    }
-
-    @RequestMapping(value = "/profile-trainer/{userID}",method = RequestMethod.GET)
-    public String goDetailProfileTrainer(@PathVariable int userID, Model model, HttpSession s) {
-        UserDto user = userService.getEmployeeById(userID);
-        List<Role> roles = roleService.findAll();
-
-        model.addAttribute("user",user);
-        model.addAttribute("roles",roles);
-        model.addAttribute("urls","trainer");
-        model.addAttribute("title", "huấn luyện viên");
-        return "admin/user/update_user";
-    }
-    @RequestMapping(value = "/trainer", method = RequestMethod.GET)
-    public String goListTrainer(Model model){
-        List<UserDto> users = userService.findAllTrainerForAdmin();
-        int count_trainer = userService.getNumberTrainerInSystem();
-
-        model.addAttribute("users",users);
-        model.addAttribute("count", count_trainer);
-        model.addAttribute("title", "huấn luyện viên");
-        return "admin/user/list_user";
-    }
-
-    @RequestMapping(value = "/trainer/{trainer_id}", method = RequestMethod.GET)
-    public String goDetailTrainer(Model model,  @PathVariable int trainer_id){
-        UserDto user = userService.getEmployeeById(trainer_id);
-        List<ClassDto> classDtos = classService.findClassAllOfAnTrainer(user.getU_email());
-
-        model.addAttribute("user",user);
-        model.addAttribute("classDtos",classDtos);
-        model.addAttribute("title", "huấn luyện viên");
-        return "admin/user/detail_trainer";
-    }
+//    @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
+//    public String goDashboard(Model model){
+//
+//        int total_of_day = dashBoardService.TotalRevenueOfDay(dataUtil.getDateNowToString());
+//        int total_of_month = dashBoardService.TotalRevenueOfMonth(dataUtil.getCurrentYear(),dataUtil.getCurrentMonth());
+//        int total_of_year = dashBoardService.TotalRevenueOfThisYear(dataUtil.getCurrentYear());
+//        int number_user = dashBoardService.getNumberAccountNew(dataUtil.getDateNowToString());
+//        // san pham
+//        return "admin/dashboard";
+//    }
 
     @RequestMapping(value = "/customer", method = RequestMethod.GET)
     public String goListCustomer(Model model){

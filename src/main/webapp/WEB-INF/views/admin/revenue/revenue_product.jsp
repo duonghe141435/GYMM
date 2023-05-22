@@ -41,10 +41,10 @@
                             <table class="table my-0" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">#</th>
-                                    <th>Tên vé</th>
-                                    <th>Ngày thanh toán<\th>
-                                    <th>Giá tiền</th>
+                                    <th class="text-center">Tháng</th>
+                                    <th>Doanh thu</th>
+                                    <th>Lợi nhuận</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody style="display: contents;width: 100%;overflow: auto;">
