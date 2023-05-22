@@ -14,7 +14,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của ${title}</p>
-                        <a href="<c:url value='/admin/trainer'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
+                        <a href="<c:url value='/admin/trainer/page=1-status=1'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -63,7 +63,6 @@
                                             <th>Tên lớp</th>
                                             <th>Số học viên</th>
                                             <th class="text-center">Hạn dùng</th>
-                                            <th class="text-center">Ngày tạo</th>
                                             <th class="text-center">Thao tác</th>
                                         </tr>
                                         </thead>
@@ -76,7 +75,6 @@
                                                     <td>${classDtos.c_name}</td>
                                                     <td>${classDtos.total_attendees} / ${classDtos.max_member}</td>
                                                     <td>${classDtos.c_start_date} - ${classDtos.c_end_date} </td>
-                                                    <td>${classDtos.c_create_date}</td>
                                                     <td class="text-center">
                                                         <a class="order_view">
                                                             <i class="fas fa-eye fa-lg fa-fw me-2 text-info"></i></a>
@@ -88,9 +86,6 @@
                                     </table>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p>Tổng số bản ghi: <span>${count}</span></p>
-                                    </div>
                                     <div class="col-md-6">
 
                                     </div>

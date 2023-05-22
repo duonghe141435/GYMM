@@ -21,8 +21,6 @@ public interface UserService {
     List<User> findAllTrainerIdAndName();
     //Get All Customer
     List<UserDto> findAllCustomer();
-    //Get All Employee
-    List<UserDto> findAllEmployee();
     //Get All Trainer
     List<UserDto> findAllTrainerForAdmin();
     //Get An User By Id
@@ -68,12 +66,30 @@ public interface UserService {
     void updateStatusUser(int id_u);
 
     //Admin Employee
-    int getNumberEmployeeInSystem();
+    //Get All Employee by status
+    List<UserDto> findAllEmployee(int status, int pagination_value);
+    //Get number of Employee by status
+    int getNumberEmployeeInSystem(int status);
+    //Get detail employee
     UserDto getEmployeeById(int employee_id);
+    //search employee
+    List<UserDto> searchEmployee(String query);
+    //delete status status search status
+    int lockAnUser(int id);
+    //delete status status search status
+    int deleteAnUser(int id);
 
     List<UserDto> searchUser(String query);
 
-    int deleteAnUser(int id);
 
-    int getNumberTrainerInSystem();
+    //Admin Trainer
+    //Get All Employee by status
+    List<UserDto> findAllTrainer(int status, int pagination_value);
+    //Get number of Employee by status
+    int getNumberTrainerInSystem(int status);
+    //Get detail employee
+    UserDto getTrainerId(int employee_id);
+    //search employee
+    List<UserDto> searchTrainer(String query);
+    //delete status status search status
 }

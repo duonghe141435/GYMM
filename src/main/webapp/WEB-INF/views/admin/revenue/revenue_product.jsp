@@ -41,12 +41,10 @@
                             <table class="table my-0" id="dataTable">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Id Hóa đơn</th>
-                                    <th>Ngày tạo</th>
-                                    <th>Nhân viên thanh toán<\th>
-                                    <th>Người mua hàng</th>
-                                    <th>Tổng số tiền</th>
-                                    <th>Thao tác</th>
+                                    <th class="text-center">Tháng</th>
+                                    <th>Doanh thu</th>
+                                    <th>Lợi nhuận</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody style="display: contents;width: 100%;overflow: auto;">
@@ -57,14 +55,6 @@
                                 </c:if>
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 align-self-center">
-                                <p>Tổng số bản ghi: <span>${count}</span></p>
-                            </div>
-                            <div class="col-md-6">
-
-                            </div>
                         </div>
                     </div>
                 </div>

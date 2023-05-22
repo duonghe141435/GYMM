@@ -24,7 +24,7 @@ public class UserAPIOfAdmin {
 
     //Get An Product
     @GetMapping(value = URL_API+"/search", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<UserDto>> search(@RequestParam(name = "query") String query, Model model){
+    public ResponseEntity<List<UserDto>> search(@RequestParam(name = "query") String query){
         try{
             System.out.println(query);
             List<UserDto> results = userService.searchUser(query);

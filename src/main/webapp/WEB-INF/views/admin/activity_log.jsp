@@ -29,21 +29,22 @@
                             </div>
                         </div>
                         <c:if test="${not empty logUser}">
-                            <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
+                            <div class="table-responsive table mt-2" role="grid" style="max-height: 55vh;">
                                 <table class="table my-0" id="dataTable">
                                     <thead>
                                     <tr>
-                                        <th class="text-center">#</th>
+                                        <th class="text-center">Thời gian thực hiện</th>
                                         <th>Mảng tác động</th>
                                         <th>Nội dung</th>
-                                        <th class="text-center">Ngày thực hiện</th>
                                     </tr>
                                     </thead>
                                     <tbody style="display: contents;width: 100%;overflow: auto;">
                                     <c:forEach items="${logUser}" var="logUser">
                                         <tr>
                                             <td class="text-center">
-                                                <count></count>
+                                                <script>
+                                                    document.write(moment.unix(${logUser.date_time_create}).format('YYYY-MM-DD HH:mm:ss'));
+                                                </script>
                                             </td>
                                             <c:if test="${logUser.type_log == 1}">
                                                 <td>Người dùng</td>
@@ -61,15 +62,26 @@
                                                 <td>Dịch vụ</td>
                                             </c:if>
                                             <td>${logUser.content}</td>
-                                            <td class="text-center">
-                                                <script>
-                                                    document.write(moment.unix(${logUser.date_time_create}).format('YYYY-MM-DD HH:mm:ss'));
-                                                </script>
-                                            </td>
                                         </tr>
                                     </c:forEach>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 align-self-center">
+                                    <p>Tổng số bản ghi: <span>100</span></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination">
+                                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
                             </div>
                         </c:if>
                     </div>

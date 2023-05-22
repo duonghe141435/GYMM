@@ -48,7 +48,7 @@ public class UsersDao {
 
     public int findIdByUsername(String username) {
         try{
-            sql = "SELECT id_u FROM users WHERE email = ?";
+            sql = "SELECT COUNT(*) FROM users WHERE email = ?";
             return jdbcTemplate.queryForObject(sql,Integer.class,username);
         }catch (Exception e){
             e.printStackTrace();
@@ -226,10 +226,10 @@ public class UsersDao {
 
     public void createUser(UserDto userDto) {
         try{
-            sql = "INSERT INTO users (id_u, name, email, password, enabled, gender, phone, address, image, CMND, create_date, DOB) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);";
+            sql = "INSERT INTO users (id_u, name, email, password, enabled, gender, phone, address, image, CMND, create_date, DOB) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
             jdbcTemplate.update(sql, userDto.getU_id(), userDto.getU_full_name(),userDto.getU_email(), userDto.getU_password(),
                     1, userDto.getU_gender(), userDto.getU_phone_number(), userDto.getU_address(), userDto.getU_img(),
-                    userDto.getU_identity_card(),userDto.getU_dob() ,userDto.getU_dob());
+                    userDto.getU_identity_card(),dataUtil.getDateNowToString(),userDto.getU_dob());
         }
         catch (Exception e){
             e.printStackTrace();
@@ -422,39 +422,36 @@ public class UsersDao {
     }
 
     //Admin Employee
-    public int getNumberEmployeeInSystem() {
+    // Đã sửa hiển thị tài khoản theo trạng thái
+    public int getNumberEmployeeInSystem(int status) {
         try{
-            sql = "SELECT COUNT(*) FROM users join users_roles u on users.id_u = u.u_id WHERE r_id = 2";
-            return jdbcTemplate.queryForObject(sql, Integer.class);
+            sql = "SELECT COUNT(*) FROM users join users_roles u on users.id_u = u.u_id WHERE r_id = 2 AND enabled = ?";
+            return jdbcTemplate.queryForObject(sql, Integer.class, status);
         }catch (Exception e){
             return 0;
         }
     }
 
-    public List<UserDto> findAllEmployee() {
+    public List<UserDto> findAllEmployee(int status, int pagination) {
+        pagination = pagination*10 - 10;
         try {
-            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.address, users.image,\n" +
                     "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
-                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 2 AND enabled = 1;";
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 2 AND enabled = ? LIMIT ?,10;";
             return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
                 public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
                     UserDto userDto = new UserDto();
                     userDto.setU_id(resultSet.getInt("id_u"));
                     userDto.setU_full_name(resultSet.getString("name"));
                     userDto.setU_email(resultSet.getString("email"));
-                    userDto.setU_password(resultSet.getString("password"));
-                    userDto.setU_gender(resultSet.getInt("gender"));
-                    userDto.setU_address(resultSet.getString("address"));
                     userDto.setU_img(resultSet.getString("image"));
                     userDto.setU_enable(resultSet.getInt("enabled"));
-                    userDto.setR_id(resultSet.getInt("id_r"));
-                    userDto.setU_identity_card(resultSet.getString("CMND"));
                     userDto.setU_dob(resultSet.getString("DOB"));
                     userDto.setU_phone_number(resultSet.getString("phone"));
                     userDto.setU_create_date(resultSet.getString("create_date"));
                     return userDto;
                 }
-            });
+            }, status, pagination);
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -492,10 +489,52 @@ public class UsersDao {
 
     public List<UserDto> searchUser(String query) {
         try {
-            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
-                    "users.CMND,users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
-                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE users.email LIKE '"+query+"%';";
-            return jdbcTemplate.query(sql, new UserDtoMapper());
+            sql = "SELECT users.id_u,users.name,users.email, users.gender,  users.image,\n" +
+                    "users.DOB, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = 2 WHERE users.email LIKE '"+query+"%';";
+            return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
+                public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+
+                    UserDto userDto = new UserDto();
+                    userDto.setU_id(resultSet.getInt("id_u"));
+                    userDto.setU_full_name(resultSet.getString("name"));
+                    userDto.setU_email(resultSet.getString("email"));
+                    userDto.setU_img(resultSet.getString("image"));
+                    userDto.setU_enable(resultSet.getInt("enabled"));
+                    userDto.setU_dob(resultSet.getString("DOB"));
+                    userDto.setU_phone_number(resultSet.getString("phone"));
+                    userDto.setU_create_date(resultSet.getString("create_date"));
+
+                    return userDto;
+                }
+            });
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<UserDto> searchEmployee(String query) {
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender,  users.image,\n" +
+                    "users.DOB, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id WHERE u.r_id = 2 AND users.email LIKE '"+query+"%';";
+            return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
+                public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+
+                    UserDto userDto = new UserDto();
+                    userDto.setU_id(resultSet.getInt("id_u"));
+                    userDto.setU_full_name(resultSet.getString("name"));
+                    userDto.setU_email(resultSet.getString("email"));
+                    userDto.setU_img(resultSet.getString("image"));
+                    userDto.setU_enable(resultSet.getInt("enabled"));
+                    userDto.setU_dob(resultSet.getString("DOB"));
+                    userDto.setU_phone_number(resultSet.getString("phone"));
+                    userDto.setU_create_date(resultSet.getString("create_date"));
+
+                    return userDto;
+                }
+            });
         }catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -511,12 +550,38 @@ public class UsersDao {
         }
     }
 
-    public int getNumberTrainerInSystem() {
+    public int getNumberTrainerInSystem(int status) {
         try{
-            sql = "SELECT COUNT(*) FROM users join users_roles u on users.id_u = u.u_id WHERE r_id = 3";
-            return jdbcTemplate.queryForObject(sql, Integer.class);
+            sql = "SELECT COUNT(*) FROM users join users_roles u on users.id_u = u.u_id WHERE r_id = 3 AND enabled = ?";
+            return jdbcTemplate.queryForObject(sql, Integer.class, status);
         }catch (Exception e){
             return 0;
+        }
+    }
+
+    public List<UserDto> findAllTrainer(int status, int pagination) {
+        pagination = pagination*10 - 10;
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.address, users.image,\n" +
+                    "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 3 AND enabled = ? LIMIT ?,10;";
+            return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
+                public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+                    UserDto userDto = new UserDto();
+                    userDto.setU_id(resultSet.getInt("id_u"));
+                    userDto.setU_full_name(resultSet.getString("name"));
+                    userDto.setU_email(resultSet.getString("email"));
+                    userDto.setU_img(resultSet.getString("image"));
+                    userDto.setU_enable(resultSet.getInt("enabled"));
+                    userDto.setU_dob(resultSet.getString("DOB"));
+                    userDto.setU_phone_number(resultSet.getString("phone"));
+                    userDto.setU_create_date(resultSet.getString("create_date"));
+                    return userDto;
+                }
+            }, status, pagination);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -529,5 +594,32 @@ public class UsersDao {
         catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public List<UserDto> searchTrainer(String query) {
+        try{
+        sql = "SELECT users.id_u,users.name,users.email, users.gender,  users.image,\n" +
+                "users.DOB, users.phone, users.enabled, users.create_date\n" +
+                "FROM users join users_roles u on users.id_u = u.u_id WHERE u.r_id = 3 AND users.email LIKE '"+query+"%';";
+        return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
+            public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+
+                UserDto userDto = new UserDto();
+                userDto.setU_id(resultSet.getInt("id_u"));
+                userDto.setU_full_name(resultSet.getString("name"));
+                userDto.setU_email(resultSet.getString("email"));
+                userDto.setU_img(resultSet.getString("image"));
+                userDto.setU_enable(resultSet.getInt("enabled"));
+                userDto.setU_dob(resultSet.getString("DOB"));
+                userDto.setU_phone_number(resultSet.getString("phone"));
+                userDto.setU_create_date(resultSet.getString("create_date"));
+
+                return userDto;
+            }
+        });
+    }catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
     }
 }

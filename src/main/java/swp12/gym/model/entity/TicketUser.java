@@ -1,6 +1,7 @@
 package swp12.gym.model.entity;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class TicketUser {
     private long t_u_ID;

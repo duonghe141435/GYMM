@@ -8,10 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Random;
-import java.util.TimeZone;
+import java.util.*;
 
 @Component
 public class DataUtil {
@@ -57,6 +54,19 @@ public class DataUtil {
         dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+7"));
         return dateFormat2.format(now);
     }
+
+    public int getCurrentYear() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        return year;
+    }
+
+    public int getCurrentMonth() {
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH);
+        return month;
+    }
+
 
     public Date convertStringDateToDate(String dateString) {
         Date date = null;
