@@ -140,7 +140,10 @@
                                                 <div class="card" id="open_modal">
                                                     <h4 class="ticketsPersonal_id" style="display: none" aria-readonly="true">${tickets.t_id}</h4>
                                                     <a class="img-card">
-                                                        <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
+                                                        <c:set var="randomNumber">
+                                                            <c:out value="<%= (int)(Math.random() * 5) + 1 %>" />
+                                                        </c:set>
+                                                        <img src="/assets/img/ticket/${randomNumber}.jpg"/>
                                                     </a>
                                                     <div class="card-content">
                                                         <h4 class="card-title">
@@ -209,7 +212,8 @@
                                                                                             <select class="form-select"  id="pt_name" style="width: 82%;float:left;">
                                                                                                     <%--<option disabled selected hidden>Chọn HLV</option>--%>
                                                                                             </select>
-                                                                                            <button type="button" style="text-align: center; float:right;" class="btn btn-primary">Lịch trình</button>
+                                                                                            <p id="trainer_id" style="display: none"></p>
+                                                                                            <button type="button" style="text-align: center; float:right;" class="btn btn-primary" id="schdule">Lịch trình</button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -475,11 +479,13 @@
                             document.getElementById("getTicketPersonalID").innerText = trainer.tp_id;
 
                             var optionHLV = document.createElement("option");
-                            optionHLV.innerText = "Chọn HLV";
+                            optionHLV.innerText = trainer.u_full_name;
                             optionHLV.disabled = true;
                             optionHLV.selected = true;
                             optionHLV.hidden = true;
                             name.appendChild(optionHLV);
+
+                            document.getElementById("trainer_id").innerText = trainer.u_id;
 
                             var trainer_price = document.createElement("input");
                             // để set class cho thẻ cộng vs trainer.u_id + trainer.tp_price để thẻ không bị duplicate
@@ -514,6 +520,13 @@
             }
         });
     }
+
+    $(document).ready(function () {
+        $('#schdule').click(function (e) {
+            var trainer_id = document.getElementById("trainer_id").innerText;
+            window.location.href = '<c:url value="/customer/view-schedule-trainer?" />' + "trainer_id=" + trainer_id;
+        });
+    });
 
 </script>
 </html>

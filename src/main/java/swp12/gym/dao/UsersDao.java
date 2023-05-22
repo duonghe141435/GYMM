@@ -56,6 +56,16 @@ public class UsersDao {
         }
     }
 
+    public int findUserIdByTrainerID(int trainerID) {
+        try{
+            sql = "SELECT id_u FROM trainer WHERE trainer_id = ?";
+            return jdbcTemplate.queryForObject(sql,Integer.class,trainerID);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public List<User> findAllTrainer() {
         try{
             sql = "SELECT t.trainer_id, name, email, gender, phone, address, image, DOB, users.id_u FROM users JOIN trainer t on users.id_u = t.id_u";

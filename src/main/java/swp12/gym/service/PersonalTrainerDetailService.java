@@ -10,4 +10,8 @@ public interface PersonalTrainerDetailService {
     List<PersonalTrainerDetail> findPersonalTrainerDetail(int user_id);
 
     List<PersonalTrainerDetail> findAllSchedulePersonalOfAnTrainer(int user_id);
+
+    String checkPersonalTrainerDetail(int userID, String date);
+
+    void insertPersonalTrainerDetail(String date, int status, int personal_trainer_id, int time_id, int userID);
 }

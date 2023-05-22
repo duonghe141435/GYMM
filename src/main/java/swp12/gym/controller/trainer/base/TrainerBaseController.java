@@ -153,6 +153,7 @@ public class TrainerBaseController {
     public String goAttendance(@PathVariable int class_id, Model model) {
         List<User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
         model.addAttribute("list_user_of_class", list_user_of_class);
+        model.addAttribute("classID", class_id);
         return "trainer/trainer_attendance";
     }
 

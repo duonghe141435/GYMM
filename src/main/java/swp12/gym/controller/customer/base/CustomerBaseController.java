@@ -15,6 +15,7 @@ import swp12.gym.dto.*;
 import swp12.gym.model.entity.*;
 import swp12.gym.service.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
@@ -217,6 +218,48 @@ public class CustomerBaseController {
         }catch (Exception e){
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping(value = "/check-personal-trainer",method = RequestMethod.GET)
+    public ResponseEntity<TicketUserDto> checkPersonalTrainer(HttpServletRequest request, Authentication authentication) {
+        try{
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String userName = userDetails.getUsername();
+            int userID = userDao.findIdByUsername(userName);
+
+            String dateConvert = request.getParameter("_dateConvert");
+            String result = personalTrainerDetailService.checkPersonalTrainerDetail(userID, dateConvert);
+
+            if (result.equals("0")){
+                TicketUserDto ticketUserDto = ticketUserService.findAnTicketUserDto(userID, dateConvert);
+                return new ResponseEntity<TicketUserDto>(ticketUserDto, HttpStatus.OK);
+            }else {
+                return new ResponseEntity<TicketUserDto>(HttpStatus.NO_CONTENT);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<TicketUserDto>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "/view-schedule-trainer", method = RequestMethod.GET)
+    public String goViewDetailAnClass(@RequestParam(value = "trainer_id") int trainer_id, Model model){
+        int userID = userDao.findUserIdByTrainerID(trainer_id);
+
+        //lấy xem lịch của class
+        List<ClassDto> scheduleClassOfCustomer = classService.findAllScheduleClassOfAnTrainer(userID);
+        String jsonData = new Gson().toJson(scheduleClassOfCustomer); // chuyển đổi sang chuỗi JSON
+        model.addAttribute("jsonData",jsonData);
+
+        //lấy check lịch personal trainer
+        List<PersonalTrainerDetail> schedulePersonalTrainer = personalTrainerDetailService.findAllSchedulePersonalOfAnTrainer(userID);
+        String jsonPersonalDetail = new Gson().toJson(schedulePersonalTrainer);
+        model.addAttribute("jsonPersonalDetail",jsonPersonalDetail);
+
+        List<Time> times = timeService.findAll();
+        model.addAttribute("times",times);
+
+
+        return "customer/schedule_trainer";
     }
 }
 

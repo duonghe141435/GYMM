@@ -165,4 +165,8 @@ public class TicketUserServiceImpl implements TicketUserService{
     public List<UserClass> checkUserClass(int userID) {
         return ticketUserDao.checkUserClass(userID);
     }
+
+    public TicketUserDto findAnTicketUserDto(int userID, String date) {
+        return ticketUserDtoDao.findAnTicketUserDto(userID, date);
+    }
 }

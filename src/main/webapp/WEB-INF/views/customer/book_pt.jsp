@@ -188,6 +188,7 @@
                         <label class="form-label col-sm-2 mt-3" for="timePractice">Giờ tập:</label>
                         <div class="col-sm-6">
                             <input id="timePractice" type="text" class="form-control" readonly>
+                            <p style="display: none;" id="time_id"></p>
                         </div>
                     </div>
                 </div>
@@ -209,7 +210,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <p style="display: none;" id="personal_trainer_id"></p>
                     <div class="form-group">
                         <div class="row d-flex justify-content-center">
                             <label class="form-label col-sm-2 mt-3" for="ticket_turn">Lặp lại:</label>
@@ -616,5 +617,275 @@
             document.getElementById((i+1) + "" + (j+1)).innerHTML = shedule[k].c_name + "<br>" + "Lớp đã kết thúc";
         }
     }
+
+
+    var modalBookk = document.getElementById("myModalBook");
+    var cellss = document.getElementsByTagName("td");
+    var tbodyy = document.getElementsByTagName("tbody")[0];
+    var thLists = tbodyy.getElementsByTagName("th");
+
+    // code model
+    for (var i = 0; i < cellss.length; i++) {
+
+        (function(index) { //để chuyển sang index không dùng i, addEventListener không được giữ nguyên giá trị ở i trong mỗi vòng lặp
+            cellss[index].addEventListener("click", function(event) {
+
+                var z = Array.prototype.indexOf.call(cellss, event.currentTarget);
+                console.log("z: " + z);
+                for(var l = 0; l < cellss.length; l++){
+                    if(z<7){
+                        document.getElementById("timePractice").value = thLists[0].innerHTML;
+                        document.getElementById("time_id").innerText = 1;
+                    }
+                    if(z>=7&&z<14){
+                        document.getElementById("timePractice").value = thLists[1].innerHTML;
+                        document.getElementById("time_id").innerText = 2;
+                    }
+                    if(z>=14&&z<21){
+                        document.getElementById("timePractice").value = thLists[2].innerHTML;
+                        document.getElementById("time_id").innerText = 3;
+                    }
+                    if(z>=21&&z<28){
+                        document.getElementById("timePractice").value = thLists[3].innerHTML;
+                        document.getElementById("time_id").innerText = 4;
+                    }
+                    if(z>=28&&z<35){
+                        document.getElementById("timePractice").value = thLists[4].innerHTML;
+                        document.getElementById("time_id").innerText = 5;
+                    }
+                    if(z>=35&&z<42){
+                        document.getElementById("timePractice").value = thLists[5].innerHTML;
+                        document.getElementById("time_id").innerText = 6;
+                    }
+                    if(z>=42&&z<49){
+                        document.getElementById("timePractice").value = thLists[6].innerHTML;
+                        document.getElementById("time_id").innerText = 7;
+                    }
+
+                }
+
+                var dateConvert;
+                for(var k = 0; k < cellss.length; k=k+7){
+                    if(z===k){
+                        var dateString = document.getElementById("0").innerHTML;
+                        var dateParts = dateString.split("-");
+                        var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                        date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                        document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                        console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                        dateConvert = (
+                            (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                            (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                            (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                        );
+                    }
+                }
+                for(var k = 1; k < cellss.length; k=k+7){
+                    if(z===k){
+                        var dateString = document.getElementById("1").innerHTML;
+                        var dateParts = dateString.split("-");
+                        var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                        date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                        document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                        console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                        dateConvert = (
+                            (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                            (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                            (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                        );
+                    }
+                }
+                for(var k = 2; k < cellss.length; k=k+7){
+                    if(z===k){
+                        var dateString = document.getElementById("2").innerHTML;
+                        var dateParts = dateString.split("-");
+                        var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                        date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                        document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                        console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                        dateConvert = (
+                            (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                            (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                            (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                        );
+                    }
+                }
+                for(var k = 3; k < cellss.length; k=k+7){
+                    if(z===k){
+                        var dateString = document.getElementById("3").innerHTML;
+                        var dateParts = dateString.split("-");
+                        var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                        date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                        document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                        dateConvert = (
+                            (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                            (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                            (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                        );
+                    }
+                }
+                for(var k = 4; k < cellss.length; k=k+7){
+                    if(z===k){
+                        var dateString = document.getElementById("4").innerHTML;
+                        var dateParts = dateString.split("-");
+                        var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                        date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                        document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                        console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                        dateConvert = (
+                            (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                            (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                            (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                        );
+                    }
+                }
+                for(var k = 5; k < cellss.length; k=k+7){
+                    if(z===k){
+                        var dateString = document.getElementById("5").innerHTML;
+                        var dateParts = dateString.split("-");
+                        var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                        date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                        document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                        console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                        dateConvert = (
+                            (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                            (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                            (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                        );
+                    }
+                }
+                for(var k = 6; k < cellss.length; k=k+7){
+                    if(z===k){
+                        var dateString = document.getElementById("6").innerHTML;
+                        var dateParts = dateString.split("-");
+                        var date = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+                        date.setHours(12,0,0,0); // Đặt giờ của date là 12:00:00 trưa (giờ của máy chủ)
+                        document.getElementById("book_date").value = date.toISOString().split('T')[0];
+                        console.log(dateParts[2]+"-"+dateParts[1]+"-"+dateParts[0]);
+                        dateConvert = (
+                            (dateParts[2] < 10 ? "0" : "") + dateParts[2] + "-" +
+                            (dateParts[1] < 10 ? "0" + dateParts[1] : dateParts[1]) + "-" +
+                            (dateParts[0] < 10 ? "0" + dateParts[0] : dateParts[0])
+                        );
+                    }
+                }
+
+
+
+                // Populate the modal with the data
+                //document.getElementById("modal-text").textContent = data;
+
+                // Display the modal
+                //if(chua mua ve)
+                //modal.style.display = "block";
+                //modalBook.style.display = "none";
+                //else if(da mua ve)
+
+                if(this.classList.contains("past"))  {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Bạn không thể đặt lịch vào những ngày đã qua!',
+                    })
+                }
+                else{
+                    //check xem td đó đã có data hay có lịch tập ha chưa
+                    if (cells[index].textContent !== "") {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Bạn đã có lịch',
+                            text: 'Vui lòng chọn thời gian khác!',
+                        })
+                    }else{
+                        var token = $("meta[name='_csrf']").attr("content");
+                        var data = {'_dateConvert' : dateConvert, _csrf: token};
+                        $.ajax({
+                            url: '/customer/check-personal-trainer',
+                            type: 'GET',
+                            data: data,
+                            success: function(response, textStatus, xhr) {
+                                if (xhr.status === 200) {
+                                    if (!response){
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'Bạn chưa có vé tập với PT cá nhân hoặc đã hết hạn!',
+                                        });
+                                    }else {
+                                        document.getElementById("ticket_type").value = response.name;
+
+                                        var startDateObj = new Date(response.start_date);
+                                        var endDateObj = new Date(response.end_date);
+                                        // Tính khoảng cách theo mili giây giữa hai ngày
+                                        var timeDiff = Math.abs(endDateObj - startDateObj);
+                                        // Chuyển đổi khoảng cách từ mili giây sang ngày
+                                        var dayDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                                        document.getElementById("ticket_day_book").value = dayDiff + "ngày";
+
+                                        // Lấy ngày hôm nay
+                                        var today = new Date();
+                                        // Tính số ngày còn lại
+                                        var timeDifff = endDateObj.getTime() - today.getTime();
+                                        var dayDifff = Math.ceil(timeDifff / (1000 * 3600 * 24));
+                                        document.getElementById("ticket_day").value = dayDifff + "ngày";
+
+                                        document.getElementById("personal_trainer_id").innerText = response.create_date;
+
+                                        modalBookk.style.display = "block";
+                                    }
+                                }else {
+                                    if (xhr.status === 204){
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'Bạn đã có lịch tập với pt trong ngày này!',
+                                        });
+                                    }
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                console.log(error);
+                            }
+                        });
+
+
+                    }
+                    //modalBook.style.display = "block";
+                }
+
+            });
+        })(i);
+    }
+
+    $(document).ready(function () {
+        $('#btnTickets').click(function (e) {
+            var personal_trainer_id = document.getElementById("personal_trainer_id").innerText;
+            var time_id = document.getElementById("time_id").innerText;
+            var date_book_schedule = document.getElementById("book_date").value;
+
+            var token = $("meta[name='_csrf']").attr("content");
+            var data = {
+                '_personal_trainer_id' : personal_trainer_id,
+                '_time_id' : time_id,
+                '_date_book_schedule' : date_book_schedule,
+                _csrf: token};
+            $.ajax({
+                type: "POST",
+                url: '/customer/BookingTicketTrainer/bookSchedule',
+                data: data,
+                success: function (respone) {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Bạn đã đặt lịch tập thành công',
+                    }).then((result) => {
+                        if(result.isConfirmed){
+                            modalBookk.style.display = "none";
+                            location.reload();
+                        }
+                    });
+                }
+            });
+        });
+    });
 </script>
 </html>

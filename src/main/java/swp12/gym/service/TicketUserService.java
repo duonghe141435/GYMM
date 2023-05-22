@@ -46,4 +46,6 @@ public interface TicketUserService {
     void updateUserPersonal(int userID);
 
     List<UserClass> checkUserClass(int userID);
+
+    TicketUserDto findAnTicketUserDto(int userID, String date);
 }
