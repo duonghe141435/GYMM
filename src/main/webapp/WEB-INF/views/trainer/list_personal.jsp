@@ -140,7 +140,10 @@
                                                 <div class="card" id="open_modal">
                                                     <h4 class="ticketsPersonal_id" style="display: none" aria-readonly="true">${tickets.t_id}</h4>
                                                     <a class="img-card">
-                                                        <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
+                                                        <c:set var="randomNumber">
+                                                            <c:out value="<%= (int)(Math.random() * 5) + 1 %>" />
+                                                        </c:set>
+                                                        <img src="/assets/img/ticket/${randomNumber}.jpg"/>
                                                     </a>
                                                     <div class="card-content">
                                                         <h4 class="card-title">
@@ -206,10 +209,9 @@
                                                                                     <div class="row d-flex justify-content-center">
                                                                                         <label class="form-label col-sm-2 mt-3" for="pt_name">Chọn HLV:</label>
                                                                                         <div class="col-sm-6">
-                                                                                            <select class="form-select"  id="pt_name" style="width: 82%;float:left;">
+                                                                                            <select class="form-select"  id="pt_name">
                                                                                                     <%--<option disabled selected hidden>Chọn HLV</option>--%>
                                                                                             </select>
-                                                                                            <button type="button" style="text-align: center; float:right;" class="btn btn-primary">Lịch trình</button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -342,7 +344,7 @@
                             document.getElementById("getTicketPersonalID").innerText = trainer.tp_id;
 
                             var optionHLV = document.createElement("option");
-                            optionHLV.innerText = "Chọn HLV";
+                            optionHLV.innerText = trainer.u_full_name;
                             optionHLV.disabled = true;
                             optionHLV.selected = true;
                             optionHLV.hidden = true;

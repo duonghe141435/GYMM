@@ -32,12 +32,15 @@
                         <c:if test="${tickets.tt_id == 1}">
                             <div class="col-xs-12 col-sm-4">
                                 <div class="card">
-                                    <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
-                                        <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
+                                    <a class="img-card">
+                                        <c:set var="randomNumber">
+                                            <c:out value="<%= (int)(Math.random() * 3) + 1 %>" />
+                                        </c:set>
+                                        <img src="/assets/img/ticket/${randomNumber}.jpg"/>
                                     </a>
                                     <div class="card-content">
                                         <h4 class="card-title">
-                                            <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html"> ${tickets.t_name}</a>
+                                            <a> ${tickets.t_name}</a>
                                         </h4>
                                         <p class="">
                                             - Số người đã tham gia: <br/>

@@ -3,6 +3,8 @@ package swp12.gym.controller.employee.base;
 import com.google.gson.Gson;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -10,13 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import swp12.gym.dto.CheckInDto;
-import swp12.gym.dto.ProductDto;
-import swp12.gym.dto.TicketTrainerDto;
-import swp12.gym.dto.UserDto;
-import swp12.gym.model.entity.CheckIn;
-import swp12.gym.model.entity.Ticket;
-import swp12.gym.model.entity.User;
+import org.springframework.web.bind.annotation.RequestParam;
+import swp12.gym.dao.UsersDao;
+import swp12.gym.dto.*;
+import swp12.gym.model.entity.*;
 import swp12.gym.service.*;
 
 import javax.servlet.http.HttpSession;
@@ -40,6 +39,16 @@ public class EmployeeBaseController {
     private CheckInService checkInService;
     @Autowired
     private TicketService ticketService;
+    @Autowired
+    private UsersDao userDao;
+    @Autowired
+    private ClassService classService;
+    @Autowired
+    private PersonalTrainerDetailService personalTrainerDetailService;
+    @Autowired
+    private TimeService timeService;
+    @Autowired
+    private TrainerService trainerService;
 
     @RequestMapping(value = "/home",method = RequestMethod.GET)
     public String homeTrainer(Model model, Authentication authentication) {
@@ -145,6 +154,39 @@ public class EmployeeBaseController {
         model.addAttribute("allCheckIn", allCheckIn);
         System.out.println("allCheckIn: " + allCheckIn);
         return "employee/list_checkIn";
+    }
+
+    @RequestMapping(value = "/view-schedule-trainer", method = RequestMethod.GET)
+    public String goViewDetailAnClass(@RequestParam(value = "trainer_id") int trainer_id, Model model){
+        int userID = userDao.findUserIdByTrainerID(trainer_id);
+
+        //lấy xem lịch của class
+        List<ClassDto> scheduleClassOfCustomer = classService.findAllScheduleClassOfAnTrainer(userID);
+        String jsonData = new Gson().toJson(scheduleClassOfCustomer); // chuyển đổi sang chuỗi JSON
+        model.addAttribute("jsonData",jsonData);
+
+        //lấy check lịch personal trainer
+        List<PersonalTrainerDetail> schedulePersonalTrainer = personalTrainerDetailService.findAllSchedulePersonalOfAnTrainer(userID);
+        String jsonPersonalDetail = new Gson().toJson(schedulePersonalTrainer);
+        model.addAttribute("jsonPersonalDetail",jsonPersonalDetail);
+
+        List<Time> times = timeService.findAll();
+        model.addAttribute("times",times);
+
+        return "employee/schedule_trainer";
+    }
+
+    @RequestMapping(value = "find-personal-trainer", method = RequestMethod.GET)
+    public ResponseEntity<List<UserDto>> find_Trainer_Ticket_Personal(@RequestParam(value = "ids") int ticket_id){
+        try{
+            List<UserDto> trainerPersonal = trainerService.findAllTrainerPersonal(ticket_id);
+            System.out.println("trainerPersonal: " + trainerPersonal);
+            return new ResponseEntity<List<UserDto>>(trainerPersonal, HttpStatus.OK);
+//            redirectAttributes.addFlashAttribute("trainerPersonal", trainerPersonal);
+//            return new ResponseEntity<String>( "1", HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<List<UserDto>>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
 

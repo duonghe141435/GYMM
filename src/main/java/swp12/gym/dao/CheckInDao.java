@@ -52,9 +52,10 @@ public class CheckInDao {
     public List<CheckInDto> findAllCheckIn() {
         try {
             sql = "SELECT u.image, u.email, u.name, u.gender, c.current_time, c.status\n" +
-                    "FROM checkin c\n" +
-                    "JOIN users u ON c.user_id = u.id_u\n" +
-                    "ORDER BY c.checkIn_id DESC;";
+                    "                    FROM checkin c\n" +
+                    "                    JOIN users u ON c.user_id = u.id_u\n" +
+                    "                    WHERE DATE(c.current_time) = CURDATE()\n" +
+                    "                    ORDER BY c.checkIn_id DESC;";
             return jdbcTemplate.query(sql, new CheckInDtoMapper());
         }catch (Exception e){
             e.printStackTrace();

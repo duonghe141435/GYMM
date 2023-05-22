@@ -140,12 +140,15 @@
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="card">
                                                         <h4 class="ticket_class_id" style="display: none" aria-readonly="true">${tickets.t_id}</h4>
-                                                        <a class="img-card" href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html">
-                                                            <img src="https://1.bp.blogspot.com/-Bii3S69BdjQ/VtdOpIi4aoI/AAAAAAAABlk/F0z23Yr59f0/s640/cover.jpg" />
+                                                        <a class="img-card">
+                                                            <c:set var="randomNumber">
+                                                                <c:out value="<%= (int)(Math.random() * 5) + 1 %>" />
+                                                            </c:set>
+                                                            <img src="/assets/img/ticket/${randomNumber}.jpg"/>
                                                         </a>
                                                         <div class="card-content">
                                                             <h4 class="card-title">
-                                                                <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html"> ${tickets.t_name}</a>
+                                                                <a> ${tickets.t_name}</a>
                                                             </h4>
                                                             <p class="">
                                                                 - Số người tham đã tham gia: <br/>
@@ -204,12 +207,11 @@
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <div class="row d-flex justify-content-center">
-                                                                                            <label class="form-label col-sm-2 mt-3" for="pt_class_name">Chọn HLV:</label>
+                                                                                            <label class="form-label col-sm-2 mt-3" for="pt_class_name">Chọn Lớp:</label>
                                                                                             <div class="col-sm-6">
-                                                                                                <select class="form-select"  id="pt_class_name" style="width: 82%;float:left;">
+                                                                                                <select class="form-select"  id="pt_class_name" >
                                                                                                         <%--<option disabled selected hidden>Chọn HLV</option>--%>
                                                                                                 </select>
-                                                                                                <button type="button" style="text-align: center; float:right;" class="btn btn-primary">Lịch trình</button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -494,7 +496,7 @@
                             document.getElementById("getTicketClassID").innerText = ticket_class.c_trainer_id;
 
                             var optionHLV = document.createElement("option");
-                            optionHLV.innerText = "Chọn lớp";
+                            optionHLV.innerText = ticket_class.c_name;
                             optionHLV.disabled = true;
                             optionHLV.selected = true;
                             optionHLV.hidden = true;

@@ -229,12 +229,12 @@
                         if (jsonListAttendance[k].status === 0) {
                             status.innerText = "A";
                             status.style.fontSize = "13px";
-                            status.style.color = "green";
+                            status.style.color = "red";
                         }
                         if (jsonListAttendance[k].status === 1) {
                             status.innerText = "P";
                             status.style.fontSize = "13px";
-                            status.style.color = "red";
+                            status.style.color = "green";
                         }
                     }
                 }

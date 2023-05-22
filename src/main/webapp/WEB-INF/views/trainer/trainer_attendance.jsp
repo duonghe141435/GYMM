@@ -39,7 +39,7 @@
             <div style="margin-left: 13%;">
                 <div style="text-align: center">
                     <label style="font-weight: bold; font-size: 35px; color: blue;">Bảng điểm danh của lớp</label>
-                    <p style="display: none" id="class_id">1</p>
+                    <p style="display: none" id="class_id">${classID}</p>
                 </div>
                 <%--<div class="card-body">--%>
 

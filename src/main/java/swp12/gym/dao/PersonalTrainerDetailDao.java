@@ -55,4 +55,29 @@ public class PersonalTrainerDetailDao {
             }
         }, user_id);
     }
+
+    public String checkPersonalTrainerDetail(int userID, String date) {
+        try{
+            sql = "SELECT EXISTS (\n" +
+                    "    SELECT 1\n" +
+                    "    FROM personal_trainer_detail ptd\n" +
+                    "    WHERE ptd.current_date = ? AND ptd.user_id = ?\n" +
+                    ") AS isExpired;";
+
+            String isExpired = jdbcTemplate.queryForObject(sql, String.class, date, userID);
+            return isExpired;
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void insertPersonalTrainerDetail(String date, int status, int personal_trainer_id, int time_id, int userID){
+        try{
+            sql = "INSERT INTO personal_trainer_detail (`current_date`, status, personal_trainer_id, time_id, user_id) VALUES (?,?,?,?,?)";
+            jdbcTemplate.update(sql, date, status, personal_trainer_id, time_id, userID);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
