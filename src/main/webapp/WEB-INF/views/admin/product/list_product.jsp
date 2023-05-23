@@ -23,21 +23,11 @@
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
                                 <div>
-                                    <label class="form-label">Show&nbsp;
-                                        <select class="d-inline-block form-select form-select-sm" style="width: auto;">
-                                            <option value="10" selected="">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select>&nbsp;
-                                    </label>
 
                                     <label class="form-label">Trạng thái&nbsp;
                                         <select class="d-inline-block form-select form-select-sm" style="width: auto">
-                                            <option value="10" selected="">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
+                                            <option value="1" selected="">Đang bán</option>
+                                            <option value="0">Ngừng bán/Hết Hàng</option>
                                         </select>&nbsp;
                                     </label>
                                 </div>

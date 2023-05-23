@@ -1,6 +1,5 @@
 package swp12.gym.dao;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -8,12 +7,13 @@ import org.springframework.stereotype.Repository;
 import swp12.gym.dto.ProductDto;
 import swp12.gym.model.entity.OrderDetail;
 import swp12.gym.model.entity.Product;
+import swp12.gym.model.entity.Unit;
 import swp12.gym.model.mapper.ProductMapper;
-
+import swp12.gym.model.mapper.UnitMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+
 import java.util.List;
 
 @Repository
@@ -22,17 +22,10 @@ public class ProductDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     private String sql;
-    private final LocalDate currentDate = LocalDate.now();
 
-    public void createProduct(ProductDto product){
-        try{
-            sql = "INSERT INTO product (product_id, name, description, image, added_date, quantity, status, unit_id, kind_id) " +
-                    "VALUES (?,?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql,product.getP_id(),product.getP_name(), product.getP_description(),
-                    product.getP_img(), currentDate, product.getP_quantity(), 1, product.getP_unit(), product.getP_kind());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
+    public List<Unit> findAll(){
+        sql = "SELECT * FROM unit WHERE status = 1";
+        return jdbcTemplate.query(sql, new UnitMapper());
     }
 
     public void updateProdcut(String img, String des, int id_k, int id_un, int id_p){
@@ -51,7 +44,7 @@ public class ProductDao {
     }
 
     public int getNumberProductInSystem() {
-        sql = "SELECT COUNT(*) as number_product FROM product";
+        sql = "SELECT MAX(product_id) as number_product FROM product";
         int number = jdbcTemplate.queryForObject(sql, new RowMapper<Integer>() {
             public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
                 return resultSet.getInt("number_product");
@@ -80,6 +73,16 @@ public class ProductDao {
         sql.append(");");
         String sqlRs = sql.substring(0, sql.length());
         jdbcTemplate.update(sqlRs);
+    }
+
+    public void createUnit(int id, String type) {
+        sql = "INSERT INTO unit(unit_id, name, status) VALUES (?,?,1)";
+        jdbcTemplate.update(sql,id,type);
+    }
+
+    public int getNumberUnitInSystem() {
+        sql = "SELECT MAX(unit_id) FROM unit";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 }
 

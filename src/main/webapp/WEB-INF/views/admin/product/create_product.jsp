@@ -4,7 +4,6 @@
 <head>
     <title>Thêm sản phẩm mới</title>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .select-icon {
             display: flex;
