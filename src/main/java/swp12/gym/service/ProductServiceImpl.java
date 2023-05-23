@@ -22,11 +22,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     public int getNumberProductInSystem() {
-        return 0;
+        return productDtoDao.getNumberProductInSystem();
     }
 
     public void createProduct(ProductDto productDto) {
-
+        productDtoDao.createProduct(productDto);
     }
 
     public ProductDto findAnProduct(int id) {

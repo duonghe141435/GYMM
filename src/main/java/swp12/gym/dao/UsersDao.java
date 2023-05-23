@@ -518,7 +518,7 @@ public class UsersDao {
         try {
             sql = "SELECT users.id_u,users.name,users.email, users.gender,  users.image,\n" +
                     "users.DOB, users.phone, users.enabled, users.create_date\n" +
-                    "FROM users join users_roles u on users.id_u = u.u_id WHERE u.r_id = 2 AND users.email LIKE '"+query+"%';";
+                    "FROM users join users_roles u on users.id_u = u.u_id WHERE u.r_id = 2 AND users.email LIKE '%"+query+"%';";
             return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
                 public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
 
@@ -600,7 +600,7 @@ public class UsersDao {
         try{
         sql = "SELECT users.id_u,users.name,users.email, users.gender,  users.image,\n" +
                 "users.DOB, users.phone, users.enabled, users.create_date\n" +
-                "FROM users join users_roles u on users.id_u = u.u_id WHERE u.r_id = 3 AND users.email LIKE '"+query+"%';";
+                "FROM users join users_roles u on users.id_u = u.u_id WHERE u.r_id = 3 AND users.email LIKE '%"+query+"%';";
         return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
             public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
 

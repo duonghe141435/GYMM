@@ -59,11 +59,11 @@ public class AdminProductController {
 
         productDto.setP_id(p_id);
         productDto.setP_img(p_img);
-        System.out.println(productDto.toString());
+
         productService.createProduct(productDto);
         priceService.createAnPrice(productDto.getP_price(),productDto.getP_Oprice(),p_id);
         FileUtil.doSaveImgToService(file,s,"products");
-        return "redirect:/admin/dashboard/products";
+        return "redirect:/admin/product";
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
