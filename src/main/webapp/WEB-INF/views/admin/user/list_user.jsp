@@ -75,8 +75,8 @@
                                             </c:if>
                                             <td class="text-center">
                                                 <a class="user_view">
-                                                <i class="fas fa-eye fa-lg fa-fw me-2 text-info"></i></a>
-                                                <a class="delete_user"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                                <i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Xem lịch sử Khách hàng"></i></a>
+                                                <a class="delete_user"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa Khách hàng"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>

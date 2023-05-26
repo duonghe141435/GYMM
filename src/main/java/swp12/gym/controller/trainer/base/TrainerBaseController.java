@@ -8,10 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.*;
@@ -102,6 +99,9 @@ public class TrainerBaseController {
         String email = ((UserDetails) authentication.getPrincipal()).getUsername();
         List<ClassDto> class_list = classService.findClassAllOfAnTrainer(email);
         model.addAttribute("class_list", class_list);
+
+        List<ClassDto> listClassesForTheDay = classService.findAllClassesForTheDayOfAnTrainer(email);
+        model.addAttribute("listClassesForTheDay", listClassesForTheDay);
         return "trainer/manage_class";
     }
 
@@ -157,6 +157,17 @@ public class TrainerBaseController {
         return "trainer/trainer_attendance";
     }
 
+    @RequestMapping(value = "/update-attendance-an-class/{class_id}",method = RequestMethod.GET)
+    public String goUpdateAttendance(@PathVariable int class_id, Model model) {
+        List<User> list_user_of_class = userService.findAllUserOfAnClass(class_id);
+        model.addAttribute("list_user_of_class", list_user_of_class);
+        model.addAttribute("classID", class_id);
+
+        List<Attendance> list_attendance_user_of_class = userService.findAllAttendaneUserOfAnClass(class_id);
+        model.addAttribute("list_attendance_user_of_class", list_attendance_user_of_class);
+        return "trainer/update_attendance";
+    }
+
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
     public String profileCustomer(Model model, HttpSession s) {
         UserDto user = userService.getCustomerByEmail(s.getAttribute("display_email").toString());
@@ -208,10 +219,51 @@ public class TrainerBaseController {
 //        List<TicketUserDto> ticketUserOfSchedulePersonal = ticketUserService.findTicketUserOfSchedulePersonal(userID);
 //        String jsonSchedulePersonal = new Gson().toJson(ticketUserOfSchedulePersonal);
 //        model.addAttribute("jsonSchedulePersonal",jsonSchedulePersonal);
+        List<Time> times = timeService.findAll();
+        model.addAttribute("times",times);
+
+        return "trainer/teaching_schedule";
+    }
+
+    @RequestMapping(value = "/view-schedule-trainer", method = RequestMethod.GET)
+    public String goViewDetailAnClass(@RequestParam(value = "trainer_id") int trainer_id, Model model){
+        int userID = userDao.findUserIdByTrainerID(trainer_id);
+
+        //lấy xem lịch của class
+        List<ClassDto> scheduleClassOfCustomer = classService.findAllScheduleClassOfAnTrainer(userID);
+        String jsonData = new Gson().toJson(scheduleClassOfCustomer); // chuyển đổi sang chuỗi JSON
+        model.addAttribute("jsonData",jsonData);
+
+        //lấy check lịch personal trainer
+        List<PersonalTrainerDetail> schedulePersonalTrainer = personalTrainerDetailService.findAllSchedulePersonalOfAnTrainer(userID);
+        String jsonPersonalDetail = new Gson().toJson(schedulePersonalTrainer);
+        model.addAttribute("jsonPersonalDetail",jsonPersonalDetail);
 
         List<Time> times = timeService.findAll();
         model.addAttribute("times",times);
 
         return "trainer/teaching_schedule";
+    }
+
+    @RequestMapping(value = "find-personal-trainer", method = RequestMethod.GET)
+    public ResponseEntity<List<UserDto>> find_Trainer_Ticket_Personal(@RequestParam(value = "ids") int ticket_id){
+        try{
+            List<UserDto> trainerPersonal = trainerService.findAllTrainerPersonal(ticket_id);
+
+            return new ResponseEntity<List<UserDto>>(trainerPersonal, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<List<UserDto>>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value = "find-class", method = RequestMethod.GET)
+    public ResponseEntity<List<ClassDto>> find_Class_Ticket_Class(@RequestParam(value = "ids") int ticket_id){
+        try{
+            List<ClassDto> ticket_class = classService.findAllClassOfAnTicketClass(ticket_id);
+            return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
+//            return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<List<ClassDto>>(HttpStatus.BAD_REQUEST);
+        }
     }
 }

@@ -1,5 +1,8 @@
 package swp12.gym.controller.customer.api;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,7 @@ import swp12.gym.service.PersonalTrainerDetailService;
 import swp12.gym.service.TrainerService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -45,16 +49,29 @@ public class BookingTicketTrainerApi {
     @RequestMapping(value = URL_API + "/bookSchedule", method = RequestMethod.POST)
     public ResponseEntity<String> bookSchedule(HttpServletRequest request, Authentication authentication){
         try{
-            int personal_trainer_id = parseInt(request.getParameter("_personal_trainer_id"));
-            int time_id = parseInt(request.getParameter("_time_id"));
-            String date_book_schedule = request.getParameter("_date_book_schedule");
-
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String userName = userDetails.getUsername();
             int userID = userDao.findIdByUsername(userName);
 
-            personalTrainerDetailService.insertPersonalTrainerDetail(date_book_schedule, 1, personal_trainer_id, time_id, userID);
-            return new ResponseEntity<String>(HttpStatus.OK);
+            int personal_trainer_id = parseInt(request.getParameter("_personal_trainer_id"));
+            int time_id = parseInt(request.getParameter("_time_id"));
+
+            Gson gson = new Gson();
+            String list = request.getParameter("_date_book_schedule");
+            JsonElement jsonElement = gson.fromJson(list, JsonElement.class);
+            JsonArray jsonArray = jsonElement.getAsJsonArray();
+
+            List<String> date = new ArrayList<String>();
+            for (JsonElement elem : jsonArray) {
+                date.add(elem.getAsString());
+            }
+            int count = personalTrainerDetailService.checkPersonalTrainerDetailForBookSchedule(userID, date);
+            if (count == 0){
+                personalTrainerDetailService.insertPersonalTrainerDetail(date, 1, personal_trainer_id, time_id, userID);
+                return new ResponseEntity<String>("",HttpStatus.OK);
+            }else {
+                return new ResponseEntity<String>(""+count,HttpStatus.OK);
+            }
         }catch (Exception e){
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }

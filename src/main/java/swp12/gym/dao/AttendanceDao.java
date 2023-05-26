@@ -47,6 +47,17 @@ public class AttendanceDao {
         }
     }
 
+    public void updateAttendance(List<Attendance> listAttendance){
+        try{
+            sql = ("UPDATE attendance a SET a.status = ? WHERE a.attendance_date = DATE(NOW()) AND a.class_id = ? AND a.user_id = ?");
+            for (Attendance attendance: listAttendance) {
+                jdbcTemplate.update(sql, attendance.getStatus(), attendance.getClass_id(), attendance.getUser_id());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public List<Attendance> listAttendance(int class_id) {
         try {
             sql = "SELECT * \n" +

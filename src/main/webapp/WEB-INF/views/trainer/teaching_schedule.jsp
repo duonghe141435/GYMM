@@ -80,7 +80,7 @@
         </div>
         <div style="margin-left: 13%;">
             <div style="margin-left: 40%">
-                <label style=" font-weight: bold; font-size: 35px; color: blue;">Lịch Tập</label>
+                <label style=" font-weight: bold; font-size: 35px; color: blue;">Lịch Dạy</label>
             </div>
             <div class="card-body">
                 <button class="btn-hover" id="myBook" style="box-shadow: 1px 3px;" type="button" title="Xem lịch tập với HLV của bản thân">Lịch huấn luyện</button>
@@ -254,7 +254,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="<c:url value='/assets/js/teaching_schedule.js'/>"></script>
-<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
+<%--<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>--%>
 <%--<script src="<c:url value='/assets/js/bs-init.js'/>"></script>--%>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
 <script src="<c:url value='/assets/js/jquery.min.js'/>"></script>

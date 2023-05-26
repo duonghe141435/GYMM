@@ -8,6 +8,7 @@ import swp12.gym.common.DataUtil;
 import swp12.gym.dto.OrderDto;
 import swp12.gym.model.entity.Order;
 import swp12.gym.model.entity.OrderDetail;
+import swp12.gym.model.mapper.OrderMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -69,6 +70,15 @@ public class OrderDao {
                     return orderDto;
                 }
             }, id);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public List<Order> getAllOrderOfAnUserById(int id) {
+        try{
+            sql = "SELECT * FROM `order` o WHERE o.customer = ?";
+            return jdbcTemplate.query(sql, new OrderMapper(), id);
         }catch (Exception e){
             return null;
         }

@@ -72,12 +72,38 @@ public class PersonalTrainerDetailDao {
         }
     }
 
-    public void insertPersonalTrainerDetail(String date, int status, int personal_trainer_id, int time_id, int userID){
+    public void insertPersonalTrainerDetail(List<String> date, int status, int personal_trainer_id, int time_id, int userID){
         try{
-            sql = "INSERT INTO personal_trainer_detail (`current_date`, status, personal_trainer_id, time_id, user_id) VALUES (?,?,?,?,?)";
-            jdbcTemplate.update(sql, date, status, personal_trainer_id, time_id, userID);
+//            sql = "INSERT INTO personal_trainer_detail (`current_date`, status, personal_trainer_id, time_id, user_id) VALUES (?,?,?,?,?)";
+//            jdbcTemplate.update(sql, date, status, personal_trainer_id, time_id, userID);
+
+            StringBuffer sql = new StringBuffer("INSERT INTO personal_trainer_detail (`current_date`, status, personal_trainer_id, time_id, user_id) VALUES");
+            for (String item : date) {
+                sql.append("(" + "'" + item + "'" + "," + status + "," + personal_trainer_id + "," + time_id + "," + userID + ")");
+                sql.append(",");
+            }
+            String sqlRs = sql.substring(0, sql.length()-1);
+            System.out.println("database sql: " + sqlRs);
+            jdbcTemplate.update(sqlRs);
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public int checkPersonalTrainerDetailForBookSchedule(int userID, List<String> date) {
+        try{
+            StringBuffer sql = new StringBuffer("SELECT COUNT(*) AS count FROM personal_trainer_detail ptd WHERE ptd.user_id = 4 AND (");
+            for (String item : date) {
+                sql.append("ptd.current_date = '" + item + "' OR ");
+            }
+            sql.delete(sql.length() - 4, sql.length());
+            sql.append(")");
+            String sqlRs = sql.toString();
+            int number = jdbcTemplate.queryForObject(sqlRs, Integer.class);
+            return number;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
         }
     }
 }

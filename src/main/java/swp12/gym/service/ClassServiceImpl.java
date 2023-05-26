@@ -74,4 +74,8 @@ public class ClassServiceImpl implements ClassService{
     public int getMaxIdClassInSystem() {
         return classDao.getMaxIdClassInSystem();
     }
+
+    public List<ClassDto> findAllClassesForTheDayOfAnTrainer(String trainer_email) {
+        return classDao.findAllClassesForTheDayOfAnTrainer(trainer_email);
+    }
 }

@@ -34,4 +34,6 @@ public interface ClassService {
     void createClassWeekdays(String cn, String thu2, String thu3, String thu4, String thu5, String thu6, String thu7, int ids_class);
 
     int getMaxIdClassInSystem();
+
+    List<ClassDto> findAllClassesForTheDayOfAnTrainer(String trainer_email);
 }

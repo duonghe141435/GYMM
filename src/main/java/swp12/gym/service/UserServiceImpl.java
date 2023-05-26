@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.UserDto;
 import swp12.gym.dto.UserDtoAdmin;
+import swp12.gym.model.entity.Attendance;
 import swp12.gym.model.entity.User;
 
 import java.util.List;
@@ -115,6 +116,10 @@ public class UserServiceImpl implements UserService{
 
     public List<User> findAllUserOfAnClass(int class_id) {
         return usersDao.findAllUserOfAnClass(class_id);
+    }
+
+    public List<Attendance> findAllAttendaneUserOfAnClass(int class_id) {
+        return usersDao.findAllAttendaneUserOfAnClass(class_id);
     }
 
     public void updateStatusUser(int id_u) {

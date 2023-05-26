@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: a5nam
+  Date: 5/27/2023
+  Time: 12:11 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -84,43 +91,53 @@
                             <div class="col-lg-8" style="width: 72%">
                                 <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
                                     <div class="card-body" style="padding-top: 0;">
-                                        <c:if test="${not empty logUser}">
+                                        <c:if test="${not empty logOrder}">
                                             <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;">
-                                                <table class="table my-0" id="dataTable">
+                                                <table class="table my-0" id="list-order">
                                                     <thead>
                                                     <tr>
                                                         <th class="text-center">#</th>
-                                                        <th>Mảng tác động</th>
-                                                        <th>Nội dung</th>
-                                                        <th class="text-center">Ngày thực hiện</th>
+                                                        <th class="text-center">Mã hóa đơn</th>
+                                                        <th class="text-center">Ngày mua</th>
+                                                        <th class="text-center">Tổng tiền hàng</th>
+                                                        <th class="text-center">giảm giá</th> <!-- Đã thanh toán, chưa thanh toán -->
+                                                        <th class="text-center">Khách cần trả:</th>
+                                                        <th class="text-center">Khách trả:</th>
+                                                        <th class="text-center">Nhân viên trả lại:</th>
+                                                        <th class="text-center">Thao tác</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody style="display: contents;width: 100%;overflow: auto;">
-                                                    <c:forEach items="${logUser}" var="logUser">
+                                                    <c:forEach items="${logOrder}" var="logOrder">
                                                         <tr>
                                                             <td class="text-center">
                                                                 <count></count>
                                                             </td>
-                                                            <c:if test="${logUser.type_log == 1}">
-                                                                <td>Người dùng</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 2}">
-                                                                <td>Quản trị</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 3}">
-                                                                <td>Quản lý sản phẩm</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 4}">
-                                                                <td>Tài khoản</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 5}">
-                                                                <td>Dịch vụ</td>
-                                                            </c:if>
-                                                            <td>${logUser.content}</td>
+                                                            <td class="order_id" style="display: none">${logOrder.order_id}</td>
+                                                            <td class="text-center" >
+                                                                    ${logOrder.code}
+                                                            </td>
                                                             <td class="text-center">
-                                                                <script>
-                                                                    document.write(moment.unix(${logUser.date_time_create}).format('YYYY-MM-DD HH:mm:ss'));
-                                                                </script>
+                                                                    ${logOrder.order_date}
+                                                            </td>
+                                                            <td class="text-center class-price">
+                                                                    ${logOrder.total_amount}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                    ${logOrder.discount} %
+                                                            </td>
+                                                            <td class="text-center class-price">
+                                                                    ${logOrder.total_payment}
+                                                            </td>
+                                                            <td class="text-center class-price">
+                                                                    ${logOrder.customer_paying}
+                                                            </td>
+                                                            <td class="text-center class-price">
+                                                                    ${logOrder.change}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <a class="order_view">
+                                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-info"></i></a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
@@ -128,8 +145,8 @@
                                                 </table>
                                             </div>
                                         </c:if>
-                                        <c:if test="${empty logUser}">
-                                            <h3 style="text-align: center; margin-top: 20px">Hội viên chưa có lịch sử hoạt động nào</h3>
+                                        <c:if test="${empty logOrder}">
+                                            <h3 style="text-align: center; margin-top: 20px">Hội viên chưa mua sản phẩm nào</h3>
                                         </c:if>
                                     </div>
                                 </div>
@@ -164,21 +181,21 @@
                 cancelButtonText: 'Không!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                $.ajax({
-                    type: "GET",
-                    url: '/admin/user-management/delete/'+${user.u_id},
-                    success: function (respone) {
-                        Swal.fire(respone,'', 'error');
-                        window.location.href = "http://localhost:8080/admin/trainer";
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
-                    }
-                });
-            }else{
-                Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
-            }
-        })
+                    $.ajax({
+                        type: "GET",
+                        url: '/admin/user-management/delete/'+${user.u_id},
+                        success: function (respone) {
+                            Swal.fire(respone,'', 'error');
+                            window.location.href = "http://localhost:8080/admin/trainer";
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                        }
+                    });
+                }else{
+                    Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
+                }
+            })
         });
 
         user.on('click', '.update-user', function () {
@@ -204,5 +221,43 @@
         //     });
         // });
     })
+
+    $(document).ready(function () {
+        var list_order = $("#list-order");
+        list_order.on('click', '.order_view', function () {
+            var ids = $(this).parent().siblings('.order_id').text();
+            $.ajax({
+                url: '/customer/detail-order/'+ids,
+                method: 'GET',
+                dataType : 'json',
+                success: function(response) {
+                    console.log(response);
+
+                    // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
+                    var tableData = '';
+                    tableData += '<table class="table my-0">';
+                    tableData += '<tr><th>Tên sản phẩm</th><th>Số lượng</th><th>Đơn giá</th><th>Tổng tiền</th></tr>';
+
+                    response.forEach(function(element){
+                        tableData += '<tr>';
+                        tableData += '<td>' + element.product_name + '</td>';
+                        tableData += '<td>' + element.quantity + '</td>';
+                        tableData += '<td class="class-price">' + element.price_sale + '</td>';
+                        tableData += '<td class="class-price">' + element.total_price + '</td>';
+                        tableData += '</tr>';
+                    });
+                    tableData += '</table>';
+                    Swal.fire({
+                        title: 'Chi tiết hóa đơn',
+                        html: tableData
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
 </script>
 </html>
+

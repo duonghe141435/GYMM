@@ -9,7 +9,9 @@ import swp12.gym.dto.UserDto;
 import swp12.gym.dto.UserDtoAdmin;
 import swp12.gym.dto.UserDtoAdminMapper;
 import swp12.gym.dto.UserDtoMapper;
+import swp12.gym.model.entity.Attendance;
 import swp12.gym.model.entity.User;
+import swp12.gym.model.mapper.AttendanceMapper;
 import swp12.gym.model.mapper.UserMapper;
 
 import java.sql.ResultSet;
@@ -48,7 +50,7 @@ public class UsersDao {
 
     public int findIdByUsername(String username) {
         try{
-            sql = "SELECT COUNT(*) FROM users WHERE email = ?";
+            sql = "SELECT id_u FROM users WHERE email = ?";
             return jdbcTemplate.queryForObject(sql,Integer.class,username);
         }catch (Exception e){
             e.printStackTrace();
@@ -375,6 +377,16 @@ public class UsersDao {
                     "JOIN user_class uc ON u.id_u = uc.user_id\n" +
                     "WHERE uc.class_id = ? AND uc.status = 1";
             return jdbcTemplate.query(sql, new UserMapper(), class_id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Attendance> findAllAttendaneUserOfAnClass(int class_id) {
+        try{
+            sql = "SELECT * FROM attendance a WHERE a.class_id = ? AND a.attendance_date = DATE(NOW())";
+            return jdbcTemplate.query(sql, new AttendanceMapper(), class_id);
         }catch (Exception e){
             e.printStackTrace();
             return null;

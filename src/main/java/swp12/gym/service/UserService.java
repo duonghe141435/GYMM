@@ -3,6 +3,7 @@ package swp12.gym.service;
 import org.springframework.stereotype.Service;
 import swp12.gym.dto.UserDto;
 import swp12.gym.dto.UserDtoAdmin;
+import swp12.gym.model.entity.Attendance;
 import swp12.gym.model.entity.User;
 
 import java.util.List;
@@ -62,6 +63,8 @@ public interface UserService {
     void createUserForGuest(User user);
 
     List<User> findAllUserOfAnClass(int class_id);
+
+    List<Attendance> findAllAttendaneUserOfAnClass(int class_id);
 
     void updateStatusUser(int id_u);
 

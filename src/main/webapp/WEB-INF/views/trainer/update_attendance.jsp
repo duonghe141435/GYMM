@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: a5nam
+  Date: 5/24/2023
+  Time: 11:39 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -41,17 +48,6 @@
                     <label style="font-weight: bold; font-size: 35px; color: blue;">Bảng điểm danh của lớp</label>
                     <p style="display: none" id="class_id">${classID}</p>
                 </div>
-                <%--<div class="card-body">--%>
-
-                <%--<select id="date" name="date">--%>
-                <%--<option value="">17/4</option>--%>
-                <%--<option value="">18/4</option>--%>
-                <%--<option value="" selected>Hôm nay</option>--%>
-                <%--<option value="">20/4</option>--%>
-                <%--<option value="">21/4</option>--%>
-                <%--</select>--%>
-
-                <%--</div>--%>
             </div>
 
             <table border="1" class="table table-responsive " id="class_table"  style=" margin-left: 13%; text-align: center; width: 74%;">
@@ -75,7 +71,14 @@
                             <td style="width: 75px;"><img style="width: 70px;height: 90px;" src="${list_user_of_class.u_img}"></td>
                             <td>${list_user_of_class.u_email}</td>
                             <td>${list_user_of_class.u_full_name}</td>
-                            <td><input type="checkbox" class="a"></td>
+                            <td><input type="checkbox" class="a" id="box${list_user_of_class.u_id}"></td>
+                            <c:forEach items="${list_attendance_user_of_class}" var="attendance">
+                                <c:if test="${list_user_of_class.u_id eq attendance.user_id && attendance.status eq '1'}">
+                                    <script>
+                                        document.getElementById("box${list_user_of_class.u_id}").checked = true;
+                                    </script>
+                                </c:if>
+                            </c:forEach>
                             <p style="display: none" id="userID${index.count}">${list_user_of_class.u_id}</p>
                         </tr>
                     </c:forEach>
@@ -153,11 +156,11 @@
         console.log(data);
         $.ajax({
 
-            url: '/trainerApi/attendanceClass',
+            url: '/trainerApi/updateAttendanceClass',
             type: 'POST',
             data: data,
             success: function(response) {
-                Swal.fire('Bạn đã điểm danh thành công', '', 'success').then((result) => {
+                Swal.fire('Bạn đã update điểm danh thành công', '', 'success').then((result) => {
                     if(result.isConfirmed){
                         history.back();
                     }
