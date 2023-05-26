@@ -49,6 +49,14 @@ public class CustomerBaseController {
     @Autowired
     private CheckInService checkInService;
 
+    //Home user
+    @RequestMapping(value = "/home",method = RequestMethod.GET)
+    public String indexCustomer(Model model) {
+        List<Ticket> ticket = ticketService.findAll();
+        model.addAttribute("tickets", ticket);
+        return "customer/index_customer";
+    }
+
     @RequestMapping(value = "/show-list-personal",method = RequestMethod.GET)
     public String goListPersonal(Model model, HttpSession s) {
         List<Ticket> ticket = ticketService.findAll();
