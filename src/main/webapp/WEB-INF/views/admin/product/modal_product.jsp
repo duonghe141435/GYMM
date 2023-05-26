@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: HongWung
-  Date: 3/26/2023
-  Time: 9:34 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="modal" id="create_unit" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

@@ -33,27 +33,21 @@ public class AdminRevenueController {
     @RequestMapping(value = "/ticket",method = RequestMethod.GET)
     public String goViewRevenueTicket(Model model) {
         List<Integer> year = revenueService.getAllYearRevenue();
-        int total_year = revenueService.getAllRevenueTicketOfYear(dataUtil.getCurrentYear());
-        List<Revenue> revenues = revenueService.getAllRevenueOfYear(String.valueOf(dataUtil.getCurrentYear()));
+//        int total_year = revenueService.getAllRevenueTicketOfYear(dataUtil.getCurrentYear());
+        List<Revenue> revenues = revenueService.getAllRevenueOfYear();
         model.addAttribute("revenues", revenues);
         model.addAttribute("year", year);
-        model.addAttribute("total_year", total_year);
+//        model.addAttribute("total_year", total_year);
 
         return "admin/revenue/revenue_ticket";
-    }
-
-    @RequestMapping(value = "/ticket/{year}-{month}",method = RequestMethod.GET)
-    public String goViewDetailRevenueTicket(@PathVariable int year, @PathVariable int month, Model model) {
-        List<TicketUser> detail = revenueService.getDetailRevenueInMonth(year,month);
-        model.addAttribute("detail", detail);
-        return "admin/revenue/detail_revenue_month";
     }
 
     // ----------------------------------------------------------------
     @RequestMapping(value = "/product",method = RequestMethod.GET)
     public String goViewRevenueProduct(Model model) {
         List<Integer> year = revenueService.getAllYearRevenue();
-
+        List<Revenue> revenues = revenueService.getAllRevenueOfYearByProduct();
+        model.addAttribute("revenues", revenues);
         model.addAttribute("year", year);
         return "admin/revenue/revenue_product";
     }

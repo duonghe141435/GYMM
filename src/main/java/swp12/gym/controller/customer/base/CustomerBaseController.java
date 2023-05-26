@@ -16,6 +16,7 @@ import swp12.gym.dto.*;
 import swp12.gym.model.entity.*;
 import swp12.gym.service.*;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;

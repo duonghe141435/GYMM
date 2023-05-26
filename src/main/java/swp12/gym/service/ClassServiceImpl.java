@@ -78,4 +78,12 @@ public class ClassServiceImpl implements ClassService{
     public List<ClassDto> findAllClassesForTheDayOfAnTrainer(String trainer_email) {
         return classDao.findAllClassesForTheDayOfAnTrainer(trainer_email);
     }
+
+    public void updateStatusClassForStartDate(String dateNowToString) {
+        classDao.updateStatusClassForStartDate(dateNowToString);
+    }
+
+    public void updateStatusClassForEndDate(String dateNowToString) {
+        classDao.updateStatusClassForEndDate(dateNowToString);
+    }
 }

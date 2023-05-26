@@ -36,4 +36,8 @@ public interface ClassService {
     int getMaxIdClassInSystem();
 
     List<ClassDto> findAllClassesForTheDayOfAnTrainer(String trainer_email);
+
+    void updateStatusClassForStartDate(String dateNowToString);
+
+    void updateStatusClassForEndDate(String dateNowToString);
 }

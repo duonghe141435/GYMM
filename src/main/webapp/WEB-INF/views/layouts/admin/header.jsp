@@ -42,7 +42,7 @@
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Sổ quỹ</span>
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Thống kê doanh thu</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
