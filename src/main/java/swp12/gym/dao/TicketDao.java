@@ -79,7 +79,7 @@ public class TicketDao {
         try{
             sql = "SELECT t.id_t as t_id, t.name as t_name, t.id_t as ticket_id, t.tt_id, t.total_days as t_day, " +
                     "t.status as t_status, t.create_date as t_create_date,  MIN(pt.price) as min_price, MAX(pt.price) as max_price\n" +
-                    "FROM ticket t join personal_trainer pt on t.id_t = pt.ticket_id WHERE t.tt_id = 2\n" +
+                    "FROM ticket t join personal_trainer pt on t.id_t = pt.ticket_id WHERE t.tt_id = 2 AND t.status = 1\n" +
                     "GROUP BY t.id_t,  t.tt_id, t.total_days, t.create_date";
             return jdbcTemplate.query(sql, new TicketTrainerDtoMapper());
         }catch (Exception e){

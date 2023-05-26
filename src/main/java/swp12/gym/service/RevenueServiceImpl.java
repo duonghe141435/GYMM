@@ -18,15 +18,40 @@ public class RevenueServiceImpl {
         return revenueDao.getAllYearRevenue();
     }
 
-    public List<Revenue> getAllRevenueOfYear(String year){
-        return revenueDao.getAllRevenueOfYear(year);
+    public List<Revenue> getAllRevenueOfYear(){
+        return revenueDao.getAllRevenueOfYear();
     }
 
-    public List<TicketUser> getDetailRevenueInMonth(int year, int month) {
+    public List<Revenue> getDetailRevenueInMonth(int year, int month) {
         return revenueDao.getDetailRevenueInMonth(year,month);
     }
 
-    public int getAllRevenueTicketOfYear(int currentYear) {
-        return revenueDao.getAllRevenueTicketOfYear(currentYear);
+    public List<Revenue> getDetailRevenueYear(int year_int) {
+        return revenueDao.getDetailRevenueYear(year_int);
     }
+
+    public List<Revenue> getDetailRevenueInMonthByTicket(int year_int, int month_int) {
+        return revenueDao.getDetailRevenueInMonthByTicket(year_int, month_int);
+    }
+
+    public List<Revenue> getAllRevenueOfYearByProduct() {
+        return revenueDao.getAllRevenueOfYearByProduct();
+    }
+
+    public List<Revenue> getDetailRevenueYearByProduct(int year_int) {
+        return revenueDao.getDetailRevenueYearByProduct(year_int);
+    }
+
+    public List<Revenue> getDetailRevenueInMonthProduct(int year_int, int month_int) {
+        return revenueDao.getDetailRevenueInMonthProduct(year_int, month_int);
+    }
+
+    public List<Revenue> getDetailRevenueInMonthByProduct(int year_int, int month_int) {
+        return revenueDao.getDetailRevenueInMonthByProduct(year_int,month_int);
+    }
+
+
+//    public int getAllRevenueTicketOfYear(int currentYear) {
+//        return revenueDao.getAllRevenueTicketOfYear(currentYear);
+//    }
 }

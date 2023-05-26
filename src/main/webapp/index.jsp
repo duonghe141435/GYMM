@@ -7,4 +7,4 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:redirect url="/forgot-password"/>
+<c:redirect url="/home"/>

@@ -18,43 +18,60 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                    <label class="form-label">Show&nbsp;
-                                        <select class="d-inline-block form-select form-select-sm">
-                                            <option value="10" selected="">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
+                                <div>
+                                    <label class="form-label">Năm&nbsp;
+                                        <select class="d-inline-block form-select form-select-sm" id="year-revenue-ticket">
+                                            <option value="0" selected>Tất cả</option>
+                                            <c:forEach items="${year}" var="year">
+                                                <option value="${year}">${year}</option>
+                                            </c:forEach>
                                         </select>&nbsp;</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 text-nowrap">
-                                <div class="text-md-end w-25 float-end">
-                                    <label class="form-label d-flex">
-                                        <input type="search" class="form-control form-control-sm" placeholder="Search" id="input-search">
-                                        <button id="btn-search-user" type="button" style="background: none; border: none"><i class="fa fa-search"></i></button>
-                                    </label>
+                                    <label class="form-label" id="month-label" style="padding-left: 60px">Tháng&nbsp;
+                                        <select class="d-inline-block form-select form-select-sm" id="month-revenue-ticket">
+                                            <option value="0" selected>Tất cả</option>
+                                            <option value="1">Tháng 1</option>
+                                            <option value="2">Tháng 2</option>
+                                            <option value="3">Tháng 3</option>
+                                            <option value="4">Tháng 4</option>
+                                            <option value="5">Tháng 5</option>
+                                            <option value="6">Tháng 6</option>
+                                            <option value="7">Tháng 7</option>
+                                            <option value="8">Tháng 8</option>
+                                            <option value="9">Tháng 9</option>
+                                            <option value="10">Tháng 10</option>
+                                            <option value="11">Tháng 11</option>
+                                            <option value="12">Tháng 12</option>
+                                        </select>&nbsp;</label>
+                                    <div id="radio-label">
+                                        <label class="form-label" style="padding-left: 80px">Theo ngày bán của hóa đơn&nbsp;
+                                            <input type="radio" checked value="day" name="type-choose" id="choose-day">
+                                        </label>
+                                        <label class="form-label" style="padding-left: 60px">Theo từng loại sản phẩm&nbsp;
+                                            <input type="radio" value="ticket" name="type-choose" id="choose-ticket">
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
-                            <table class="table my-0" id="dataTable">
-                                <thead>
-                                <tr>
-                                    <th class="text-center">Tháng</th>
-                                    <th>Doanh thu</th>
-                                    <th>Lợi nhuận</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody style="display: contents;width: 100%;overflow: auto;">
-                                <c:if test="${not empty users}">
-                                    <c:forEach items="${users}" var="users">
-
+                        <div class="row">
+                            <div class="col-10 table-responsive table mt-2" role="grid" style="max-height: 55vh;">
+                                <table class="table my-0" id="dataTable">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Năm</th>
+                                        <th class="text-center">Tổng số tiền</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="display: contents;width: 100%;overflow: auto;">
+                                    <c:forEach items="${revenues}" var="revenues">
+                                        <tr>
+                                            <td class="text-center">Năm ${revenues.time}</td>
+                                            <td class="class-price text-center"> ${revenues.total_money}</td>
+                                        </tr>
                                     </c:forEach>
-                                </c:if>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,90 +84,191 @@
 <script>
 
     $(document).ready(function () {
-        var btn_search = $("#btn-search-user");
-        var input_search = $("#input-search");
-        // Thực hiện hành động tìm kiếm tại Danh sách người dùng hệ thống
-        input_search.on("input", function (){
-            var input = $(this).val();
-            if(input.length >=5 ){
-                $.ajax({
-                    url: 'http://localhost:8080/admin/user-management/search',
-                    method: 'GET',
-                    data: {query: input},
-                    dataType : 'json',
-                    success: function(response) {
-                        $('#dataTable tbody').remove();
-                        console.log(response);
-                        var tbody = $('<tbody>');
-                        $('#dataTable').append(tbody);
-                        $('#dataTable tbody').css({
-                            'display': 'contents',
-                            'width': '100%',
-                            'overflow': 'auto'
-                        });
-                        $.each(response, function(index, users) {
-                            var newrow = $("<tr>");
-                            var row = '<td class="text-center"><count></count></td><td class="d-flex align-items-center" style="border: none;">\n' +
-                                '<div class="img" style="background-image: url(http://localhost:8080'+users.u_img+')"></div>\n' +
-                                '<div class="pl-3 email"><span>'+users.u_email+'</span><span>Added:'+users.u_create_date+'</span>\n' +
-                                '</div></td><td>'+users.u_full_name+'</td><td class="text-center">'+users.u_phone_number+'</td>';
+        var year = $("#year-revenue-ticket");
+        var month = $("#month-revenue-ticket");
+        var label = $("#month-label");
+        var label_radio = $("#radio-label");
+        var table = $("#dataTable");
+        var token = $("meta[name='_csrf']").attr("content");
 
-                            if(users.u_enable === -1){
-                                row += ' <td class="status text-center"><span class="waiting">Chưa kích hoạt</span></td>';
-                            }
-                            if(users.u_enable === 0){
-                                row += '<td class="status text-center"><span class="danger">Khóa</span></td>';
-                            }
-                            if(users.u_enable === 1){
-                                row += '<td class="status text-center"><span class="active">Hoạt động</span></td>';
-                            }
-                            row += '<td class="text-center"><a class="user_view" data-bs-toggle="modal" data-bs-target="#vew_user_modal">\n' +
-                                '<i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>\n' +
-                                '<a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>\n' +
-                                '<a class="ticket_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>\n' +
-                                '</td>';
-                            newrow.append(row);
-                            $('#dataTable tbody').append(newrow);
-                        });
+        label.hide();
+        label_radio.hide();
 
-                        // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
+        year.on("change", function () {
+            if ($(this).val() !== "0") {
+                label.show();
+
+            }else if ($(this).val() === "0") {
+                label.hide();
+                month.val($('#month-revenue-ticket option:first').val());
+                $('input[name="type-choose"]:first').prop('checked', true);
+                label_radio.hide();
             }
-        });
-        btn_search.click(function (e) {
-            var input = input_search.val();
-            // Thực hiện hành động khi thẻ input thay đổi
-            if(input === ''){
-                Swal.fire({
-                    title: 'Oops...',
-                    text: 'Bạn cần nhập thông tin vào ô tìm kiếm',
-                    icon: 'error'
-                })
-            }else if(input.length >= 5){
-                $.ajax({
-                    url: 'http://localhost:8080/admin/user-management/search',
-                    method: 'GET',
-                    data: {query: input},
-                    success: function(response) {
-                        window.location.href = "http://localhost:8080/admin/dashboard/users/search/"+input;
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            }else {
-                Swal.fire({
-                    title: 'Oops...',
-                    text: 'Hãy nhập tối thiểu 5 ký tự vào ô input',
-                    icon: 'error'
-                })
-            }
-        });
-    });
+            var data = $(this).val();
+            table.empty();
 
+            $.ajax({
+                type: "GET",
+                url: 'http://localhost:8080/admin/revenue-product-management/'+data,
+                success: function (respone) {
+
+                    if(data === "0"){
+                        var head = " <thead>\n" +
+                            "<tr><th class=\"text-center\">Năm</th>\n" +
+                            "<th class=\"text-center\">Tổng số tiền</th>\n" +
+                            "</tr></thead>";
+
+                        table.append(head);
+                        const rows = respone.map(item => {
+                            var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
+                        const yearCell = $('<td>').addClass('text-center').text(item.time);
+                        const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
+                        const emptyCell = $('<td>');
+                        return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                    });
+                        table.append(rows);
+                    }else {
+                        var head = " <thead>\n" +
+                            "<tr><th class=\"text-center\">Tháng</th>\n" +
+                            "<th class=\"text-center\">Tổng số tiền</th>\n" +
+                            "</tr></thead>";
+                        table.append(head);
+                        const rows = respone.map(item => {
+                            var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
+                        const yearCell = $('<td>').addClass('text-center').text(item.time);
+                        const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
+                        const emptyCell = $('<td>');
+                        return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                    });
+                        table.append(rows);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                }
+            });
+        });
+
+        month.on("change", function () {
+            if ($(this).val() !== "0") {
+                label_radio.show();
+            }else if ($(this).val() === "0") {
+                label_radio.hide();
+            }
+
+            var selectedValue = $('input[name="type-choose"]:checked').val();
+            var data = {
+                "year" : year.val(),
+                "month" : $(this).val(),
+                "type" : selectedValue,
+                _csrf : token
+            };
+            table.empty();
+
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:8080/admin/revenue-product-management/',
+                data : data,
+                success: function (respone) {
+                    if( respone.length === 0){
+                        var rows = "Tháng này không phát sinh mua bán";
+                        table.append(rows);
+                    }else{
+                        if(data === "0"){
+                            var head = " <thead>\n" +
+                                "<tr><th class=\"text-center\">Ngày</th>\n" +
+                                "<th class=\"text-center\">Tổng số tiền</th>\n" +
+                                "</tr></thead>";
+
+                            table.append(head);
+                            const rows = respone.map(item => {
+                                var formatted = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
+                            var yearCell = $('<td>').addClass('text-center').text(item.time);
+                            var moneyCell = $('<td>').addClass('text-center').text(formatted);
+                            var emptyCell = $('<td>');
+                            return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                        });
+                            table.append(rows);
+                        }else {
+                            var head = " <thead>\n" +
+                                "<tr><th class=\"text-center\">Ngày</th>\n" +
+                                "<th class=\"text-center\">Tổng số tiền</th>\n" +
+                                "</tr></thead>";
+                            table.append(head);
+                            const rows = respone.map(item => {
+                                var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
+                            const yearCell = $('<td>').addClass('text-center').text(item.time);
+                            const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
+                            const emptyCell = $('<td>');
+                            return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                        });
+                            table.append(rows);
+                        }
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                }
+            });
+        });
+
+        $("input[name='type-choose']").change(function() {
+            var selectedValue = $(this).val();
+            var data = {
+                "year" : year.val(),
+                "month" : month.val(),
+                "type" : selectedValue,
+                _csrf : token
+            };
+            table.empty();
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:8080/admin/revenue-product-management/',
+                data : data,
+                success: function (respone) {
+                    if( respone.length === 0) {
+                        var rows = "Tháng này không phát sinh mua bán";
+                        table.append(rows);
+                    }else{
+                        if(data === "0"){
+                            var head = " <thead>\n" +
+                                "<tr><th class=\"text-center\">Ngày</th>\n" +
+                                "<th class=\"text-center\">Tổng số tiền</th>\n" +
+                                "</tr></thead>";
+
+                            table.append(head);
+                            const rows = respone.map(item => {
+                                var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
+                            const yearCell = $('<td>').addClass('text-center').text(item.time);
+                            const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
+                            const emptyCell = $('<td>');
+                            return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                        });
+                            table.append(rows);
+                        }else {
+                            var head = " <thead>\n" +
+                                "<tr><th class=\"text-center\">Tên sản phẩm</th>\n" +
+                                "<th class=\"text-center\">Tổng số tiền</th>\n" +
+                                "</tr></thead>";
+                            table.append(head);
+                            const rows = respone.map(item => {
+                                var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
+                            const yearCell = $('<td>').addClass('text-center').text(item.time);
+                            const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
+                            const emptyCell = $('<td>');
+                            return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                        });
+                            table.append(rows);
+                        }
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                }
+            });
+        });
+
+
+    })
 </script>
 </html>

@@ -74,4 +74,12 @@ public class ClassServiceImpl implements ClassService{
     public int getMaxIdClassInSystem() {
         return classDao.getMaxIdClassInSystem();
     }
+
+    public void updateStatusClassForStartDate(String dateNowToString) {
+        classDao.updateStatusClassForStartDate(dateNowToString);
+    }
+
+    public void updateStatusClassForEndDate(String dateNowToString) {
+        classDao.updateStatusClassForEndDate(dateNowToString);
+    }
 }
