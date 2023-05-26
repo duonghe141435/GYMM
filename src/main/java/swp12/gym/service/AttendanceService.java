@@ -13,4 +13,6 @@ public interface AttendanceService {
     void saveAttendance(List<Attendance> listAttendance);
 
     List<Attendance> listAttendance(int class_id);
+
+    void updateAttendance(List<Attendance> listAttendance);
 }

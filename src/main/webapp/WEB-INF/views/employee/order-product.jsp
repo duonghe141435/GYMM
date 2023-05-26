@@ -431,7 +431,11 @@
                             Swal.fire({
                                 icon: 'sucsess',
                                 title: 'Bạn đã tạo bill thành công',
-                            })
+                            }).then((result) => {
+                                if(result.isConfirmed){
+                                    location.reload();
+                                }
+                            });
                         },
                         error: function(xhr, status, error) {
                             console.log(error);
@@ -452,7 +456,7 @@
 </script>
 
 <script src="<c:url value='/assets/js/order-product.js'/>"></script>
-<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>
+<%--<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>--%>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
 </body>
 </html>

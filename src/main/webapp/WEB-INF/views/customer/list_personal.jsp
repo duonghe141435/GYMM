@@ -494,9 +494,10 @@
                             trainer_price.id = "trainerPrice" + trainer.u_id + trainer.tp_price;
                             trainer_price.readOnly = true;
                             trainer_price.required = true;
-                            trainer_price.type = "number";
+                            trainer_price.type = "text";
                             // set value cho input để hieent thị data
-                            trainer_price.value =  trainer.tp_price;
+                            var formattedValue = trainer.tp_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                            trainer_price.value = formattedValue;
                             trainer_price.style.display = "inline";
                             price.appendChild(trainer_price);
                             document.getElementById("getPrice").innerText = trainer.tp_price;
@@ -524,7 +525,12 @@
     $(document).ready(function () {
         $('#schdule').click(function (e) {
             var trainer_id = document.getElementById("trainer_id").innerText;
-            window.location.href = '<c:url value="/customer/view-schedule-trainer?" />' + "trainer_id=" + trainer_id;
+            if (trainer_id.trim() !== "") {
+                window.location.href = '<c:url value="/customer/view-schedule-trainer?" />' + "trainer_id=" + trainer_id;
+            }else {
+                Swal.fire('Vui lòng chọn HLV', '', 'info');
+            }
+
         });
     });
 

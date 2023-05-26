@@ -59,4 +59,30 @@ public class AttendanceAnClassApi {
         }
     }
 
+    @PostMapping(value = URL_API + "/updateAttendanceClass")
+//    @RequestMapping(value = URL_API + "attendanceClass", method = RequestMethod.POST)
+    public ResponseEntity<String> updateAttendance(HttpServletRequest request){
+        try{
+            Gson gson = new Gson();
+            String list = request.getParameter("attendence");
+            JsonElement jsonElement = gson.fromJson(list, JsonElement.class);
+            List<Attendance> attendance = new ArrayList<Attendance>();
+            if (jsonElement.isJsonArray()) {
+                JsonArray jsonArray = jsonElement.getAsJsonArray();
+                for (JsonElement elem : jsonArray) {
+                    JsonObject jsonObject = elem.getAsJsonObject();
+                    int status = jsonObject.get("_status").getAsInt();
+                    int user_id = jsonObject.get("_user_id").getAsInt();
+                    int class_id = jsonObject.get("_class_id").getAsInt();
+                    attendance.add(new Attendance(null, status, user_id, class_id));
+                }
+            }
+
+            attendanceService.updateAttendance(attendance);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

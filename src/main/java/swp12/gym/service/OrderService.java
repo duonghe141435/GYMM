@@ -1,6 +1,7 @@
 package swp12.gym.service;
 
 import org.springframework.stereotype.Service;
+import swp12.gym.dto.ClassDto;
 import swp12.gym.dto.OrderDto;
 import swp12.gym.model.entity.Order;
 import swp12.gym.model.entity.OrderDetail;
@@ -16,4 +17,6 @@ public interface OrderService {
     List<OrderDto> getAllOrderOfEmployee(int id);
 
     List<OrderDetail> getDetailOfAnOrder(int id);
+
+    List<Order> findAllOrderOfAnUserById(int id);
 }

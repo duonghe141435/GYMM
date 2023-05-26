@@ -111,6 +111,9 @@
         .row > * {
             flex: 0 0 auto;
         }
+        .container {
+            max-width: 1200px;
+        }
     </style>
 </head>
 
@@ -163,10 +166,10 @@
                                                             </p>
                                                         </div>
                                                         <div class="card-read-more">
-                                                            <%--<a class="btn btn-link btn-block bookInTicketClass" onclick="handleOpenModalClass(this)" tid=${tickets.t_id} t_name="${tickets.t_name}" t_total_day=${tickets.t_total_days}--%>
-                                                                    <%--type="button" data-bs-toggle="modal" data-bs-target="#classModal">--%>
-                                                                <%--Read more--%>
-                                                            <%--</a>--%>
+                                                            <a class="btn btn-link btn-block bookInTicketClass" onclick="handleOpenModalClass(this)" tid=${tickets.t_id} t_name="${tickets.t_name}" t_total_day=${tickets.t_total_days}
+                                                                    type="button" data-bs-toggle="modal" data-bs-target="#classModal">
+                                                                Read more
+                                                            </a>
                                                             <div class="modal fade" id="classModal">
                                                                 <div class="modal-dialog"  style="max-width: 82%;">
                                                                     <div class="modal-content">
@@ -251,6 +254,14 @@
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
+                                                                                    <div class="form-group">
+                                                                                        <div class="row d-flex justify-content-center">
+                                                                                            <label class="form-label col-sm-2 mt-3">Lịch tập trong tuần:</label>
+                                                                                            <div class="col-sm-6" id="classSchedule">
+                                                                                                    <%--<input type="number" min="1" class="form-control" id="price" readonly required/>--%>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
 
                                                                                     <div class="form-group">
                                                                                         <div class="row d-flex justify-content-center">
@@ -312,139 +323,10 @@
         document.getElementById("total_day_class").value = event.getAttribute("t_total_day") + " Ngày";
     }
 
-    var end_date_class;
-    var check_total_attendees = "";
-    // click vào mua ở modal
-    function handleBookingClass() {
-        var classID = document.getElementById("btnShedule").value;
-        if (check_total_attendees === "full") {
-            Swal.fire({
-                title: 'Hiện tại lớp đã đủ học viên',
-                icon: 'info',
-                text: 'Vui lòng chọn lớp khác',
-            });
-        }
-        else{
-            $.ajax(
-                {
-                    type: "GET",
-                    contentType: false,
-                    url: "/customer/BookingTicketClass/Check_ticket_exists?" + "classID=" + parseInt(classID),
-                    success: function (result) {
-                        if (result === 'true'){
-                            var price_class = document.getElementById("getPriceClass").innerHTML;
-                            // var ticketClassID = document.getElementById("getTicketClassID").innerHTML;
-                            var ticket_id = sessionStorage.getItem("ticket_id");
-                            var end_date_ticket = sessionStorage.getItem("end_date_ticket");
-                            var ticket_class_id = document.getElementById("ticket_class_id").textContent;
-                            if (ticket_id != null) {
-                                <%--Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');--%>
-                                <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "ticket_id=" + ticket_id + "&end_date_ticket=" + end_date_ticket + "&price=" + price_class+ "&ticket_pt_id=" + ticket_class_id + "&end_date_ticket_personal=" + end_date_class + "&class_or_personal_id=" + ticketClassID;--%>
-                                var token = $("meta[name='_csrf']").attr("content");
-                                var data = {
-                                    "_ticket_id" : ticket_id,
-                                    "_end_date_ticket" : end_date_ticket,
-                                    "_ticket_pt_id" : 0,
-                                    "_price_ticket_pt" : 0,
-                                    "_personal_trainer_id" : 0,
-                                    "_end_date_ticket_personal" : 0,
-                                    "_ticket_class_id" : ticket_class_id,
-                                    "_price_ticket_class" : price_class,
-                                    "_class_id" : classID,
-                                    _csrf: token};
-                                $.ajax({
-                                    url: '/CustomerUser/saveTickerUser',
-                                    type: 'post',
-                                    data: data,
-                                    success: function(response) {
-                                        Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');
-                                    },
-                                    error: function(xhr, status, error) {
-                                        console.log(error);
-                                    }
-                                });
-                                sessionStorage.removeItem('ticket_id');
-                                sessionStorage.removeItem('end_date_ticket');
-                            }else {
-                                var token = $("meta[name='_csrf']").attr("content");
-                                var data = {
-                                    "_ticket_id" : 0,
-                                    "_end_date_ticket" : 0,
-                                    "_ticket_pt_id" : 0,
-                                    "_price_ticket_pt" : 0,
-                                    "_personal_trainer_id" : 0,
-                                    "_end_date_ticket_personal" : 0,
-                                    "_ticket_class_id" : ticket_class_id,
-                                    "_price_ticket_class" : price_class,
-                                    "_class_id" : classID,
-                                    _csrf: token};
-                                $.ajax({
-                                    url: '/CustomerUser/saveTickerUser',
-                                    type: 'post',
-                                    data: data,
-                                    success: function(response) {
-                                        Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');
-                                    },
-                                    error: function(xhr, status, error) {
-                                        console.log(error);
-                                    }
-                                });
-                                <%--Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');--%>
-                                <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "ticket_id=" + 0 + "&end_date_ticket=" + 0 + "&price=" + price_class+ "&ticket_pt_id=" + ticket_class_id + "&end_date_ticket_personal=" + end_date_class + "&class_or_personal_id=" + ticketClassID;--%>
-                            }
-                        } else {
-                            Swal.fire('Bạn đã tham gia vào lớp này', '', 'info')
-                        }
-                    },
-                    error: function () {
-                        console.log("check");
-                        Swal.fire('Lỗi hệ thống', '', 'warning')
-                    }
-                }
-            );
-        }
-
-
-    }
-
     $(document).ready(function () {
         $("#show-ticket-class").on('click', '.bookInTicketClass', function () {
             var ids = $(this).parent().siblings(".ticket_class_id").text();
-            $.ajax(
-                {
-                    type: "GET",
-                    contentType: false,
-                    url: "/customer/booking/checkEndDateTicket?" + "ticket_type_id=" + 3,
-                    success: function (resultAPI) {
-                        // lấy end date để lưu vào database
-                        end_date_class = resultAPI;
-                        if (resultAPI === ""){
-                            loadDataTicketClass(ids);
-                        }else{
-                            Swal.fire({
-                                title: 'Bạn có tiếp tục tham gia vé lớp này không?',
-                                showDenyButton: true,
-                                confirmButtonText: 'Có',
-                                denyButtonText: 'Không',
-                                icon: 'question',
-                                text: 'Bạn đã có vé lớp',
-                            }).then((result) => {
-                                if(result.isConfirmed){
-                                loadDataTicketClass(ids);
-                            }else if (result.isDenied) {
-                                $('#classModal').modal('hide');
-                                var show = document.getElementById("show-class");
-                                show.scrollIntoView();
-                            }
-                        })
-                        }
-                    },
-
-                    error: function () {
-                        console.log("mua vé ngay");
-                        Swal.fire('Lỗi hệ thống', '', 'warning')
-                    }
-                });
+            loadDataTicketClass(ids);
         })
     });
 
@@ -452,7 +334,7 @@
         $.ajax({
             type : "GET",
             // contentType: false,
-            url: '<c:url value="/customer/BookingTicketClass?" />' + "ids=" + ids,
+            url: '<c:url value="/trainer/find-class?" />' + "ids=" + ids,
             success: function (result1) {
                 var start_date = document.getElementById("start_date_class");
                 var stop_date = document.getElementById("stop_date_class");
@@ -461,6 +343,7 @@
                 var totalAttendees = document.getElementById("totalAttendees");
                 var time_class = document.getElementById("time");
                 var price = document.getElementById("classPrice");
+                var classSchedule = document.getElementById("classSchedule");
 
                 start_date.innerHTML = "";
                 stop_date.innerHTML = "";
@@ -469,7 +352,7 @@
                 time_class.innerHTML = "";
                 price.innerHTML = "";
                 PT.innerHTML = "";
-
+                classSchedule.innerHTML = "";
 
                 var optionHLV = document.createElement("option");
                 optionHLV.innerText = "Chọn lớp";
@@ -492,6 +375,7 @@
                             time_class.innerHTML = "";
                             price.innerHTML = "";
                             PT.innerHTML = "";
+                            classSchedule.innerHTML = "";
 
                             document.getElementById("getTicketClassID").innerText = ticket_class.c_trainer_id;
 
@@ -557,12 +441,46 @@
                             class_price.id = "trainerPrice" + ticket_class.class_id;
                             class_price.readOnly = true;
                             class_price.required = true;
-                            class_price.type = "number";
+                            class_price.type = "text";
                             // set value cho input để hieent thị data
-                            class_price.value =  ticket_class.c_price;
-                            class_price.style.display = "inline";
+                            var formattedValue = ticket_class.c_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                            class_price.value =  formattedValue;
                             price.appendChild(class_price);
                             document.getElementById("getPriceClass").innerText = ticket_class.c_price;
+
+                            //set classSchedule
+                            var class_schedule = document.createElement("input");
+                            class_schedule.classList = "form-control " + ticket_class.class_id;
+                            class_schedule.id = "trainerPrice" + ticket_class.class_id;
+                            class_schedule.readOnly = true;
+                            class_schedule.required = true;
+                            // set value cho input để hieent thị data
+                            var day_of_the_week = "";
+                            if (ticket_class.monday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 2, ";
+                            }
+                            if (ticket_class.tuesday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 3, ";
+                            }
+                            if (ticket_class.wednesday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 4, ";
+                            }
+                            if (ticket_class.thursday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 5, ";
+                            }
+                            if (ticket_class.friday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 6, ";
+                            }
+                            if (ticket_class.saturday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 7, ";
+                            }
+                            if (ticket_class.sunday === 1) {
+                                day_of_the_week = day_of_the_week + "Chủ nhật, ";
+                            }
+                            day_of_the_week = day_of_the_week.replace(/, $/, "");
+                            class_schedule.value = day_of_the_week;
+                            class_schedule.style.display = "inline";
+                            classSchedule.appendChild(class_schedule);
 
                             //btnShedule
                             if (ticket_class.total_attendees === ticket_class.max_member) {
@@ -570,7 +488,7 @@
                             }else {
                                 check_total_attendees = "notfull";
                             }
-                            document.getElementById("btnShedule").value = ticket_class.class_id;
+
                         }
                     });
                 });

@@ -13,5 +13,7 @@ public interface PersonalTrainerDetailService {
 
     String checkPersonalTrainerDetail(int userID, String date);
 
-    void insertPersonalTrainerDetail(String date, int status, int personal_trainer_id, int time_id, int userID);
+    void insertPersonalTrainerDetail(List<String> date, int status, int personal_trainer_id, int time_id, int userID);
+
+    int checkPersonalTrainerDetailForBookSchedule(int userID, List<String> date);
 }

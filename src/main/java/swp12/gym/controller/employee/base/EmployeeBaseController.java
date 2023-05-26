@@ -188,5 +188,17 @@ public class EmployeeBaseController {
             return new ResponseEntity<List<UserDto>>(HttpStatus.BAD_REQUEST);
         }
     }
+
+    @RequestMapping(value = "find-class", method = RequestMethod.GET)
+    public ResponseEntity<List<ClassDto>> find_Class_Ticket_Class(@RequestParam(value = "ids") int ticket_id){
+        try{
+            List<ClassDto> ticket_class = classService.findAllClassOfAnTicketClass(ticket_id);
+            System.out.println("ticket_class: " + ticket_class);
+            return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
+//            return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<List<ClassDto>>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }
 

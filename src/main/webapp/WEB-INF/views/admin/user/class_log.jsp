@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: a5nam
+  Date: 5/27/2023
+  Time: 12:03 AM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -84,52 +91,52 @@
                             <div class="col-lg-8" style="width: 72%">
                                 <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
                                     <div class="card-body" style="padding-top: 0;">
-                                        <c:if test="${not empty logUser}">
+                                        <c:if test="${not empty classDtos}">
                                             <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;">
-                                                <table class="table my-0" id="dataTable">
+                                                <table class="table my-0">
                                                     <thead>
                                                     <tr>
                                                         <th class="text-center">#</th>
-                                                        <th>Mảng tác động</th>
-                                                        <th>Nội dung</th>
-                                                        <th class="text-center">Ngày thực hiện</th>
+                                                        <th class="text-center">Tên lớp học</th>
+                                                        <th class="text-center">Giá thuê</th>
+                                                        <th class="text-center">Thời hạn</th>
+                                                        <th class="text-center">Tình trạng thanh toán</th> <!-- Đã thanh toán, chưa thanh toán -->
+                                                        <th class="text-center">Ngày thuê</th>
+
                                                     </tr>
                                                     </thead>
                                                     <tbody style="display: contents;width: 100%;overflow: auto;">
-                                                    <c:forEach items="${logUser}" var="logUser">
+                                                    <c:forEach items="${classDtos}" var="classDtos">
                                                         <tr>
                                                             <td class="text-center">
                                                                 <count></count>
                                                             </td>
-                                                            <c:if test="${logUser.type_log == 1}">
-                                                                <td>Người dùng</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 2}">
-                                                                <td>Quản trị</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 3}">
-                                                                <td>Quản lý sản phẩm</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 4}">
-                                                                <td>Tài khoản</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 5}">
-                                                                <td>Dịch vụ</td>
-                                                            </c:if>
-                                                            <td>${logUser.content}</td>
                                                             <td class="text-center">
-                                                                <script>
-                                                                    document.write(moment.unix(${logUser.date_time_create}).format('YYYY-MM-DD HH:mm:ss'));
-                                                                </script>
+                                                                    ${classDtos.c_name}
                                                             </td>
+                                                            <td class="text-center class-price">
+                                                                    ${classDtos.c_price}
+                                                            </td>
+                                                            <td class="text-center">
+                                                                    ${classDtos.c_start_date} - ${classDtos.c_end_date}
+                                                            </td>
+                                                            <td class="status text-center">
+                                                                <c:if test="${classDtos.c_status == 1}"><span class="active">Đang bán / còn hạn</span></c:if>
+                                                                <c:if test="${classDtos.c_status == -1}"><span class="waiting">Hết hạn</span></c:if>
+                                                                <c:if test="${classDtos.c_status == 0}"><span class="waiting">Bị hủy - booking class không thành công</span></c:if>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                    ${classDtos.c_create_date}
+                                                            </td>
+                                                            <td>Xem chi tiết</td>
                                                         </tr>
                                                     </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </c:if>
-                                        <c:if test="${empty logUser}">
-                                            <h3 style="text-align: center; margin-top: 20px">Hội viên chưa có lịch sử hoạt động nào</h3>
+                                        <c:if test="${empty classDtos}">
+                                            <h3 style="text-align: center; margin-top: 20px">Hội viên chưa tham gia vào lớp học nào</h3>
                                         </c:if>
                                     </div>
                                 </div>
@@ -164,21 +171,21 @@
                 cancelButtonText: 'Không!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                $.ajax({
-                    type: "GET",
-                    url: '/admin/user-management/delete/'+${user.u_id},
-                    success: function (respone) {
-                        Swal.fire(respone,'', 'error');
-                        window.location.href = "http://localhost:8080/admin/trainer";
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
-                    }
-                });
-            }else{
-                Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
-            }
-        })
+                    $.ajax({
+                        type: "GET",
+                        url: '/admin/user-management/delete/'+${user.u_id},
+                        success: function (respone) {
+                            Swal.fire(respone,'', 'error');
+                            window.location.href = "http://localhost:8080/admin/trainer";
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                        }
+                    });
+                }else{
+                    Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
+                }
+            })
         });
 
         user.on('click', '.update-user', function () {
@@ -206,3 +213,4 @@
     })
 </script>
 </html>
+

@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: a5nam
+  Date: 5/26/2023
+  Time: 11:27 PM
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -84,63 +91,65 @@
                             <div class="col-lg-8" style="width: 72%">
                                 <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
                                     <div class="card-body" style="padding-top: 0;">
-                                        <c:if test="${not empty logUser}">
-                                            <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;">
-                                                <table class="table my-0" id="dataTable">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="text-center">#</th>
-                                                        <th>Mảng tác động</th>
-                                                        <th>Nội dung</th>
-                                                        <th class="text-center">Ngày thực hiện</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody style="display: contents;width: 100%;overflow: auto;">
-                                                    <c:forEach items="${logUser}" var="logUser">
+                                        <div class="card-body" style="padding-top: 0;">
+                                            <c:if test="${not empty ticket}">
+                                                <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;">
+                                                    <table class="table my-0">
+                                                        <thead>
                                                         <tr>
-                                                            <td class="text-center">
-                                                                <count></count>
-                                                            </td>
-                                                            <c:if test="${logUser.type_log == 1}">
-                                                                <td>Người dùng</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 2}">
-                                                                <td>Quản trị</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 3}">
-                                                                <td>Quản lý sản phẩm</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 4}">
-                                                                <td>Tài khoản</td>
-                                                            </c:if>
-                                                            <c:if test="${logUser.type_log == 5}">
-                                                                <td>Dịch vụ</td>
-                                                            </c:if>
-                                                            <td>${logUser.content}</td>
-                                                            <td class="text-center">
-                                                                <script>
-                                                                    document.write(moment.unix(${logUser.date_time_create}).format('YYYY-MM-DD HH:mm:ss'));
-                                                                </script>
-                                                            </td>
+                                                            <th class="text-center">#</th>
+                                                            <th class="text-center">Tên vé</th>
+                                                            <th class="text-center">Giá vé</th>
+                                                            <th class="text-center">Thời hạn</th>
+                                                            <th class="text-center">Tình trạng thanh toán</th> <!-- Đã thanh toán, chưa thanh toán -->
+                                                            <th class="text-center">Ngày đặt vé</th>
                                                         </tr>
-                                                    </c:forEach>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${empty logUser}">
-                                            <h3 style="text-align: center; margin-top: 20px">Hội viên chưa có lịch sử hoạt động nào</h3>
-                                        </c:if>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p>Tổng số bản ghi: <span>${count}</span></p>
-                                    </div>
-                                    <div class="col-md-6">
+                                                        </thead>
+                                                        <tbody style="display: contents;width: 100%;overflow: auto;">
+                                                        <c:forEach items="${ticket}" var="ticket">
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    <count></count>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                        ${ticket.t_name}
+                                                                </td>
+                                                                <td class="text-center class-price">
+                                                                        ${ticket.t_price}
+                                                                </td>
+                                                                <td class="text-center">
+                                                                        ${ticket.max_member}
+                                                                </td>
 
+                                                                <td class="status text-center">
+                                                                    <c:if test="${ticket.tt_id == 1}"><span class="active">Đã thanh toán</span></c:if>
+                                                                    <c:if test="${ticket.tt_id == 0}"><span class="waiting">Chưa thanh toán</span></c:if>
+                                                                    <c:if test="${ticket.tt_id == -1}"><span class="waiting">Bị hủy</span></c:if>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                        ${ticket.create_date}
+                                                                </td>
+                                                                <td>Xem chi tiết</td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${empty ticket}">
+                                                <h3 style="text-align: center; margin-top: 20px">Hội viên chưa đặt vé vào cửa nào</h3>
+                                            </c:if>
+                                        </div>
                                     </div>
                                 </div>
+                                <%--<div class="row">--%>
+                                    <%--<div class="col-md-6 align-self-center">--%>
+                                        <%--<p>Tổng số bản ghi: <span>${count}</span></p>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-md-6">--%>
+
+                                    <%--</div>--%>
+                                <%--</div>--%>
                             </div>
                         </div>
                     </div>
@@ -164,21 +173,21 @@
                 cancelButtonText: 'Không!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                $.ajax({
-                    type: "GET",
-                    url: '/admin/user-management/delete/'+${user.u_id},
-                    success: function (respone) {
-                        Swal.fire(respone,'', 'error');
-                        window.location.href = "http://localhost:8080/admin/trainer";
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
-                    }
-                });
-            }else{
-                Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
-            }
-        })
+                    $.ajax({
+                        type: "GET",
+                        url: '/admin/user-management/delete/'+${user.u_id},
+                        success: function (respone) {
+                            Swal.fire(respone,'', 'error');
+                            window.location.href = "http://localhost:8080/admin/trainer";
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                        }
+                    });
+                }else{
+                    Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
+                }
+            })
         });
 
         user.on('click', '.update-user', function () {
@@ -206,3 +215,4 @@
     })
 </script>
 </html>
+

@@ -111,6 +111,9 @@
         .row > * {
             flex: 0 0 auto;
         }
+        .container {
+            max-width: 1200px;
+        }
     </style>
 </head>
 
@@ -247,6 +250,14 @@
                                                                                         <div class="row d-flex justify-content-center">
                                                                                             <label class="form-label col-sm-2 mt-3">Giá gói:</label>
                                                                                             <div class="col-sm-6" id="classPrice">
+                                                                                                    <%--<input type="number" min="1" class="form-control" id="price" readonly required/>--%>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <div class="row d-flex justify-content-center">
+                                                                                            <label class="form-label col-sm-2 mt-3">Lịch tập trong tuần:</label>
+                                                                                            <div class="col-sm-6" id="classSchedule">
                                                                                                     <%--<input type="number" min="1" class="form-control" id="price" readonly required/>--%>
                                                                                             </div>
                                                                                         </div>
@@ -461,6 +472,7 @@
                 var totalAttendees = document.getElementById("totalAttendees");
                 var time_class = document.getElementById("time");
                 var price = document.getElementById("classPrice");
+                var classSchedule = document.getElementById("classSchedule");
 
                 start_date.innerHTML = "";
                 stop_date.innerHTML = "";
@@ -469,7 +481,7 @@
                 time_class.innerHTML = "";
                 price.innerHTML = "";
                 PT.innerHTML = "";
-
+                classSchedule.innerHTML = "";
 
                 var optionHLV = document.createElement("option");
                 optionHLV.innerText = "Chọn lớp";
@@ -492,6 +504,7 @@
                             time_class.innerHTML = "";
                             price.innerHTML = "";
                             PT.innerHTML = "";
+                            classSchedule.innerHTML = "";
 
                             document.getElementById("getTicketClassID").innerText = ticket_class.c_trainer_id;
 
@@ -557,12 +570,46 @@
                             class_price.id = "trainerPrice" + ticket_class.class_id;
                             class_price.readOnly = true;
                             class_price.required = true;
-                            class_price.type = "number";
+                            class_price.type = "text";
                             // set value cho input để hieent thị data
-                            class_price.value =  ticket_class.c_price;
-                            class_price.style.display = "inline";
+                            var formattedValue = ticket_class.c_price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                            class_price.value =  formattedValue;
                             price.appendChild(class_price);
                             document.getElementById("getPriceClass").innerText = ticket_class.c_price;
+
+                            //set classSchedule
+                            var class_schedule = document.createElement("input");
+                            class_schedule.classList = "form-control " + ticket_class.class_id;
+                            class_schedule.id = "trainerPrice" + ticket_class.class_id;
+                            class_schedule.readOnly = true;
+                            class_schedule.required = true;
+                            // set value cho input để hieent thị data
+                            var day_of_the_week = "";
+                            if (ticket_class.monday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 2, ";
+                            }
+                            if (ticket_class.tuesday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 3, ";
+                            }
+                            if (ticket_class.wednesday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 4, ";
+                            }
+                            if (ticket_class.thursday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 5, ";
+                            }
+                            if (ticket_class.friday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 6, ";
+                            }
+                            if (ticket_class.saturday === 1) {
+                                day_of_the_week = day_of_the_week + "Thứ 7, ";
+                            }
+                            if (ticket_class.sunday === 1) {
+                                day_of_the_week = day_of_the_week + "Chủ nhật, ";
+                            }
+                            day_of_the_week = day_of_the_week.replace(/, $/, "");
+                            class_schedule.value = day_of_the_week;
+                            class_schedule.style.display = "inline";
+                            classSchedule.appendChild(class_schedule);
 
                             //btnShedule
                             if (ticket_class.total_attendees === ticket_class.max_member) {

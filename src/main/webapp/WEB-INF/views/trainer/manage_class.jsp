@@ -81,7 +81,15 @@
                                             </td>
                                             <td>
                                                 <%--href="<c:url value="/trainer/attendance-an-class/${class_list.class_id}"/>"--%>
-                                                <a class="class-attendance" style="cursor: pointer">Điểm danh</a>
+                                                <a class="class-attendance" id="class-attendance${class_list.class_id}" style="cursor: pointer">Điểm danh</a>
+                                                <c:forEach items="${listClassesForTheDay}" var="listClassesForTheDay">
+                                                    <c:if test="${class_list.class_id eq listClassesForTheDay.class_id}">
+                                                        <a class="class-attendance-update" style="cursor: pointer;">Update</a>
+                                                        <script>
+                                                            document.getElementById("class-attendance${class_list.class_id}").style.display = "none";
+                                                        </script>
+                                                    </c:if>
+                                                </c:forEach>
                                             </td>
                                             <td class="text-center">
                                                 <a class="class-view" style="cursor: pointer"><i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
@@ -110,6 +118,7 @@
 </div>
 </body>
 <script>
+
     $(document).ready(function () {
         var class_table = $("#class-table");
 
@@ -151,6 +160,13 @@
 
 
             <%--window.location.href = '<c:url value="/trainer/attendance-an-class/" />'+ class_id--%>
+        });
+
+        class_table.on('click', '.class-attendance-update', function () {
+            var class_id = $(this).parent().siblings('.class-id').text();
+            var token = $("meta[name='_csrf']").attr("content");
+            var data = {'_classID' : class_id, _csrf: token};
+            window.location.href = '<c:url value="/trainer/update-attendance-an-class/" />'+ class_id;
         });
 
         class_table.on('click', '.class-view', function () {

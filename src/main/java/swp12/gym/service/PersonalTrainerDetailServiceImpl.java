@@ -25,7 +25,11 @@ public class PersonalTrainerDetailServiceImpl implements PersonalTrainerDetailSe
         return personalTrainerDetailDao.checkPersonalTrainerDetail(userID, date);
     }
 
-    public void insertPersonalTrainerDetail(String date, int status, int personal_trainer_id, int time_id, int userID) {
+    public void insertPersonalTrainerDetail(List<String> date, int status, int personal_trainer_id, int time_id, int userID) {
         personalTrainerDetailDao.insertPersonalTrainerDetail(date, status, personal_trainer_id, time_id, userID);
+    }
+
+    public int checkPersonalTrainerDetailForBookSchedule(int userID, List<String> date) {
+        return personalTrainerDetailDao.checkPersonalTrainerDetailForBookSchedule(userID, date);
     }
 }

@@ -124,4 +124,22 @@ public class User {
     public void setU_create_date(String u_create_date) {
         this.u_create_date = u_create_date;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "u_id=" + u_id +
+                ", u_full_name='" + u_full_name + '\'' +
+                ", u_email='" + u_email + '\'' +
+                ", u_password='" + u_password + '\'' +
+                ", u_dob='" + u_dob + '\'' +
+                ", u_gender=" + u_gender +
+                ", u_phone_number='" + u_phone_number + '\'' +
+                ", u_address='" + u_address + '\'' +
+                ", u_img='" + u_img + '\'' +
+                ", u_identity_card='" + u_identity_card + '\'' +
+                ", u_enable=" + u_enable +
+                ", u_create_date='" + u_create_date + '\'' +
+                '}';
+    }
 }

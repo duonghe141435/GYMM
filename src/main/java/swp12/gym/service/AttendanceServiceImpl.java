@@ -70,4 +70,8 @@ public class AttendanceServiceImpl implements AttendanceService{
     public List<Attendance> listAttendance(int class_id) {
         return attendanceDao.listAttendance(class_id);
     }
+
+    public void updateAttendance(List<Attendance> listAttendance) {
+        attendanceDao.updateAttendance(listAttendance);
+    }
 }
