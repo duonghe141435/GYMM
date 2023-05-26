@@ -347,4 +347,22 @@ public class ClassDao {
                 return 0;
             }
     }
+
+    public void updateStatusClassForStartDate(String dateNowToString) {
+        try {
+            sql = "UPDATE class set state = 1 WHERE class_id IN (SELECT class_id FROM class WHERE create_date = ?)";
+            jdbcTemplate.update(sql, dateNowToString);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void updateStatusClassForEndDate(String dateNowToString) {
+        try {
+            sql = "UPDATE class set state = 1 WHERE class_id IN (SELECT class_id FROM class WHERE end_date = ?)";
+            jdbcTemplate.update(sql, dateNowToString);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

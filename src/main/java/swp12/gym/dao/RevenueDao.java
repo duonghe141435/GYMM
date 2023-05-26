@@ -2,16 +2,13 @@ package swp12.gym.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import swp12.gym.model.entity.Revenue;
-import swp12.gym.model.entity.TicketUser;
-import swp12.gym.model.entity.Token;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -30,7 +27,38 @@ public class RevenueDao {
         });
     }
 
-    public List<Revenue> getAllRevenueOfYear(String year){
+    public List<Revenue> getAllRevenueOfYear(){
+        sql = "SELECT YEAR(date_payment) as year, SUM(value_cost) as value_cost FROM ticket_user " +
+                "WHERE date_payment IS NOT NULL GROUP BY YEAR(date_payment);\n ";
+        return jdbcTemplate.query(sql, new RowMapper<Revenue>() {
+            public Revenue mapRow(ResultSet resultSet, int i) throws SQLException {
+                Revenue revenue = new Revenue();
+                revenue.setTime(resultSet.getString("year"));
+                revenue.setTotal_money(resultSet.getInt("value_cost"));
+                return revenue;
+            }
+        });
+    }
+
+
+//    public List<Revenue> getAllRevenueOfYear(){
+
+//    }
+
+    public List<Revenue> getDetailRevenueInMonth(int year, int moth){
+        sql = "SELECT DAY(date_payment) as day, SUM(value_cost) as value_cost FROM ticket_user\n" +
+                "                WHERE date_payment IS NOT NULL AND YEAR(date_payment) = ? AND MONTH(date_payment) = ? GROUP BY DAY(date_payment);";
+        return jdbcTemplate.query(sql, new RowMapper<Revenue>() {
+            public Revenue mapRow(ResultSet resultSet, int i) throws SQLException {
+                Revenue revenue = new Revenue();
+                revenue.setTime(resultSet.getString("day"));
+                revenue.setTotal_money(resultSet.getInt("value_cost"));
+                return revenue;
+            }
+        }, year, moth);
+    }
+
+    public List<Revenue> getDetailRevenueYear(int year_int) {
         sql = "SELECT m.month , SUM(ticket_user.value_cost) as value, YEAR(date_payment) as years FROM (\n" +
                 "SELECT 1 AS month\n" +
                 "UNION ALL\n" +
@@ -60,35 +88,103 @@ public class RevenueDao {
         return jdbcTemplate.query(sql, new RowMapper<Revenue>() {
             public Revenue mapRow(ResultSet resultSet, int i) throws SQLException {
                 Revenue revenue = new Revenue();
-                revenue.setMonth(resultSet.getString("month"));
+                revenue.setTime(resultSet.getString("month"));
                 revenue.setTotal_money(resultSet.getInt("value"));
-                revenue.setYear(resultSet.getString("years"));
                 return revenue;
             }
-        }, year);
+        }, year_int);
     }
 
-    public List<TicketUser> getDetailRevenueInMonth(int year, int moth){
-        sql = "SELECT name, create_date, value_cost, date_payment FROM ticket_user\n" +
-                "    WHERE YEAR(date_payment) = ? AND MONTH(date_payment) = ? AND payment_status = 1";
-        return jdbcTemplate.query(sql, new RowMapper<TicketUser>() {
-            public TicketUser mapRow(ResultSet resultSet, int i) throws SQLException {
-                TicketUser ticketUser = new TicketUser();
-                ticketUser.setName(resultSet.getString("name"));
-                LocalDateTime createDateTime = resultSet.getTimestamp("create_date").toLocalDateTime();
-                ticketUser.setCreate_date(createDateTime);
-                ticketUser.setValue_Cost(resultSet.getInt("value_cost"));
-                LocalDateTime datePayment = resultSet.getTimestamp("date_payment").toLocalDateTime();
-                ticketUser.setDate_Payment(datePayment);
-                return ticketUser;
+    public List<Revenue> getDetailRevenueInMonthByTicket(int year_int, int month_int) {
+        sql = "SELECT name, SUM(value_cost) as value_cost FROM ticket_user\n" +
+                "WHERE date_payment IS NOT NULL AND YEAR(date_payment) = ? AND MONTH(date_payment) = ? GROUP BY ticket_id";
+        return jdbcTemplate.query(sql, new RowMapper<Revenue>() {
+            public Revenue mapRow(ResultSet resultSet, int i) throws SQLException {
+                Revenue revenue = new Revenue();
+                revenue.setTime(resultSet.getString("name"));
+                revenue.setTotal_money(resultSet.getInt("value_cost"));
+                return revenue;
             }
-        }, year, moth);
+        }, year_int, month_int);
+    }
+
+    public List<Revenue> getAllRevenueOfYearByProduct() {
+        sql = "SELECT YEAR(order_date) as year_product,SUM(total_payment) as value_cost FROM `order`\n" +
+                "WHERE order_date IS NOT NULL GROUP BY order_date;";
+        return jdbcTemplate.query(sql, new RowMapper<Revenue>() {
+            public Revenue mapRow(ResultSet resultSet, int i) throws SQLException {
+                Revenue revenue = new Revenue();
+                revenue.setTime(resultSet.getString("year_product"));
+                revenue.setTotal_money(resultSet.getInt("value_cost"));
+                return revenue;
+            }
+        });
     }
 
 
-    public int getAllRevenueTicketOfYear(int currentYear) {
-        sql = "SELECT SUM(value_cost) as value FROM ticket_user" +
-                " WHERE YEAR(date_payment) = ?";
-        return jdbcTemplate.queryForObject(sql, Integer.class, currentYear);
+    public List<Revenue> getDetailRevenueYearByProduct(int year_int) {
+        sql = "SELECT m.month , SUM(o.total_payment) as value, YEAR(o.order_date) as years FROM (\n" +
+                "SELECT 1 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 2 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 3 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 4 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 5 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 6 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 7 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 8 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 9 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 10 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 11 AS month\n" +
+                "UNION ALL\n" +
+                "SELECT 12 AS month) m left join `order` o on m.month = MONTH(o.order_date) and YEAR(o.order_date) = ?\n" +
+                "GROUP BY m.month\n" +
+                "ORDER BY m.month ASC;";
+        return jdbcTemplate.query(sql, new RowMapper<Revenue>() {
+            public Revenue mapRow(ResultSet resultSet, int i) throws SQLException {
+                Revenue revenue = new Revenue();
+                revenue.setTime(resultSet.getString("month"));
+                revenue.setTotal_money(resultSet.getInt("value"));
+                return revenue;
+            }
+        }, year_int);
+    }
+
+    public List<Revenue> getDetailRevenueInMonthProduct(int year_int, int month_int) {
+        sql = "SELECT DAY(order_date) as day, SUM(total_payment) as value_cost FROM `order`\n" +
+                "WHERE order_date IS NOT NULL AND YEAR(order_date) = ? AND MONTH(order_date) = ? GROUP BY order_date;";
+        return jdbcTemplate.query(sql, new RowMapper<Revenue>() {
+            public Revenue mapRow(ResultSet resultSet, int i) throws SQLException {
+                Revenue revenue = new Revenue();
+                revenue.setTime(resultSet.getString("day"));
+                revenue.setTotal_money(resultSet.getInt("value_cost"));
+                return revenue;
+            }
+        }, year_int, month_int);
+    }
+
+    public List<Revenue> getDetailRevenueInMonthByProduct(int year_int, int month_int) {
+        sql = "SELECT p.name as name_product , order_details.price_sale as moneys\n" +
+                "FROM order_details left join product p on order_details.product_id = p.product_id \n" +
+                "                   join `order` o on order_details.order_id = o.order_id\n" +
+                "WHERE YEAR(o.order_date) = ? AND MONTH(o.order_date) = ?\n" +
+                "GROUP BY p.product_id;";
+        return jdbcTemplate.query(sql, new RowMapper<Revenue>() {
+            public Revenue mapRow(ResultSet resultSet, int i) throws SQLException {
+                Revenue revenue = new Revenue();
+                revenue.setTime(resultSet.getString("name_product"));
+                revenue.setTotal_money(resultSet.getInt("moneys"));
+                return revenue;
+            }
+        }, year_int, month_int);
     }
 }

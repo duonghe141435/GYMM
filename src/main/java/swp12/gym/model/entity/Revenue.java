@@ -1,25 +1,23 @@
 package swp12.gym.model.entity;
 
 public class Revenue {
-    private String month;
+    private String time;
     private int total_money;
-    private String year;
 
     public Revenue() {
     }
 
-    public Revenue(String month, int total_money, String year) {
-        this.month = month;
+    public Revenue(String time, int total_money) {
+        this.time = time;
         this.total_money = total_money;
-        this.year = year;
     }
 
-    public String getMonth() {
-        return month;
+    public String getTime() {
+        return time;
     }
 
-    public void setMonth(String month) {
-        this.month = month;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int getTotal_money() {
@@ -30,11 +28,4 @@ public class Revenue {
         this.total_money = total_money;
     }
 
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
-    }
 }

@@ -44,7 +44,7 @@ public class ClassAPIOfAdmin {
 
 
     @PostMapping(value = URL_API+"/check-class-exist", produces = "text/plain;charset=UTF-8")
-    public ResponseEntity<String> createProductType(HttpServletRequest request) {
+    public ResponseEntity<String> checkingClassExist(HttpServletRequest request) {
         Gson gson = new Gson();
         String error = "true-Thêm lớp thành công";
         try {

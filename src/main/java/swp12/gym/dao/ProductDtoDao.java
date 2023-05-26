@@ -112,7 +112,7 @@ public class ProductDtoDao {
     }
 
     public int getNumberProductInSystem() {
-        sql = "SELECT COUNT(*) as number_product FROM product";
+        sql = "SELECT MAX(product_id) as number_product FROM product";
         int number = jdbcTemplate.queryForObject(sql, new RowMapper<Integer>() {
             public Integer mapRow(ResultSet resultSet, int i) throws SQLException {
                 return resultSet.getInt("number_product");
