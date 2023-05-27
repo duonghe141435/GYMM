@@ -139,11 +139,6 @@
 </body>
 <script>
 
-    function check_Class(arr, data){
-
-    }
-
-
     $(document).ready(function () {
 
         var today = moment().format('YYYY-MM-DD');

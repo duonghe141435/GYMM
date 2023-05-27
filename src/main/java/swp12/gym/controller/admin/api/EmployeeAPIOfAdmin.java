@@ -28,6 +28,29 @@ public class EmployeeAPIOfAdmin {
 
     private final String URL_API = "/admin/employee-management";
 
+    //Get An Product
+    @GetMapping(value = URL_API+"/delete/{id}", produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<?> deleteAnEmployee(@PathVariable int id){
+        try{
+            int ids = userService.deleteAnUser(id);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping(value = URL_API+"/restore/{id}", produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<?> restoreAnEmployee(@PathVariable int id){
+        try{
+            int ids = userService.restoreAnUser(id);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
 //    @GetMapping(value = URL_API, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 //    public ResponseEntity<?> getEmployeeForStatus(@RequestParam(name = "query") int query) {
 //        try {

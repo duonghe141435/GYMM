@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Danh sách ${title}</title>
+    <title>Danh sách khách hàng</title>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
 </head>
 <body id="page-top">
@@ -13,7 +13,7 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:90%">Danh sách ${title}</p>
+                        <p class="text-primary m-0 fw-bold" style="width:90%">Danh sách khách hàng</p>
                         <a href="<c:url value='/admin/users/new-user'/> " class="btn btn-primary" style="font-weight: 700;">Thêm mới</a>
                     </div>
                     <div class="card-body">
@@ -43,7 +43,7 @@
                                 <tr>
                                     <th class="text-center">#</th>
                                     <th>Email</th>
-                                    <th>Tên ${title}</th>
+                                    <th>Tên khách hàng</th>
                                     <th class="text-center">SĐT</th>
                                     <th class="text-center">Trạng thái</th>
                                     <th class="text-center">Thao tác</th>
@@ -76,7 +76,6 @@
                                             <td class="text-center">
                                                 <a class="user_view">
                                                 <i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Xem lịch sử Khách hàng"></i></a>
-                                                <a class="delete_user"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa Khách hàng"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -143,8 +142,7 @@
                             }
                             row += '<td class="text-center"><a class="user_view" data-bs-toggle="modal" data-bs-target="#vew_user_modal">\n' +
                                 '<i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>\n' +
-                                '<a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>\n' +
-                                '<a class="ticket_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>\n' +
+                                '<a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>\n'+
                                 '</td>';
                             newrow.append(row);
                             $('#dataTable tbody').append(newrow);

@@ -36,19 +36,25 @@ public class UserServiceImpl implements UserService{
         return usersDao.findAll();
     }
 
-    public List<User> findAllTrainer(){ return usersDao.findAllTrainer(); }
+    public List<User> findAllTrainer(){
+        return usersDao.findAllTrainer();
+    }
 
     public List<User> findAllTrainerIdAndName() {
         return usersDao.findAllTrainerIdAndName();
     }
 
-    public List<UserDto> findAllCustomer(){ return usersDao.findAllCustomer(); }
+    public List<UserDto> findAllCustomer(){
+        return usersDao.findAllCustomer();
+    }
 
     public List<UserDto> findAllTrainerForAdmin() {
         return usersDao.findAllTrainerForAdmin();
     }
 
-    public UserDto findAnUserById(int id) { return usersDao.findAnUserById(id); }
+    public UserDto findAnUserById(int id) {
+        return usersDao.findAnUserById(id);
+    }
 
     public User getNameAndImgByEmail(String email) {
         return usersDao.getNameAndImgByEmail(email);
@@ -139,6 +145,7 @@ public class UserServiceImpl implements UserService{
     public UserDto getEmployeeById(int employee_id) {
         return usersDao.getEmployeeById(employee_id);
     }
+
     public List<UserDto> searchEmployee(String query){
         return usersDao.searchEmployee(query);
     }
@@ -160,14 +167,12 @@ public class UserServiceImpl implements UserService{
         return usersDao.searchTrainer(query);
     }
 
-    public List<UserDto> searchUser(String query) {
-        return usersDao.searchUser(query);
+    public int restoreAnUser(int id) {
+        return usersDao.restoreAnUser(id);
     }
 
-
-
-    public int lockAnUser(int id) {
-        return 0;
+    public List<UserDto> searchUser(String query) {
+        return usersDao.searchUser(query);
     }
 
     public int deleteAnUser(int id) {

@@ -37,8 +37,6 @@ public class AdminBaseController {
     @Autowired
     private LogUserService logUserService;
     @Autowired
-    private RoleService roleService;
-    @Autowired
     private AttendanceService attendanceService;
     @Autowired
     private DashBoardService dashBoardService;
@@ -58,33 +56,6 @@ public class AdminBaseController {
 //        return "admin/dashboard";
 //    }
 
-    @RequestMapping(value = "/customer", method = RequestMethod.GET)
-    public String goListCustomer(Model model){
-        List<UserDto> users = userService.findAllCustomer();
-        model.addAttribute("users",users);
-        model.addAttribute("title", "khách hàng");
-        return "admin/user/list_user";
-    }
-
-    @RequestMapping(value = "/customer/{customer_id}", method = RequestMethod.GET)
-    public String goCustomerDetail(Model model, @PathVariable int customer_id){
-        UserDto user = userService.getEmployeeById(customer_id);
-
-        model.addAttribute("title", "khách hàng");
-        model.addAttribute("urls","customer");
-        model.addAttribute("user",user);
-
-        List<LogUser> logUsers = logUserService.getAnLogOfAnUser(customer_id);
-        model.addAttribute("logUser",logUsers);
-        return "admin/user/detail_customer";
-    }
-
-    @RequestMapping(value = "/profile-customer/{userID}",method = RequestMethod.GET)
-    public String goDetailProfileCustomer(Model model,  @PathVariable int userID){
-        UserDto user = userService.getEmployeeById(userID);
-        model.addAttribute("user",user);
-        return "admin/user/update_user";
-    }
 
 
     @RequestMapping(value = "/users/update-user", method = RequestMethod.POST)
@@ -256,19 +227,7 @@ public class AdminBaseController {
     }
 
 
-    //----------------------view detail customer----------
-    @RequestMapping(value = "/booking-ticket-log/{userID}",method = RequestMethod.GET)
-    public String goBookingTicketLog(@PathVariable int userID, Model model, Authentication authentication) {
-        UserDto user = userService.getEmployeeById(userID);
 
-        model.addAttribute("title", "khách hàng");
-        model.addAttribute("urls","customer");
-        model.addAttribute("user",user);
-
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, userID);
-        model.addAttribute("ticket",ticket);
-        return "admin/user/ticket_log";
-    }
 
     @RequestMapping(value = "/booking-trainer-log/{userID}",method = RequestMethod.GET)
     public String goBookingTrainerLog(@PathVariable int userID, Model model, Authentication authentication) {

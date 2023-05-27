@@ -78,8 +78,6 @@ public interface UserService {
     //search employee
     List<UserDto> searchEmployee(String query);
     //delete status status search status
-    int lockAnUser(int id);
-    //delete status status search status
     int deleteAnUser(int id);
 
     List<UserDto> searchUser(String query);
@@ -94,5 +92,7 @@ public interface UserService {
     UserDto getTrainerId(int employee_id);
     //search employee
     List<UserDto> searchTrainer(String query);
+
+    int restoreAnUser(int id);
     //delete status status search status
 }

@@ -13,8 +13,8 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:80%">Danh sách ${title}</p>
-                        <a href="<c:url value='/admin/employee'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
+                        <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của ${user.u_full_name}</p>
+                        <a href="<c:url value='/admin/employee/page=1-status=1'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -38,23 +38,27 @@
                                  </tr>
                                  <tr>
                                      <td>Trạng thái tài khoản</td>
-                                     <c:if test="${user.u_enable == 0}">
-                                         <td class="status">
-                                             <span class="warning">Chưa kích hoạt</span></td>
-                                     </c:if>
                                      <c:if test="${user.u_enable == -1}">
                                          <td class="status">
-                                             <span class="danger">Khóa</span></td>
+                                             <span class="danger">Bị xóa</span></td>
                                      </c:if>
                                      <c:if test="${user.u_enable == 1}">
                                          <td class="status">
                                              <span class="active">Hoạt động</span></td>
                                      </c:if>
                                  </tr>
-                                 <tr>
-                                     <td><a class="btn btn-danger delete-user">Xóa nhân viên</a></td>
-                                     <td><a class="btn btn-info update-user">Chỉnh sửa thông tin</a></td>
-                                 </tr>
+                                 <c:if test="${user.u_enable == -1}">
+                                     <tr>
+                                         <td><a class="btn btn-info restore-user">Khôi phục tài khoản</a></td>
+                                     </tr>
+                                 </c:if>
+                                 <c:if test="${user.u_enable == 1}">
+                                     <tr>
+                                         <td><a class="btn btn-danger delete-user">Xóa nhân viên</a></td>
+                                         <td><a class="btn btn-info update-user">Chỉnh sửa thông tin</a></td>
+                                     </tr>
+                                 </c:if>
+
                              </table>
                          </div>
                             <div class="col-lg-8">
@@ -102,6 +106,14 @@
 </body>
 <script>
     $(document).ready(function () {
+        const Toast = Swal.mixin({
+            toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
         var list_order = $("#list-order");
         var user = $("#user");
         list_order.on('click', '.order_view', function () {
@@ -137,10 +149,9 @@
                 }
         });
     });
-
         user.on('click', '.delete-user', function () {
             Swal.fire({
-                title: 'Bạn chắc chắn xóa nhân viên này?',
+                title: 'Bạn muốn xóa tài khoản này?',
                 icon: 'question',
                 confirmButtonText: 'Đúng vậy',
                 showCancelButton: true,
@@ -149,10 +160,12 @@
                 if (result.isConfirmed) {
                 $.ajax({
                     type: "GET",
-                    url: '/admin/user-management/delete/'+${user.u_id},
+                    url: 'http://localhost:8080/admin/employee-management/delete/'+${user.u_id},
                     success: function (respone) {
-                        Swal.fire(respone,'', 'error');
-                        window.location.href = "http://localhost:8080/admin/employee";
+                        Toast.fire({icon: 'info', title: 'Tài khoản này đã bị xóa'});
+                        setTimeout(function() {
+                            window.location.href = "http://localhost:8080/admin/employee/page=1-status=1";
+                        }, 3000);
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
@@ -163,7 +176,33 @@
             }
         })
         });
-
+        user.on('click', '.restore-user', function () {
+            Swal.fire({
+                title: 'Bạn muốn khôi phục tài khoản này?',
+                icon: 'question',
+                confirmButtonText: 'Đúng vậy',
+                showCancelButton: true,
+                cancelButtonText: 'Không!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                $.ajax({
+                    type: "GET",
+                    url: 'http://localhost:8080/admin/employee-management/restore/'+${user.u_id},
+                    success: function (respone) {
+                        Toast.fire({icon: 'success', title: 'Tài đã được khôi phục'});
+                        setTimeout(function() {
+                            window.location.href = "http://localhost:8080/admin/employee/page=1-status=1";
+                        }, 3000);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                    }
+                });
+            }else{
+                Toast.fire({icon: 'info', title: 'Dừng khôi phục tài khoản nhân viên này!'})
+            }
+        })
+        });
         user.on('click', '.update-user', function () {
             window.location.href = "http://localhost:8080/admin/profile-employee/"+${user.u_id};
         });

@@ -13,7 +13,7 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:90%">Danh sách nhân viên</p>
+                        <p class="text-primary m-0 fw-bold" style="width:80%">Danh sách nhân viên</p>
                         <a href="<c:url value='/admin/employee/new-employee'/> " class="btn btn-primary" style="font-weight: 700;">Thêm mới nhân viên</a>
                     </div>
                     <div class="card-body">
@@ -23,19 +23,16 @@
                                     <label class="form-label">Trạng thái&nbsp;
                                         <select id="employee-status" class="d-inline-block form-select form-select-sm">
                                             <c:if test="${status == 0}">
-                                                <option value="-1">Bị khóa</option>
+                                                <option value="-1">Bị xóa</option>
                                                 <option value="1">Đang hoạt động</option>
-                                                <option value="0" selected>Chưa kích hoạt</option>
                                             </c:if>
                                             <c:if test="${status == -1}">
-                                                <option value="-1" selected>Bị khóa</option>
+                                                <option value="-1" selected>Bị xóa</option>
                                                 <option value="1">Đang hoạt động</option>
-                                                <option value="0">Chưa kích hoạt</option>
                                             </c:if>
                                             <c:if test="${status == 1}">
-                                                <option value="-1">Bị khóa</option>
+                                                <option value="-1">Bị xóa</option>
                                                 <option value="1" selected>Đang hoạt động</option>
-                                                <option value="0">Chưa kích hoạt</option>
                                             </c:if>
                                         </select>&nbsp;</label>
                                 </div>
@@ -76,11 +73,8 @@
                                             </td>
                                             <td>${users.u_full_name}</td>
                                             <td class="text-center">${users.u_phone_number}</td>
-                                            <c:if test="${users.u_enable == 0}">
-                                                <td class="status text-center"><span class="waiting">Chưa kích hoạt</span></td>
-                                            </c:if>
                                             <c:if test="${users.u_enable == -1}">
-                                                <td class="status text-center"><span class="danger">Khóa</span></td>
+                                                <td class="status text-center"><span class="danger">Bị xóa</span></td>
                                             </c:if>
                                             <c:if test="${users.u_enable == 1}">
                                                 <td class="status text-center"><span class="active">Hoạt động</span></td>
@@ -143,8 +137,6 @@
             var ids = $(this).parent().siblings('.user_id').text();
             window.location.href = 'http://localhost:8080/admin/employee/detail/'+ids;
         });
-
-
 
         var btn_search = $("#btn-search-user");
         var input_search = $("#input-search");

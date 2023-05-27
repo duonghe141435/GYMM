@@ -634,4 +634,13 @@ public class UsersDao {
         return null;
     }
     }
+
+    public int restoreAnUser(int id) {
+        try {
+            sql = "UPDATE users SET enabled = 1 WHERE id_u = ?";
+            return jdbcTemplate.update(sql, id);
+        }catch (Exception e) {
+            return 0;
+        }
+    }
 }
