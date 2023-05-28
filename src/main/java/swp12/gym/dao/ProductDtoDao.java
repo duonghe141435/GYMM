@@ -67,7 +67,7 @@ public class ProductDtoDao {
                 "    join kind k\n" +
                 "    on p.kind_id = k.kind_id\n" +
                 "    join price p2\n" +
-                "    on p.product_id = p2.product_id and p2.status = 1 and p.status = 1 WHERE p.product_id = ?";
+                "    on p.product_id = p2.product_id and p2.status = 1 WHERE p.product_id = ?";
         return jdbcTemplate.queryForObject(sql,new ProductDtoMapper(), id);
     }
 

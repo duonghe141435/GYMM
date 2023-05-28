@@ -19,4 +19,6 @@ public interface OrderService {
     List<OrderDetail> getDetailOfAnOrder(int id);
 
     List<Order> findAllOrderOfAnUserById(int id);
+
+    List<Order> findAllOrderOfAnStaffId(int id);
 }

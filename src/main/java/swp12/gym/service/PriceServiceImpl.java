@@ -20,6 +20,10 @@ public class PriceServiceImpl implements PriceService{
         return priceDao.getPriceAnProduct(id);
     }
 
+    public Price getAnPriceAnProduct(int id) {
+        return priceDao.getAnPriceAnProduct(id);
+    }
+
     public void updatePrice(int p_price_id) {
         priceDao.updatePrice(p_price_id);
     }

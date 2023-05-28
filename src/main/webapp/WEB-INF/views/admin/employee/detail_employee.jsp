@@ -14,7 +14,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width:80%">Danh sách ${title}</p>
-                        <a href="<c:url value='/admin/employee'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
+                        <a href="<c:url value='/admin/employee/page=1-status=1'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">

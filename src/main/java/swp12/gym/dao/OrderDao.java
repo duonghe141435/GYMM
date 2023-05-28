@@ -58,7 +58,7 @@ public class OrderDao {
                     "             join users u on `order`.customer = u.id_u\n" +
                     "             join  users u2 on `order`.staff = u2.id_u\n" +
                     "WHERE u2.id_u = ?\n" +
-                    "GROUP BY `order`.order_id, `order`.code, `order`.order_date, u.name";
+                    "GROUP BY `order`.order_id DESC, `order`.code, `order`.order_date, u.name";
             return jdbcTemplate.query(sql, new RowMapper<OrderDto>() {
                 public OrderDto mapRow(ResultSet resultSet, int i) throws SQLException {
                     OrderDto orderDto = new OrderDto();
@@ -70,6 +70,21 @@ public class OrderDao {
                     return orderDto;
                 }
             }, id);
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    public List<Order> findAllOrderOfAnStaffId(int id) {
+        try{
+            sql = "SELECT `order`.order_id as order_id, `order`.code as code, `order`.`order_date` AS order_date, `order`.`status` AS status,\n" +
+                    "`order`.total_amount as total_amount, `order`.`discount` as discount, `order`.`total_payment` as total_payment, `order`.`customer_paying` AS customer_paying, `order`.`change` AS `change`, `order`.`staff` AS staff, `order`.`customer` AS customer\n" +
+                    "from `order` join order_details on order_details.order_id = `order`.order_id\n" +
+                    "join users u on `order`.customer = u.id_u\n" +
+                    "join  users u2 on `order`.staff = u2.id_u\n" +
+                    "WHERE u2.id_u = ?\n" +
+                    "GROUP BY `order`.order_id DESC, `order`.code, `order`.order_date, u.name";
+            return jdbcTemplate.query(sql, new OrderMapper(), id);
         }catch (Exception e){
             return null;
         }

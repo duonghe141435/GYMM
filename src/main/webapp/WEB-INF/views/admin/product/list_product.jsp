@@ -79,7 +79,7 @@
                                             </td>
                                             <td class="product_kind">${productDtos.p_kind_name}</td>
                                             <td>
-                                                <a href="<c:url value='/admin/product/${productDtos.p_id}'/> ">
+                                                <a href="<c:url value='/admin/product/detail-product/${productDtos.p_id}'/> ">
                                                     <i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i>
                                                 </a>
                                                 <a class="product_delete"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>

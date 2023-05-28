@@ -157,11 +157,11 @@
                                                         - Năm kinh nghiệm:  <br/>
                                                     </p>
                                                 </div>
-                                                <div class="card-read-more d-flex justify-content-center align-items-center">
-                                                    <a class="btn btn-link btn-block">
-                                                        Read More
-                                                    </a>
-                                                </div>
+                                                <%--<div class="card-read-more d-flex justify-content-center align-items-center">--%>
+                                                    <%--<a class="btn btn-link btn-block">--%>
+                                                        <%--Read More--%>
+                                                    <%--</a>--%>
+                                                <%--</div>--%>
                                             </div>
                                         </div>
 

@@ -2,22 +2,24 @@ package swp12.gym.model.entity;
 
 public class Price {
     private int pri_id;
-    private int pri_value;
-    private int pri_value_original;
+    private int pri_sale;
+    private int pri_oprice;
     private String pri_start_date;
     private String pri_end_date;
     private Boolean pri_status;
+    private int product_id;
 
     public Price() {
     }
 
-    public Price(int pri_id, int pri_value, int pri_value_original, String pri_start_date, String pri_end_date, Boolean pri_status) {
+    public Price(int pri_id, int pri_sale, int pri_oprice, String pri_start_date, String pri_end_date, Boolean pri_status, int product_id) {
         this.pri_id = pri_id;
-        this.pri_value = pri_value;
-        this.pri_value_original = pri_value_original;
+        this.pri_sale = pri_sale;
+        this.pri_oprice = pri_oprice;
         this.pri_start_date = pri_start_date;
         this.pri_end_date = pri_end_date;
         this.pri_status = pri_status;
+        this.product_id = product_id;
     }
 
     public int getPri_id() {
@@ -28,20 +30,20 @@ public class Price {
         this.pri_id = pri_id;
     }
 
-    public int getPri_value() {
-        return pri_value;
+    public int getPri_sale() {
+        return pri_sale;
     }
 
-    public void setPri_value(int pri_value) {
-        this.pri_value = pri_value;
+    public void setPri_sale(int pri_sale) {
+        this.pri_sale = pri_sale;
     }
 
-    public int getPri_value_original() {
-        return pri_value_original;
+    public int getPri_oprice() {
+        return pri_oprice;
     }
 
-    public void setPri_value_original(int pri_value_original) {
-        this.pri_value_original = pri_value_original;
+    public void setPri_oprice(int pri_oprice) {
+        this.pri_oprice = pri_oprice;
     }
 
     public String getPri_start_date() {
@@ -66,5 +68,26 @@ public class Price {
 
     public void setPri_status(Boolean pri_status) {
         this.pri_status = pri_status;
+    }
+
+    public int getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(int product_id) {
+        this.product_id = product_id;
+    }
+
+    @Override
+    public String toString() {
+        return "Price{" +
+                "pri_id=" + pri_id +
+                ", pri_sale=" + pri_sale +
+                ", pri_oprice=" + pri_oprice +
+                ", pri_start_date='" + pri_start_date + '\'' +
+                ", pri_end_date='" + pri_end_date + '\'' +
+                ", pri_status=" + pri_status +
+                ", product_id=" + product_id +
+                '}';
     }
 }
