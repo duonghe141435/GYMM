@@ -80,29 +80,54 @@ public class AdminProductController {
         return "admin/product/update_product";
     }
 
+    @RequestMapping(value = "/detail-product/{id}",method = RequestMethod.GET)
+    public String goViewDetailProduct(@PathVariable int id, Model model){
+        ProductDto productDto = productService.findAnProduct(id);
+        List<Price> prices = priceService.getPriceAnProduct(id);
+
+        List<Unit> units = unitService.findAll();
+        List<ProductType> productTypes = productTypeService.findAll();
+
+
+        model.addAttribute("productType", productTypes);
+        model.addAttribute("units", units);
+
+        model.addAttribute("product",productDto);
+        model.addAttribute("prices", prices);
+        return "admin/product/detail_product";
+    }
+
     @RequestMapping(value = "/update-product",method = RequestMethod.POST)
     public String goUpdateUser(@RequestParam("file-up") CommonsMultipartFile file,
                                @ModelAttribute("product") ProductDto productDto, HttpSession s, HttpServletRequest request ) {
-
+        //lấy data product cũ
+        ProductDto getProductDto = productService.findAnProduct(productDto.getP_id());
+        Price price = priceService.getAnPriceAnProduct(productDto.getP_id());
+        String u_img = getProductDto.getP_img();
         if(!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null){
-            String u_img = "/assets/img/products/"+file.getOriginalFilename();
+            u_img = "/assets/img/products/"+file.getOriginalFilename();
             if(!u_img.equalsIgnoreCase(productDto.getP_img())){
                 FileUtil.doSaveImgToService(file,s,"products");
                 productDto.setP_img(u_img);
             }
         }
 
-        String old_price = request.getParameter("old_price");
-        float old_price_int = Float.parseFloat(old_price);
 
+        if(productDto.getP_price() != price.getPri_sale() || productDto.getP_Oprice() != price.getPri_oprice()){
 
-        if(productDto.getP_price() != old_price_int){
-            priceService.updatePrice(productDto.getP_price_id());
+            priceService.updatePrice(price.getPri_id());
             priceService.createAnPrice(productDto.getP_price(), productDto.getP_Oprice(), productDto.getP_id());
-        }else
-            productService.updateProduct(productDto.getP_img(),productDto.getP_description(), productDto.getP_kind(),
-                    productDto.getP_unit(),productDto.getP_id());
+        }
 
-        return "redirect:/admin/dashboard/products";
+        if (!productDto.getP_name().equals(getProductDto.getP_name()) ||
+                (productDto.getP_quantity() != getProductDto.getP_quantity() && productDto.getP_quantity() >= getProductDto.getP_quantity()) ||
+                    !productDto.getP_description().equals(getProductDto.getP_description()) ||
+                        productDto.getP_unit() != getProductDto.getP_unit() ||
+                            productDto.getP_kind() != getProductDto.getP_kind() ||
+                                !u_img.equals(getProductDto.getP_img())){
+
+            productService.updateProduct(productDto, u_img);
+        }
+        return "redirect:/admin/product/detail-product/" + productDto.getP_id();
     }
 }

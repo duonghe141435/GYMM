@@ -40,4 +40,8 @@ public class OrderServiceImpl implements OrderService{
     public int getNumberOrderOfAnCustomer(int customer_id) {
         return orderDao.getNumberOrderOfAnCustomer(customer_id);
     }
+
+    public List<Order> findAllOrderOfAnStaffId(int id) {
+        return orderDao.findAllOrderOfAnStaffId(id);
+    }
 }

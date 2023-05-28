@@ -33,7 +33,7 @@ public class ProductAPIOfAdmin {
 
 
     //Gets a list of Unit
-    @PostMapping(value = URL_API, produces = "text/plain;charset=UTF-8")
+    @PostMapping(value = URL_API+"/unit", produces = "text/plain;charset=UTF-8")
     public ResponseEntity<String> createUnit(@RequestBody String type) {
         try {
             int id = unitService.getTotalItemInSystem() + 1;

@@ -160,12 +160,10 @@
                 if (result.isConfirmed) {
                 $.ajax({
                     type: "GET",
-                    url: 'http://localhost:8080/admin/employee-management/delete/'+${user.u_id},
+                    url: '/admin/user-management/delete/'+${user.u_id},
                     success: function (respone) {
-                        Toast.fire({icon: 'info', title: 'Tài khoản này đã bị xóa'});
-                        setTimeout(function() {
-                            window.location.href = "http://localhost:8080/admin/employee/page=1-status=1";
-                        }, 3000);
+                        Swal.fire(respone,'', 'error');
+                        window.location.href = "http://localhost:8080/admin/employee";
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         Swal.fire('Oops...', 'Lỗi hệ thống', 'error');

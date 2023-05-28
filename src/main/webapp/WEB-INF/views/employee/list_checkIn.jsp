@@ -80,44 +80,46 @@
                             <label style="font-weight: bold; font-size: 35px; color: blue;">Danh sách CheckIn</label>
                         </div>
                     </div>
-
-                    <table border="1" class="table table-responsive " id="class_table"  style="margin-top: 14px; margin-left: 13%; text-align: center; width: 74%;">
-                        <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th id="0">Ảnh</th>
-                            <th id="1">Email</th>
-                            <th id="2">Tên học viên</th>
-                            <th id="3">Giới tính</th>
-                            <th id="4">Thời gian</th>
-                            <th id="5">Trạng thái</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:if test="${not empty allCheckIn}">
-                            <c:forEach varStatus="index" items="${allCheckIn}" var="allCheckIn">
-                                <tr>
-                                    <td class="text-center">
-                                        <count></count>
-                                            <%--${index.count}--%>
-                                    </td>
-                                    <td style="width: 75px;"><img style="width: 70px;height: 90px;" src="${allCheckIn.u_img}"></td>
-                                    <td>${allCheckIn.u_email}</td>
-                                    <td>${allCheckIn.u_full_name}</td>
-                                    <td>
-                                        <c:if test="${allCheckIn.u_gender == 1}">Nam</c:if>
-                                        <c:if test="${allCheckIn.u_gender == 2}">Nữ</c:if>
-                                    </td>
-                                    <td>${allCheckIn.current_time}</td>
-                                    <td>
-                                        <c:if test="${allCheckIn.status == 1}"><p style="color: green">Check in thành công</p></c:if>
-                                        <c:if test="${allCheckIn.status == 0}"><p style="color: red">vé hết hạn - vé không hợp lệ</p></c:if>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </c:if>
-                        </tbody>
-                    </table>
+                    <c:if test="${not empty allCheckIn}">
+                        <table border="1" class="table table-responsive " id="class_table"  style="margin-top: 14px; margin-left: 13%; text-align: center; width: 74%;">
+                            <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th id="0">Ảnh</th>
+                                <th id="1">Email</th>
+                                <th id="2">Tên học viên</th>
+                                <th id="3">Giới tính</th>
+                                <th id="4">Thời gian</th>
+                                <th id="5">Trạng thái</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach varStatus="index" items="${allCheckIn}" var="allCheckIn">
+                                    <tr>
+                                        <td class="text-center">
+                                            <count></count>
+                                                <%--${index.count}--%>
+                                        </td>
+                                        <td style="width: 75px;"><img style="width: 70px;height: 90px;" src="${allCheckIn.u_img}"></td>
+                                        <td>${allCheckIn.u_email}</td>
+                                        <td>${allCheckIn.u_full_name}</td>
+                                        <td>
+                                            <c:if test="${allCheckIn.u_gender == 1}">Nam</c:if>
+                                            <c:if test="${allCheckIn.u_gender == 2}">Nữ</c:if>
+                                        </td>
+                                        <td>${allCheckIn.current_time}</td>
+                                        <td>
+                                            <c:if test="${allCheckIn.status == 1}"><p style="color: green">Check in thành công</p></c:if>
+                                            <c:if test="${allCheckIn.status == 0}"><p style="color: red">vé hết hạn - vé không hợp lệ</p></c:if>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </c:if>
+                    <c:if test="${empty allCheckIn}">
+                        <h3 style="margin-top: 5%; text-align: center">Hôm nay chưa có hội viên CheckIn</h3>
+                    </c:if>
                 </div>
             </div>
         </div>

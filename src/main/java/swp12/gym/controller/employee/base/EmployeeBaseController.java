@@ -9,10 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.util.MimeTypeUtils;
+import org.springframework.web.bind.annotation.*;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.*;
 import swp12.gym.model.entity.*;
@@ -49,6 +47,8 @@ public class EmployeeBaseController {
     private TimeService timeService;
     @Autowired
     private TrainerService trainerService;
+    @Autowired
+    private LogUserService logUserService;
 
     @RequestMapping(value = "/home",method = RequestMethod.GET)
     public String homeTrainer(Model model, Authentication authentication) {
@@ -102,8 +102,30 @@ public class EmployeeBaseController {
 
 
     @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityAdmin() {
-        return "employee/change_pass";
+    public String goActivityAdmin(Model model, Authentication authentication) {
+
+        int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
+        List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id);
+        model.addAttribute("logUser",logUsers);
+        return "employee/activity_log";
+    }
+
+    @RequestMapping(value = "/product-order-log",method = RequestMethod.GET)
+    public String goProductOrderLog(Model model, Authentication authentication) {
+        int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
+        List<Order> logOrder = orderService.findAllOrderOfAnStaffId(id);
+        model.addAttribute("logOrder",logOrder);
+        return "employee/order_log";
+    }
+
+    @GetMapping(value = "detail-order/{id}", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<OrderDetail>> createProductType(@PathVariable int id) {
+        try {
+            List<OrderDetail> orderDetail = orderService.getDetailOfAnOrder(id);
+            return new ResponseEntity<List<OrderDetail>>(orderDetail, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<List<OrderDetail>>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)

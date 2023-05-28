@@ -75,6 +75,18 @@ public class ProductDao {
         jdbcTemplate.update(sqlRs);
     }
 
+    public void updateProduct(ProductDto productDto, String u_img){
+        sql = "UPDATE product \n" +
+                "SET name = ?, \n" +
+                "    image = ?, \n" +
+                "    quantity = ?, \n" +
+                "    description = ?, \n" +
+                "    unit_id = ?, \n" +
+                "    kind_id = ? \n" +
+                "WHERE product_id = ?;";
+        jdbcTemplate.update(sql, productDto.getP_name(), u_img, productDto.getP_quantity(), productDto.getP_description(), productDto.getP_unit(), productDto.getP_kind(), productDto.getP_id());
+    }
+
     public void createUnit(int id, String type) {
         sql = "INSERT INTO unit(unit_id, name, status) VALUES (?,?,1)";
         jdbcTemplate.update(sql,id,type);

@@ -30,11 +30,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     public ProductDto findAnProduct(int id) {
-        return null;
+        return productDtoDao.findAnProduct(id);
     }
 
-    public void updateProduct(String p_img, String p_description, int p_kind, int p_unit, int p_id) {
-
+    public void updateProduct(ProductDto productDto, String u_img) {
+        productDao.updateProduct(productDto, u_img);
     }
 
     public List<ProductDto> searchProduct(String query) {
