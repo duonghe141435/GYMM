@@ -368,7 +368,7 @@
                                     type: 'post',
                                     data: data,
                                     success: function(response) {
-                                        Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');
+                                        Swal.fire('Bạn đã thêm vé vào giỏ thành công', '', 'success');
                                     },
                                     error: function(xhr, status, error) {
                                         console.log(error);
@@ -394,7 +394,7 @@
                                     type: 'post',
                                     data: data,
                                     success: function(response) {
-                                        Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');
+                                        Swal.fire('Bạn đã thêm vé vào giỏ thành công', '', 'success');
                                     },
                                     error: function(xhr, status, error) {
                                         console.log(error);

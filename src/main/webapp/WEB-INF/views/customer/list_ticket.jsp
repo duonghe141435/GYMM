@@ -81,12 +81,12 @@
                         <%--window.location.href = '<c:url value="/CustomerUser/saveTickerUser?" />' + "id=" + id + "&date="+result;--%>
                         if (resultAPI === ""){
                             Swal.fire({
-                                title: 'Bạn có muốn thêm Book Ticket Trainer hoặc ticket class không?',
+                                title: 'Bạn có muốn mua thêm vé tập với PT hoặc vé lớp không?',
                                 showDenyButton: true,
                                 confirmButtonText: 'Có',
                                 denyButtonText: 'Không',
                                 icon: 'question',
-                                text: 'Bạn sẽ được chuyển đến Ticket Trainer hoặc ticket class',
+                                text: 'Bạn sẽ được chuyển đến vé tập với PT',
                             }).then((result) => {
                                 /* Read more about isConfirmed, isDenied below */
                                 if(result.isConfirmed){
@@ -114,7 +114,7 @@
                                     type: 'post',
                                     data: data,
                                     success: function(response) {
-                                        Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');
+                                        Swal.fire('Bạn đã thêm vé vào giỏ thành công', '', 'success');
                                         console.log(response);
                                     },
                                     error: function(xhr, status, error) {
@@ -131,17 +131,17 @@
                         })
                         }else{
                             Swal.fire({
-                                title: 'Bạn có tiếp tục mua thêm ticket này?',
+                                title: 'Bạn có tiếp tục mua thêm vé này?',
                                 showDenyButton: true,
                                 confirmButtonText: 'Có',
                                 denyButtonText: 'Không',
                                 icon: 'question',
-                                text: 'Ticket cũ của bạn vẫn còn hạn',
+                                text: 'Vé cũ của bạn vẫn còn hạn',
 
                             }).then((result) => {
                                 /* Read more about isConfirmed, isDenied below */
                                 if(result.isConfirmed){
-                                Swal.fire({title: 'Bạn có muốn thêm Book Ticket Trainer hoặc ticket class không?', text: 'Bạn sẽ được chuyển đến Ticket Trainer hoặc ticket class',
+                                Swal.fire({title: 'Bạn có muốn mua thêm vé tập với PT hoặc vé lớp không?', text: 'Bạn sẽ được chuyển đến vé tập với PT ',
                                     showDenyButton: true, showConfirmButton: true, confirmButtonText: 'Có',
                                     denyButtonText: 'Không', icon: 'question'}).then((result) => {
                                     if(result.isConfirmed){
@@ -169,7 +169,7 @@
                                         type: 'post',
                                         data: data,
                                         success: function(response) {
-                                            Swal.fire('Bạn đã thêm ticket vào giỏ thành công', '', 'success');
+                                            Swal.fire('Bạn đã thêm vé vào giỏ thành công', '', 'success');
                                             console.log(response);
                                         },
                                         error: function(xhr, status, error) {

@@ -11,5 +11,7 @@ public interface PriceService {
 
     List<Price> getPriceAnProduct(int id);
 
+    Price getAnPriceAnProduct(int id);
+
     void updatePrice(int p_price_id);
 }

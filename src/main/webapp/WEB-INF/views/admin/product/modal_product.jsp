@@ -104,7 +104,7 @@
                 dataType: "text",
                 contentType: "text/plain",
                 success: function (respone) {
-                    Swal.fire('Thêm đơn vị thành công', '', 'info');
+                    Swal.fire('Thêm phân loại thành công', '', 'info');
 
                     $('#type_table tr:last').after('<tr><td><count></count></td>'+'<td>'+$type+'</td>'+
                         '<td style="text-align: center"><a><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a></td></tr>');

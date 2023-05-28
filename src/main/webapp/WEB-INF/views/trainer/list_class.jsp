@@ -168,7 +168,7 @@
                                                         <div class="card-read-more">
                                                             <a class="btn btn-link btn-block bookInTicketClass" onclick="handleOpenModalClass(this)" tid=${tickets.t_id} t_name="${tickets.t_name}" t_total_day=${tickets.t_total_days}
                                                                     type="button" data-bs-toggle="modal" data-bs-target="#classModal">
-                                                                Read more
+                                                                Xem thêm
                                                             </a>
                                                             <div class="modal fade" id="classModal">
                                                                 <div class="modal-dialog"  style="max-width: 82%;">
