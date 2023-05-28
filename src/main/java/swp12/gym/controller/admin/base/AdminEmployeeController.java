@@ -100,7 +100,7 @@ public class AdminEmployeeController {
             return "redirect:/admin/employee/new-employee";
         }else{
             String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
-            int id_u = userService.getNumberUserInSystem() + 1;
+            int id_u = userService.getMaxIdUserInSystem() + 1;
             user.setU_id(id_u);
             user.setU_img(u_img);
             user.setU_password(BCrypt.hashpw(user.getU_password(), BCrypt.gensalt(10)));

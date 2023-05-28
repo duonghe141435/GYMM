@@ -123,7 +123,7 @@ public class EmployeeBaseController {
     public String productPage(Model model) {
         List<ProductDto> productDtos = productService.findAll();
         model.addAttribute("productDtos", productDtos);
-        List<UserDto> customers = userService.findAllCustomer();
+        List<UserDto> customers = userService.findAllCustomerEmployee();
         //${customers.u_id} là user_ID
         List<User> trainers = userService.findAllTrainer();
         //${trainers.u_enable} là user_ID

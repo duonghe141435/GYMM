@@ -21,10 +21,22 @@
                             <div class="col-md-6 text-nowrap">
                                 <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
                                     <label class="form-label">Trạng thái&nbsp;
-                                        <select class="d-inline-block form-select form-select-sm">
-                                            <option value="-1" selected="">Bị khóa</option>
-                                            <option value="1" selected>Đang hoạt động</option>
-                                            <option value="0">Chưa kích hoạt</option>
+                                        <select class="d-inline-block form-select form-select-sm" id="user-status">
+                                            <c:if test="${status == 0}">
+                                                <option value="-1">Bị xoá</option>
+                                                <option value="1">Đang hoạt động</option>
+                                                <option value="0" selected>Chưa kích hoạt</option>
+                                            </c:if>
+                                            <c:if test="${status == -1}">
+                                                <option value="-1" selected="">Bị xoá</option>
+                                                <option value="1">Đang hoạt động</option>
+                                                <option value="0">Chưa kích hoạt</option>
+                                            </c:if>
+                                            <c:if test="${status == 1}">
+                                                <option value="-1">Bị khóa</option>
+                                                <option value="1" selected>Đang hoạt động</option>
+                                                <option value="0">Chưa kích hoạt</option>
+                                            </c:if>
                                         </select>&nbsp;</label>
                                 </div>
                             </div>
@@ -41,7 +53,6 @@
                             <table class="table my-0" id="list-user">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">#</th>
                                     <th>Email</th>
                                     <th>Tên khách hàng</th>
                                     <th class="text-center">SĐT</th>
@@ -53,7 +64,6 @@
                                 <c:if test="${not empty users}">
                                     <c:forEach items="${users}" var="users">
                                         <tr>
-                                            <td class="text-center"><count></count></td>
                                             <td class="user_id" aria-readonly="true" readonly="true" hidden>${users.u_id}</td>
                                             <td class="d-flex align-items-center" style="border: none;">
                                                 <div class="img" style="background-image: url('<c:url value="${users.u_img}"/> ');"></div>
@@ -85,10 +95,26 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 align-self-center">
-                                <p>Tổng số bản ghi: <span>${count}</span></p>
+                                <p>Tổng số bản ghi: <span id="count-record">${count}</span></p>
                             </div>
                             <div class="col-md-6">
+                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination">
+                                        <c:forEach var="pageIndex" begin="1" end="${totalPages}" varStatus="status">
+                                            <c:set var="isActive" value="${pageIndex == pagination}" />
+                                            <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không -->
+                                            <c:choose>
+                                                <c:when test="${isActive}">
+                                                    <li class="page-item active"><a class="page-link" href="#">${pageIndex}</a></li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li class="page-item"><a class="page-link" href="#">${pageIndex}</a></li>
+                                                </c:otherwise>
+                                            </c:choose>
 
+                                        </c:forEach>
+                                    </ul>
+                                </nav>
                             </div>
                         </div>
                     </div>
@@ -105,6 +131,13 @@
         var list_user = $("#list-user");
         var btn_search = $("#btn-search-user");
         var input_search = $("#input-search");
+        var user_status = $('#user-status');
+
+        user_status.on("change", function () {
+            var data = $(this).val();
+            window.location.href = 'http://localhost:8080/admin/customer/page=1-status='+data;
+        });
+
         // Thực hiện hành động tìm kiếm tại Danh sách người dùng hệ thống
         input_search.on("input", function (){
             var input = $(this).val();
@@ -189,7 +222,7 @@
         list_user.on('click', '.user_view', function () {
             var currentUrl = window.location.href;
             var ids = $(this).parent().siblings('.user_id').text();
-            window.location.href = currentUrl + "/"+ids;
+            window.location.href = 'http://localhost:8080/admin/customer/detail/'+ids;
         });
     });
 

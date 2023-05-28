@@ -44,24 +44,20 @@ public class UserServiceImpl implements UserService{
         return usersDao.findAllTrainerIdAndName();
     }
 
-    public List<UserDto> findAllCustomer(){
-        return usersDao.findAllCustomer();
+    public List<UserDto> findAllCustomer(int status_num, int pagination_value){
+        return usersDao.findAllCustomer(status_num, pagination_value);
     }
 
-    public List<UserDto> findAllTrainerForAdmin() {
-        return usersDao.findAllTrainerForAdmin();
-    }
-
-    public UserDto findAnUserById(int id) {
-        return usersDao.findAnUserById(id);
+    public List<UserDto> findAllCustomerEmployee() {
+        return usersDao.findAllCustomerEmployee();
     }
 
     public User getNameAndImgByEmail(String email) {
         return usersDao.getNameAndImgByEmail(email);
     }
 
-    public int getNumberUserInSystem() {
-        return usersDao.getMaxIdUserInSystem();
+    public int getNumberUserInSystem(int status_num) {
+        return usersDao.getNumberUserInSystem(status_num);
     }
 
     public void createUser(UserDto user) {

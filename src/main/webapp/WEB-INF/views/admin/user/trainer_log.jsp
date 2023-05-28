@@ -39,15 +39,14 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của khách hàng</p>
-                        <a href="<c:url value='/admin/customer'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
-                    </div>
+                        <a href="<c:url value='/admin/customer/page=1-status=${user.u_enable}'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4 card" style="width: 28%">
                                 <div class="left card" style="margin-left: 6px;border-radius: 15px; text-align: center; margin-top: 3px; margin-bottom: 5px">
                                     <ul id="myMenu">
                                         <li>
-                                            <a href="<c:url value="/admin/customer/${user.u_id}"/>">
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}"/>">
                                                 <p class="text-primary m-0 fw-bold">Lịch sử đặt vé vào cửa</p>
                                             </a>
                                         </li>
@@ -204,7 +203,7 @@
                     type: "GET",
                     url: '/admin/employee-management/delete/'+${user.u_id},
                     success: function (respone) {
-                        Toast.fire({icon: 'success', title: 'Tài đã được xóa'});
+                        Toast.fire({icon: 'success', title: 'Tài khoản đã được xóa'});
                         setTimeout(function() {
                             window.location.href = "http://localhost:8080/admin/customer";
                         }, 3000);

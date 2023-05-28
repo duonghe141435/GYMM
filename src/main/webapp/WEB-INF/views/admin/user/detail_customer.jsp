@@ -32,7 +32,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của khách hàng</p>
-                        <a href="<c:url value='/admin/customer'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
+                        <a href="<c:url value='/admin/customer/page=1-status=${user.u_enable}'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -40,7 +40,7 @@
                                 <div class="left card" style="margin-left: 6px;border-radius: 15px; text-align: center; margin-top: 3px; margin-bottom: 5px">
                                     <ul id="myMenu">
                                         <li>
-                                            <a href="<c:url value="/admin/customer/${user.u_id}"/>">
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}"/>">
                                                 <p class="text-primary m-0 fw-bold">Lịch sử đặt vé vào cửa</p>
                                             </a>
                                         </li>
@@ -104,57 +104,53 @@
                                 </table>
                             </div>
                             <div class="col-lg-8" style="width: 72%">
-                                <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
-                                    <div class="card-body" style="padding-top: 0;">
-                                        <div class="card-body" style="padding-top: 0;">
-                                            <c:if test="${not empty ticket}">
-                                                <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;">
-                                                    <table class="table my-0">
-                                                        <thead>
-                                                        <tr>
-                                                            <th class="text-center">#</th>
-                                                            <th class="text-center">Tên vé</th>
-                                                            <th class="text-center">Giá vé</th>
-                                                            <th class="text-center">Thời hạn</th>
-                                                            <th class="text-center">Tình trạng thanh toán</th> <!-- Đã thanh toán, chưa thanh toán -->
-                                                            <th class="text-center">Ngày đặt vé</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody style="display: contents;width: 100%;overflow: auto;">
-                                                        <c:forEach items="${ticket}" var="ticket">
-                                                            <tr>
-                                                                <td class="text-center">
-                                                                    <count></count>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                        ${ticket.t_name}
-                                                                </td>
-                                                                <td class="text-center class-price">
-                                                                        ${ticket.t_price}
-                                                                </td>
-                                                                <td class="text-center">
-                                                                        ${ticket.max_member}
-                                                                </td>
+                                <div class="card-body" style="padding-top: 0;">
+                                    <c:if test="${not empty ticket}">
+                                        <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;">
+                                            <table class="table my-0">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">#</th>
+                                                    <th class="text-center">Tên vé</th>
+                                                    <th class="text-center">Giá vé</th>
+                                                    <th class="text-center">Thời hạn</th>
+                                                    <th class="text-center">Tình trạng thanh toán</th> <!-- Đã thanh toán, chưa thanh toán -->
+                                                    <th class="text-center">Ngày đặt vé</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="display: contents;width: 100%;overflow: auto;">
+                                                <c:forEach items="${ticket}" var="ticket">
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <count></count>
+                                                        </td>
+                                                        <td class="text-center">
+                                                                ${ticket.t_name}
+                                                        </td>
+                                                        <td class="text-center class-price">
+                                                                ${ticket.t_price}
+                                                        </td>
+                                                        <td class="text-center">
+                                                                ${ticket.max_member}
+                                                        </td>
 
-                                                                <td class="status text-center">
-                                                                    <c:if test="${ticket.tt_id == 1}"><span class="active">Đã thanh toán</span></c:if>
-                                                                    <c:if test="${ticket.tt_id == 0}"><span class="waiting">Chưa thanh toán</span></c:if>
-                                                                    <c:if test="${ticket.tt_id == -1}"><span class="waiting">Bị hủy</span></c:if>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                        ${ticket.create_date}
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </c:if>
-                                            <c:if test="${empty ticket}">
-                                                <h3 style="text-align: center; margin-top: 20px">Hội viên chưa đặt vé vào cửa nào</h3>
-                                            </c:if>
+                                                        <td class="status text-center">
+                                                            <c:if test="${ticket.tt_id == 1}"><span class="active">Đã thanh toán</span></c:if>
+                                                            <c:if test="${ticket.tt_id == 0}"><span class="waiting">Chưa thanh toán</span></c:if>
+                                                            <c:if test="${ticket.tt_id == -1}"><span class="waiting">Bị hủy</span></c:if>
+                                                        </td>
+                                                        <td class="text-center">
+                                                                ${ticket.create_date}
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                    </div>
+                                    </c:if>
+                                    <c:if test="${empty ticket}">
+                                        <h3 style="text-align: center; margin-top: 20px">Hội viên chưa đặt vé vào cửa nào</h3>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +189,7 @@
                     type: "GET",
                     url: '/admin/employee-management/delete/'+${user.u_id},
                     success: function (respone) {
-                        Toast.fire({icon: 'success', title: 'Tài đã được xóa'});
+                        Toast.fire({icon: 'success', title: 'Tài khoản đã được xóa'});
                         setTimeout(function() {
                             window.location.href = "http://localhost:8080/admin/customer";
                         }, 3000);

@@ -131,32 +131,26 @@ public class UsersDao {
         }
     }
 
-
-
-    public List<UserDto> findAllCustomer() {
+    public List<UserDto> findAllCustomer(int status, int pagination) {
+        pagination = pagination*10 - 10;
         try {
-            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.address, users.image,\n" +
                     "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
-                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 4;";
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 4 AND enabled = ? LIMIT ?,10;";
             return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
                 public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
                     UserDto userDto = new UserDto();
                     userDto.setU_id(resultSet.getInt("id_u"));
                     userDto.setU_full_name(resultSet.getString("name"));
                     userDto.setU_email(resultSet.getString("email"));
-                    userDto.setU_password(resultSet.getString("password"));
-                    userDto.setU_gender(resultSet.getInt("gender"));
-                    userDto.setU_address(resultSet.getString("address"));
                     userDto.setU_img(resultSet.getString("image"));
                     userDto.setU_enable(resultSet.getInt("enabled"));
-                    userDto.setR_id(resultSet.getInt("id_r"));
-                    userDto.setU_identity_card(resultSet.getString("CMND"));
                     userDto.setU_dob(resultSet.getString("DOB"));
                     userDto.setU_phone_number(resultSet.getString("phone"));
                     userDto.setU_create_date(resultSet.getString("create_date"));
                     return userDto;
                 }
-            });
+            }, status, pagination);
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -238,7 +232,6 @@ public class UsersDao {
         }
     }
 
-
     public User getNameAndImgByEmail(String userName) {
         try{
             sql = "SELECT id_u, name, image FROM users WHERE email = ?";
@@ -285,7 +278,6 @@ public class UsersDao {
         }
     }
 
-
     public void createTrainer(int id_u, int year_experience) {
         try{
             sql = "INSERT INTO trainer(id_u, Year_of_experience) VALUES(?,?)";
@@ -323,7 +315,6 @@ public class UsersDao {
         }
     }
 
-
     public String getPasswordOfUser(String username) {
         try {
             sql = "SELECT password FROM users WHERE email = ?";
@@ -355,11 +346,6 @@ public class UsersDao {
     }
 
     //Lay tong so nguoi dung trong he thong
-    public Integer getMaxIdUserInSystem() {
-        sql = "SELECT MAX(id_u) FROM users";
-        return jdbcTemplate.queryForObject(sql, Integer.class);
-    }
-
     public void saveCustomerForGoogle(int ids, String email, String picture, int enable) {
         try{
             sql = "INSERT INTO users (id_u, name, email, enabled,create_date) VALUES (?,?,?,?,?);";
@@ -431,6 +417,15 @@ public class UsersDao {
     public void updateStatusUser(int id_u) {
         sql = "UPDATE users SET enabled = 1 WHERE id_u = ?";
         jdbcTemplate.update(sql,id_u);
+    }
+
+    public Integer getNumberUserInSystem(int status_num) {
+        try{
+            sql = "SELECT COUNT(*) FROM users join users_roles u on users.id_u = u.u_id WHERE r_id = 4 AND enabled = ?";
+            return jdbcTemplate.queryForObject(sql, Integer.class, status_num);
+        }catch (Exception e){
+            return 0;
+        }
     }
 
     //Admin Employee
@@ -641,6 +636,45 @@ public class UsersDao {
             return jdbcTemplate.update(sql, id);
         }catch (Exception e) {
             return 0;
+        }
+    }
+
+    public int getMaxIdUserInSystem() {
+        try{
+            sql = "SELECT MAX(id_u) FROM users";
+            return jdbcTemplate.queryForObject(sql, Integer.class);
+        }catch (Exception e){
+            return 0;
+        }
+    }
+
+    public List<UserDto> findAllCustomerEmployee() {
+        try {
+            sql = "SELECT users.id_u,users.name,users.email, users.gender, users.password, users.address, users.image,\n" +
+                    "users.CMND, users.DOB,r.id_r, users.phone, users.enabled, users.create_date\n" +
+                    "FROM users join users_roles u on users.id_u = u.u_id join roles r on u.r_id = r.id_r WHERE r.id_r = 4;";
+            return jdbcTemplate.query(sql, new RowMapper<UserDto>() {
+                public UserDto mapRow(ResultSet resultSet, int i) throws SQLException {
+                    UserDto userDto = new UserDto();
+                    userDto.setU_id(resultSet.getInt("id_u"));
+                    userDto.setU_full_name(resultSet.getString("name"));
+                    userDto.setU_email(resultSet.getString("email"));
+                    userDto.setU_password(resultSet.getString("password"));
+                    userDto.setU_gender(resultSet.getInt("gender"));
+                    userDto.setU_address(resultSet.getString("address"));
+                    userDto.setU_img(resultSet.getString("image"));
+                    userDto.setU_enable(resultSet.getInt("enabled"));
+                    userDto.setR_id(resultSet.getInt("id_r"));
+                    userDto.setU_identity_card(resultSet.getString("CMND"));
+                    userDto.setU_dob(resultSet.getString("DOB"));
+                    userDto.setU_phone_number(resultSet.getString("phone"));
+                    userDto.setU_create_date(resultSet.getString("create_date"));
+                    return userDto;
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 }

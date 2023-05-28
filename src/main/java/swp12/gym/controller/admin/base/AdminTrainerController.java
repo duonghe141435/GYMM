@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import swp12.gym.common.FileUtil;
 import swp12.gym.dto.ClassDto;
-import swp12.gym.dto.OrderDto;
 import swp12.gym.dto.UserDto;
 import swp12.gym.service.ClassService;
-import swp12.gym.service.OrderService;
 import swp12.gym.service.RoleService;
 import swp12.gym.service.UserService;
 
@@ -105,7 +103,7 @@ public class AdminTrainerController {
             return "redirect:/admin/trainer/new-trainer";
         }else{
             String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
-            int id_u = userService.getNumberUserInSystem() + 1;
+            int id_u = userService.getMaxIdUserInSystem() + 1;
             user.setU_id(id_u);
             user.setU_img(u_img);
             user.setU_password(BCrypt.hashpw(user.getU_password(), BCrypt.gensalt(10)));

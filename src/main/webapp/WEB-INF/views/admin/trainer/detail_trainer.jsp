@@ -14,7 +14,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của ${user.u_full_name}</p>
-                        <a href="<c:url value='/admin/trainer/page=1-status=1'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
+                        <a href="<c:url value='/admin/trainer/page=1-status=${user.u_enable}'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -38,9 +38,6 @@
                                     </tr>
                                     <tr>
                                         <td>Trạng thái tài khoản</td>
-                                        <c:if test="${user.u_enable == 0}">
-                                            <td class="status text-center"><span class="warning">Chưa kích hoạt</span></td>
-                                        </c:if>
                                         <c:if test="${user.u_enable == -1}">
                                             <td class="status text-center"><span class="danger">Bị xóa</span></td>
                                         </c:if>

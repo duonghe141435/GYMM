@@ -21,15 +21,12 @@ public interface UserService {
     List<User> findAllTrainer();
     List<User> findAllTrainerIdAndName();
     //Get All Customer
-    List<UserDto> findAllCustomer();
-    //Get All Trainer
-    List<UserDto> findAllTrainerForAdmin();
-    //Get An User By Id
-    UserDto findAnUserById(int id);
+    List<UserDto> findAllCustomer(int status_num, int pagination_value);
+    List<UserDto> findAllCustomerEmployee();
     //Get Name and Email By email of user
     User getNameAndImgByEmail(String email);
     //Get number user in system
-    int getNumberUserInSystem();
+    int getNumberUserInSystem(int status_num);
     //Create new user in system
     void createUser(UserDto user);
     //Update Information of user in system
@@ -37,24 +34,13 @@ public interface UserService {
 
     //Create new staff in System
     void createStaff(int id_u);
-    //Delete staff in System(This is function lock staff)
-    void deleteStaff(int u_id);
-    //Checking user is staff or not
-    boolean isExistsStaff(int u_id);
 
     //Create new trainer in System
     void createTrainer(int id_u, int year_experience);
-    //Delete staff in System(This is function lock staff)
-    void deleteTrainer(int u_id);
-    //Checking user is staff or not
-    boolean isExistsTrainer(int u_id);
-    //update information of trainer
-    void updateExperienceTrainer(int u_id, int year_experience);
 
     UserDto getUserByEmail(String userName);
 
     UserDto getCustomerByEmail(String userName);
-
 
     int getMaxIdUserInSystem();
 

@@ -39,7 +39,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của ${title}</p>
-                        <a href="<c:url value='/admin/customer'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
+                        <a href="<c:url value='/admin/customer/page=1-status=${user.u_enable}'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -47,7 +47,7 @@
                                 <div class="left card" style="margin-left: 6px;border-radius: 15px; text-align: center; margin-top: 3px; margin-bottom: 5px">
                                     <ul id="myMenu">
                                         <li>
-                                            <a href="<c:url value="/admin/customer/${user.u_id}"/>">
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}"/>">
                                                 <p class="text-primary m-0 fw-bold">Lịch sử đặt vé vào cửa</p>
                                             </a>
                                         </li>
@@ -112,56 +112,56 @@
                                 </table>
                             </div>
                             <div class="col-lg-8" style="width: 72%">
-                                <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
-                                    <div class="card-body" style="padding-top: 0;">
-                                        <c:if test="${not empty classDtos}">
-                                            <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;">
-                                                <table class="table my-0">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="text-center">#</th>
-                                                        <th class="text-center">Tên lớp học</th>
-                                                        <th class="text-center">Giá thuê</th>
-                                                        <th class="text-center">Thời hạn</th>
-                                                        <th class="text-center">Tình trạng thanh toán</th> <!-- Đã thanh toán, chưa thanh toán -->
-                                                        <th class="text-center">Ngày thuê</th>
+                                <div class="card-body" style="padding-top: 0;">
+                                    <c:if test="${not empty classDtos}">
+                                        <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;">
+                                            <table class="table my-0">
+                                                <thead>
+                                                <tr>
+                                                    <th class="text-center">#</th>
+                                                    <th class="text-center">Tên lớp học</th>
+                                                    <th class="text-center">Giá thuê</th>
+                                                    <th class="text-center">Thời hạn</th>
+                                                    <th class="text-center">Tình trạng thanh toán</th> <!-- Đã thanh toán, chưa thanh toán -->
+                                                    <th class="text-center">Ngày thuê</th>
 
+                                                </tr>
+                                                </thead>
+                                                <tbody style="display: contents;width: 100%;overflow: auto;">
+                                                <c:forEach items="${classDtos}" var="classDtos">
+                                                    <tr>
+                                                        <td class="text-center">
+                                                            <count></count>
+                                                        </td>
+                                                        <td class="text-center">
+                                                                ${classDtos.c_name}
+                                                        </td>
+                                                        <td class="text-center class-price">
+                                                                ${classDtos.c_price}
+                                                        </td>
+                                                        <td class="text-center">
+                                                                ${classDtos.c_start_date} - ${classDtos.c_end_date}
+                                                        </td>
+                                                        <td class="status text-center">
+                                                            <c:if test="${classDtos.c_status == 1}"><span class="active">Đang bán / còn hạn</span></c:if>
+                                                            <c:if test="${classDtos.c_status == -1}"><span class="waiting">Hết hạn</span></c:if>
+                                                            <c:if test="${classDtos.c_status == 0}"><span class="waiting">Bị hủy - booking class không thành công</span></c:if>
+                                                        </td>
+                                                        <td class="text-center">
+                                                                ${classDtos.c_create_date}
+                                                        </td>
                                                     </tr>
-                                                    </thead>
-                                                    <tbody style="display: contents;width: 100%;overflow: auto;">
-                                                    <c:forEach items="${classDtos}" var="classDtos">
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                <count></count>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                    ${classDtos.c_name}
-                                                            </td>
-                                                            <td class="text-center class-price">
-                                                                    ${classDtos.c_price}
-                                                            </td>
-                                                            <td class="text-center">
-                                                                    ${classDtos.c_start_date} - ${classDtos.c_end_date}
-                                                            </td>
-                                                            <td class="status text-center">
-                                                                <c:if test="${classDtos.c_status == 1}"><span class="active">Đang bán / còn hạn</span></c:if>
-                                                                <c:if test="${classDtos.c_status == -1}"><span class="waiting">Hết hạn</span></c:if>
-                                                                <c:if test="${classDtos.c_status == 0}"><span class="waiting">Bị hủy - booking class không thành công</span></c:if>
-                                                            </td>
-                                                            <td class="text-center">
-                                                                    ${classDtos.c_create_date}
-                                                            </td>
-                                                        </tr>
-                                                    </c:forEach>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${empty classDtos}">
-                                            <h3 style="text-align: center; margin-top: 20px">Hội viên chưa tham gia vào lớp học nào</h3>
-                                        </c:if>
-                                    </div>
+                                                </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${empty classDtos}">
+                                        <h3 style="text-align: center; margin-top: 20px">Hội viên chưa tham gia vào lớp học nào</h3>
+                                    </c:if>
                                 </div>
+                            </div>
+                            <c:if test="${not empty classDtos}">
                                 <div class="row">
                                     <div class="col-md-6 align-self-center">
                                         <p>Tổng số bản ghi: <span>${count}</span></p>
@@ -170,7 +170,7 @@
 
                                     </div>
                                 </div>
-                            </div>
+                            </c:if>
                         </div>
                     </div>
                 </div>
@@ -206,7 +206,7 @@
                         type: "GET",
                         url: '/admin/employee-management/delete/'+${user.u_id},
                         success: function (respone) {
-                            Toast.fire({icon: 'success', title: 'Tài đã được xóa'});
+                            Toast.fire({icon: 'success', title: 'Tài khoản đã được xóa'});
                             setTimeout(function() {
                                 window.location.href = "http://localhost:8080/admin/customer";
                             }, 3000);

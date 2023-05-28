@@ -20,7 +20,7 @@
                         <%--<a class="dropdown-item" href="<c:url value="/admin/dashboard/users"/>">Danh sách người dùng hệ thống</a>--%>
                         <a class="dropdown-item" href="<c:url value="/admin/employee/page=1-status=1"/>">Danh sách nhân viên</a>
                         <a class="dropdown-item" href="<c:url value="/admin/trainer/page=1-status=1"/>">Danh sách huấn luyện viên</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/customer"/>">Danh sách khách hàng</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/customer/page=1-status=1"/>">Danh sách khách hàng</a>
                         <%--<a class="dropdown-item" href="<c:url value="/admin/log-activity  "/>">Lịch sử tác động</a>--%>
                     </div>
                 </div>

@@ -50,7 +50,6 @@
                             <table class="table my-0" id="list-employee">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">#</th>
                                     <th>Email</th>
                                     <th>Tên nhân viên</th>
                                     <th class="text-center">SĐT</th>
@@ -62,7 +61,6 @@
                                 <c:if test="${not empty users}">
                                     <c:forEach items="${users}" var="users">
                                         <tr>
-                                            <td class="text-center"><count></count></td>
                                             <td class="user_id" aria-readonly="true" readonly="true" hidden>${users.u_id}</td>
                                             <td class="d-flex align-items-center" style="border: none;">
                                                 <div class="img" style="background-image: url('<c:url value="${users.u_img}"/> ');"></div>

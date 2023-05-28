@@ -35,6 +35,44 @@ public class AdminUserController {
     @Autowired
     private TicketService ticketService;
 
+    @RequestMapping(value = "/customer/page={pagination}-status={status}", method = RequestMethod.GET)
+    public String goListCustomer(@PathVariable String pagination,@PathVariable String status, Model model){
+
+        int status_num = Integer.parseInt(status);
+        int pagination_value = Integer.parseInt(pagination);
+        int totalPages = 1;
+        int count_employee = userService.getNumberUserInSystem(status_num);
+        if(count_employee != 0){
+            totalPages = (int) Math.ceil((double) count_employee / 10);
+        }
+        if(pagination_value > totalPages){
+            return "base/404";
+        }else if(pagination_value < 1){
+            return "base/404";
+        }else {
+            List<UserDto> users = userService.findAllCustomer(status_num, pagination_value);
+            model.addAttribute("users",users);
+            model.addAttribute("count", count_employee);
+            model.addAttribute("status", status);
+            model.addAttribute("totalPages",totalPages);
+            model.addAttribute("pagination",pagination_value);
+            model.addAttribute("status",status);
+
+            return "admin/user/list_user";
+        }
+    }
+
+    //----------------------view detail customer----------
+    @RequestMapping(value = "/customer/detail/{customer_id}", method = RequestMethod.GET)
+    public String goCustomerDetail(Model model, @PathVariable int customer_id){
+
+        UserDto user = userService.getEmployeeById(customer_id);
+        model.addAttribute("user",user);
+
+        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, customer_id);
+        model.addAttribute("ticket",ticket);
+        return "admin/user/detail_customer";
+    }
 
     @RequestMapping(value = "/users/new-user", method = RequestMethod.GET)
     public String goCreateUser(Model model) {
@@ -45,24 +83,8 @@ public class AdminUserController {
         return "admin/user/create_user";
     }
 
-    @RequestMapping(value = "/customer", method = RequestMethod.GET)
-    public String goListCustomer(Model model){
-        List<UserDto> users = userService.findAllCustomer();
-        model.addAttribute("users",users);
-        return "admin/user/list_user";
-    }
 
-    //----------------------view detail customer----------
-    @RequestMapping(value = "/customer/{customer_id}", method = RequestMethod.GET)
-    public String goCustomerDetail(Model model, @PathVariable int customer_id){
 
-        UserDto user = userService.getEmployeeById(customer_id);
-        model.addAttribute("user",user);
-
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, customer_id);
-        model.addAttribute("ticket",ticket);
-        return "admin/user/detail_customer";
-    }
 
     @RequestMapping(value = "/profile-customer/{userID}",method = RequestMethod.GET)
     public String goDetailProfileCustomer(Model model,  @PathVariable int userID){

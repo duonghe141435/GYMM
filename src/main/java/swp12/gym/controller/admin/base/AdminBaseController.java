@@ -221,13 +221,6 @@ public class AdminBaseController {
     }
 
     // ----------------------------------------------------------------
-    @RequestMapping(value = "/products/save",method = RequestMethod.GET)
-    public String addProduct(Model model){
-        return "admin/product/list_product";
-    }
-
-
-
 
     @RequestMapping(value = "/booking-trainer-log/{userID}",method = RequestMethod.GET)
     public String goBookingTrainerLog(@PathVariable int userID, Model model, Authentication authentication) {
