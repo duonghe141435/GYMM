@@ -94,15 +94,15 @@
                             <div class="col-md-6">
                                 <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                     <ul class="pagination">
-                                        <c:forEach var="pageIndex" begin="1" end="${totalPages}" varStatus="status">
+                                        <c:forEach var="pageIndex" begin="1" end="${totalPages}">
                                             <c:set var="isActive" value="${pageIndex == pagination}" />
                                             <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không -->
                                             <c:choose>
                                                 <c:when test="${isActive}">
-                                                    <li class="page-item active"><a class="page-link" href="#">${pageIndex}</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="<c:url value="/admin/employee/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <li class="page-item"><a class="page-link" href="#">${pageIndex}</a></li>
+                                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/employee/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
                                                 </c:otherwise>
                                             </c:choose>
 

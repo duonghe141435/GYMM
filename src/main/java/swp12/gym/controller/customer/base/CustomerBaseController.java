@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +15,8 @@ import swp12.gym.dto.*;
 import swp12.gym.model.entity.*;
 import swp12.gym.service.*;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -100,7 +97,7 @@ public class CustomerBaseController {
     @RequestMapping(value = "/booking-ticket-log",method = RequestMethod.GET)
     public String goBookingTicketLog(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, id);
+        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, id, 1);
         model.addAttribute("ticket",ticket);
         return "customer/log/ticket_log";
     }
@@ -108,7 +105,7 @@ public class CustomerBaseController {
     @RequestMapping(value = "/booking-trainer-log",method = RequestMethod.GET)
     public String goBookingTrainerLog(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(2, id);
+        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, id, 2);
         model.addAttribute("ticket",ticket);
         return "customer/log/trainer_log";
     }

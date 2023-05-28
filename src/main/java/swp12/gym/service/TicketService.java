@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import swp12.gym.dto.TicketDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.model.entity.Ticket;
-import swp12.gym.model.entity.TicketUser;
-import swp12.gym.model.entity.UserClass;
 
 import java.util.List;
 import java.util.Map;
@@ -17,10 +15,6 @@ public interface TicketService {
     List<Ticket> findAll();
 
     List<TicketDto> findAllOfAdmin();
-
-    List<Ticket> findAllGymTicket();
-
-    List<Ticket> findAllTicketDoor();
 
     List<TicketTrainerDto> findAllTicketTrainer();
 
@@ -43,13 +37,9 @@ public interface TicketService {
     //Create an tickets personal
     void createPersonalTicket(int id_trainer, int price, int ids);
 
-    int getNumberTicketTrainerInSystem();
-
     int getNumberTicketInSystem();
 
     void deleteTickets(String id);
-
-    List<Ticket> findAddTicketOfAnCustomer(int ticket_type_id, int id_customer);
 
     List<Map<Integer, Integer>> getDataOfAnTicket(int id);
 
@@ -60,4 +50,8 @@ public interface TicketService {
     int getTotalNumberOrderOfTicketToday(int id);
 
     void updateStatusTicket(String ticket_id);
+
+    int getNumberTicketOfAnCustomer(int i, int customer_id);
+
+    List<Ticket> findAddTicketOfAnCustomer(int ticketTypeId, int id_customer, int pagination);
 }

@@ -100,15 +100,15 @@
                             <div class="col-md-6">
                                 <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                     <ul class="pagination">
-                                        <c:forEach var="pageIndex" begin="1" end="${totalPages}" varStatus="status">
+                                        <c:forEach var="pageIndex" begin="1" end="${totalPages}">
                                             <c:set var="isActive" value="${pageIndex == pagination}" />
                                             <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không -->
                                             <c:choose>
                                                 <c:when test="${isActive}">
-                                                    <li class="page-item active"><a class="page-link" href="#">${pageIndex}</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="<c:url value="/admin/customer/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <li class="page-item"><a class="page-link" href="#">${pageIndex}</a></li>
+                                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/customer/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
                                                 </c:otherwise>
                                             </c:choose>
 
@@ -139,56 +139,56 @@
         });
 
         // Thực hiện hành động tìm kiếm tại Danh sách người dùng hệ thống
-        input_search.on("input", function (){
-            var input = $(this).val();
-            if(input.length >=5 ){
-                $.ajax({
-                    url: 'http://localhost:8080/admin/user-management/search',
-                    method: 'GET',
-                    data: {query: input},
-                    dataType : 'json',
-                    success: function(response) {
-                        $('#dataTable tbody').remove();
-                        console.log(response);
-                        var tbody = $('<tbody>');
-                        $('#dataTable').append(tbody);
-                        $('#dataTable tbody').css({
-                            'display': 'contents',
-                            'width': '100%',
-                            'overflow': 'auto'
-                        });
-                        $.each(response, function(index, users) {
-                            var newrow = $("<tr>");
-                            var row = '<td class="text-center"><count></count></td><td class="d-flex align-items-center" style="border: none;">\n' +
-                                '<div class="img" style="background-image: url(http://localhost:8080'+users.u_img+')"></div>\n' +
-                                '<div class="pl-3 email"><span>'+users.u_email+'</span><span>Added:'+users.u_create_date+'</span>\n' +
-                                '</div></td><td>'+users.u_full_name+'</td><td class="text-center">'+users.u_phone_number+'</td>';
-
-                            if(users.u_enable === -1){
-                                row += ' <td class="status text-center"><span class="waiting">Chưa kích hoạt</span></td>';
-                            }
-                            if(users.u_enable === 0){
-                                row += '<td class="status text-center"><span class="danger">Khóa</span></td>';
-                            }
-                            if(users.u_enable === 1){
-                                row += '<td class="status text-center"><span class="active">Hoạt động</span></td>';
-                            }
-                            row += '<td class="text-center"><a class="user_view" data-bs-toggle="modal" data-bs-target="#vew_user_modal">\n' +
-                                '<i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>\n' +
-                                '<a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>\n'+
-                                '</td>';
-                            newrow.append(row);
-                            $('#dataTable tbody').append(newrow);
-                        });
-
-                        // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            }
-        });
+        // input_search.on("input", function (){
+        //     var input = $(this).val();
+        //     if(input.length >=5 ){
+        //         $.ajax({
+        //             url: 'http://localhost:8080/admin/user-management/search',
+        //             method: 'GET',
+        //             data: {query: input},
+        //             dataType : 'json',
+        //             success: function(response) {
+        //                 $('#dataTable tbody').remove();
+        //                 console.log(response);
+        //                 var tbody = $('<tbody>');
+        //                 $('#dataTable').append(tbody);
+        //                 $('#dataTable tbody').css({
+        //                     'display': 'contents',
+        //                     'width': '100%',
+        //                     'overflow': 'auto'
+        //                 });
+        //                 $.each(response, function(index, users) {
+        //                     var newrow = $("<tr>");
+        //                     var row = '<td class="text-center"><count></count></td><td class="d-flex align-items-center" style="border: none;">\n' +
+        //                         '<div class="img" style="background-image: url(http://localhost:8080'+users.u_img+')"></div>\n' +
+        //                         '<div class="pl-3 email"><span>'+users.u_email+'</span><span>Added:'+users.u_create_date+'</span>\n' +
+        //                         '</div></td><td>'+users.u_full_name+'</td><td class="text-center">'+users.u_phone_number+'</td>';
+        //
+        //                     if(users.u_enable === -1){
+        //                         row += ' <td class="status text-center"><span class="waiting">Chưa kích hoạt</span></td>';
+        //                     }
+        //                     if(users.u_enable === 0){
+        //                         row += '<td class="status text-center"><span class="danger">Khóa</span></td>';
+        //                     }
+        //                     if(users.u_enable === 1){
+        //                         row += '<td class="status text-center"><span class="active">Hoạt động</span></td>';
+        //                     }
+        //                     row += '<td class="text-center"><a class="user_view" data-bs-toggle="modal" data-bs-target="#vew_user_modal">\n' +
+        //                         '<i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>\n' +
+        //                         '<a class="ticket_update"><i class="fas fa-edit fa-lg fa-fw me-2 text-primary" title="Cập nhập vé"></i></a>\n'+
+        //                         '</td>';
+        //                     newrow.append(row);
+        //                     $('#dataTable tbody').append(newrow);
+        //                 });
+        //
+        //                 // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.log(error);
+        //             }
+        //         });
+        //     }
+        // });
         btn_search.click(function (e) {
             var input = input_search.val();
             // Thực hiện hành động khi thẻ input thay đổi
@@ -222,7 +222,7 @@
         list_user.on('click', '.user_view', function () {
             var currentUrl = window.location.href;
             var ids = $(this).parent().siblings('.user_id').text();
-            window.location.href = 'http://localhost:8080/admin/customer/detail/'+ids;
+            window.location.href = 'http://localhost:8080/admin/customer/detail/'+ids+'/ticket/page=1';
         });
     });
 

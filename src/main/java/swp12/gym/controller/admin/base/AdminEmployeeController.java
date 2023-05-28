@@ -51,7 +51,6 @@ public class AdminEmployeeController {
                 model.addAttribute("status", status);
                 model.addAttribute("totalPages",totalPages);
                 model.addAttribute("pagination",pagination_value);
-                model.addAttribute("status",status);
 
                 return "admin/employee/list_employee";
             }

@@ -40,4 +40,6 @@ public interface ClassService {
     void updateStatusClassForStartDate(String dateNowToString);
 
     void updateStatusClassForEndDate(String dateNowToString);
+
+    int getNumberClassOfAnCustomer(int customer_id);
 }

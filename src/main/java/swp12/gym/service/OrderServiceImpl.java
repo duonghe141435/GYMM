@@ -36,4 +36,8 @@ public class OrderServiceImpl implements OrderService{
     public List<Order> findAllOrderOfAnUserById(int id) {
         return orderDao.getAllOrderOfAnUserById(id);
     }
+
+    public int getNumberOrderOfAnCustomer(int customer_id) {
+        return orderDao.getNumberOrderOfAnCustomer(customer_id);
+    }
 }

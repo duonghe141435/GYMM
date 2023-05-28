@@ -86,4 +86,8 @@ public class ClassServiceImpl implements ClassService{
     public void updateStatusClassForEndDate(String dateNowToString) {
         classDao.updateStatusClassForEndDate(dateNowToString);
     }
+
+    public int getNumberClassOfAnCustomer(int customer_id) {
+        return classDao.getNumberClassOfAnCustomer(customer_id);
+    }
 }

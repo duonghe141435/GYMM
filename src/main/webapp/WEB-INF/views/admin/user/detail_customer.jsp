@@ -40,22 +40,22 @@
                                 <div class="left card" style="margin-left: 6px;border-radius: 15px; text-align: center; margin-top: 3px; margin-bottom: 5px">
                                     <ul id="myMenu">
                                         <li>
-                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}"/>">
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}/ticket/page=1"/>">
                                                 <p class="text-primary m-0 fw-bold">Lịch sử đặt vé vào cửa</p>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<c:url value="/admin/booking-trainer-log/${user.u_id}"/>">
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}/trainer-log/page=1"/>">
                                                 <p class="text-primary m-0 fw-bold">Lịch sử thuê huấn luyện viên</p>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<c:url value="/admin/booking-class-log/${user.u_id}"/>">
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}/class-log/page=1"/>">
                                                 <p class="text-primary m-0 fw-bold">Lịch sử tham gia lớp học</p>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<c:url value="/admin/product-order-log/${user.u_id}"/>">
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}/order-log/page=1"/>">
                                                 <p class="text-primary m-0 fw-bold">Lịch sử mua hàng</p>
                                             </a>
                                         </li>
@@ -147,6 +147,18 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-6 align-self-center">
+                                                <p>Tổng số bản ghi: <span>${count}</span></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers"> <ul class="pagination"> <c:forEach var="pageIndex" begin="1" end="${totalPages}" varStatus="status">
+                                                    <c:set var="isActive" value="${pageIndex == pagination}" /> <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không --> <c:choose>
+                                                    <c:when test="${isActive}"> <li class="page-item active">
+                                                        <a class="page-link" href="<c:url value='/admin/customer/detail/${user.u_id}/ticket/page=${pageIndex}'/>">${pageIndex}</a></li> </c:when> <c:otherwise>
+                                                    <li class="page-item"><a class="page-link" href="<c:url value='/admin/customer/detail/${user.u_id}/ticket/page=${pageIndex}'/>">${pageIndex}</a></li> </c:otherwise> </c:choose> </c:forEach> </ul> </nav>
+                                            </div>
+                                        </div>
                                     </c:if>
                                     <c:if test="${empty ticket}">
                                         <h3 style="text-align: center; margin-top: 20px">Hội viên chưa đặt vé vào cửa nào</h3>
@@ -191,7 +203,7 @@
                     success: function (respone) {
                         Toast.fire({icon: 'success', title: 'Tài khoản đã được xóa'});
                         setTimeout(function() {
-                            window.location.href = "http://localhost:8080/admin/customer";
+                            window.location.href = "http://localhost:8080/admin/customer/page=1-status=1";
                         }, 3000);
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
@@ -221,9 +233,9 @@
                     type: "GET",
                     url: 'http://localhost:8080/admin/employee-management/restore/'+${user.u_id},
                     success: function (respone) {
-                        Toast.fire({icon: 'success', title: 'Tài đã được khôi phục'});
+                        Toast.fire({icon: 'success', title: 'Tài khoản đã được khôi phục'});
                         setTimeout(function() {
-                            window.location.href = "http://localhost:8080/admin/customer";
+                            window.location.href = "http://localhost:8080/admin/customer/page=1-status=1";
                         }, 3000);
                     },
                     error: function (xhr, ajaxOptions, thrownError) {

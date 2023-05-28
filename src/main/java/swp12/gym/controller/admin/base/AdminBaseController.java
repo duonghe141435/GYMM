@@ -221,43 +221,4 @@ public class AdminBaseController {
     }
 
     // ----------------------------------------------------------------
-
-    @RequestMapping(value = "/booking-trainer-log/{userID}",method = RequestMethod.GET)
-    public String goBookingTrainerLog(@PathVariable int userID, Model model, Authentication authentication) {
-        UserDto user = userService.getEmployeeById(userID);
-
-        model.addAttribute("title", "khách hàng");
-        model.addAttribute("urls","customer");
-        model.addAttribute("user",user);
-
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(2, userID);
-        model.addAttribute("ticket",ticket);
-        return "admin/user/trainer_log";
-    }
-
-    @RequestMapping(value = "/booking-class-log/{userID}",method = RequestMethod.GET)
-    public String goBookingClassCustomer(@PathVariable int userID, Model model, Authentication authentication) {
-        UserDto user = userService.getEmployeeById(userID);
-
-        model.addAttribute("title", "khách hàng");
-        model.addAttribute("urls","customer");
-        model.addAttribute("user",user);
-
-        List<ClassDto> classDtos = classService.findAllClassOfAnUserById(userID);
-        model.addAttribute("classDtos",classDtos);
-        return "admin/user/class_log";
-    }
-
-    @RequestMapping(value = "/product-order-log/{userID}",method = RequestMethod.GET)
-    public String goProductOrderLog(@PathVariable int userID, Model model, Authentication authentication) {
-        UserDto user = userService.getEmployeeById(userID);
-
-        model.addAttribute("title", "khách hàng");
-        model.addAttribute("urls","customer");
-        model.addAttribute("user",user);
-
-        List<Order> logOrder = orderService.findAllOrderOfAnUserById(userID);
-        model.addAttribute("logOrder",logOrder);
-        return "admin/user/order_log";
-    }
 }

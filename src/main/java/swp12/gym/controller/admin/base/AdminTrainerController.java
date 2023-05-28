@@ -52,7 +52,6 @@ public class AdminTrainerController {
                 model.addAttribute("status", status);
                 model.addAttribute("totalPages",totalPages);
                 model.addAttribute("pagination",pagination_value);
-                model.addAttribute("status",status);
 
                 return "admin/trainer/list_trainer";
             }

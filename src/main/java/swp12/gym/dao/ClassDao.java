@@ -160,7 +160,6 @@ public class ClassDao {
         }, user_id);
     }
 
-
     public List<ClassDto> findAllClassOfAnTicketClass(int ticket_id) {
         try{
 //            sql = "SELECT c.class_id as class_id, c.name AS c_name, c.create_date AS c_create_date, c.time_id as c_time_id, c.state as c_status, c.start_date as c_start_date, c.end_date as c_end_date, c.max_menber as max_member, c.price as c_price, c.trainer_id as c_trainer_id, u.name as c_trainer_name, c.ticket_id as c_ticket_id, tm.start_time, tm.end_time, COUNT(CASE WHEN uc.status = 1 THEN 1 ELSE NULL END) as total_attendees\n" +
@@ -419,5 +418,16 @@ public class ClassDao {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public int getNumberClassOfAnCustomer(int customer_id) {
+        sql = "SELECT COUNT(*)\n" +
+                "FROM user_class\n" +
+                "join ticket_user u on user_class.ticket_user_id = u.ticket_user_id\n" +
+                "join class c on user_class.class_id = c.class_id\n" +
+                "JOIN trainer t ON c.trainer_id = t.trainer_id\n" +
+                "JOIN users us ON t.id_u = us.id_u\n" +
+                "WHERE user_class.user_id = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, customer_id);
     }
 }
