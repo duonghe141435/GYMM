@@ -115,10 +115,10 @@
                                             <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không -->
                                             <c:choose>
                                                 <c:when test="${isActive}">
-                                                    <li class="page-item active"><a class="page-link" href="<c:url value="/admin/activity-log/page=${pageIndex}" />">${pageIndex}</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="<c:url value="/admin/ticket/page=${pageIndex}-type=${type}" />">${pageIndex}</a></li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/activity-log/page=${pageIndex}" />">${pageIndex}</a></li>
+                                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/ticket/page=${pageIndex}-type=${type}" />">${pageIndex}</a></li>
                                                 </c:otherwise>
                                             </c:choose>
 
