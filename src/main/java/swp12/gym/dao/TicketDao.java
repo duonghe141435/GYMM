@@ -23,7 +23,8 @@ public class TicketDao {
     private JdbcTemplate jdbcTemplate;
     private String sql;
 
-    public List<TicketDto> findAllOfAdmin() {
+    public List<TicketDto> findAllOfAdmin(int page, int type) {
+        page = page*5-5;
         try{
             sql = "SELECT t.id_t as ticket_id, t.tt_id as ticket_type,\n" +
                     "t.name as ticket_name, t.total_days as ticket_day,\n" +
@@ -33,16 +34,32 @@ public class TicketDao {
                     "IFNULL(MIN(class.price),0) as class_price_min,IFNULL(MAX(t2.price),0) as trainer_price_max,\n" +
                     "IFNULL(MIN(t2.price),0) as trainer_price_min\n" +
                     "FROM ticket t left join class on t.id_t = class.ticket_id " +
-                    "left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status <> 0\n" +
+                    "left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status <> 0 AND t.tt_id = ?\n" +
                     "GROUP BY t.id_t, t.create_date, t.tt_id, t.name,t.total_days\n" +
-                    "ORDER BY t.create_date DESC";
+                    "ORDER BY t.create_date DESC LIMIT ?,5";
 
-            return jdbcTemplate.query(sql, new TicketDtoMapper());
+            return jdbcTemplate.query(sql, new TicketDtoMapper(), type, page);
         }catch (Exception e){
             e.printStackTrace();
             return null;
         }
     }
+
+    public int getNumberTicketInSystem(int type) {
+        try{
+            sql = " SELECT COUNT(*) FROM (\n" +
+                    "    SELECT COUNT(*) FROM ticket t left join class on t.id_t = class.ticket_id\n" +
+                    "    left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status <> 0  and t.tt_id = ?\n" +
+                    "    GROUP BY id_t\n" +
+                    "    ) as t";
+            return jdbcTemplate.queryForObject(sql, Integer.class, type);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
 
 
     public List<Ticket> findAllGymTickets(){

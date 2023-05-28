@@ -19,8 +19,8 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow" style="height: 100vh">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width: 90%;/*font-weight: 400;*/text-align: left;margin-top: auto;margin-bottom: auto;">Danh sách vé</p>
-                        <a class="btn btn-primary" href="<c:url value="/admin/ticket"/>" style="font-weight: 700;">Trở lại danh sách vé</a>
+                        <p class="text-primary m-0 fw-bold" style="width: 82%;/*font-weight: 400;*/text-align: left;margin-top: auto;margin-bottom: auto;">Danh sách vé</p>
+                        <a class="btn btn-primary" href="<c:url value="/admin/ticket/page=1-type=${ticket.tt_id}"/>" style="font-weight: 700;">Trở lại danh sách vé</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -303,27 +303,6 @@
 
         var ctx = $('#myChart');
         var myChart = new Chart(ctx, config);
-
-
-
-
-        <%--let month = 3; // tháng 4 ở đây tương ứng với index 3 (vì đếm từ 0)--%>
-        <%--let year = 2023; // năm tùy chọn--%>
-        <%--let daysInMonthCount = moment("2023-4", "YYYY-MM").daysInMonth();--%>
-
-
-
-        <%--var labels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];--%>
-        <%--var datas = [2, 6, 0, 0, 7, 0, 20, 0, 0, 1, 0, 0, 0];--%>
-
-        <%--let daysInMonth = [];--%>
-
-
-        <%--const MONTHS = ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7','Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'];--%>
-
-        <%--&lt;%&ndash;var chartData = ; // Lấy dữ liệu từ biến model của JSP&ndash;%&gt;--%>
-
-
     });
 </script>
 

@@ -31,8 +31,6 @@ public class AdminBaseController {
     @Autowired
     private ClassService classService;
     @Autowired
-    private TrainerService trainerService;
-    @Autowired
     private TimeService timeService;
     @Autowired
     private LogUserService logUserService;
@@ -55,6 +53,33 @@ public class AdminBaseController {
 //        // san pham
 //        return "admin/dashboard";
 //    }
+
+    @RequestMapping(value = "/activity-log/page={pagination}",method = RequestMethod.GET)
+    public String goActivityAdmin(Model model, Authentication authentication, @PathVariable String pagination) {
+        int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
+
+        int pagination_value = Integer.parseInt(pagination);
+        int totalPages = 1;
+
+        int count_row = logUserService.getNumberLoguOfAnUser(id);;
+        if(count_row != 0){
+            totalPages = (int) Math.ceil((double) count_row / 8);
+        }
+
+        if(pagination_value > totalPages){
+            return "base/404";
+        }else if(pagination_value < 1){
+            return "base/404";
+        }else {
+            List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id,pagination_value);
+            model.addAttribute("logUser",logUsers);
+            model.addAttribute("count", count_row);
+            model.addAttribute("totalPages",totalPages);
+            model.addAttribute("pagination",pagination_value);
+
+            return "admin/activity_log";
+        }
+    }
 
 
 
@@ -113,13 +138,6 @@ public class AdminBaseController {
         return "admin/change_pass";
     }
 
-    @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityAdmin(Model model, Authentication authentication) {
-        int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id);
-        model.addAttribute("logUser",logUsers);
-        return "admin/activity_log";
-    }
 
     @RequestMapping(value = "/your-profile",method = RequestMethod.GET)
     public String profileAdmin(Model model, Authentication authentication) {
@@ -135,50 +153,7 @@ public class AdminBaseController {
     }
 
 
-    //Xem tất cả các vé vào cửa - done
-    @RequestMapping(value = "/ticket",method = RequestMethod.GET)
-    public String goTicketDoor(Model model){
-        int count = ticketService.getNumberTicketInSystem();
-        List<User> trainer = userService.findAllTrainer();
-        List<TicketDto> tickets = ticketService.findAllOfAdmin();
-        List<ClassDto> classDtos = classService.findAllClassNoneTicket();
 
-        model.addAttribute("trainer", trainer);
-        model.addAttribute("count", count);
-        model.addAttribute("tickets", tickets);
-
-        return "admin/ticket/list_ticket";
-    }
-
-    @RequestMapping(value = "/ticket-detail/{id}", method = RequestMethod.GET)
-    public ModelAndView goDetailTicket(@PathVariable int id)
-    {
-        ModelAndView view = new ModelAndView("admin/ticket/detail_ticket");
-
-        int number_order = ticketService.getTotalNumberOrderOfTicket(id);;
-        int number_order_today = ticketService.getTotalNumberOrderOfTicketToday(id);
-        List<Map<Integer, Integer>> data = null;
-        Ticket ticket = ticketService.findAnTicket(id);
-        data = ticketService.getDataOfAnTicket(id);
-
-        if(ticket.getTt_id() == 2){
-            List<TrainerDto> dtoList = trainerService.findAllTrainerByTicket(id);
-            view.addObject("dtoList",dtoList);
-        }
-        if(ticket.getTt_id() == 3){
-            List<ClassDto> classDtos = classService.findAllClassOfAnTicket(id);
-            view.addObject("classDtos",classDtos);
-        }
-
-        String jsonData = new Gson().toJson(data); // chuyển đổi sang chuỗi JSON
-
-        view.addObject("chartData",jsonData);
-        view.addObject("number_order_today",number_order_today);
-        view.addObject("number_order",number_order);
-        view.addObject("ticket",ticket);
-
-        return view;
-    }
 
     // ----------------------------------------------------------------
     @RequestMapping(value = "/class",method = RequestMethod.GET)

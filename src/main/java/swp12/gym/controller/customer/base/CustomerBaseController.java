@@ -118,12 +118,30 @@ public class CustomerBaseController {
         return "customer/log/class_log";
     }
 
-    @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityCustomer(Model model, Authentication authentication) {
+    @RequestMapping(value = "/activity-log/page={pagination}",method = RequestMethod.GET)
+    public String goActivityCustomer(Model model, Authentication authentication, @PathVariable String pagination) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id);
-        model.addAttribute("logUser",logUsers);
-        return "customer/log/activity_log";
+        int pagination_value = Integer.parseInt(pagination);
+        int totalPages = 1;
+        int count_row = logUserService.getNumberLoguOfAnUser(id);;
+
+        if(count_row != 0){
+            totalPages = (int) Math.ceil((double) count_row / 10);
+        }
+
+        if(pagination_value > totalPages){
+            return "base/404";
+        }else if(pagination_value < 1){
+            return "base/404";
+        }else {
+            List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id,pagination_value);
+            model.addAttribute("logUser",logUsers);
+            model.addAttribute("count", count_row);
+            model.addAttribute("totalPages",totalPages);
+            model.addAttribute("pagination",pagination_value);
+
+            return "customer/log/activity_log";
+        }
     }
 
     @RequestMapping(value = "/product-order-log",method = RequestMethod.GET)

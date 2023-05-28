@@ -20,9 +20,9 @@
                                 <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
                                     <label class="form-label">Loại hoạt động&nbsp;
                                         <select class="d-inline-block form-select form-select-sm">
-                                            <option value="10" selected="">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
+                                            <option value="1" selected>Tài khoản</option>
+                                            <option value="2">Quản trị người dùng</option>
+                                            <option value="3">50</option>
                                             <option value="100">100</option>
                                         </select>&nbsp;</label>
                                 </div>
@@ -47,19 +47,19 @@
                                                 </script>
                                             </td>
                                             <c:if test="${logUser.type_log == 1}">
-                                                <td>Người dùng</td>
+                                                <td>Tài khoản</td>
                                             </c:if>
                                             <c:if test="${logUser.type_log == 2}">
-                                                <td>Quản trị</td>
+                                                <td>Quản trị người dùng</td>
+                                            </c:if>
+                                            <c:if test="${logUser.type_log == 3}">
+                                                <td>Quản lý phòng tập</td>
                                             </c:if>
                                             <c:if test="${logUser.type_log == 3}">
                                                 <td>Quản lý sản phẩm</td>
                                             </c:if>
-                                            <c:if test="${logUser.type_log == 4}">
-                                                <td>Tài khoản</td>
-                                            </c:if>
-                                            <c:if test="${logUser.type_log == 5}">
-                                                <td>Dịch vụ</td>
+                                            <c:if test="${logUser.type_log == 3}">
+                                                <td>Quản lý thiết bị</td>
                                             </c:if>
                                             <td>${logUser.content}</td>
                                         </tr>
@@ -74,11 +74,19 @@
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                         <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                            <c:forEach var="pageIndex" begin="1" end="${totalPages}">
+                                                <c:set var="isActive" value="${pageIndex == pagination}" />
+                                                <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không -->
+                                                <c:choose>
+                                                    <c:when test="${isActive}">
+                                                        <li class="page-item active"><a class="page-link" href="<c:url value="/admin/activity-log/page=${pageIndex}" />">${pageIndex}</a></li>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <li class="page-item"><a class="page-link" href="<c:url value="/admin/activity-log/page=${pageIndex}" />">${pageIndex}</a></li>
+                                                    </c:otherwise>
+                                                </c:choose>
+
+                                            </c:forEach>
                                         </ul>
                                     </nav>
                                 </div>

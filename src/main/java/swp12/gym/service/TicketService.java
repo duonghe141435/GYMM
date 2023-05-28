@@ -14,12 +14,11 @@ public interface TicketService {
 
     List<Ticket> findAll();
 
-    List<TicketDto> findAllOfAdmin();
-
     List<TicketTrainerDto> findAllTicketTrainer();
 
     List<TicketTrainerDto> findAllTicketClassForCustomer();
 
+    List<TicketDto> findAllOfAdmin(int pagination_value, int type);
 
     Boolean checkClassExist(int userID, int class_id);
 
@@ -54,4 +53,8 @@ public interface TicketService {
     int getNumberTicketOfAnCustomer(int i, int customer_id);
 
     List<Ticket> findAddTicketOfAnCustomer(int ticketTypeId, int id_customer, int pagination);
+
+    int getNumberTicketInSystemPage(int status_num);
+
+
 }

@@ -20,16 +20,15 @@ public class TicketServiceImpl implements TicketService{
         return ticketDao.findAllTickets();
     }
 
-    public List<TicketDto> findAllOfAdmin() {
-        return ticketDao.findAllOfAdmin();
-    }
-
     public List<TicketTrainerDto> findAllTicketTrainer() { return ticketDao.findAllTicketTrainer(); }
 
     public List<TicketTrainerDto> findAllTicketClassForCustomer() {
         return ticketDao.findAllTicketClassForCustomer();
     }
 
+    public List<TicketDto> findAllOfAdmin(int pagination_value, int type) {
+        return ticketDao.findAllOfAdmin(pagination_value, type);
+    }
 
 
     public Boolean checkClassExist(int userID, int class_id) {
@@ -67,6 +66,10 @@ public class TicketServiceImpl implements TicketService{
 
     public List<Ticket> findAddTicketOfAnCustomer(int ticketTypeId, int id_customer, int pagination) {
         return ticketDao.findAddTicketOfAnCustomer(ticketTypeId, id_customer,pagination);
+    }
+
+    public int getNumberTicketInSystemPage(int status_num) {
+        return ticketDao.getNumberTicketInSystem(status_num);
     }
 
     public List<Map<Integer, Integer>> getDataOfAnTicket(int id) {
