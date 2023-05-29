@@ -177,7 +177,7 @@ public class LoginController {
 
             // Check user's role and then redirect
             if (request.isUserInRole("ROLE_ADMIN")) {
-                return "redirect:/admin/ticket";
+                return "redirect:/admin/ticket/page=1-type=1";
             }
             if (request.isUserInRole("ROLE_EMPLOYEE")) {
                 return "redirect:/employee/index";

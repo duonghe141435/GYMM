@@ -123,8 +123,7 @@
                             var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
                         const yearCell = $('<td>').addClass('text-center').text(item.time);
                         const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
-                        const emptyCell = $('<td>');
-                        return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                        return $('<tr>').append(yearCell, moneyCell);
                     });
                         table.append(rows);
                     }else {
@@ -137,8 +136,7 @@
                             var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
                         const yearCell = $('<td>').addClass('text-center').text(item.time);
                         const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
-                        const emptyCell = $('<td>');
-                        return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                        return $('<tr>').append(yearCell, moneyCell);
                     });
                         table.append(rows);
                     }
@@ -174,7 +172,7 @@
                         var rows = "Tháng này không phát sinh mua bán";
                         table.append(rows);
                     }else{
-                        if(data === "0"){
+                        if(selectedValue === "day"){
                             var head = " <thead>\n" +
                                 "<tr><th class=\"text-center\">Ngày</th>\n" +
                                 "<th class=\"text-center\">Tổng số tiền</th>\n" +
@@ -185,8 +183,7 @@
                                 var formatted = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
                             var yearCell = $('<td>').addClass('text-center').text(item.time);
                             var moneyCell = $('<td>').addClass('text-center').text(formatted);
-                            var emptyCell = $('<td>');
-                            return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                            return $('<tr>').append(yearCell, moneyCell);
                         });
                             table.append(rows);
                         }else {
@@ -199,8 +196,7 @@
                                 var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
                             const yearCell = $('<td>').addClass('text-center').text(item.time);
                             const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
-                            const emptyCell = $('<td>');
-                            return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                            return $('<tr>').append(yearCell, moneyCell);
                         });
                             table.append(rows);
                         }
@@ -241,8 +237,7 @@
                                 var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
                             const yearCell = $('<td>').addClass('text-center').text(item.time);
                             const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
-                            const emptyCell = $('<td>');
-                            return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                            return $('<tr>').append(yearCell, moneyCell);
                         });
                             table.append(rows);
                         }else {
@@ -255,8 +250,7 @@
                                 var formattedPrice = parseFloat(item.total_money).toLocaleString('vi-VN', {style: 'currency', currency: 'VND'}).replace("₫", " ₫");
                             const yearCell = $('<td>').addClass('text-center').text(item.time);
                             const moneyCell = $('<td>').addClass('text-center').text(formattedPrice);
-                            const emptyCell = $('<td>');
-                            return $('<tr>').append(yearCell, moneyCell, emptyCell);
+                            return $('<tr>').append(yearCell, moneyCell);
                         });
                             table.append(rows);
                         }

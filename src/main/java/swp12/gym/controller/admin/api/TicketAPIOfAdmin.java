@@ -88,10 +88,9 @@ public class TicketAPIOfAdmin {
     }
 
     //Delete An Ticket
-    @PostMapping(value = URL_API)
-    public ResponseEntity<String> deleteTicket(HttpServletRequest request){
+    @GetMapping(value = URL_API+"/delete/{id}", produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<String> deleteTicket(@PathVariable String id){
         try{
-            String id = request.getParameter("_id");
             ticketService.deleteTickets(id);
             return new ResponseEntity<String>(HttpStatus.OK);
         }catch (Exception e){

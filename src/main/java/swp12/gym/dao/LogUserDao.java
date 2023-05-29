@@ -31,31 +31,10 @@ public class LogUserDao {
 
     }
 
-    public List<LogUserDto> getAllLogOfUser() {
+    public List<LogUser> getLogOfAnUser(int u_id, int page) {
+        page = page*8 - 8;
         try {
-            sql = "SELECT lu.type_log,lu.time, lu.content, u.email " +
-                    "FROM log_user lu join users u ORDER BY lu.time DESC";
-            return jdbcTemplate.query(sql, new RowMapper<LogUserDto> () {
-
-                public LogUserDto mapRow(ResultSet resultSet, int i) throws SQLException {
-                    LogUserDto logUser = new LogUserDto();
-                    logUser.setType_log(resultSet.getInt("type_log"));
-                    logUser.setDate_time_create(resultSet.getInt("time"));
-                    logUser.setContent(resultSet.getString("content"));
-                    logUser.setUser_email(resultSet.getString("email"));
-                    return logUser;
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-    public List<LogUser> getLogOfAnUser(int u_id) {
-        try {
-            sql = "SELECT * FROM log_user WHERE user_id = ? ORDER BY time DESC";
+            sql = "SELECT * FROM log_user WHERE user_id = ? ORDER BY time DESC LIMIT ?,8";
             return jdbcTemplate.query(sql, new RowMapper<LogUser> () {
 
                 public LogUser mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -65,11 +44,20 @@ public class LogUserDao {
                     logUser.setContent(resultSet.getString("content"));
                     return logUser;
                 }
-            },u_id);
+            },u_id,page);
         }catch (Exception e){
             e.printStackTrace();
             return null;
         }
     }
 
+    public int getNumberLoguOfAnUser(int id) {
+        try {
+            sql = "SELECT COUNT(*) FROM log_user WHERE user_id = ?";
+            return jdbcTemplate.queryForObject(sql, Integer.class,id);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

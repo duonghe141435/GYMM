@@ -17,7 +17,8 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold">Tạo mới tài khoản</p>
+                        <p class="text-primary m-0 fw-bold" style="width : 90%">Tạo mới tài khoản</p>
+                        <a href="<c:url value='/admin/trainer/page=1-status=1'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body"> <c:url value="/admin/trainer/save?${_csrf.parameterName}=${_csrf.token}" var="saveUserUrl"/>
                         <form:form method="POST" action="${saveUserUrl}" modelAttribute="user" enctype="multipart/form-data">

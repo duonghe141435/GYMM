@@ -20,7 +20,7 @@
                         <%--<a class="dropdown-item" href="<c:url value="/admin/dashboard/users"/>">Danh sách người dùng hệ thống</a>--%>
                         <a class="dropdown-item" href="<c:url value="/admin/employee/page=1-status=1"/>">Danh sách nhân viên</a>
                         <a class="dropdown-item" href="<c:url value="/admin/trainer/page=1-status=1"/>">Danh sách huấn luyện viên</a>
-                        <a class="dropdown-item" href="<c:url value="/admin/customer"/>">Danh sách khách hàng</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/customer/page=1-status=1"/>">Danh sách khách hàng</a>
                         <%--<a class="dropdown-item" href="<c:url value="/admin/log-activity  "/>">Lịch sử tác động</a>--%>
                     </div>
                 </div>
@@ -32,10 +32,10 @@
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
-                        <a class="dropdown-item" href="<c:url value="/admin/ticket"/>">Quản lý vé</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/ticket/page=1-type=1"/>">Quản lý vé</a>
                         <a class="dropdown-item" href="<c:url value="/admin/class"/>">Quản lý lớp học</a>
                         <%--<a class="dropdown-item" href="<c:url value="/admin/dashboard/"/>">Quản lý thiết bị</a>--%>
-                        <a class="dropdown-item" href="<c:url value="/admin/product"/>">Quản lý sản phẩm</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/product/page=1-status=1"/>">Quản lý sản phẩm</a>
                     </div>
                 </div>
             </li>
@@ -92,7 +92,7 @@
                     <img class="border rounded-circle img-profile" src="<c:url value="${display_img}"/>"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="<c:url value="/admin/your-profile"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                        <a class="dropdown-item"  href="<c:url value="/admin/activity-log"/>"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Lịch sử hoạt động</a>
+                        <a class="dropdown-item"  href="<c:url value="/admin/activity-log/page=1"/>"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Lịch sử hoạt động</a>
                         <a class="dropdown-item" href="<c:url value="/admin/change-pass"/>"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Đổi mật khẩu</a>
 
                         <div class="dropdown-divider"></div>

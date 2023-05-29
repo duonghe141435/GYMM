@@ -44,4 +44,26 @@ public class ProductServiceImpl implements ProductService{
     public void updateQuantityProduct(List<OrderDetail> orderDetail) {
         productDao.updateQuantityProdcut(orderDetail);
     }
+
+    public int getNumberProductInSystemAdmin(int status_num) {
+        return productDtoDao.getNumberProductInSystemAdmin(status_num);
+    }
+
+    public List<ProductDto> findListProduct(int pagination_value, int status_num) {
+        return productDtoDao.findListProduct(pagination_value, status_num);
+    }
+
+    public List<ProductDto> searchProductAdmin(String query) {
+        return productDtoDao.searchProductAdmin(query);
+    }
+
+    public void deleteProductForAdmin(String id) {
+        productDtoDao.deleteProductForAdmin(id);
+    }
+
+    public void restoreProductForAdmin(String id) {
+        productDtoDao.restoreProductForAdmin(id);
+    }
+
+
 }

@@ -4,27 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import swp12.gym.common.DataUtil;
 import swp12.gym.dto.*;
 import swp12.gym.model.entity.Ticket;
 import swp12.gym.model.mapper.TicketMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Repository
 public class TicketDao {
-    
+    @Autowired
+    private DataUtil dataUtil;
     @Autowired
     private JdbcTemplate jdbcTemplate;
     private String sql;
 
-    private final LocalDate currentDate = LocalDate.now();
-
-    public List<TicketDto> findAllOfAdmin() {
+    public List<TicketDto> findAllOfAdmin(int page, int type) {
+        page = page*5-5;
         try{
             sql = "SELECT t.id_t as ticket_id, t.tt_id as ticket_type,\n" +
                     "t.name as ticket_name, t.total_days as ticket_day,\n" +
@@ -34,16 +34,32 @@ public class TicketDao {
                     "IFNULL(MIN(class.price),0) as class_price_min,IFNULL(MAX(t2.price),0) as trainer_price_max,\n" +
                     "IFNULL(MIN(t2.price),0) as trainer_price_min\n" +
                     "FROM ticket t left join class on t.id_t = class.ticket_id " +
-                    "left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status <> 0\n" +
+                    "left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status <> 0 AND t.tt_id = ?\n" +
                     "GROUP BY t.id_t, t.create_date, t.tt_id, t.name,t.total_days\n" +
-                    "ORDER BY t.create_date DESC";
+                    "ORDER BY t.create_date DESC LIMIT ?,5";
 
-            return jdbcTemplate.query(sql, new TicketDtoMapper());
+            return jdbcTemplate.query(sql, new TicketDtoMapper(), type, page);
         }catch (Exception e){
             e.printStackTrace();
             return null;
         }
     }
+
+    public int getNumberTicketInSystem(int type) {
+        try{
+            sql = " SELECT COUNT(*) FROM (\n" +
+                    "    SELECT COUNT(*) FROM ticket t left join class on t.id_t = class.ticket_id\n" +
+                    "    left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status <> 0  and t.tt_id = ?\n" +
+                    "    GROUP BY id_t\n" +
+                    "    ) as t";
+            return jdbcTemplate.queryForObject(sql, Integer.class, type);
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
 
 
     public List<Ticket> findAllGymTickets(){
@@ -137,7 +153,7 @@ public class TicketDao {
         try{
             sql = "INSERT INTO personal_trainer (start_date, trainer_id, status, price, ticket_id) " +
                     "VALUES (?,?,?,?,?);";
-            jdbcTemplate.update(sql,currentDate,id_trainer, 1,price, ids);
+            jdbcTemplate.update(sql,dataUtil.getDateNowToString(),id_trainer, 1,price, ids);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -146,7 +162,7 @@ public class TicketDao {
     public void createTicketForTrainer(String ticketName, String ticketDay, int i){
         try{
             sql = "INSERT INTO ticket (total_days, status, name, create_date,tt_id) VALUES (?,?,?,?,?)";
-            jdbcTemplate.update(sql,ticketDay, 1,ticketName, currentDate, i);
+            jdbcTemplate.update(sql,ticketDay, 1,ticketName, dataUtil.getDateNowToString(), i);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -155,7 +171,7 @@ public class TicketDao {
     public void createTicket(String name, String price, String day, String type_id,int status, int ids) {
         try{
             sql = "INSERT INTO ticket (id_t, price, total_days, status, name, create_date,tt_id) VALUES (?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql,ids, price, day, status,name, currentDate, type_id);
+            jdbcTemplate.update(sql,ids, price, day, status,name, dataUtil.getDateNowToString(), type_id);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -197,12 +213,13 @@ public class TicketDao {
         }
     }
 
-    public List<Ticket> findAddTicketOfAnCustomer(int ticket_type_id, int id_customer) {
+    public List<Ticket> findAddTicketOfAnCustomer(int ticket_type_id, int id_customer, int pagination) {
+        pagination = pagination * 10 - 10;
         try{
             sql = "SELECT t.name as ticket_name, ticket_user.value_cost as ticket_price, concat(ticket_user.start_date, ' - ', ticket_user.end_date) as time, \n" +
-                    "                    t.status,ticket_user.payment_status, ticket_user.create_date\n" +
-                    "                    FROM ticket_user join ticket t on ticket_user.ticket_id = t.id_t WHERE t.tt_id = ? AND ticket_user.id_u = ?\n" +
-                    "                    ORDER BY ticket_user.ticket_user_id DESC";
+                    "t.status,ticket_user.payment_status, ticket_user.create_date\n" +
+                    "FROM ticket_user join ticket t on ticket_user.ticket_id = t.id_t WHERE t.tt_id = ? AND ticket_user.id_u = ?\n" +
+                    "ORDER BY ticket_user.ticket_user_id DESC LIMIT ?,10;";
             return jdbcTemplate.query(sql, new RowMapper<Ticket>() {
                 public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
                     Ticket ticket = new Ticket();
@@ -216,7 +233,7 @@ public class TicketDao {
                     ticket.setCreate_date(resultSet.getString("create_date"));
                     return ticket;
                 }
-            },ticket_type_id, id_customer);
+            },ticket_type_id, id_customer, pagination);
         }catch (Exception e){
             e.printStackTrace();
             return null;
@@ -293,7 +310,6 @@ public class TicketDao {
         }
     }
 
-
     public int getTotalNumberOrderOfTicketToday(int id) {
         try{
             sql = "SELECT COUNT(*) FROM ticket_user WHERE ticket_id = ? AND date_payment = curdate() and ticket_user.payment_status = 1";
@@ -325,5 +341,17 @@ public class TicketDao {
     public void updateStatusTicket(String ticket_id) {
         sql = "UPDATE ticket SET status = 1 WHERE id_t = ?";
         jdbcTemplate.update(sql,ticket_id);
+    }
+
+    public int getNumberTicketOfAnCustomer(int id, int customer_id) {
+        try{
+            sql = "SELECT COUNT(*) FROM ticket_user JOIN ticket " +
+                    "WHERE ticket_user.ticket_id = ticket.id_t AND ticket.tt_id = ? AND id_u = ?;";
+            int number = jdbcTemplate.queryForObject(sql, Integer.class, id,customer_id);
+            return number;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

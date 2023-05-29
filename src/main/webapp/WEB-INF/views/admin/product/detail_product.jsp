@@ -75,7 +75,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width:80%">Danh sách sản phẩm</p>
-                        <a href="<c:url value='/admin/product'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
+                        <a href="<c:url value='/admin/product/page=1-status=1'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -124,8 +124,13 @@
 
                                     </tr>
                                     <tr>
-                                        <td><a class="btn btn-danger delete-user">Xóa sản phẩm</a></td>
-                                        <td><a class="btn btn-info update-product">Chỉnh sửa sản phẩm</a></td>
+                                        <c:if test="${product.p_status == false}">
+                                            <td><a class="btn btn-info restore-user">Khôi phục sản phẩm</a></td>
+                                        </c:if>
+                                        <c:if test="${product.p_status == true}">
+                                            <td><a class="btn btn-danger delete-user">Xóa sản phẩm</a></td>
+                                            <td><a class="btn btn-info update-product">Chỉnh sửa sản phẩm</a></td>
+                                        </c:if>
                                     </tr>
                                 </table>
                             </div>
@@ -153,11 +158,11 @@
                                                     <td>${prices.pri_end_date}</td>
                                                     <c:if test="${prices.pri_status == true}">
                                                         <td class="status">
-                                                            <span class="active">Đang mở</span></td>
+                                                            <span class="active">Đang dùng</span></td>
                                                     </c:if>
                                                     <c:if test="${prices.pri_status == false}">
                                                         <td class="status">
-                                                            <span class="active">Đã đóng</span></td>
+                                                            <span class="waiting">Ngừng dùng</span></td>
                                                     </c:if>
                                                 </tr>
                                             </c:forEach>
@@ -317,10 +322,17 @@
     $(document).ready(function () {
         var user = $("#user");
 
+        const Toast = Swal.mixin({
+            toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
 
         user.on('click', '.delete-user', function () {
             Swal.fire({
-                title: 'Bạn chắc chắn xóa nhân viên này?',
+                title: 'Bạn chắc chắn xóa sản phẩm này?',
                 icon: 'question',
                 confirmButtonText: 'Đúng vậy',
                 showCancelButton: true,
@@ -329,19 +341,49 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "GET",
-                        <%--url: '/admin/user-management/delete/'+${user.u_id},--%>
+                        url: '/admin/product-management/delete/'+${product.p_id},
                         success: function (respone) {
-                            Swal.fire(respone,'', 'error');
-                            window.location.href = "http://localhost:8080/admin/employee";
+                            Toast.fire({icon: 'success', title: 'Sản phẩm đã được xóa'});
+                            setTimeout(function() {
+                                window.location.href = "http://localhost:8080/admin/product/page=1-status=0";
+                            }, 2000);
                         },
                         error: function (xhr, ajaxOptions, thrownError) {
                             Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
                         }
                     });
                 }else{
-                    Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
+                    Toast.fire({icon: 'info', title: 'Dừng xóa sản phẩm này!'})
                 }
             })
+        });
+
+        user.on('click', '.restore-user', function () {
+            Swal.fire({
+                title: 'Bạn muốn khôi phục sản phẩm này?',
+                icon: 'question',
+                confirmButtonText: 'Đúng vậy',
+                showCancelButton: true,
+                cancelButtonText: 'Không!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                $.ajax({
+                    type: "GET",
+                    url: '/admin/product-management/restore/'+${product.p_id},
+                    success: function (respone) {
+                        Toast.fire({icon: 'success', title: 'Sản phẩm đã được khôi phục'});
+                        setTimeout(function() {
+                            window.location.href = "http://localhost:8080/admin/product/page=1-status=1";
+                        }, 2000);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                    }
+                });
+            }else{
+                Toast.fire({icon: 'info', title: 'Dừng khôi phục sản phẩm này!'})
+            }
+        })
         });
 
         user.on('click', '.update-product', function () {
@@ -370,10 +412,10 @@
                 type: "POST",
                 data: data,
                 success: function (respone) {
-                    Swal.fire({
-                        title: 'Bạn đã chỉnh sửa thành công',
-                        icon: 'success',
-                    });
+                    Toast.fire({icon: 'success', title: 'Sản phẩm đã được cập nhập'});
+                    setTimeout(function() {
+                        window.location.href = "http://localhost:8080/admin/product/page=1-status=1";
+                    }, 2000);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     Swal.fire('Oops...', 'Lỗi hệ thống', 'error');

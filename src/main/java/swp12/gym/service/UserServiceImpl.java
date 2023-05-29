@@ -36,26 +36,28 @@ public class UserServiceImpl implements UserService{
         return usersDao.findAll();
     }
 
-    public List<User> findAllTrainer(){ return usersDao.findAllTrainer(); }
+    public List<User> findAllTrainer(){
+        return usersDao.findAllTrainer();
+    }
 
     public List<User> findAllTrainerIdAndName() {
         return usersDao.findAllTrainerIdAndName();
     }
 
-    public List<UserDto> findAllCustomer(){ return usersDao.findAllCustomer(); }
-
-    public List<UserDto> findAllTrainerForAdmin() {
-        return usersDao.findAllTrainerForAdmin();
+    public List<UserDto> findAllCustomer(int status_num, int pagination_value){
+        return usersDao.findAllCustomer(status_num, pagination_value);
     }
 
-    public UserDto findAnUserById(int id) { return usersDao.findAnUserById(id); }
+    public List<UserDto> findAllCustomerEmployee() {
+        return usersDao.findAllCustomerEmployee();
+    }
 
     public User getNameAndImgByEmail(String email) {
         return usersDao.getNameAndImgByEmail(email);
     }
 
-    public int getNumberUserInSystem() {
-        return usersDao.getMaxIdUserInSystem();
+    public int getNumberUserInSystem(int status_num) {
+        return usersDao.getNumberUserInSystem(status_num);
     }
 
     public void createUser(UserDto user) {
@@ -139,6 +141,7 @@ public class UserServiceImpl implements UserService{
     public UserDto getEmployeeById(int employee_id) {
         return usersDao.getEmployeeById(employee_id);
     }
+
     public List<UserDto> searchEmployee(String query){
         return usersDao.searchEmployee(query);
     }
@@ -160,14 +163,12 @@ public class UserServiceImpl implements UserService{
         return usersDao.searchTrainer(query);
     }
 
-    public List<UserDto> searchUser(String query) {
-        return usersDao.searchUser(query);
+    public int restoreAnUser(int id) {
+        return usersDao.restoreAnUser(id);
     }
 
-
-
-    public int lockAnUser(int id) {
-        return 0;
+    public List<UserDto> searchUser(String query) {
+        return usersDao.searchUser(query);
     }
 
     public int deleteAnUser(int id) {

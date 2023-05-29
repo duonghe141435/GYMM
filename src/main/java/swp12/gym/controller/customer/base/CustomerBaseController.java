@@ -7,10 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
+import swp12.gym.common.DataUtil;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.*;
 import swp12.gym.model.entity.*;
@@ -19,7 +19,6 @@ import swp12.gym.service.*;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -51,6 +50,15 @@ public class CustomerBaseController {
 
     @Autowired
     private CheckInService checkInService;
+    @Autowired
+    private DataUtil dataUtil;
+
+    @PostConstruct
+    public void changeStatusClass() {
+        //kiểm tra class có hôm này có lớp start vào ngày này hay không
+        classService.updateStatusClassForStartDate();
+        classService.updateStatusClassForEndDate();
+    }
 
 
     //Home user
@@ -61,7 +69,7 @@ public class CustomerBaseController {
         return "customer/index_customer";
     }
 
-    @RequestMapping(value = "/show-list-personal",method = RequestMethod.GET)
+    @RequestMapping(value = "/list-personal",method = RequestMethod.GET)
     public String goListPersonal(Model model, HttpSession s) {
         List<Ticket> ticket = ticketService.findAll();
         List<TicketTrainerDto> allTicketTrainer = ticketService.findAllTicketTrainer();
@@ -71,7 +79,7 @@ public class CustomerBaseController {
         return "customer/list_personal";
     }
 
-    @RequestMapping(value = "/show-list-class",method = RequestMethod.GET)
+    @RequestMapping(value = "/list-class",method = RequestMethod.GET)
     public String goListClass(Model model, HttpSession s) {
         List<Ticket> ticket = ticketService.findAll();
         model.addAttribute("tickets", ticket);
@@ -80,7 +88,7 @@ public class CustomerBaseController {
         return "customer/list_class";
     }
 
-    @RequestMapping(value = "/show-list-trainer",method = RequestMethod.GET)
+    @RequestMapping(value = "/list-trainer",method = RequestMethod.GET)
     public String goListTrainer(Model model, HttpSession s) {
         List<User> trainers = userService.findAllTrainer();
         model.addAttribute("trainers",trainers);
@@ -100,7 +108,7 @@ public class CustomerBaseController {
     @RequestMapping(value = "/booking-ticket-log",method = RequestMethod.GET)
     public String goBookingTicketLog(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, id);
+        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, id, 1);
         model.addAttribute("ticket",ticket);
         return "customer/log/ticket_log";
     }
@@ -108,7 +116,7 @@ public class CustomerBaseController {
     @RequestMapping(value = "/booking-trainer-log",method = RequestMethod.GET)
     public String goBookingTrainerLog(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(2, id);
+        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, id, 2);
         model.addAttribute("ticket",ticket);
         return "customer/log/trainer_log";
     }
@@ -121,12 +129,30 @@ public class CustomerBaseController {
         return "customer/log/class_log";
     }
 
-    @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityCustomer(Model model, Authentication authentication) {
+    @RequestMapping(value = "/activity-log/page={pagination}",method = RequestMethod.GET)
+    public String goActivityCustomer(Model model, Authentication authentication, @PathVariable String pagination) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id);
-        model.addAttribute("logUser",logUsers);
-        return "customer/log/activity_log";
+        int pagination_value = Integer.parseInt(pagination);
+        int totalPages = 1;
+        int count_row = logUserService.getNumberLoguOfAnUser(id);;
+
+        if(count_row != 0){
+            totalPages = (int) Math.ceil((double) count_row / 10);
+        }
+
+        if(pagination_value > totalPages){
+            return "base/404";
+        }else if(pagination_value < 1){
+            return "base/404";
+        }else {
+            List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id,pagination_value);
+            model.addAttribute("logUser",logUsers);
+            model.addAttribute("count", count_row);
+            model.addAttribute("totalPages",totalPages);
+            model.addAttribute("pagination",pagination_value);
+
+            return "customer/log/activity_log";
+        }
     }
 
     @RequestMapping(value = "/product-order-log",method = RequestMethod.GET)
@@ -147,7 +173,7 @@ public class CustomerBaseController {
         }
     }
 
-    @GetMapping("/book_pt")
+    @GetMapping("/book-pt")
     public String checkoutbookpt(Authentication authentication, Model model){
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         int userID = userDao.findIdByUsername(userDetails.getUsername());
@@ -173,7 +199,7 @@ public class CustomerBaseController {
         return "customer/book_pt";
     }
 
-    @RequestMapping(value = "/list_class_of_customer",method = RequestMethod.GET)
+    @RequestMapping(value = "/list-class-of-you",method = RequestMethod.GET)
     public String listClassOfCustomer(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
         List<ClassDto> classDtos = classService.findAllClassOfAnUserById(id);

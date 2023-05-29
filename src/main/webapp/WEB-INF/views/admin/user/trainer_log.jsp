@@ -38,19 +38,33 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của ${title}</p>
-                        <a href="<c:url value='/admin/customer'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
-                    </div>
+                        <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của khách hàng</p>
+                        <a href="<c:url value='/admin/customer/page=1-status=${user.u_enable}'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-4 card" style="width: 28%">
                                 <div class="left card" style="margin-left: 6px;border-radius: 15px; text-align: center; margin-top: 3px; margin-bottom: 5px">
                                     <ul id="myMenu">
-                                        <li><a href="<c:url value="/admin/customer/${user.u_id}"/>"> <p class="text-primary m-0 fw-bold">Lịch sử hoạt động</p></a></li>
-                                        <li><a href="<c:url value="/admin/booking-ticket-log/${user.u_id}"/>"> <p class="text-primary m-0 fw-bold">Lịch sử đặt vé vào cửa</p></a></li>
-                                        <li><a href="<c:url value="/admin/booking-trainer-log/${user.u_id}"/>"> <p class="text-primary m-0 fw-bold">Lịch sử thuê huấn luyện viên</p></a></li>
-                                        <li><a href="<c:url value="/admin/booking-class-log/${user.u_id}"/>"> <p class="text-primary m-0 fw-bold">Lịch sử tham gia lớp học</p></a></li>
-                                        <li><a href="<c:url value="/admin/product-order-log/${user.u_id}"/>"> <p class="text-primary m-0 fw-bold">Lịch sử mua hàng</p></a></li>
+                                        <li>
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}/ticket/page=1"/>">
+                                                <p class="text-primary m-0 fw-bold">Lịch sử đặt vé vào cửa</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}/trainer-log/page=1"/>">
+                                                <p class="text-primary m-0 fw-bold">Lịch sử thuê huấn luyện viên</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}/class-log/page=1"/>">
+                                                <p class="text-primary m-0 fw-bold">Lịch sử tham gia lớp học</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<c:url value="/admin/customer/detail/${user.u_id}/order-log/page=1"/>">
+                                                <p class="text-primary m-0 fw-bold">Lịch sử mua hàng</p>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <table class="table my-0" id="user">
@@ -82,23 +96,28 @@
                                             <td class="status text-center"><span class="active">Hoạt động</span></td>
                                         </c:if>
                                     </tr>
-                                    <tr>
-                                        <td><a class="btn btn-danger delete-user">Xóa nhân viên</a></td>
-                                        <td><a class="btn btn-info update-user">Chỉnh sửa thông tin</a></td>
-                                    </tr>
+                                    <c:if test="${user.u_enable == -1}">
+                                        <tr>
+                                            <td><a class="btn btn-info restore-user">Khôi phục tài khoản</a></td>
+                                        </tr>
+                                    </c:if>
+                                    <c:if test="${user.u_enable == 1}">
+                                        <tr>
+                                            <td><a class="btn btn-danger delete-user">Xóa khách hàng</a></td>
+                                            <td><a class="btn btn-info update-user">Chỉnh sửa thông tin</a></td>
+                                        </tr>
+                                    </c:if>
                                 </table>
                             </div>
                             <div class="col-lg-8" style="width: 72%">
-                                <div class="table-responsive table mt-2" role="grid" style="max-height: 45vh;">
                                     <div class="card-body" style="padding-top: 0;">
                                         <c:if test="${not empty ticket}">
-                                            <div class="table-responsive table mt-2" role="grid" style="max-height: 62vh;">
+                                            <div class="table-responsive table mt-2" role="grid" style="min-height: 62vh;">
                                                 <table class="table my-0">
                                                     <thead>
                                                     <tr>
                                                         <th class="text-center">#</th>
                                                         <th class="text-center">Tên huấn luyện viên</th>
-                                                        <th class="text-center">Loại hình</th> <!-- Cá nhân, theo lớp -->
                                                         <th class="text-center">Giá thuê</th>
                                                         <th class="text-center">Thời hạn</th>
                                                         <th class="text-center">Tình trạng thanh toán</th> <!-- Đã thanh toán, chưa thanh toán -->
@@ -127,26 +146,31 @@
                                                             <td class="text-center">
                                                                     ${ticket.create_date}
                                                             </td>
-                                                            <td>Xem chi tiết</td>
                                                         </tr>
                                                     </c:forEach>
                                                     </tbody>
                                                 </table>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 align-self-center">
+                                                    <p>Tổng số bản ghi: <span>${count}</span></p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                                        <ul class="pagination">
+                                                            <c:forEach var="pageIndex" begin="1" end="${totalPages}" varStatus="status">
+                                                                <c:set var="isActive" value="${pageIndex == pagination}" /> <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không -->
+                                                                <c:choose> <c:when test="${isActive}">
+                                                                    <li class="page-item active"><a class="page-link" href="<c:url value='/admin/customer/detail/${user.u_id}/trainer-log/page=${pageIndex}'/>">${pageIndex}</a></li> </c:when> <c:otherwise>
+                                                                    <li class="page-item"><a class="page-link" href="<c:url value='/admin/customer/detail/${user.u_id}/trainer-log/page=${pageIndex}'/>">${pageIndex}</a></li> </c:otherwise> </c:choose> </c:forEach> </ul> </nav>
+
+                                                </div>
                                             </div>
                                         </c:if>
                                         <c:if test="${empty ticket}">
                                             <h3 style="text-align: center; margin-top: 20px">Bạn chưa thuê huấn luyện viên nào</h3>
                                         </c:if>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 align-self-center">
-                                        <p>Tổng số bản ghi: <span>${count}</span></p>
-                                    </div>
-                                    <div class="col-md-6">
-
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -159,8 +183,18 @@
 </body>
 <script>
     $(document).ready(function () {
+
+        const Toast = Swal.mixin({
+            toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+
         var list_order = $("#list-order");
         var user = $("#user");
+
         user.on('click', '.delete-user', function () {
             Swal.fire({
                 title: 'Bạn chắc chắn xóa khách hàng này?',
@@ -170,45 +204,56 @@
                 cancelButtonText: 'Không!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $.ajax({
-                        type: "GET",
-                        url: '/admin/user-management/delete/'+${user.u_id},
-                        success: function (respone) {
-                            Swal.fire(respone,'', 'error');
-                            window.location.href = "http://localhost:8080/admin/trainer";
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) {
-                            Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
-                        }
-                    });
-                }else{
-                    Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
-                }
-            })
+                $.ajax({
+                    type: "GET",
+                    url: '/admin/employee-management/delete/'+${user.u_id},
+                    success: function (respone) {
+                        Toast.fire({icon: 'success', title: 'Tài khoản đã được xóa'});
+                        setTimeout(function() {
+                            window.location.href = "http://localhost:8080/admin/customer/page=1-status=1";
+                        }, 3000);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                    }
+                });
+            }else{
+                Toast.fire({icon: 'info', title: 'Dừng xóa khách hàng này!'})
+            }
+        })
         });
 
         user.on('click', '.update-user', function () {
             window.location.href = "http://localhost:8080/admin/profile-customer/"+${user.u_id};
         });
-        // list_order.on('click', '.user_view', function () {
-        //     var ids = $(this).parent().siblings('.user_id').text();
-        //
-        //     $.ajax({
-        //         url: 'http://localhost:8080/admin/order-management/'+ids,
-        //         method: 'GET',
-        //         dataType : 'json',
-        //         success: function(response) {
-        //             // Xử lý dữ liệu trả về và hiển thị kết quả tìm kiếm
-        //             Swal.fire({
-        //                 text: 'Hãy nhập tối thiểu /n5 ký tự vào ô input',
-        //                 icon: 'error'
-        //             })
-        //         },
-        //         error: function(xhr, status, error) {
-        //             console.log(error);
-        //         }
-        //     });
-        // });
+
+        user.on('click', '.restore-user', function () {
+            Swal.fire({
+                title: 'Bạn muốn khôi phục tài khoản này?',
+                icon: 'question',
+                confirmButtonText: 'Đúng vậy',
+                showCancelButton: true,
+                cancelButtonText: 'Không!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                $.ajax({
+                    type: "GET",
+                    url: 'http://localhost:8080/admin/employee-management/restore/'+${user.u_id},
+                    success: function (respone) {
+                        Toast.fire({icon: 'success', title: 'Tài khoản đã được khôi phục'});
+                        setTimeout(function() {
+                            window.location.href = "http://localhost:8080/admin/customer/page=1-status=1";
+                        }, 3000);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                    }
+                });
+            }else{
+                Toast.fire({icon: 'info', title: 'Dừng khôi phục tài khoản khách hàng này này!'})
+            }
+        })
+        });
     })
 </script>
 </html>

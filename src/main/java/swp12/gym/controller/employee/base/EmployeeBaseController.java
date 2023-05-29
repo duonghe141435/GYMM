@@ -99,15 +99,30 @@ public class EmployeeBaseController {
     }
 
 
-
-
-    @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityAdmin(Model model, Authentication authentication) {
-
+    @RequestMapping(value = "/activity-log/page={pagination}",method = RequestMethod.GET)
+    public String goActivityAdmin(Model model, Authentication authentication, @PathVariable String pagination) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id);
-        model.addAttribute("logUser",logUsers);
-        return "employee/activity_log";
+
+        int pagination_value = Integer.parseInt(pagination);
+        int totalPages = 1;
+
+        int count_row = logUserService.getNumberLoguOfAnUser(id);;
+        if(count_row != 0){
+            totalPages = (int) Math.ceil((double) count_row / 8);
+        }
+
+        if(pagination_value > totalPages){
+            return "base/404";
+        }else if(pagination_value < 1){
+            return "base/404";
+        }else {
+            List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id, pagination_value);
+            model.addAttribute("logUser", logUsers);
+            model.addAttribute("count", count_row);
+            model.addAttribute("totalPages", totalPages);
+            model.addAttribute("pagination", pagination_value);
+            return "employee/activity_log";
+        }
     }
 
     @RequestMapping(value = "/product-order-log",method = RequestMethod.GET)
@@ -145,7 +160,7 @@ public class EmployeeBaseController {
     public String productPage(Model model) {
         List<ProductDto> productDtos = productService.findAll();
         model.addAttribute("productDtos", productDtos);
-        List<UserDto> customers = userService.findAllCustomer();
+        List<UserDto> customers = userService.findAllCustomerEmployee();
         //${customers.u_id} là user_ID
         List<User> trainers = userService.findAllTrainer();
         //${trainers.u_enable} là user_ID
@@ -217,7 +232,6 @@ public class EmployeeBaseController {
             List<ClassDto> ticket_class = classService.findAllClassOfAnTicketClass(ticket_id);
             System.out.println("ticket_class: " + ticket_class);
             return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
-//            return new ResponseEntity<List<ClassDto>>(ticket_class, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<List<ClassDto>>(HttpStatus.BAD_REQUEST);
         }

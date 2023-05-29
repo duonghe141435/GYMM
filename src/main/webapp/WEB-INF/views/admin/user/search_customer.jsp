@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Danh sách nhân viên</title>
+    <title>Danh sách huấn luyện viên</title>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
 </head>
 <body id="page-top">
@@ -13,29 +13,13 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:80%">Danh sách nhân viên</p>
-                        <a href="<c:url value='/admin/employee/new-employee'/> " class="btn btn-primary" style="font-weight: 700;">Thêm mới nhân viên</a>
+                        <p class="text-primary m-0 fw-bold" style="width:90%">Danh sách huấn luyện viên</p>
+                        <a href="<c:url value='/admin/customer/new-customer'/> " class="btn btn-primary" style="font-weight: 700;">Thêm mới huấn luyện viên</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <div>
-                                    <label class="form-label">Trạng thái&nbsp;
-                                        <select id="employee-status" class="d-inline-block form-select form-select-sm">
-                                            <c:if test="${status == 0}">
-                                                <option value="-1">Bị xóa</option>
-                                                <option value="1">Đang hoạt động</option>
-                                            </c:if>
-                                            <c:if test="${status == -1}">
-                                                <option value="-1" selected>Bị xóa</option>
-                                                <option value="1">Đang hoạt động</option>
-                                            </c:if>
-                                            <c:if test="${status == 1}">
-                                                <option value="-1">Bị xóa</option>
-                                                <option value="1" selected>Đang hoạt động</option>
-                                            </c:if>
-                                        </select>&nbsp;</label>
-                                </div>
+
                             </div>
                             <div class="col-md-6 text-nowrap">
                                 <div class="text-md-end w-25 float-end">
@@ -50,6 +34,7 @@
                             <table class="table my-0" id="list-employee">
                                 <thead>
                                 <tr>
+                                    <th class="text-center">#</th>
                                     <th>Email</th>
                                     <th>Tên nhân viên</th>
                                     <th class="text-center">SĐT</th>
@@ -61,6 +46,7 @@
                                 <c:if test="${not empty users}">
                                     <c:forEach items="${users}" var="users">
                                         <tr>
+                                            <td class="text-center"><count></count></td>
                                             <td class="user_id" aria-readonly="true" readonly="true" hidden>${users.u_id}</td>
                                             <td class="d-flex align-items-center" style="border: none;">
                                                 <div class="img" style="background-image: url('<c:url value="${users.u_img}"/> ');"></div>
@@ -71,8 +57,11 @@
                                             </td>
                                             <td>${users.u_full_name}</td>
                                             <td class="text-center">${users.u_phone_number}</td>
+                                            <c:if test="${users.u_enable == 0}">
+                                                <td class="status text-center"><span class="waiting">Chưa kích hoạt</span></td>
+                                            </c:if>
                                             <c:if test="${users.u_enable == -1}">
-                                                <td class="status text-center"><span class="danger">Bị xóa</span></td>
+                                                <td class="status text-center"><span class="danger">Khóa</span></td>
                                             </c:if>
                                             <c:if test="${users.u_enable == 1}">
                                                 <td class="status text-center"><span class="active">Hoạt động</span></td>
@@ -94,15 +83,15 @@
                             <div class="col-md-6">
                                 <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                     <ul class="pagination">
-                                        <c:forEach var="pageIndex" begin="1" end="${totalPages}">
+                                        <c:forEach var="pageIndex" begin="1" end="${totalPages}" varStatus="status">
                                             <c:set var="isActive" value="${pageIndex == pagination}" />
                                             <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không -->
                                             <c:choose>
                                                 <c:when test="${isActive}">
-                                                    <li class="page-item active"><a class="page-link" href="<c:url value="/admin/employee/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="#">${pageIndex}</a></li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/employee/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">${pageIndex}</a></li>
                                                 </c:otherwise>
                                             </c:choose>
 
@@ -124,17 +113,13 @@
     $(document).ready(function () {
         var list_user = $("#list-employee");
 
-        var employee_status = $("#employee-status");
-        employee_status.on("change", function () {
-            var data = $(this).val();
-            window.location.href = 'http://localhost:8080/admin/employee/page=1-status='+data;
-        });
-
         list_user.on('click', '.employee_view', function () {
             var currentUrl = window.location.href;
             var ids = $(this).parent().siblings('.user_id').text();
-            window.location.href = 'http://localhost:8080/admin/employee/detail/'+ids;
+            window.location.href = 'http://localhost:8080/admin/customer/detail/'+ids;
         });
+
+
 
         var btn_search = $("#btn-search-user");
         var input_search = $("#input-search");
@@ -150,7 +135,7 @@
                     icon: 'error'
                 })
             }else if(input.length >= 5){
-                window.location.href = "http://localhost:8080/admin/employee/search/"+input;
+                window.location.href = "http://localhost:8080/admin/customer/search/"+input;
             } else {
                 Swal.fire({
                     title: 'Oops...',

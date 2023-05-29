@@ -120,4 +120,87 @@ public class ProductDtoDao {
         });
         return number;
     }
+
+    public int getNumberProductInSystemAdmin(int status_num) {
+        sql = "SELECT COUNT(*) FROM product p join unit u\n" +
+                "                        on p.unit_id = u.unit_id\n" +
+                "                               join kind k\n" +
+                "                         on p.kind_id = k.kind_id\n" +
+                "                                join price p2\n" +
+                "                        on p.product_id = p2.product_id and p2.status = 1 and p.status = ?";
+
+        return jdbcTemplate.queryForObject(sql, Integer.class, status_num);
+    }
+
+    public List<ProductDto> findListProduct(int pagination_value, int status_num) {
+        pagination_value = pagination_value* 8 - 8;
+        sql = "SELECT p.product_id as p_id,\n" +
+                "                p.name as p_name,\n" +
+                "                p.image as p_img,\n" +
+                "                p2.price_id as p_price_id,\n" +
+                "                p2.price_sale as p_price,\n" +
+                "                p2.price_oprice as p_Oprice,\n" +
+                "                p.added_date as p_create,\n" +
+                "                p.quantity as p_quantity,\n" +
+                "                u.unit_id as p_unit,\n" +
+                "                u.name as p_unit_name,\n" +
+                "                p.description as p_description,\n" +
+                "                p.status as p_status,\n" +
+                "                k.kind_id as p_kind,\n" +
+                "                k.name as p_kind_name\n" +
+                "                FROM product p join unit u\n" +
+                "                        on p.unit_id = u.unit_id\n" +
+                "                               join kind k\n" +
+                "                         on p.kind_id = k.kind_id\n" +
+                "                                join price p2\n" +
+                "                        on p.product_id = p2.product_id and p2.status = 1 and p.status = ? LIMIT ?,8";
+
+        return jdbcTemplate.query(sql,new ProductDtoMapper(), status_num, pagination_value);
+    }
+
+    public List<ProductDto> searchProductAdmin(String query) {
+        try {
+            sql = "SELECT p.product_id as p_id,\n" +
+                    "                p.name as p_name,\n" +
+                    "                p.image as p_img,\n" +
+                    "                p2.price_id as p_price_id,\n" +
+                    "                p2.price_sale as p_price,\n" +
+                    "                p2.price_Oprice as p_Oprice,\n" +
+                    "                p.added_date as p_create,\n" +
+                    "                p.quantity as p_quantity,\n" +
+                    "                u.unit_id as p_unit,\n" +
+                    "                u.name as p_unit_name,\n" +
+                    "                p.description as p_description,\n" +
+                    "                p.status as p_status,\n" +
+                    "                k.kind_id as p_kind,\n" +
+                    "                k.name as p_kind_name\n" +
+                    "                FROM product p join unit u\n" +
+                    "                        on p.unit_id = u.unit_id\n" +
+                    "                               join kind k\n" +
+                    "                         on p.kind_id = k.kind_id\n" +
+                    "                                join price p2\n" +
+                    "                        on p.product_id = p2.product_id and p2.status = 1 WHERE p.name LIKE '%"+query+"%';";
+            return jdbcTemplate.query(sql, new ProductDtoMapper());
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void deleteProductForAdmin(String id) {
+        try{
+            sql = "UPDATE product SET status = 0 WHERE product_id = ?";
+            jdbcTemplate.update(sql,id);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void restoreProductForAdmin(String id) {
+        try{
+            sql = "UPDATE product SET status = 1 WHERE product_id = ?";
+            jdbcTemplate.update(sql,id);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

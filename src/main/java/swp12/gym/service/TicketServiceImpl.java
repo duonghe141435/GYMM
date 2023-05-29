@@ -3,12 +3,9 @@ package swp12.gym.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import swp12.gym.dao.TicketDao;
-import swp12.gym.dao.TicketUserDao;
 import swp12.gym.dto.TicketDto;
 import swp12.gym.dto.TicketTrainerDto;
 import swp12.gym.model.entity.Ticket;
-import swp12.gym.model.entity.TicketUser;
-import swp12.gym.model.entity.UserClass;
 
 import java.util.List;
 import java.util.Map;
@@ -19,19 +16,9 @@ public class TicketServiceImpl implements TicketService{
     @Autowired
     private TicketDao ticketDao;
 
-    public List<Ticket> findAllGymTicket() {
-        return ticketDao.findAllGymTickets();
-    }
-
     public List<Ticket> findAll() {
         return ticketDao.findAllTickets();
     }
-
-    public List<TicketDto> findAllOfAdmin() {
-        return ticketDao.findAllOfAdmin();
-    }
-
-    public List<Ticket> findAllTicketDoor() { return ticketDao.findAllTicketDoor(); }
 
     public List<TicketTrainerDto> findAllTicketTrainer() { return ticketDao.findAllTicketTrainer(); }
 
@@ -39,6 +26,9 @@ public class TicketServiceImpl implements TicketService{
         return ticketDao.findAllTicketClassForCustomer();
     }
 
+    public List<TicketDto> findAllOfAdmin(int pagination_value, int type) {
+        return ticketDao.findAllOfAdmin(pagination_value, type);
+    }
 
 
     public Boolean checkClassExist(int userID, int class_id) {
@@ -66,11 +56,6 @@ public class TicketServiceImpl implements TicketService{
         ticketDao.createTicketClass(ids_class,name,id_trainer, ids, _id_time, state, start_date, end_date, _max_member, _price);
     }
 
-
-    public int getNumberTicketTrainerInSystem() {
-        return ticketDao.getNumberTicketTrainerInSystem();
-    }
-
     public int getNumberTicketInSystem() {
         return ticketDao.getNumberTicketInSystem();
     }
@@ -79,8 +64,12 @@ public class TicketServiceImpl implements TicketService{
         ticketDao.deleteAnTicket(id);
     }
 
-    public List<Ticket> findAddTicketOfAnCustomer(int ticket_type_id, int id_customer) {
-        return ticketDao.findAddTicketOfAnCustomer(ticket_type_id, id_customer);
+    public List<Ticket> findAddTicketOfAnCustomer(int ticketTypeId, int id_customer, int pagination) {
+        return ticketDao.findAddTicketOfAnCustomer(ticketTypeId, id_customer,pagination);
+    }
+
+    public int getNumberTicketInSystemPage(int status_num) {
+        return ticketDao.getNumberTicketInSystem(status_num);
     }
 
     public List<Map<Integer, Integer>> getDataOfAnTicket(int id) {
@@ -101,6 +90,10 @@ public class TicketServiceImpl implements TicketService{
 
     public void updateStatusTicket(String ticket_id) {
         ticketDao.updateStatusTicket(ticket_id);
+    }
+
+    public int getNumberTicketOfAnCustomer(int i, int customer_id) {
+        return ticketDao.getNumberTicketOfAnCustomer(i, customer_id);
     }
 
 

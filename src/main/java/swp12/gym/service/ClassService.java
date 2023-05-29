@@ -37,7 +37,9 @@ public interface ClassService {
 
     List<ClassDto> findAllClassesForTheDayOfAnTrainer(String trainer_email);
 
-    void updateStatusClassForStartDate(String dateNowToString);
+    void updateStatusClassForStartDate();
 
-    void updateStatusClassForEndDate(String dateNowToString);
+    void updateStatusClassForEndDate();
+
+    int getNumberClassOfAnCustomer(int customer_id);
 }

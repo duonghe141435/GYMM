@@ -55,19 +55,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <%--<div class="mb-4">--%>
-                                <%--<div class="card shadow border-start-primary py-2">--%>
-                                    <%--<div class="card-body">--%>
-                                        <%--<div class="row align-items-center no-gutters">--%>
-                                            <%--<div class="col me-2">--%>
-                                                <%--<div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Doanh thu cả năm</span></div>--%>
-                                                <%--<div class="text-dark fw-bold h5 mb-0"><span class="class-price">${total_year}</span></div>--%>
-                                            <%--</div>--%>
-                                            <%--<div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
                             <div class="col-10 table-responsive table mt-2" role="grid" style="max-height: 55vh;">
                                 <table class="table my-0" id="dataTable">
                                     <thead>
@@ -240,7 +227,7 @@
                         var rows = "Tháng này không phát sinh mua bán";
                         table.append(rows);
                     }else{
-                        if(data === "0"){
+                        if(selectedValue === "day"){
                             var head = " <thead>\n" +
                                 "<tr><th class=\"text-center\">Ngày</th>\n" +
                                 "<th class=\"text-center\">Tổng số tiền</th>\n" +
@@ -256,7 +243,7 @@
                             table.append(rows);
                         }else {
                             var head = " <thead>\n" +
-                                "<tr><th class=\"text-center\">Ngày</th>\n" +
+                                "<tr><th class=\"text-center\">Loại vé</th>\n" +
                                 "<th class=\"text-center\">Tổng số tiền</th>\n" +
                                 "</tr></thead>";
                             table.append(head);

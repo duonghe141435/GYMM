@@ -9,9 +9,9 @@ import java.util.List;
 @Service
 public interface LogUserService {
 
-    public List<LogUserDto> getAllLogOfUser();
-
-    public List<LogUser> getAnLogOfAnUser(int u_id);
+    public List<LogUser> getAnLogOfAnUser(int u_id, int page);
 
     void saveLog(int u_id, int type, int time, String content);
+
+    int getNumberLoguOfAnUser(int id);
 }

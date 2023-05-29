@@ -32,12 +32,37 @@ public class AdminProductController {
     @Autowired
     private ProductTypeService productTypeService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String goDashbroashProdcut(Model model){
-        List<ProductDto> productDtos = productService.findAll();
+    @RequestMapping(value = "/page={pagination}-status={status}",method = RequestMethod.GET)
+    public String goListProdcut(@PathVariable String pagination,
+                                      @PathVariable String status, Model model){
 
-        model.addAttribute("productDtos", productDtos);
-        return "admin/product/list_product";
+        try {
+            //kiểm tra có phải là số int ko?
+            int status_num = Integer.parseInt(status);
+            int pagination_value = Integer.parseInt(pagination);
+            int totalPages = 1;
+            int count_row = productService.getNumberProductInSystemAdmin(status_num);
+            if(count_row != 0){
+                totalPages = (int) Math.ceil((double) count_row / 8);
+            }
+            if(pagination_value > totalPages){
+                return "base/404";
+            }else if(pagination_value < 1){
+                return "base/404";
+            }else {
+                List<ProductDto> productDtos = productService.findListProduct(pagination_value, status_num);
+                model.addAttribute("count", count_row);
+                model.addAttribute("status", status);
+                model.addAttribute("totalPages",totalPages);
+                model.addAttribute("pagination",pagination_value);
+                model.addAttribute("productDtos", productDtos);
+                return "admin/product/list_product";
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return "base/404";
+        }
+
     }
 
     @RequestMapping(value = "/new-product",method = RequestMethod.GET)
@@ -63,21 +88,15 @@ public class AdminProductController {
         productService.createProduct(productDto);
         priceService.createAnPrice(productDto.getP_price(),productDto.getP_Oprice(),p_id);
         FileUtil.doSaveImgToService(file,s,"products");
-        return "redirect:/admin/product";
+        return "redirect:/admin/product/page=1-status=1";
     }
 
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public String goViewUser(@PathVariable int id, Model model){
-        ProductDto productDto = productService.findAnProduct(id);
-        List<Unit> units = unitService.findAll();
-        List<ProductType> productTypes = productTypeService.findAll();
-        List<Price> prices = priceService.getPriceAnProduct(id);
-
-        model.addAttribute("productType", productTypes);
-        model.addAttribute("units", units);
-        model.addAttribute("product",productDto);
-        model.addAttribute("prices", prices);
-        return "admin/product/update_product";
+    @RequestMapping(value = "/search/{query}", method = RequestMethod.GET)
+    public String goUpdateUser(@PathVariable String query,
+                               Model model) {
+        List<ProductDto> results = productService.searchProductAdmin(query);
+        model.addAttribute("productDtos", results);
+        return "admin/product/search_product";
     }
 
     @RequestMapping(value = "/detail-product/{id}",method = RequestMethod.GET)

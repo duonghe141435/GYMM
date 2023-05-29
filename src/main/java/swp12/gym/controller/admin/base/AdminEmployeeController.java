@@ -30,7 +30,8 @@ public class AdminEmployeeController {
 
     //Danh sách nhân viên
     @RequestMapping(value = "/employee/page={pagination}-status={status}", method = RequestMethod.GET)
-    public String goListEmployee(@PathVariable String pagination,@PathVariable String status, Model model){
+    public String goListEmployee(@PathVariable String pagination,
+                                 @PathVariable String status, Model model){
         try {
             //kiểm tra có phải là số int ko?
             int status_num = Integer.parseInt(status);
@@ -51,7 +52,6 @@ public class AdminEmployeeController {
                 model.addAttribute("status", status);
                 model.addAttribute("totalPages",totalPages);
                 model.addAttribute("pagination",pagination_value);
-                model.addAttribute("status",status);
 
                 return "admin/employee/list_employee";
             }
@@ -100,7 +100,7 @@ public class AdminEmployeeController {
             return "redirect:/admin/employee/new-employee";
         }else{
             String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
-            int id_u = userService.getNumberUserInSystem() + 1;
+            int id_u = userService.getMaxIdUserInSystem() + 1;
             user.setU_id(id_u);
             user.setU_img(u_img);
             user.setU_password(BCrypt.hashpw(user.getU_password(), BCrypt.gensalt(10)));

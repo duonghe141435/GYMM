@@ -13,8 +13,8 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của ${title}</p>
-                        <a href="<c:url value='/admin/trainer/page=1-status=1'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
+                        <p class="text-primary m-0 fw-bold" style="width:80%">Thông tin của ${user.u_full_name}</p>
+                        <a href="<c:url value='/admin/trainer/page=1-status=${user.u_enable}'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -38,20 +38,24 @@
                                     </tr>
                                     <tr>
                                         <td>Trạng thái tài khoản</td>
-                                        <c:if test="${user.u_enable == 0}">
-                                            <td class="status text-center"><span class="warning">Chưa kích hoạt</span></td>
-                                        </c:if>
                                         <c:if test="${user.u_enable == -1}">
-                                            <td class="status text-center"><span class="danger">Khóa</span></td>
+                                            <td class="status text-center"><span class="danger">Bị xóa</span></td>
                                         </c:if>
                                         <c:if test="${user.u_enable == 1}">
                                             <td class="status text-center"><span class="active">Hoạt động</span></td>
                                         </c:if>
                                     </tr>
-                                    <tr>
-                                        <td><a class="btn btn-danger delete-user">Xóa nhân viên</a></td>
-                                        <td><a class="btn btn-info update-user">Chỉnh sửa thông tin</a></td>
-                                    </tr>
+                                    <c:if test="${user.u_enable == -1}">
+                                        <tr>
+                                            <td><a class="btn btn-info restore-user">Khôi phục tài khoản</a></td>
+                                        </tr>
+                                    </c:if>
+                                    <c:if test="${user.u_enable == 1}">
+                                        <tr>
+                                            <td><a class="btn btn-danger delete-user">Xóa huấn luyện viên</a></td>
+                                            <td><a class="btn btn-info update-user">Chỉnh sửa thông tin</a></td>
+                                        </tr>
+                                    </c:if>
                                 </table>
                             </div>
                             <div class="col-lg-8">
@@ -104,6 +108,14 @@
     $(document).ready(function () {
         var list_class = $("#list-class");
 
+        const Toast = Swal.mixin({
+            toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+        })
+
         list_class.on('click', '.class_view', function () {
             var ids = $(this).parent().siblings('.class_id').text();
 
@@ -125,6 +137,34 @@
         });
 
         var user = $("#user");
+
+        user.on('click', '.restore-user', function () {
+            Swal.fire({
+                title: 'Bạn muốn khôi phục tài khoản này?',
+                icon: 'question',
+                confirmButtonText: 'Đúng vậy',
+                showCancelButton: true,
+                cancelButtonText: 'Không!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                $.ajax({
+                    type: "GET",
+                    url: 'http://localhost:8080/admin/employee-management/restore/'+${user.u_id},
+                    success: function (respone) {
+                        Toast.fire({icon: 'success', title: 'Tài khoản này đã được khôi phục'});
+                        setTimeout(function() {
+                            window.location.href = "http://localhost:8080/admin/trainer/page=1-status=1";
+                        }, 3000);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                    }
+                });
+            }else{
+                Toast.fire({icon: 'info', title: 'Dừng khôi phục tài khoản huấn luyện viên này!'})
+            }
+        })
+        });
         user.on('click', '.delete-user', function () {
             Swal.fire({
                 title: 'Bạn chắc chắn xóa huấn luyện viên này?',
@@ -136,17 +176,19 @@
                 if (result.isConfirmed) {
                 $.ajax({
                     type: "GET",
-                    url: '/admin/user-management/delete/'+${user.u_id},
+                    url: '/admin/employee-management/delete/'+${user.u_id},
                     success: function (respone) {
-                        Swal.fire(respone,'', 'error');
-                        window.location.href = "http://localhost:8080/admin/trainer";
+                        Toast.fire({icon: 'success', title: 'Tài khoản này đã bị xóa'});
+                        setTimeout(function() {
+                            window.location.href = "http://localhost:8080/admin/trainer/page=1-status=1";
+                        }, 3000);
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
                     }
                 });
             }else{
-                Toast.fire({icon: 'info', title: 'Dừng xóa nhân viên này!'})
+                Toast.fire({icon: 'info', title: 'Dừng xóa huấn luyện viên này!'})
             }
         })
         });

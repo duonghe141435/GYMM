@@ -13,7 +13,7 @@
             <div class="container-fluid" style="padding-top: 100px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
-                        <p class="text-primary m-0 fw-bold" style="width:90%">Danh sách huấn luyện viên</p>
+                        <p class="text-primary m-0 fw-bold" style="width:80%">Danh sách huấn luyện viên</p>
                         <a href="<c:url value='/admin/trainer/new-trainer'/> " class="btn btn-primary" style="font-weight: 700;">Thêm mới huấn luyện viên</a>
                     </div>
                     <div class="card-body">
@@ -23,19 +23,16 @@
                                     <label class="form-label">Trạng thái&nbsp;
                                         <select id="employee-status" class="d-inline-block form-select form-select-sm">
                                             <c:if test="${status == 0}">
-                                                <option value="-1">Bị khóa</option>
+                                                <option value="-1">Bị xóa</option>
                                                 <option value="1">Đang hoạt động</option>
-                                                <option value="0" selected>Chưa kích hoạt</option>
                                             </c:if>
                                             <c:if test="${status == -1}">
-                                                <option value="-1" selected>Bị khóa</option>
+                                                <option value="-1" selected>Bị xóa</option>
                                                 <option value="1">Đang hoạt động</option>
-                                                <option value="0">Chưa kích hoạt</option>
                                             </c:if>
                                             <c:if test="${status == 1}">
-                                                <option value="-1">Bị khóa</option>
+                                                <option value="-1">Bị xóa</option>
                                                 <option value="1" selected>Đang hoạt động</option>
-                                                <option value="0">Chưa kích hoạt</option>
                                             </c:if>
                                         </select>&nbsp;</label>
                                 </div>
@@ -53,7 +50,6 @@
                             <table class="table my-0" id="list-employee">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">#</th>
                                     <th>Email</th>
                                     <th>Tên nhân viên</th>
                                     <th class="text-center">SĐT</th>
@@ -65,7 +61,6 @@
                                 <c:if test="${not empty users}">
                                     <c:forEach items="${users}" var="users">
                                         <tr>
-                                            <td class="text-center"><count></count></td>
                                             <td class="user_id" aria-readonly="true" readonly="true" hidden>${users.u_id}</td>
                                             <td class="d-flex align-items-center" style="border: none;">
                                                 <div class="img" style="background-image: url('<c:url value="${users.u_img}"/> ');"></div>
@@ -76,11 +71,8 @@
                                             </td>
                                             <td>${users.u_full_name}</td>
                                             <td class="text-center">${users.u_phone_number}</td>
-                                            <c:if test="${users.u_enable == 0}">
-                                                <td class="status text-center"><span class="waiting">Chưa kích hoạt</span></td>
-                                            </c:if>
                                             <c:if test="${users.u_enable == -1}">
-                                                <td class="status text-center"><span class="danger">Khóa</span></td>
+                                                <td class="status text-center"><span class="danger">Bị xóa</span></td>
                                             </c:if>
                                             <c:if test="${users.u_enable == 1}">
                                                 <td class="status text-center"><span class="active">Hoạt động</span></td>
@@ -102,15 +94,15 @@
                             <div class="col-md-6">
                                 <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                     <ul class="pagination">
-                                        <c:forEach var="pageIndex" begin="1" end="${totalPages}" varStatus="status">
+                                        <c:forEach var="pageIndex" begin="1" end="${totalPages}">
                                             <c:set var="isActive" value="${pageIndex == pagination}" />
                                             <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không -->
                                             <c:choose>
                                                 <c:when test="${isActive}">
-                                                    <li class="page-item active"><a class="page-link" href="#">${pageIndex}</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="<c:url value="/admin/trainer/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <li class="page-item"><a class="page-link" href="#">${pageIndex}</a></li>
+                                                    <li class="page-item"><a class="page-link" href="<c:url value="/admin/trainer/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
                                                 </c:otherwise>
                                             </c:choose>
 
@@ -143,7 +135,6 @@
             var ids = $(this).parent().siblings('.user_id').text();
             window.location.href = 'http://localhost:8080/admin/trainer/detail/'+ids;
         });
-
 
 
         var btn_search = $("#btn-search-user");

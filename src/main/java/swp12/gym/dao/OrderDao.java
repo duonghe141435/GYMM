@@ -122,4 +122,13 @@ public class OrderDao {
             return null;
         }
     }
+
+    public int getNumberOrderOfAnCustomer(int customer_id) {
+        try{
+            sql = "SELECT COUNT(*) FROM `order` o WHERE o.customer = ?";
+            return jdbcTemplate.queryForObject(sql, Integer.class, customer_id);
+        }catch (Exception e){
+            return 0;
+        }
+    }
 }
