@@ -24,12 +24,10 @@ public class IndexController {
     private ClassService classService;
 
     @PostConstruct
-    public void Test() {
-        System.out.println("Kiểm tra ngày hiện tại");
-        System.out.println(dataUtil.getDateNowToString());
+    public void changeStatusClass() {
         //kiểm tra class có hôm này có lớp start vào ngày này hay không
-        classService.updateStatusClassForStartDate(dataUtil.getDateNowToString());
-        classService.updateStatusClassForEndDate(dataUtil.getDateNowToString());
+        classService.updateStatusClassForStartDate();
+        classService.updateStatusClassForEndDate();
     }
 
     //Home user

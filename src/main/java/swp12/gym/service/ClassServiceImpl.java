@@ -79,12 +79,12 @@ public class ClassServiceImpl implements ClassService{
         return classDao.findAllClassesForTheDayOfAnTrainer(trainer_email);
     }
 
-    public void updateStatusClassForStartDate(String dateNowToString) {
-        classDao.updateStatusClassForStartDate(dateNowToString);
+    public void updateStatusClassForStartDate() {
+        classDao.updateStatusClassForStartDate();
     }
 
-    public void updateStatusClassForEndDate(String dateNowToString) {
-        classDao.updateStatusClassForEndDate(dateNowToString);
+    public void updateStatusClassForEndDate() {
+        classDao.updateStatusClassForEndDate();
     }
 
     public int getNumberClassOfAnCustomer(int customer_id) {

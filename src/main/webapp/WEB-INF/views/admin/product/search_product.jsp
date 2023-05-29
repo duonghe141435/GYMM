@@ -22,22 +22,6 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <div>
-
-                                    <label class="form-label">Trạng thái&nbsp;
-                                        <select class="d-inline-block form-select form-select-sm" id="product-status" style="width: auto">
-                                            <c:if test="${status == 1}">
-                                                <option value="1" selected>Đang bán</option>
-                                                <option value="0">Ngừng bán/Hết Hàng</option>
-                                            </c:if>
-
-                                            <c:if test="${status == 0}">
-                                                <option value="1" >Đang bán</option>
-                                                <option value="0" selected>Ngừng bán/Hết Hàng</option>
-                                            </c:if>
-                                        </select>&nbsp;
-                                    </label>
-                                </div>
                             </div>
                             <div class="col-md-6 text-nowrap">
                                 <div class="text-md-end w-25 float-end">
@@ -97,30 +81,7 @@
                                 </c:if>
                                 </tbody>
                             </table>
-                        </div>      <div class="row">
-                        <div class="col-md-6 align-self-center">
-                            <p>Tổng số bản ghi: <span id="count-record">${count}</span></p>
                         </div>
-                        <div class="col-md-6">
-                            <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                <ul class="pagination">
-                                    <c:forEach var="pageIndex" begin="1" end="${totalPages}">
-                                        <c:set var="isActive" value="${pageIndex == pagination}" />
-                                        <!-- Kiểm tra xem chỉ mục có phải là chỉ mục được chọn hay không -->
-                                        <c:choose>
-                                            <c:when test="${isActive}">
-                                                <li class="page-item active"><a class="page-link" href="<c:url value="/admin/product/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <li class="page-item"><a class="page-link" href="<c:url value="/admin/product/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
-                                            </c:otherwise>
-                                        </c:choose>
-
-                                    </c:forEach>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width: 83%;text-align: left;margin-top: auto;margin-bottom: auto;">Thêm sản phẩm mới</p>
-                        <a href="<c:url value='/admin/product'/> " class="btn btn-primary" style="font-weight: 700;">Quay lại danh sách</a>
+                        <a href="<c:url value='/admin/product/page=1-status=1'/> " class="btn btn-primary" style="font-weight: 700;">Quay lại danh sách</a>
                     </div>
                     <div class="card-body"><c:url value="/admin/product/new-product/save?${_csrf.parameterName}=${_csrf.token}" var="saveProductUrl"/>
                         <form:form method="POST" modelAttribute="product" action="${saveProductUrl}" enctype="multipart/form-data" >

@@ -26,10 +26,30 @@
                                 <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
                                     <label class="form-label">Loại vé&nbsp;
                                         <select class="d-inline-block form-select form-select-sm" id="type-ticket">
-                                            <option value="1" selected="">Vé vào của</option>
-                                            <option value="2">Vé thuê huấn luyện viên</option>
-                                            <option value="3">Vé tham gia lớp học</option>
-                                            <option value="0">Bị xóa</option>
+                                            <c:if test="${type == 1}">
+                                                <option value="1" selected="">Vé vào của</option>
+                                                <option value="2">Vé thuê huấn luyện viên</option>
+                                                <option value="3">Vé tham gia lớp học</option>
+                                                <option value="0">Bị xóa</option>
+                                            </c:if>
+                                            <c:if test="${type == 2}">
+                                                <option value="1">Vé vào của</option>
+                                                <option value="2" selected>Vé thuê huấn luyện viên</option>
+                                                <option value="3">Vé tham gia lớp học</option>
+                                                <option value="0">Bị xóa</option>
+                                            </c:if>
+                                            <c:if test="${type == 3}">
+                                                <option value="1">Vé vào của</option>
+                                                <option value="2">Vé thuê huấn luyện viên</option>
+                                                <option value="3" selected>Vé tham gia lớp học</option>
+                                                <option value="0">Bị xóa</option>
+                                            </c:if>
+                                            <c:if test="${s}">
+                                                <option value="1" selected="">Vé vào của</option>
+                                                <option value="2">Vé thuê huấn luyện viên</option>
+                                                <option value="3">Vé tham gia lớp học</option>
+                                                <option value="0">Bị xóa</option>
+                                            </c:if>
                                         </select>&nbsp;
                                     </label>
                                 </div>
@@ -121,7 +141,6 @@
                                                     <li class="page-item"><a class="page-link" href="<c:url value="/admin/ticket/page=${pageIndex}-type=${type}" />">${pageIndex}</a></li>
                                                 </c:otherwise>
                                             </c:choose>
-
                                         </c:forEach>
                                     </ul>
                                 </nav>

@@ -35,7 +35,7 @@
                         <a class="dropdown-item" href="<c:url value="/admin/ticket/page=1-type=1"/>">Quản lý vé</a>
                         <a class="dropdown-item" href="<c:url value="/admin/class"/>">Quản lý lớp học</a>
                         <%--<a class="dropdown-item" href="<c:url value="/admin/dashboard/"/>">Quản lý thiết bị</a>--%>
-                        <a class="dropdown-item" href="<c:url value="/admin/product"/>">Quản lý sản phẩm</a>
+                        <a class="dropdown-item" href="<c:url value="/admin/product/page=1-status=1"/>">Quản lý sản phẩm</a>
                     </div>
                 </div>
             </li>

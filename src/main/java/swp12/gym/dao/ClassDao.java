@@ -402,19 +402,19 @@ public class ClassDao {
             }
     }
 
-    public void updateStatusClassForStartDate(String dateNowToString) {
+    public void updateStatusClassForStartDate() {
         try {
-            sql = "UPDATE class set state = 1 WHERE class_id IN (SELECT class_id FROM class WHERE create_date = ?)";
-            jdbcTemplate.update(sql, dateNowToString);
+            sql = "UPDATE class set state = 1 WHERE class_id IN (SELECT class_id FROM class WHERE start_date <= CURDATE() AND state = 0)";
+            jdbcTemplate.update(sql);
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public void updateStatusClassForEndDate(String dateNowToString) {
+    public void updateStatusClassForEndDate() {
         try {
-            sql = "UPDATE class set state = 1 WHERE class_id IN (SELECT class_id FROM class WHERE end_date = ?)";
-            jdbcTemplate.update(sql, dateNowToString);
+            sql = "UPDATE class set state = -1 WHERE class_id IN (SELECT class_id FROM class WHERE end_date <= CURDATE() AND state = 1)";
+            jdbcTemplate.update(sql);
         }catch (Exception e){
             e.printStackTrace();
         }

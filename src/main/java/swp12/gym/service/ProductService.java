@@ -21,4 +21,10 @@ public interface ProductService {
     List<ProductDto> searchProduct(String query);
 
     void updateQuantityProduct(List<OrderDetail> orderDetail);
+
+    int getNumberProductInSystemAdmin(int status_num);
+
+    List<ProductDto> findListProduct(int pagination_value, int status_num);
+
+    List<ProductDto> searchProductAdmin(String query);
 }

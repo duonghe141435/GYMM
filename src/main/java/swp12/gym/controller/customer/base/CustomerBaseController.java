@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
+import swp12.gym.common.DataUtil;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.*;
 import swp12.gym.model.entity.*;
 import swp12.gym.service.*;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -48,6 +50,15 @@ public class CustomerBaseController {
 
     @Autowired
     private CheckInService checkInService;
+    @Autowired
+    private DataUtil dataUtil;
+
+    @PostConstruct
+    public void changeStatusClass() {
+        //kiểm tra class có hôm này có lớp start vào ngày này hay không
+        classService.updateStatusClassForStartDate();
+        classService.updateStatusClassForEndDate();
+    }
 
 
     //Home user

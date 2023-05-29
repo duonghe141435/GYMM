@@ -57,7 +57,7 @@
                                     <h6 class="text-primary fw-bold m-0">Thông tin vé</h6>
                                 </div>
                                 <div class="card-body shadow">
-                                    <table class="table my-0">
+                                    <table class="table my-0" id="ticket-info">
                                         <tr>
                                             <td>
                                                 Tên vé:
@@ -155,7 +155,7 @@
                                             <td><span>${number_order}</span> người</td>
                                         </tr>
                                         <tr>
-                                            <td><a class="btn btn-info" id="delete-ticket">Hủy vé</a></td>
+                                            <td><a class="btn btn-danger delete-ticket">Hủy vé</a></td>
                                             <c:if test="${ticket.tt_id == 2}"> <td><a class="btn btn-info">Xem danh sách huấn luyện viên</a></td></c:if>
                                             <c:if test="${ticket.tt_id == 3}"> <td><a class="btn btn-info" data-bs-toggle="modal"
                                                                                       data-bs-target="#list-class">Xem danh sách lớp học</a></td></c:if>
@@ -208,7 +208,9 @@
                                             <td>${classDtos.total_attendees} / ${classDtos.max_member}</td>
                                             <td class="text-center">
                                                 <a class="class-view">
-                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Thôn tin chi tiết" onclick="viewDetailAnClass(${classDtos.class_id})"></i></a>
+                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-info"
+                                                       title="Thông tin chi tiết"
+                                                       onclick="viewDetailAnClass(${classDtos.class_id})"></i></a>
 
                                                 <a class="class-delete">
                                                     <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
@@ -264,6 +266,48 @@
 
 
     $(document).ready(function(){
+
+        const Toast = Swal.mixin({
+            toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
+            didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+    })
+
+        var ticket_info = $("#ticket-info");
+
+        <%--user.on('click', '.update-user', function () {--%>
+            <%--window.location.href = "http://localhost:8080/admin/profile-customer/"+${user.u_id};--%>
+        <%--});--%>
+
+        ticket_info.on('click', '.delete-ticket', function () {
+            Swal.fire({
+                title: 'Bạn chắc chắn hủy bán vé này này?',
+                icon: 'question',
+                confirmButtonText: 'Đúng vậy',
+                showCancelButton: true,
+                cancelButtonText: 'Không!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                $.ajax({
+                    type: "GET",
+                    url: '/admin/ticket-management/delete/${ticket.t_id}',
+                    success: function (respone) {
+                        Toast.fire({icon: 'success', title: 'Vé đã được hủy bán'});
+                        setTimeout(function() {
+                            window.location.href = "http://localhost:8080/admin/ticket/page=1-type=${ticket.tt_id}";
+                        }, 3000);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                    }
+                });
+            }else{
+                Toast.fire({icon: 'info', title: 'Dừng hủy vé này!'})
+            }
+        })
+        });
 
         var startOfMonth = moment().startOf('month');
         var daysFromStart = moment().diff(startOfMonth, 'days') + 1;

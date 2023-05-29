@@ -30,7 +30,8 @@ public class AdminEmployeeController {
 
     //Danh sách nhân viên
     @RequestMapping(value = "/employee/page={pagination}-status={status}", method = RequestMethod.GET)
-    public String goListEmployee(@PathVariable String pagination,@PathVariable String status, Model model){
+    public String goListEmployee(@PathVariable String pagination,
+                                 @PathVariable String status, Model model){
         try {
             //kiểm tra có phải là số int ko?
             int status_num = Integer.parseInt(status);

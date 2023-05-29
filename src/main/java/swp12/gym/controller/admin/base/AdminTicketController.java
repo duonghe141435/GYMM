@@ -53,12 +53,14 @@ public class AdminTicketController {
             }else if(pagination_value < 1){
                 return "base/404";
             }else {
+                List<User> trainer = userService.findAllTrainer();
                 List<TicketDto> tickets = ticketService.findAllOfAdmin(pagination_value, status_num);
                 model.addAttribute("tickets", tickets);
                 model.addAttribute("count", count_row);
                 model.addAttribute("type", type);
                 model.addAttribute("totalPages",totalPages);
                 model.addAttribute("pagination",pagination_value);
+                model.addAttribute("trainer", trainer);
 
                 return "admin/ticket/list_ticket";
             }

@@ -75,7 +75,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width:80%">Danh sách sản phẩm</p>
-                        <a href="<c:url value='/admin/product'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
+                        <a href="<c:url value='/admin/product/page=1-status=1'/> " class="btn btn-primary" style="font-weight: 700;">Quay trở lại danh sách</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -153,11 +153,11 @@
                                                     <td>${prices.pri_end_date}</td>
                                                     <c:if test="${prices.pri_status == true}">
                                                         <td class="status">
-                                                            <span class="active">Đang mở</span></td>
+                                                            <span class="active">Đang dùng</span></td>
                                                     </c:if>
                                                     <c:if test="${prices.pri_status == false}">
                                                         <td class="status">
-                                                            <span class="active">Đã đóng</span></td>
+                                                            <span class="waiting">Ngừng dùng</span></td>
                                                     </c:if>
                                                 </tr>
                                             </c:forEach>
