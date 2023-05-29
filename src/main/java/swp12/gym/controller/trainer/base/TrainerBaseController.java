@@ -45,6 +45,8 @@ public class TrainerBaseController {
     private TicketUserService ticketUserService;
     @Autowired
     private TimeService timeService;
+    @Autowired
+    private LogUserService logUserService;
 
 
 
@@ -180,9 +182,30 @@ public class TrainerBaseController {
         return "trainer/change_pass";
     }
 
-    @RequestMapping(value = "/activity-log",method = RequestMethod.GET)
-    public String goActivityOfTrainer() {
-        return "trainer/change_pass";
+    @RequestMapping(value = "/activity-log/page={pagination}",method = RequestMethod.GET)
+    public String goActivityOfTrainer(Model model, Authentication authentication, @PathVariable String pagination) {
+        int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
+
+        int pagination_value = Integer.parseInt(pagination);
+        int totalPages = 1;
+
+        int count_row = logUserService.getNumberLoguOfAnUser(id);;
+        if(count_row != 0){
+            totalPages = (int) Math.ceil((double) count_row / 8);
+        }
+
+        if(pagination_value > totalPages){
+            return "base/404";
+        }else if(pagination_value < 1){
+            return "base/404";
+        }else {
+            List<LogUser> logUsers = logUserService.getAnLogOfAnUser(id, pagination_value);
+            model.addAttribute("logUser", logUsers);
+            model.addAttribute("count", count_row);
+            model.addAttribute("totalPages", totalPages);
+            model.addAttribute("pagination", pagination_value);
+            return "employee/activity_log";
+        }
     }
 
     @RequestMapping(value = "/checkAttendance",method = RequestMethod.GET)

@@ -69,7 +69,7 @@ public class CustomerBaseController {
         return "customer/index_customer";
     }
 
-    @RequestMapping(value = "/show-list-personal",method = RequestMethod.GET)
+    @RequestMapping(value = "/list-personal",method = RequestMethod.GET)
     public String goListPersonal(Model model, HttpSession s) {
         List<Ticket> ticket = ticketService.findAll();
         List<TicketTrainerDto> allTicketTrainer = ticketService.findAllTicketTrainer();
@@ -79,7 +79,7 @@ public class CustomerBaseController {
         return "customer/list_personal";
     }
 
-    @RequestMapping(value = "/show-list-class",method = RequestMethod.GET)
+    @RequestMapping(value = "/list-class",method = RequestMethod.GET)
     public String goListClass(Model model, HttpSession s) {
         List<Ticket> ticket = ticketService.findAll();
         model.addAttribute("tickets", ticket);
@@ -88,7 +88,7 @@ public class CustomerBaseController {
         return "customer/list_class";
     }
 
-    @RequestMapping(value = "/show-list-trainer",method = RequestMethod.GET)
+    @RequestMapping(value = "/list-trainer",method = RequestMethod.GET)
     public String goListTrainer(Model model, HttpSession s) {
         List<User> trainers = userService.findAllTrainer();
         model.addAttribute("trainers",trainers);
@@ -173,7 +173,7 @@ public class CustomerBaseController {
         }
     }
 
-    @GetMapping("/book_pt")
+    @GetMapping("/book-pt")
     public String checkoutbookpt(Authentication authentication, Model model){
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         int userID = userDao.findIdByUsername(userDetails.getUsername());
@@ -199,7 +199,7 @@ public class CustomerBaseController {
         return "customer/book_pt";
     }
 
-    @RequestMapping(value = "/list_class_of_customer",method = RequestMethod.GET)
+    @RequestMapping(value = "/list-class-of-you",method = RequestMethod.GET)
     public String listClassOfCustomer(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
         List<ClassDto> classDtos = classService.findAllClassOfAnUserById(id);

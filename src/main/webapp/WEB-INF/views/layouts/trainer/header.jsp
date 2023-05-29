@@ -26,7 +26,7 @@
             <%--</li>--%>
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="<c:url value="/trainer/home" />">
-                    <span class="fas fa-home">&nbsp;&nbsp;Trang chủ</span>
+                    <i class="fas fa-home"></i><span>&nbsp;&nbsp;Trang chủ</span>
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
@@ -58,7 +58,7 @@
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="nav-link" href="<c:url value="/trainer/schedule"/>">
-                        <span class="fas fa-calendar-alt">&nbsp;&nbsp;Lịch dạy</span>
+                        <i class="fas fa-calendar-alt"></i><span>&nbsp;&nbsp;Lịch dạy</span>
                     </a>
                 </div>
             </li>
@@ -71,31 +71,31 @@
             </li>
         </ul>
         <ul class="navbar-nav flex-nowrap ms-auto">
-            <li class="nav-item dropdown no-arrow mx-1">
-                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"
-                                                           data-bs-toggle="dropdown" href="#"><span
-                        class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                        <h6 class="dropdown-header">Thông báo</h6><a class="dropdown-item d-flex align-items-center"
-                                                                         href="#">
-                        <div class="me-3">
-                            <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                        </div>
-                        <div><span class="small text-gray-500">December 12, 2019</span>
-                            <p>Bạn đã chấp nhận học viên</p>
-                        </div>
-                    </a><a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="me-3">
-                            <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i>
-                            </div>
-                        </div>
-                        <div><span class="small text-gray-500">December 2, 2019</span>
-                            <p>Bạn sắp hết thời hạn hợp đồng,xin gia hạn thêm</p>
-                        </div>
-                    </a><a class="dropdown-item text-center small text-gray-500" href="<c:url value="/trainer/notify"/>">Hiển thị tất cả thông báo</a>
-                    </div>
-                </div>
-            </li>
+            <%--<li class="nav-item dropdown no-arrow mx-1">--%>
+                <%--<div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false"--%>
+                                                           <%--data-bs-toggle="dropdown" href="#"><span--%>
+                        <%--class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>--%>
+                    <%--<div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">--%>
+                        <%--<h6 class="dropdown-header">Thông báo</h6><a class="dropdown-item d-flex align-items-center"--%>
+                                                                         <%--href="#">--%>
+                        <%--<div class="me-3">--%>
+                            <%--<div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>--%>
+                        <%--</div>--%>
+                        <%--<div><span class="small text-gray-500">December 12, 2019</span>--%>
+                            <%--<p>Bạn đã chấp nhận học viên</p>--%>
+                        <%--</div>--%>
+                    <%--</a><a class="dropdown-item d-flex align-items-center" href="#">--%>
+                        <%--<div class="me-3">--%>
+                            <%--<div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div><span class="small text-gray-500">December 2, 2019</span>--%>
+                            <%--<p>Bạn sắp hết thời hạn hợp đồng,xin gia hạn thêm</p>--%>
+                        <%--</div>--%>
+                    <%--</a><a class="dropdown-item text-center small text-gray-500" href="<c:url value="/trainer/notify"/>">Hiển thị tất cả thông báo</a>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</li>--%>
             <div class="d-none d-sm-block topbar-divider"></div>
             <li class="nav-item dropdown no-arrow">
                 <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">
@@ -103,7 +103,7 @@
                     <img class="border rounded-circle img-profile" src="<c:url value="${display_img}"/>"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                         <a class="dropdown-item" href="<c:url value="/trainer/your-profile"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
-                        <a class="dropdown-item"  href="<c:url value="/trainer/activity-log"/>"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Lịch sử hoạt động</a>
+                        <a class="dropdown-item"  href="<c:url value="/trainer/activity-log/page=1"/>"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Lịch sử hoạt động</a>
                         <a class="dropdown-item" href="<c:url value="/trainer/change-pass"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Đổi mật khẩu</a>
 
                         <div class="dropdown-divider"></div>

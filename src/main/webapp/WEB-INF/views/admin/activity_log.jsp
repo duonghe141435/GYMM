@@ -69,7 +69,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 align-self-center">
-                                    <p>Tổng số bản ghi: <span>100</span></p>
+                                    <p>Tổng số bản ghi: <span>${count}</span></p>
                                 </div>
                                 <div class="col-md-6">
                                     <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">

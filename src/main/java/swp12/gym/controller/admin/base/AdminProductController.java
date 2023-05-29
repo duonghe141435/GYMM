@@ -88,7 +88,7 @@ public class AdminProductController {
         productService.createProduct(productDto);
         priceService.createAnPrice(productDto.getP_price(),productDto.getP_Oprice(),p_id);
         FileUtil.doSaveImgToService(file,s,"products");
-        return "redirect:/admin/product";
+        return "redirect:/admin/product/page=1-status=1";
     }
 
     @RequestMapping(value = "/search/{query}", method = RequestMethod.GET)
@@ -98,20 +98,6 @@ public class AdminProductController {
         model.addAttribute("productDtos", results);
         return "admin/product/search_product";
     }
-
-//    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-//    public String goViewUser(@PathVariable int id, Model model){
-//        ProductDto productDto = productService.findAnProduct(id);
-//        List<Unit> units = unitService.findAll();
-//        List<ProductType> productTypes = productTypeService.findAll();
-//        List<Price> prices = priceService.getPriceAnProduct(id);
-//
-//        model.addAttribute("productType", productTypes);
-//        model.addAttribute("units", units);
-//        model.addAttribute("product",productDto);
-//        model.addAttribute("prices", prices);
-//        return "admin/product/update_product";
-//    }
 
     @RequestMapping(value = "/detail-product/{id}",method = RequestMethod.GET)
     public String goViewDetailProduct(@PathVariable int id, Model model){
