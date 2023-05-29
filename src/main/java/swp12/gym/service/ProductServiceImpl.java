@@ -56,4 +56,14 @@ public class ProductServiceImpl implements ProductService{
     public List<ProductDto> searchProductAdmin(String query) {
         return productDtoDao.searchProductAdmin(query);
     }
+
+    public void deleteProductForAdmin(String id) {
+        productDtoDao.deleteProductForAdmin(id);
+    }
+
+    public void restoreProductForAdmin(String id) {
+        productDtoDao.restoreProductForAdmin(id);
+    }
+
+
 }

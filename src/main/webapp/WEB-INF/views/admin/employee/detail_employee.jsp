@@ -162,8 +162,10 @@
                     type: "GET",
                     url: '/admin/user-management/delete/'+${user.u_id},
                     success: function (respone) {
-                        Swal.fire(respone,'', 'error');
-                        window.location.href = "http://localhost:8080/admin/employee";
+                        Toast.fire({icon: 'success', title: 'Tài khoản đã được xóa'});
+                        setTimeout(function() {
+                            window.location.href = "http://localhost:8080/admin/employee/page=1-status=1";
+                        }, 2000);
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
                         Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
@@ -187,7 +189,7 @@
                     type: "GET",
                     url: 'http://localhost:8080/admin/employee-management/restore/'+${user.u_id},
                     success: function (respone) {
-                        Toast.fire({icon: 'success', title: 'Tài đã được khôi phục'});
+                        Toast.fire({icon: 'success', title: 'Tài khoản đã được khôi phục'});
                         setTimeout(function() {
                             window.location.href = "http://localhost:8080/admin/employee/page=1-status=1";
                         }, 3000);

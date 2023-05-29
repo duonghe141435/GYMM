@@ -186,4 +186,21 @@ public class ProductDtoDao {
             return null;
         }
     }
+
+    public void deleteProductForAdmin(String id) {
+        try{
+            sql = "UPDATE product SET status = 0 WHERE product_id = ?";
+            jdbcTemplate.update(sql,id);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+    public void restoreProductForAdmin(String id) {
+        try{
+            sql = "UPDATE product SET status = 1 WHERE product_id = ?";
+            jdbcTemplate.update(sql,id);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

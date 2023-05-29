@@ -27,4 +27,8 @@ public interface ProductService {
     List<ProductDto> findListProduct(int pagination_value, int status_num);
 
     List<ProductDto> searchProductAdmin(String query);
+
+    void deleteProductForAdmin(String id);
+
+    void restoreProductForAdmin(String id);
 }
