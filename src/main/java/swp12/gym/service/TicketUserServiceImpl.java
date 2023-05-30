@@ -58,10 +58,10 @@ public class TicketUserServiceImpl implements TicketUserService{
             ticketUser.setStart_date(endDate.plusDays(1));
         }
         if (date == ""){
-            ticketUser.setEnd_date(LocalDateTime.now().plusDays(ticket.getT_total_days()));
+            ticketUser.setEnd_date(LocalDateTime.now().plusDays(ticket.getT_total_days() -1));
         }else {
             LocalDateTime endDate = new DataUtil().convertStringToLocalDateTime(date);
-            ticketUser.setEnd_date(endDate.plusDays(1 + ticket.getT_total_days()));
+            ticketUser.setEnd_date(endDate.plusDays(1 + ticket.getT_total_days() -1));
         }
 
         ticketUser.setPayment_Status(0);
