@@ -310,7 +310,7 @@
             }else {
                 Swal.fire({
                     title: 'Oops...',
-                    text: 'Hãy nhập tối thiểu 3 ký tự vào ô input',
+                    text: 'Hãy nhập tối thiểu 3 ký tự vào ô tìm kiếm',
                     icon: 'error'
                 })
             }
@@ -430,7 +430,7 @@
                         success: function(response) {
                             Swal.fire({
                                 icon: 'sucsess',
-                                title: 'Bạn đã tạo bill thành công',
+                                title: 'Bạn đã tạo hóa đơn thành công',
                             }).then((result) => {
                                 if(result.isConfirmed){
                                     location.reload();

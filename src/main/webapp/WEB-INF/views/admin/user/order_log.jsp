@@ -155,6 +155,10 @@
                                                             <td class="text-center class-price">
                                                                     ${logOrder.change}
                                                             </td>
+                                                            <td class="text-center">
+                                                                <a class="order_view">
+                                                                    <i class="fas fa-eye fa-lg fa-fw me-2 text-info"></i></a>
+                                                            </td>
                                                         </tr>
                                                     </c:forEach>
                                                     </tbody>

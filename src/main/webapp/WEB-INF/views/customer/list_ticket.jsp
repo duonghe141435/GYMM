@@ -93,7 +93,7 @@
                                 // lưu ticket_id vào session
                                 sessionStorage.setItem("ticket_id", id);
                                 sessionStorage.setItem("end_date_ticket", resultAPI);
-                                window.location.href='<c:url value="/customer/show-list-personal"/>';
+                                window.location.href='<c:url value="/customer/list-personal"/>';
                                 // var show = document.getElementById("shows");
                                 // show.scrollIntoView();
                             }else if (result.isDenied) {
@@ -150,7 +150,7 @@
                                     sessionStorage.setItem("end_date_ticket", resultAPI);
                                     // var show = document.getElementById("shows");
                                     // show.scrollIntoView()
-                                    window.location.href='<c:url value="/customer/show-list-personal"/>';
+                                    window.location.href='<c:url value="/customer/list-personal"/>';
                                 }else if (result.isDenied) {
                                     var token = $("meta[name='_csrf']").attr("content");
                                     var data = {

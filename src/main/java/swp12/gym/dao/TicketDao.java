@@ -74,7 +74,7 @@ public class TicketDao {
         sql = "SELECT t.id_t as id_t, t.name as t_name,t.tt_id as tt_id, \n" +
                 "t.total_days as t_day, t.status as t_status,\n" +
                 "t.create_date as t_create_date, t.price as t_price\n" +
-                "FROM ticket t";
+                "FROM ticket t WHERE t.status = 1";
         return jdbcTemplate.query(sql, new TicketMapper());
     }
 
@@ -199,7 +199,8 @@ public class TicketDao {
     }
 
     public int getNumberTicketInSystem() {
-        sql = "SELECT COUNT(*) FROM ticket";
+        sql = "SELECT id_t FROM ticket \n" +
+                "ORDER BY id_t DESC LIMIT 1;";
         int number = jdbcTemplate.queryForObject(sql, Integer.class);
         return number;
     }
