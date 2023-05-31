@@ -68,7 +68,7 @@
                                     <label class="form-label" for="class-price"><strong>Giá tham gia lớp học / 1 người</strong></label>
                                     <input class="form-control" type="text" id="class-price" placeholder="Nhập giá tiền"/>
                                     <div class="invalid-feedback price-error">
-                                        Giá vé nằm trong khoảng từ 1.000vnd đến 50.000vnd
+                                        Giá vé nằm trong khoảng từ 1.000vnd đến 20.000.000vnd
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
         class_price.on("input", function () {
             var input = $(this).val();
             input = input.replace(/\D/g, ""); // loại bỏ tất cả các ký tự không phải số
-            if (parseInt(input) < 1000 || parseInt(input) > 500000) {
+            if (parseInt(input) < 1000 || parseInt(input) > 20000000) {
                 // price_error.show();
             } else {
                 // price_error.hide();
@@ -256,8 +256,8 @@
                 Swal.fire({ title: 'Ngày bắt đầu không hợp lệ', text:"Bạn cần chọn ngày bắt đầu cho lớp lớn hơn ngày hiện tại", icon: 'warning'});
             }else if($.trim(_price) === ''){
                 Swal.fire({ title: 'Lớp chưa có giá tiền', text:"Bạn cần nhập giá tiền cho lớp này", icon: 'warning'});
-            }else if((parseInt(_price) <= 10000 || parseInt(_price) >= 500000)){
-                Swal.fire({ title: 'Giá tiền không hợp lệ', text:"Giá tiền của lớp tối thiểu làm 10.000₫ và tối đa là 500.000₫", icon: 'warning'});
+            }else if((parseInt(_price) <= 10000 || parseInt(_price) >= 20000000)){
+                Swal.fire({ title: 'Giá tiền không hợp lệ', text:"Giá tiền của lớp tối thiểu làm 10.000₫ và tối đa là 20.000.000₫", icon: 'warning'});
             }else {
                 var data = {
                     '_name' : _name,

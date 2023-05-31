@@ -24,7 +24,7 @@
                                 <label class="form-label" for="trainer-price">Giá thuê</label>
                                 <input class="form-control" type="text" id="trainer-price" placeholder="Nhập giá tiền"/>
                                 <div class="invalid-feedback price-error">
-                                    Giá vé nằm trong khoảng từ 1.000vnd đến 50.000vnd
+                                    Giá vé nằm trong khoảng từ 1.000vnd đến 20.000.000vnd
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -45,9 +45,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="row" style="padding-top: 15px;">
-                        <div class="mb-3"><button class="btn btn-primary" id="btn-save-trainer">Lưu</button></div>
-                    </div>
+                    <%--<div class="row" style="padding-top: 15px;">--%>
+                        <%--<div class="mb-3"><button class="btn btn-primary" id="btn-save-trainer">Lưu</button></div>--%>
+                    <%--</div>--%>
                 </div>
             </div>
         </div>
