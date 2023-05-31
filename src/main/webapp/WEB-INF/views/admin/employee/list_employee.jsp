@@ -105,7 +105,6 @@
                                                     <li class="page-item"><a class="page-link" href="<c:url value="/admin/employee/page=${pageIndex}-status=${status}" />">${pageIndex}</a></li>
                                                 </c:otherwise>
                                             </c:choose>
-
                                         </c:forEach>
                                     </ul>
                                 </nav>
