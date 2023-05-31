@@ -204,7 +204,7 @@ public class TrainerBaseController {
             model.addAttribute("count", count_row);
             model.addAttribute("totalPages", totalPages);
             model.addAttribute("pagination", pagination_value);
-            return "employee/activity_log";
+            return "trainer/activity_log";
         }
     }
 

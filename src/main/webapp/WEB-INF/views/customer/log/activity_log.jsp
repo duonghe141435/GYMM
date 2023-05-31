@@ -64,19 +64,19 @@
                                             <p class="text-primary m-0 fw-bold" style="width:90%">Lịch sử hoạt động</p>
                                         </div>
                                         <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-6 text-nowrap">
-                                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                                        <label class="form-label">Loại hoạt động&nbsp;
-                                                            <select class="d-inline-block form-select form-select-sm">
-                                                                <option value="1" selected>Tài khoản</option>
-                                                                <option value="2">Quản trị người dùng</option>
-                                                                <option value="3">50</option>
-                                                                <option value="100">100</option>
-                                                            </select>&nbsp;</label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <%--<div class="row">--%>
+                                                <%--<div class="col-md-6 text-nowrap">--%>
+                                                    <%--<div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">--%>
+                                                        <%--<label class="form-label">Loại hoạt động&nbsp;--%>
+                                                            <%--<select class="d-inline-block form-select form-select-sm">--%>
+                                                                <%--<option value="1" selected>Tài khoản</option>--%>
+                                                                <%--<option value="2">Quản trị người dùng</option>--%>
+                                                                <%--<option value="3">50</option>--%>
+                                                                <%--<option value="100">100</option>--%>
+                                                            <%--</select>&nbsp;</label>--%>
+                                                    <%--</div>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
                                             <c:if test="${not empty logUser}">
                                                 <div class="table-responsive table mt-2" role="grid" style="max-height: 55vh;">
                                                     <table class="table my-0" id="dataTable">

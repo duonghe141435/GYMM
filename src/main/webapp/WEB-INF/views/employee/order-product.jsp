@@ -98,7 +98,7 @@
                                         <div class="col-lg-2 col-md-12 mb-4 mx-3">
                                             <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
                                                 <img src="<c:url value="${productDtos.p_img}"/> "
-                                                     class="w-100" />
+                                                     class="w-100" style="width: 131px; height: 141px"/>
                                                 <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                                                     <div class="d-flex justify-content-start align-items-start h-30">
                                                         <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark pro_price">${productDtos.p_price}</span></h5>

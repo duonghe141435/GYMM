@@ -28,7 +28,7 @@
                 <c:forEach items="${productDtos}" var="productDto">
                     <div class="col-lg-4 col-md-12 mb-4">
                         <div class="bg-image hover-zoom ripple shadow-1-strong rounded">
-                            <img src="<c:url value="${productDto.p_img}"/> " class="w-100" />
+                            <img src="<c:url value="${productDto.p_img}"/> " class="w-100" style="width: 408px; height: 408px"/>
                             <a class="text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#productModal" data-name="${productDto.p_name}" data-price="${productDto.p_price}" data-image="${productDto.p_img}"
                                data-description="${productDto.p_description}" data-kind="${productDto.p_kind_name}" data-quantity="${productDto.p_quantity}">
                                 <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">

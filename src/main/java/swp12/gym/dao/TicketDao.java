@@ -215,7 +215,7 @@ public class TicketDao {
     }
 
     public List<Ticket> findAddTicketOfAnCustomer(int ticket_type_id, int id_customer, int pagination) {
-        pagination = pagination * 10 - 10;
+//        pagination = pagination * 10 - 10;
         try{
             sql = "SELECT t.name as ticket_name, ticket_user.value_cost as ticket_price, concat(ticket_user.start_date, ' - ', ticket_user.end_date) as time, \n" +
                     "t.status,ticket_user.payment_status, ticket_user.create_date\n" +

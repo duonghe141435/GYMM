@@ -5,11 +5,11 @@
     <title>Lịch sử hoạt động</title>
 </head>
 <body id="page-top">
-<div id="wrapper">
+<div id="wrapper" >
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
             <%@include file="/WEB-INF/views/layouts/trainer/header.jsp" %>
-            <div class="container-fluid min-vh-100" style="padding-top: 100px">
+            <div class="container-fluid min-vh-100" style="padding-top: 10px">
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width:90%">Lịch sử hoạt động</p>
