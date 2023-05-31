@@ -117,7 +117,7 @@ public class AdminProductController {
     }
 
     @RequestMapping(value = "/update-product",method = RequestMethod.POST)
-    public String goUpdateUser(@RequestParam("file-up") CommonsMultipartFile file,
+    public String goUpdateProduct(@RequestParam("file-up") CommonsMultipartFile file,
                                @ModelAttribute("product") ProductDto productDto, HttpSession s, HttpServletRequest request ) {
         //lấy data product cũ
         ProductDto getProductDto = productService.findAnProduct(productDto.getP_id());

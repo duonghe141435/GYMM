@@ -50,7 +50,7 @@
                         <div class="row">
                             <div class="left card" style="margin-left: 21px;border-radius: 35px; text-align: center;">
                                 <ul id="myMenu">
-                                    <li><a href="<c:url value="/customer/activity-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử hoạt động</p></a></li>
+                                    <li><a href="<c:url value="/customer/activity-log/page=1"/>"> <p class="text-primary m-0 fw-bold">Lịch sử hoạt động</p></a></li>
                                     <li><a href="<c:url value="/customer/booking-ticket-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử đặt vé vào cửa</p></a></li>
                                     <li><a href="<c:url value="/customer/booking-trainer-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử thuê huấn luyện viên</p></a></li>
                                     <li><a href="<c:url value="/customer/booking-class-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử tham gia lớp học</p></a></li>
@@ -59,15 +59,15 @@
                             </div>
                             <div class="right">
                                 <div class="text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                        <label class="form-label">Show&nbsp;
-                                            <select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>&nbsp;</label>
-                                    </div>
+                                    <%--<div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">--%>
+                                        <%--<label class="form-label">Show&nbsp;--%>
+                                            <%--<select class="d-inline-block form-select form-select-sm">--%>
+                                                <%--<option value="10" selected="">10</option>--%>
+                                                <%--<option value="25">25</option>--%>
+                                                <%--<option value="50">50</option>--%>
+                                                <%--<option value="100">100</option>--%>
+                                            <%--</select>&nbsp;</label>--%>
+                                    <%--</div>--%>
                                     <div class="card-body" style="padding-top: 0;">
                                         <div class="card-body" style="padding-top: 0;">
                                             <c:if test="${not empty ticket}">
@@ -106,12 +106,15 @@
                                                                 <td class="text-center">
                                                                         ${ticket.create_date}
                                                                 </td>
-                                                                <td>Xem chi tiết</td>
+                                                                <%--<td>Xem chi tiết</td>--%>
                                                             </tr>
                                                         </c:forEach>
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                            </c:if>
+                                            <c:if test="${empty ticket}">
+                                                <p>Bạn chưa mua vé tập với PT nào</p>
                                             </c:if>
                                         </div>
                                     </div>

@@ -116,7 +116,7 @@ public class CustomerBaseController {
     @RequestMapping(value = "/booking-trainer-log",method = RequestMethod.GET)
     public String goBookingTrainerLog(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, id, 2);
+        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(2, id, 2);
         model.addAttribute("ticket",ticket);
         return "customer/log/trainer_log";
     }
