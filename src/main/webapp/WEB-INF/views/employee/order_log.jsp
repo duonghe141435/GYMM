@@ -58,7 +58,7 @@
                         <div class="row">
                             <div class="left card" style="margin-left: 21px;border-radius: 35px; text-align: center;">
                                 <ul id="myMenu">
-                                    <li><a href="<c:url value="/employee/activity-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử hoạt động</p></a></li>
+                                    <li><a href="<c:url value="/employee/activity-log/page=1"/>"> <p class="text-primary m-0 fw-bold">Lịch sử hoạt động</p></a></li>
                                     <li><a href="<c:url value="/employee/product-order-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử bán hàng</p></a></li>
                                 </ul>
                             </div>

@@ -269,7 +269,7 @@ public class TicketDao {
                     "IFNULL(MIN(class.price),0) as class_price_min,IFNULL(MAX(t2.price),0) as trainer_price_max,\n" +
                     "IFNULL(MIN(t2.price),0) as trainer_price_min\n" +
                     "FROM ticket t left join class on t.id_t = class.ticket_id " +
-                    "left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status <> 0 AND t.id_t = ?\n" +
+                    "left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.id_t = ?\n" +
                     "GROUP BY t.id_t, t.create_date, t.tt_id, t.name,t.total_days";
 
             return jdbcTemplate.queryForObject(sql, new RowMapper<Ticket>() {
@@ -353,6 +353,39 @@ public class TicketDao {
         }catch (Exception e){
             e.printStackTrace();
             return 0;
+        }
+    }
+
+    public int getNumberTicketDeleteInSystem() {
+        try{
+            sql = "SELECT COUNT(*) FROM ticket JOIN ticket WHERE status = 0";
+            int number = jdbcTemplate.queryForObject(sql, Integer.class);
+            return number;
+        }catch (Exception e){
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    public List<TicketDto> findAllDeleteTicketOfAdmin(int pagination_value) {
+        pagination_value = pagination_value*5-5;
+        try{
+            sql = "SELECT t.id_t as ticket_id, t.tt_id as ticket_type,\n" +
+                    "t.name as ticket_name, t.total_days as ticket_day,\n" +
+                    "IFNULL(MAX(class.max_menber),1) as max_menber, IFNULL(MIN(class.max_menber),1) as min_menber,\n" +
+                    "t.status as ticket_status, t.create_date as ticket_create,\n" +
+                    "IFNULL(t.price,0) as ticket_price, IFNULL(MAX(class.price),0) as class_price_max,\n" +
+                    "IFNULL(MIN(class.price),0) as class_price_min,IFNULL(MAX(t2.price),0) as trainer_price_max,\n" +
+                    "IFNULL(MIN(t2.price),0) as trainer_price_min\n" +
+                    "FROM ticket t left join class on t.id_t = class.ticket_id " +
+                    "left join personal_trainer t2 on t.id_t = t2.ticket_id WHERE t.status = 0 " +
+                    "GROUP BY t.id_t, t.create_date, t.tt_id, t.name,t.total_days\n" +
+                    "ORDER BY t.create_date DESC LIMIT ?,5";
+
+            return jdbcTemplate.query(sql, new TicketDtoMapper(), pagination_value);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
         }
     }
 }

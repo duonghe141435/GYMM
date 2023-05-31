@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import swp12.gym.service.TicketService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
-import java.util.*;
 
 @RestController
 public class TicketAPIOfAdmin {
@@ -88,10 +86,11 @@ public class TicketAPIOfAdmin {
     }
 
     //Delete An Ticket
-    @GetMapping(value = URL_API+"/delete/{id}", produces = "text/plain;charset=UTF-8")
-    public ResponseEntity<String> deleteTicket(@PathVariable String id){
+    @PostMapping(value = URL_API+"/delete", produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<String> deleteTicket(HttpServletRequest request){
         try{
-            ticketService.deleteTickets(id);
+            String id_str = request.getParameter("_id");
+            ticketService.deleteTickets(id_str);
             return new ResponseEntity<String>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
