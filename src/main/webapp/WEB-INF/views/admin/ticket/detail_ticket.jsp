@@ -235,7 +235,7 @@
 
     function viewDetailAnClass(class_id) {
         console.log("class id: " + class_id);
-        window.location.href = '<c:url value="/admin/dashboard/detail-class?" />' + "class_id=" + class_id;
+        window.location.href = '<c:url value="/admin/detail-class/" />'+ class_id;
     }
 
     function getDataForMonth(dayInMonth) {

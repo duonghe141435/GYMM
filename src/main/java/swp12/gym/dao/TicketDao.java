@@ -215,7 +215,7 @@ public class TicketDao {
     }
 
     public List<Ticket> findAddTicketOfAnCustomer(int ticket_type_id, int id_customer, int pagination) {
-//        pagination = pagination * 10 - 10;
+        pagination = pagination * 10 - 10;
         try{
             sql = "SELECT t.name as ticket_name, ticket_user.value_cost as ticket_price, concat(ticket_user.start_date, ' - ', ticket_user.end_date) as time, \n" +
                     "t.status,ticket_user.payment_status, ticket_user.create_date\n" +
@@ -235,6 +235,32 @@ public class TicketDao {
                     return ticket;
                 }
             },ticket_type_id, id_customer, pagination);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<Ticket> findTicketOfAnCustomer(int ticket_type_id, int id_customer) {
+        try{
+            sql = "SELECT t.name as ticket_name, ticket_user.value_cost as ticket_price, concat(ticket_user.start_date, ' - ', ticket_user.end_date) as time, \n" +
+                    "t.status,ticket_user.payment_status, ticket_user.create_date\n" +
+                    "FROM ticket_user join ticket t on ticket_user.ticket_id = t.id_t WHERE t.tt_id = ? AND ticket_user.id_u = ?\n" +
+                    "ORDER BY ticket_user.ticket_user_id DESC";
+            return jdbcTemplate.query(sql, new RowMapper<Ticket>() {
+                public Ticket mapRow(ResultSet resultSet, int i) throws SQLException {
+                    Ticket ticket = new Ticket();
+                    //ghi tạm payment_status vào tt_id
+                    ticket.setTt_id(resultSet.getInt("payment_status"));
+                    ticket.setT_name(resultSet.getString("ticket_name"));
+                    ticket.setT_price(resultSet.getInt("ticket_price"));
+                    //ghi tạm time vào tt_id
+                    ticket.setMax_member(resultSet.getString("time"));
+                    ticket.setT_status(resultSet.getInt("status"));
+                    ticket.setCreate_date(resultSet.getString("create_date"));
+                    return ticket;
+                }
+            },ticket_type_id, id_customer);
         }catch (Exception e){
             e.printStackTrace();
             return null;

@@ -68,6 +68,10 @@ public class TicketServiceImpl implements TicketService{
         return ticketDao.findAddTicketOfAnCustomer(ticketTypeId, id_customer,pagination);
     }
 
+    public List<Ticket> findTicketOfAnCustomer(int ticketTypeId, int id_customer) {
+        return ticketDao.findTicketOfAnCustomer(ticketTypeId, id_customer);
+    }
+
     public int getNumberTicketInSystemPage(int status_num) {
         return ticketDao.getNumberTicketInSystem(status_num);
     }

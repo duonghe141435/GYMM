@@ -110,6 +110,7 @@
                                         <td>${allCheckIn.current_time}</td>
                                         <td>
                                             <c:if test="${allCheckIn.status == 1}"><p style="color: green">Check in thành công</p></c:if>
+                                            <c:if test="${allCheckIn.status == -1}"><p style="color: red">Hội viên chưa có vé</p></c:if>
                                             <c:if test="${allCheckIn.status == 0}"><p style="color: red">vé hết hạn - vé không hợp lệ</p></c:if>
                                         </td>
                                     </tr>

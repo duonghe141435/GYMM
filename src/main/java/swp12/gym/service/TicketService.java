@@ -54,6 +54,8 @@ public interface TicketService {
 
     List<Ticket> findAddTicketOfAnCustomer(int ticketTypeId, int id_customer, int pagination);
 
+    List<Ticket> findTicketOfAnCustomer(int ticketTypeId, int id_customer);
+
     int getNumberTicketInSystemPage(int status_num);
 
 
