@@ -76,6 +76,14 @@ public class TicketServiceImpl implements TicketService{
         return ticketDao.getNumberTicketInSystem(status_num);
     }
 
+    public int getNumberTicketDeleteInSystemPage() {
+        return ticketDao.getNumberTicketDeleteInSystem();
+    }
+
+    public List<TicketDto> findAllDeleteTicketOfAdmin(int pagination_value) {
+        return ticketDao.findAllDeleteTicketOfAdmin(pagination_value);
+    }
+
     public List<Map<Integer, Integer>> getDataOfAnTicket(int id) {
         return ticketDao.getDataOfAnTicket(id);
     }

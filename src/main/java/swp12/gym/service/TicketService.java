@@ -58,5 +58,7 @@ public interface TicketService {
 
     int getNumberTicketInSystemPage(int status_num);
 
+    int getNumberTicketDeleteInSystemPage();
 
+    List<TicketDto> findAllDeleteTicketOfAdmin(int pagination_value);
 }

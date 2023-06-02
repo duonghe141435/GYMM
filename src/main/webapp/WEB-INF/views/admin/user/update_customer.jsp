@@ -44,14 +44,6 @@
                                                 <form:option value="2">Nữ</form:option>
                                             </form:select>
                                         </div>
-                                        <%--<div class="mb-3">--%>
-                                            <%--<label class="form-label" for="role"><strong>Chức vụ</strong></label>--%>
-                                            <%--<form:select path="r_id" class="form-select" id="role" required="required">--%>
-                                                <%--<c:forEach items="${roles}" var="roles">--%>
-                                                    <%--<form:option value="${roles.r_id}">${roles.r_description}</form:option>--%>
-                                                <%--</c:forEach>--%>
-                                            <%--</form:select>--%>
-                                        <%--</div>--%>
                                     </div>
                                     <div class="col-8">
                                         <div class="mb-3" style="display:none;">

@@ -136,6 +136,7 @@
                                             <td class="status">
                                                 <c:if test="${ticket.t_status == 1}"><span class="active">Đang bán</span></c:if>
                                                 <c:if test="${ticket.t_status == -1}"><span class="waiting">Chưa bán - Thiếu huấn luyện viên</span></c:if>
+                                                <c:if test="${ticket.t_status == 0}"><span class="danger">Bị xóa</span></c:if>
                                             </td>
                                         </tr>
                                         <tr>
@@ -155,10 +156,11 @@
                                             <td><span>${number_order}</span> người</td>
                                         </tr>
                                         <tr>
-                                            <td><a class="btn btn-danger delete-ticket">Hủy vé</a></td>
-                                            <c:if test="${ticket.tt_id == 2}"> <td><a class="btn btn-info">Xem danh sách huấn luyện viên</a></td></c:if>
-                                            <c:if test="${ticket.tt_id == 3}"> <td><a class="btn btn-info" data-bs-toggle="modal"
-                                                                                      data-bs-target="#list-class">Xem danh sách lớp học</a></td></c:if>
+                                            <c:if test="${ticket.t_status != 0}">
+                                                <td><a class="btn btn-danger delete-ticket">Hủy vé</a></td>
+                                            </c:if>
+                                            <c:if test="${ticket.tt_id == 2}"> <td><a class="btn btn-info" href="<c:url value="/admin/trainer/page=1-status=1"/>">Xem danh sách huấn luyện viên</a></td></c:if>
+                                            <c:if test="${ticket.tt_id == 3}"> <td><a class="btn btn-info" href="<c:url value="/admin/class"/>">Xem danh sách lớp học</a></td></c:if>
 
                                         </tr>
                                     </table>
@@ -277,11 +279,11 @@
 
         var ticket_info = $("#ticket-info");
 
-        <%--user.on('click', '.update-user', function () {--%>
-            <%--window.location.href = "http://localhost:8080/admin/profile-customer/"+${user.u_id};--%>
-        <%--});--%>
-
         ticket_info.on('click', '.delete-ticket', function () {
+
+            var token = $("meta[name='_csrf']").attr("content");
+            var data = {'_id' : ${ticket.t_id}, _csrf: token};
+
             Swal.fire({
                 title: 'Bạn chắc chắn hủy bán vé này này?',
                 icon: 'question',
@@ -291,8 +293,9 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                 $.ajax({
-                    type: "GET",
-                    url: '/admin/ticket-management/delete/${ticket.t_id}',
+                    type: "POST",
+                    data : data,
+                    url: '/admin/ticket-management/delete',
                     success: function (respone) {
                         Toast.fire({icon: 'success', title: 'Vé đã được hủy bán'});
                         setTimeout(function() {

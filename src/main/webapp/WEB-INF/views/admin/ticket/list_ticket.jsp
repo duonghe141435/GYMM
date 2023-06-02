@@ -44,11 +44,11 @@
                                                 <option value="3" selected>Vé tham gia lớp học</option>
                                                 <option value="0">Bị xóa</option>
                                             </c:if>
-                                            <c:if test="${s}">
-                                                <option value="1" selected="">Vé vào của</option>
+                                            <c:if test="${type == 0}">
+                                                <option value="1">Vé vào của</option>
                                                 <option value="2">Vé thuê huấn luyện viên</option>
                                                 <option value="3">Vé tham gia lớp học</option>
-                                                <option value="0">Bị xóa</option>
+                                                <option value="0" selected>Bị xóa</option>
                                             </c:if>
                                         </select>&nbsp;
                                     </label>
@@ -109,14 +109,17 @@
                                         <td class="status text-center">
                                             <c:if test="${tickets.t_status == 1}"><span class="active">Đang bán</span></c:if>
                                             <c:if test="${tickets.t_status == -1}"><span class="waiting">Chưa bán - Thiếu huấn luyện viên</span></c:if>
+                                            <c:if test="${tickets.t_status == 0}"><span class="danger">Bị xóa</span></c:if>
                                         </td>
                                         <td class="text-center">${tickets.create_date}</td>
                                         <td class="text-center">
                                             <a class="ticket-view">
-                                                <i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Thôn tin chi tiết"></i></a>
+                                                <i class="fas fa-eye fa-lg fa-fw me-2 text-info" title="Thông tin chi tiết"></i></a>
+                                            <c:if test="${tickets.t_status != 0}">
+                                                <a class="ticket-delete">
+                                                    <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                            </c:if>
 
-                                            <a class="ticket-delete">
-                                                <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
                                         </td>
                                     </tr>
                                 </c:forEach></c:if>
@@ -257,7 +260,7 @@
 
         price.on("input", function () { var input = $(this).val();
             input = input.replace(/\D/g, ""); // loại bỏ tất cả các ký tự không phải số
-            if (parseInt(input) < 1000 || parseInt(input) > 5000000) {
+            if (parseInt(input) < 1000 || parseInt(input) > 20000000) {
                 price_error.show();
             }else{ price_error.hide();}
             input = input.replace(/(\d)(?=(\d{3})+$)/g, "$1."); // thêm dấu chấm sau mỗi ba số
@@ -267,7 +270,7 @@
         price_trainer.on("input", function () {
             var input = $(this).val();
             input = input.replace(/\D/g, ""); // loại bỏ tất cả các ký tự không phải số
-            if (parseInt(input) < 1000 || parseInt(input) > 5000000) {
+            if (parseInt(input) < 1000 || parseInt(input) > 20000000) {
                 price_error.show();
             } else {
                 price_error.hide();
@@ -328,95 +331,6 @@
             row.remove();
         });
 
-        // btn_add_class.click(function () {
-        //     var _price = price_class.val().replace(/\D/g, "");
-        //     var currentDate = new Date();
-        //     var _id = trainer_class.val();
-        //     var _id_check = list_class.map(function(item) {return item._id;});
-        //     var start_day = $("#date-start");
-        //     var dateInput = start_day.val();
-        //     var newrow = $("<tr>");
-        //     var input_value = $('#my-input').val();
-        //     var checkbox_values = [];
-        //     var lichtap = '';
-        //     $('table input[type="checkbox"]:checked').each(function() {
-        //         checkbox_values.push($(this).attr('id'));
-        //         if($(this).attr('id') === '1'){
-        //             lichtap += ' Cn '
-        //         }
-        //         if($(this).attr('id') === '2'){
-        //             lichtap += ' Thu2 '
-        //         }
-        //         if($(this).attr('id') === '3'){
-        //             lichtap += ' Thu3'
-        //         }
-        //         if($(this).attr('id') === '4'){
-        //             lichtap += ' Thu4 '
-        //         }
-        //         if($(this).attr('id') === '5'){
-        //             lichtap += ' Thu5 '
-        //         }
-        //         if($(this).attr('id') === '6'){
-        //             lichtap += ' Thu6 '
-        //         }
-        //         if($(this).attr('id') === '7'){
-        //             lichtap += ' Thu7 '
-        //         }
-        //     });
-        //
-        //     if($.trim(class_name.val()) === '' || $.trim(_price) === '' || (parseInt(_price) < 1000 || parseInt(_price) > 500000)){
-        //         Swal.fire('Xin hãy điền đầy đủ thông tin một cách chính xác', '', 'warning');
-        //     }else if($.trim(start_day.val()) === ''){
-        //         Swal.fire({ title: 'Bạn chưa chọn ngày bắt đầu', text:"Xin hãy chọn ngày bắt đầu cho lớp học này", icon: 'warning'})
-        //     }else if(currentDate >= new Date(start_day.val())){
-        //         Swal.fire({ title: 'Ngày bắt đầu không hợp lệ', text:"Ngày bắt đầu của lớp học phải lớn hơn ngày hiện tại", icon: 'warning'})
-        //     }
-        //     else if (_id_check.includes(_id)) {
-        //         Swal.fire({ title: 'Huấn luyện viên đã có vé', text:"Huấn luyện viên đã có vé này, bạn không thể tiếp tục thêm", icon: 'warning'})
-        //     }else if(checkbox_values.length === 0){
-        //         Swal.fire('Thiếu lịch tập', 'Bạn quên chưa chọn lịch tập trong tuần rôi', 'warning')
-        //     }else{
-        //         var data = {
-        //             '_name': class_name.val(),
-        //             '_id': trainer_select.val(),
-        //             '_id_time': time_select.val(),
-        //             '_max_member': max_member.val(),
-        //             '_price': parseFloat(_price),
-        //             '_start_date': start_date.val(),
-        //             '_check': JSON.stringify(checkbox_values)
-        //         };
-        //         var trainer_name = trainer_select.find(':selected').text();
-        //         var time_detail = time_select.find(':selected').text();
-        //         var formattedPrice = parseFloat(_price).toLocaleString('vi-VN', {
-        //             style: 'currency',
-        //             currency: 'VND'
-        //         }).replace("₫", " ₫");
-        //
-        //         list_class.push(data);
-        //
-        //         newrow.append(
-        //             '<td>' + class_name.val() + '</td>' +
-        //             '<td>' + trainer_name + '</td>' +
-        //             '<td>' + time_detail + '</td>' +
-        //             '<td>' + lichtap + '</td>' +
-        //             '<td class="class-price">' + formattedPrice + '</td>' +
-        //             '<td>' + start_date.val() + '</td>' +
-        //             '<td>' + max_member.val() + '</td>' +
-        //             '<td style="text-align: center"><a class="delete-class">' +
-        //             '<i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a></td>'
-        //         );
-        //         table_class.append(newrow);
-        //     }
-        // });
-
-        // table_class.on('click', '.delete-class', function () {
-        //     var row = $(this).closest('tr');
-        //     var _index = $(this).closest('tr').index();
-        //     list_class.splice(_index,1);
-        //     row.remove();
-        // });
-
-
         var ticket_name = $("#ticket-name");//ten cua ve
         var day_other = $("#day-other");//chon ngay mac dinh
         var day_value = $("#day-value");// ngay thay the neu khong phai ngay mac dinh
@@ -447,8 +361,8 @@
                 Swal.fire('Xin hãy điền đầy đủ thông tin một cách chính xác', '', 'warning');
             }else {
                 if(_type == 1) {
-                    if ($.trim(_price) === '' || (parseInt(_price) < 1000 || parseInt(_price) > 5000000)) {
-                        Swal.fire('Xin hãy điền giá tiền của vé', '', 'warning');
+                    if ($.trim(_price) === '' || (parseInt(_price) < 1000 || parseInt(_price) > 20000000)) {
+                        Swal.fire('Xin hãy điền đúng giá tiền của vé', '', 'warning');
                     } else {
                         data = {
                             '_name': _name,
@@ -675,8 +589,8 @@
                 if(result.isConfirmed){
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost:8080/admin/ticket-management',
-                    data:data,
+                    url: 'http://localhost:8080/admin/ticket-management/delete',
+                    data: data,
                     success: function (result) {
                         row.remove();
                         Toast.fire({icon: 'info', title: 'Vé đã được xóa!'})

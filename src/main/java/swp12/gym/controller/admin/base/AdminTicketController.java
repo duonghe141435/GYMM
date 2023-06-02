@@ -44,7 +44,12 @@ public class AdminTicketController {
             int status_num = Integer.parseInt(type);
             int pagination_value = Integer.parseInt(pagination);
             int totalPages = 1;
-            int count_row = ticketService.getNumberTicketInSystemPage(status_num);
+            int count_row = 0;
+            if(status_num == 0){
+                count_row = ticketService.getNumberTicketDeleteInSystemPage();
+            }else {
+                count_row = ticketService.getNumberTicketInSystemPage(status_num);
+            }
             if(count_row != 0){
                 totalPages = (int) Math.ceil((double) count_row / 5);
             }
@@ -53,9 +58,16 @@ public class AdminTicketController {
             }else if(pagination_value < 1){
                 return "base/404";
             }else {
+                if(status_num == 0){
+                    List<TicketDto> tickets = ticketService.findAllDeleteTicketOfAdmin(pagination_value);
+                    model.addAttribute("tickets", tickets);
+                }else {
+                    List<TicketDto> tickets = ticketService.findAllOfAdmin(pagination_value, status_num);
+                    model.addAttribute("tickets", tickets);
+                }
                 List<User> trainer = userService.findAllTrainer();
-                List<TicketDto> tickets = ticketService.findAllOfAdmin(pagination_value, status_num);
-                model.addAttribute("tickets", tickets);
+
+
                 model.addAttribute("count", count_row);
                 model.addAttribute("type", type);
                 model.addAttribute("totalPages",totalPages);
