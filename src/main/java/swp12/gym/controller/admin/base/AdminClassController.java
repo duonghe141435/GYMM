@@ -32,11 +32,39 @@ public class AdminClassController {
     private AttendanceService attendanceService;
 
     // ----------------------------------------------------------------
-    @RequestMapping(value = "/class",method = RequestMethod.GET)
-    public String goClassPage(Model model) {
-        List<ClassDto> class_list = classService.findClassAll();
-        model.addAttribute("class_list", class_list);
-        return "admin/class/class_list";
+    @RequestMapping(value = "/class/page={pagination}-status={status}",method = RequestMethod.GET)
+    public String goClassPage(@PathVariable String pagination,
+                              @PathVariable String status, Model model) {
+
+        try {
+            int status_num = Integer.parseInt(status);
+            int pagination_value = Integer.parseInt(pagination);
+            int totalPages = 1;
+            int count_row = classService.getNumberClassInSystemAdmin(status_num);
+            if(count_row != 0){
+                totalPages = (int) Math.ceil((double) count_row / 8);
+            }
+            if(pagination_value > totalPages){
+                return "base/404";
+            }else if(pagination_value < 1) {
+                return "base/404";
+            }else {
+                List<ClassDto> class_list = classService.findClassAllPagination(pagination_value, status);
+
+                model.addAttribute("count", count_row);
+                model.addAttribute("status", status);
+                model.addAttribute("totalPages",totalPages);
+                model.addAttribute("pagination",pagination_value);
+                model.addAttribute("class_list", class_list);
+                return "admin/class/class_list";
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return "base/404";
+        }
+
+
     }
 
     @RequestMapping(value = "/class/new-class",method = RequestMethod.GET)

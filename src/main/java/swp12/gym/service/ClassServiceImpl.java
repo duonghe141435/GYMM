@@ -50,13 +50,8 @@ public class ClassServiceImpl implements ClassService{
         return classDao.findAllClass();
     }
 
-
     public List<ClassDto> findAllTrainerClass(int ticket_id) {
         return classDao.findAllClassOfAnTicketClass(ticket_id);
-    }
-
-    public List<ClassDto> findAllClassNoneTicket() {
-        return null;
     }
 
     public List<String[]> findScheduleCheckClass(String id_ticket, String id_trainer, String id_time) {
@@ -89,5 +84,13 @@ public class ClassServiceImpl implements ClassService{
 
     public int getNumberClassOfAnCustomer(int customer_id) {
         return classDao.getNumberClassOfAnCustomer(customer_id);
+    }
+
+    public int getNumberClassInSystemAdmin(int status_num) {
+        return classDao.getNumberClassInSystemAdmin(status_num);
+    }
+
+    public List<ClassDto> findClassAllPagination(int pagination_value, String status) {
+        return classDao.findClassAllPagination(pagination_value, status);
     }
 }
