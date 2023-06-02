@@ -20,7 +20,7 @@
                         <p class="text-primary m-0 fw-bold">Thông tin người</p>
                     </div>
 
-                    <div class="card-body"><c:url value="/customer/your-profile/update" var="updateUserUrl"/>
+                    <div class="card-body"><c:url value="/customer/your-profile/update?{_csrf.parameterName}=${_csrf.token}" var="updateUserUrl"/>
                         <form:form method="POST" modelAttribute="user" enctype="multipart/form-data" action="${updateUserUrl}" >
                             <div class="container">
                                 <div class="row">

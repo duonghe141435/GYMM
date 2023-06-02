@@ -3,6 +3,7 @@ body {
     counter-reset: my-sec-counter;
 }
 
+
 count::before {
     /* Increment "my-sec-counter" by 1 */
     counter-increment: my-sec-counter;

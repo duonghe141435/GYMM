@@ -63,4 +63,8 @@ public interface TicketService {
     List<TicketDto> findAllDeleteTicketOfAdmin(int pagination_value);
 
     void deleteClass(String id_str);
+
+    void deleteTrainer(String id_str);
+
+    void undoTrainer(String id_str);
 }

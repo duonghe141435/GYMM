@@ -231,10 +231,10 @@ public class CustomerBaseController {
         return "customer/profile_user";
     }
 
-    @RequestMapping(value = "/your-profile/update",method = RequestMethod.GET)
-    public String updateCustomer(@ModelAttribute("user") User user, Model model) {
-        System.out.println(user.toString());
-        return "customer/index_customer";
+    @RequestMapping(value = "/your-profile/update",method = RequestMethod.POST)
+    public String updateCustomer(@ModelAttribute("user") UserDto user, Model model) {
+        userService.updateUser(user);
+        return  "redirect:/customer/home";
     }
 
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)

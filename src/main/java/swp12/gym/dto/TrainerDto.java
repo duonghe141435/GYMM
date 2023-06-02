@@ -8,17 +8,19 @@ public class TrainerDto {
     private String phone;
     private int price;
     private int status_trainer;
+    private int personal_trainer_id;
 
     public TrainerDto() {
     }
 
-    public TrainerDto(int id_trainer, String name_trainer, String email_trainer, String phone, int price, int status_trainer) {
+    public TrainerDto(int id_trainer, String name_trainer, String email_trainer, String phone, int price, int status_trainer, int personal_trainer_id) {
         this.id_trainer = id_trainer;
         this.name_trainer = name_trainer;
         this.email_trainer = email_trainer;
         this.phone = phone;
         this.price = price;
         this.status_trainer = status_trainer;
+        this.personal_trainer_id = personal_trainer_id;
     }
 
     public int getId_trainer() {
@@ -69,6 +71,14 @@ public class TrainerDto {
         this.status_trainer = status_trainer;
     }
 
+    public int getPersonal_trainer_id() {
+        return personal_trainer_id;
+    }
+
+    public void setPersonal_trainer_id(int personal_trainer_id) {
+        this.personal_trainer_id = personal_trainer_id;
+    }
+
     @Override
     public String toString() {
         return "TrainerDto{" +
@@ -78,6 +88,7 @@ public class TrainerDto {
                 ", phone='" + phone + '\'' +
                 ", price=" + price +
                 ", status_trainer=" + status_trainer +
+                ", personal_trainer_id=" + personal_trainer_id +
                 '}';
     }
 }

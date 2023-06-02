@@ -5,7 +5,16 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <img style="width: 70px" src="<c:url value="/assets/img/logo/logo-icon.png" />" />
             </div>
-            <div class="sidebar-brand-text">
+
+
+            <style>
+                @media only screen and (max-width: 400px) {
+                    #logo-name{
+                        display: none;
+                    }
+                }
+            </style>
+            <div class="sidebar-brand-text" id="logo-name">
                 <span style="font-weight: bold">GYM MASTER</span>
             </div>
         </a>

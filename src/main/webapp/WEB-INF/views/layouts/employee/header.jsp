@@ -12,7 +12,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <img style="width: 62px" src="<c:url value="/assets/img/logo/logo-icon.png" />" />
             </div>
-            <div class="sidebar-brand-text mx-3">
+            <div class="sidebar-brand-text" id="logo-name">
                 <span style="font-weight: bold">GYM MASTER</span>
             </div>
         </a>

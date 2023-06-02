@@ -66,7 +66,7 @@ public class ClassDao {
 
     public List<ClassDto> findAllClassOfAnUserById(int user_id){
         sql = "SELECT c.class_id as class_id, c.name as c_name, u.value_cost as c_price, u.date_payment as c_create_date,\n" +
-                "u.payment_status as c_status, c.start_date as c_start_date, c.end_date as c_end_date, us.name \n" +
+                "u.payment_status as c_status, c.start_date as c_start_date, c.end_date as c_end_date, us.name, c.state AS class_status \n" +
                 "FROM user_class\n" +
                 "join ticket_user u on user_class.ticket_user_id = u.ticket_user_id\n" +
                 "join class c on user_class.class_id = c.class_id\n" +
@@ -86,6 +86,7 @@ public class ClassDao {
                 classDto.setC_price(resultSet.getInt("c_price"));
                 classDto.setC_create_date(resultSet.getString("c_create_date"));
                 classDto.setC_trainer_name(resultSet.getString("name"));
+                classDto.setC_time_id(resultSet.getInt("class_status"));
 
                 return classDto;
             }

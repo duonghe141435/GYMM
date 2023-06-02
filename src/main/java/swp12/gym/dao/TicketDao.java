@@ -424,4 +424,24 @@ public class TicketDao {
             e.printStackTrace();
         }
     }
+
+    public void deleteTrainer(String id_str) {
+        try{
+            sql = "UPDATE personal_trainer SET status = 0, end_date = CURDATE() WHERE personal_trainer_id = ?";
+            jdbcTemplate.update(sql, id_str);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void undoTrainer(String id_str) {
+        try{
+            sql = "UPDATE personal_trainer SET status = 1, end_date = null WHERE personal_trainer_id = ?";
+            jdbcTemplate.update(sql, id_str);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

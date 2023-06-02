@@ -90,6 +90,14 @@ public class TicketServiceImpl implements TicketService{
         ticketDao.deleteClass(id_str);
     }
 
+    public void deleteTrainer(String id_str) {
+        ticketDao.deleteTrainer(id_str);
+    }
+
+    public void undoTrainer(String id_str) {
+        ticketDao.undoTrainer(id_str);
+    }
+
     public List<Map<Integer, Integer>> getDataOfAnTicket(int id) {
         return ticketDao.getDataOfAnTicket(id);
     }

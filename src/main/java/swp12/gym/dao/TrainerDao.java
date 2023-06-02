@@ -18,12 +18,12 @@ public class TrainerDao {
     private String sql;
 
     public List<TrainerDto> findAllTrainerByTicket(int id) {
-        sql = "SELECT tr.trainer_id, u.name, u.email, u.phone, pt.price\n" +
+        sql = "SELECT tr.trainer_id, u.name, u.email, u.phone, pt.price, pt.personal_trainer_id, pt.status\n" +
                 "FROM ticket t\n" +
                 "JOIN personal_trainer pt ON t.id_t = pt.ticket_id\n" +
                 "JOIN trainer tr ON pt.trainer_id = tr.trainer_id\n" +
                 "JOIN users u ON tr.id_u = u.id_u\n" +
-                "WHERE pt.status = 1 AND pt.ticket_id = ?";
+                "WHERE pt.ticket_id = ?";
         return jdbcTemplate.query(sql, new RowMapper<TrainerDto>() {
             public TrainerDto mapRow(ResultSet resultSet, int i) throws SQLException {
                 TrainerDto trainerDto = new TrainerDto();
@@ -32,6 +32,8 @@ public class TrainerDao {
                 trainerDto.setEmail_trainer(resultSet.getString("email"));
                 trainerDto.setPhone(resultSet.getString("phone"));
                 trainerDto.setPrice(resultSet.getInt("price"));
+                trainerDto.setPersonal_trainer_id(resultSet.getInt("personal_trainer_id"));
+                trainerDto.setStatus_trainer(resultSet.getInt("status"));
                 return trainerDto;
             }
         }, id);

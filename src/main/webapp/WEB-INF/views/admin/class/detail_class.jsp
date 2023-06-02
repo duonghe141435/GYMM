@@ -24,7 +24,7 @@
                 <div class="card shadow">
                     <div class="card-header py-3" style="display: flex;">
                         <p class="text-primary m-0 fw-bold" style="width: 90%;text-align: left;margin-top: auto;margin-bottom: auto;">Chi tiết lớp học</p>
-                        <a class="btn btn-primary" href="<c:url value="/admin/class"/>" style="font-weight: 700; width: 210px;">Trở lại danh sách lớp</a>
+                        <a class="btn btn-primary" href="<c:url value="/admin/class/page=1-status=1"/>" style="font-weight: 700; width: 210px;">Trở lại danh sách lớp</a>
                     </div>
                     <div class="card-body">
                         <div style="margin-right: 20%;" id="card-body">

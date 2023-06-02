@@ -206,13 +206,24 @@
                                                 <td>${dtoList.phone}</td>
                                                 <td class="class-price">${dtoList.price}</td>
                                                 <td class="text-center">
-                                                    <a class="class-view">
-                                                        <i class="fas fa-eye fa-lg fa-fw me-2 text-info"
-                                                           title="Thông tin chi tiết"
-                                                           onclick="viewDetailAnClass(${classDtos.class_id})"></i></a>
-
-                                                    <a class="class-delete">
-                                                        <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                                    <%--<a class="class-view">--%>
+                                                        <%--<i class="fas fa-eye fa-lg fa-fw me-2 text-info"--%>
+                                                           <%--title="Thông tin chi tiết"--%>
+                                                           <%--onclick="viewDetailAnClass(${classDtos.class_id})"></i></a>--%>
+                                                        <a class="trainer-undo" id="trainer-undo${dtoList.personal_trainer_id}" style="display: none">
+                                                            <i class="fas fa-undo fa-lg fa-fw me-2 text-primary" title="Hoàn tác" onclick="undoAnTrainer(${dtoList.personal_trainer_id})"></i></a>
+                                                        <a class="trainer-delete" id="trainer-delete${dtoList.personal_trainer_id}" style="display: none">
+                                                            <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa HLV" onclick="deleteAnTrainer(${dtoList.personal_trainer_id})"></i></a>
+                                                    <c:if test="${!(dtoList.status_trainer == 0)}">
+                                                        <script>
+                                                            document.getElementById("trainer-delete"+${dtoList.personal_trainer_id}).style.display = 'inline';
+                                                        </script>
+                                                    </c:if>
+                                                    <c:if test="${(dtoList.status_trainer == 0)}">
+                                                        <script>
+                                                            document.getElementById("trainer-undo"+${dtoList.personal_trainer_id}).style.display = 'inline';
+                                                        </script>
+                                                    </c:if>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -262,18 +273,21 @@
                                             <td class="class-price">${classDtos.c_price}</td>
                                             <td>${classDtos.c_start_date} - ${classDtos.c_end_date}</td>
                                             <td class="status text-center">
-                                                <c:if test="${classDtos.c_status == 1}"><span class="active">Đang bán</span></c:if>
-                                                <c:if test="${classDtos.c_status == -1}"><span class="waiting">Chưa bán - Thiếu huấn luyện viên</span></c:if>
+                                                <c:if test="${classDtos.c_status == 1}"><span class="active" id="status${classDtos.class_id}">Lớp đã bắt đầu</span></c:if>
+                                                <c:if test="${classDtos.c_status == 0}"><span class="waiting" id="status${classDtos.class_id}">Đang bán</span></c:if>
+                                                <c:if test="${classDtos.c_status == -1}"><span class="waiting" id="status${classDtos.class_id}">Đã hết hạn</span></c:if>
+                                                <c:if test="${classDtos.c_status == -2}"><span class="waiting" id="status${classDtos.class_id}">Đã xóa</span></c:if>
                                             </td>
                                             <td>${classDtos.total_attendees} / ${classDtos.max_member}</td>
-                                            <td class="text-center">
-                                                <a class="class-view">
+                                            <td class="">
+                                                <a class="class-view" style="margin-left: 1px">
                                                     <i class="fas fa-eye fa-lg fa-fw me-2 text-info"
                                                        title="Thông tin chi tiết"
                                                        onclick="viewDetailAnClass(${classDtos.class_id})"></i></a>
-
-                                                <a class="class-delete">
-                                                    <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                                <c:if test="${!(classDtos.c_status == -2)}">
+                                                    <a class="class-delete" id="class-delete${classDtos.class_id}">
+                                                        <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa lớp" onclick="deleteAnClass(${classDtos.class_id})"></i></a>
+                                                </c:if>
                                             </td>
                                         </tr>
                                         </c:forEach>
@@ -297,6 +311,106 @@
     function viewDetailAnClass(class_id) {
         console.log("class id: " + class_id);
         window.location.href = '<c:url value="/admin/detail-class/" />'+ class_id;
+    }
+
+    function deleteAnTrainer(personal_trainer_id) {
+        console.log("personal_trainer_id: " + personal_trainer_id);
+        var ids = personal_trainer_id;
+        var token = $("meta[name='_csrf']").attr("content");
+        var data = {'_id' : ids, _csrf: token};
+        Swal.fire({
+            title: 'Bạn muốn xóa huyến luyện viên này chứ?',
+            showDenyButton: true,
+            confirmButtonText: 'Xóa',
+            denyButtonText: 'Hoạc tác',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if(result.isConfirmed){
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8080/admin/class-management/delete1',
+                    data: data,
+                    success: function (result) {
+                        document.getElementById("trainer-delete"+personal_trainer_id).style.display = 'none';
+                        document.getElementById("trainer-undo"+personal_trainer_id).style.display = 'inline';
+                        Toast.fire({icon: 'info', title: 'Lớp học xóa!'})
+                    },
+                    error: function (error) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                        console.log(error);
+                    }
+                });
+            }else if (result.isDenied) {
+                Toast.fire({icon: 'info', title: 'Dừng xóa lớp học!'})
+            }
+        });
+    }
+
+    function undoAnTrainer(personal_trainer_id) {
+        console.log("personal_trainer_id: " + personal_trainer_id);
+        var ids = personal_trainer_id;
+        var token = $("meta[name='_csrf']").attr("content");
+        var data = {'_id' : ids, _csrf: token};
+        Swal.fire({
+            title: 'Bạn muốn mở huyến luyện viên này chứ?',
+            showDenyButton: true,
+            confirmButtonText: 'Mở',
+            denyButtonText: 'Hoạc tác',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if(result.isConfirmed){
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8080/admin/class-management/undo',
+                    data: data,
+                    success: function (result) {
+                        document.getElementById("trainer-delete"+personal_trainer_id).style.display = 'inline';
+                        document.getElementById("trainer-undo"+personal_trainer_id).style.display = 'none';
+                        Toast.fire({icon: 'info', title: 'Lớp học xóa!'})
+                    },
+                    error: function (error) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                        console.log(error);
+                    }
+                });
+            }else if (result.isDenied) {
+                Toast.fire({icon: 'info', title: 'Dừng xóa lớp học!'})
+            }
+        });
+    }
+
+    function deleteAnClass(class_id) {
+        console.log("class id: " + class_id);
+        var ids = class_id;
+        var token = $("meta[name='_csrf']").attr("content");
+        var data = {'_id' : ids, _csrf: token};
+        Swal.fire({
+            title: 'Bạn muốn xóa lớp học này này chứ?',
+            showDenyButton: true,
+            confirmButtonText: 'Xóa',
+            denyButtonText: 'Hoạc tác',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if(result.isConfirmed){
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8080/admin/class-management/delete',
+                    data: data,
+                    success: function (result) {
+                        document.getElementById("class-delete"+class_id).style.display = 'none';
+                        document.getElementById("status"+class_id).innerText = 'Đã xóa';
+                        document.getElementById("status"+class_id).classList = 'waiting';
+                        Toast.fire({icon: 'info', title: 'Lớp học xóa!'})
+                    },
+                    error: function (error) {
+                        Swal.fire('Oops...', 'Lỗi hệ thống', 'error');
+                        console.log(error);
+                    }
+                });
+            }else if (result.isDenied) {
+                Toast.fire({icon: 'info', title: 'Dừng xóa lớp học!'})
+            }
+        });
     }
 
     function getDataForMonth(dayInMonth) {

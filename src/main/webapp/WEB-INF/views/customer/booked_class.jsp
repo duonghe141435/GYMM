@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: a5nam
-  Date: 4/19/2023
-  Time: 6:00 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -82,6 +76,7 @@
                                                             <th class="text-center">Giá thuê</th>
                                                             <th class="text-center">Thời hạn</th>
                                                             <th class="text-center">Tình trạng thanh toán</th> <!-- Đã thanh toán, chưa thanh toán -->
+                                                            <%--<th class="text-center">Tình trạng lớp</th>--%>
                                                             <th class="text-center">Ngày thuê</th>
 
                                                         </tr>
@@ -105,10 +100,24 @@
                                                                         ${classDtos.c_start_date} - ${classDtos.c_end_date}
                                                                 </td>
                                                                 <td class="status text-center">
-                                                                    <c:if test="${classDtos.c_status == 1}"><span class="active">Đang bán / còn hạn</span></c:if>
-                                                                    <c:if test="${classDtos.c_status == -1}"><span class="waiting">Hết hạn</span></c:if>
-                                                                    <c:if test="${classDtos.c_status == 0}"><span class="waiting">Bị hủy - booking class không thành công</span></c:if>
+                                                                    <c:if test="${classDtos.c_status == 1}"><span class="active">Đã thanh toán</span></c:if>
+                                                                    <%--<c:if test="${classDtos.c_status == -1}"><span class="waiting">Hết hạn</span></c:if>--%>
+                                                                    <c:if test="${classDtos.c_status == 0}"><span class="waiting">Chưa thanh toán</span></c:if>
                                                                 </td>
+                                                                <%--<td class="text-center">--%>
+                                                                    <%--<c:if test="${classDtos.c_time_id == 0}">--%>
+                                                                        <%--Chưa bắt đầu--%>
+                                                                    <%--</c:if>--%>
+                                                                    <%--<c:if test="${classDtos.c_time_id == 1}">--%>
+                                                                        <%--Đang diễn ra--%>
+                                                                    <%--</c:if>--%>
+                                                                    <%--<c:if test="${classDtos.c_time_id == -1}">--%>
+                                                                        <%--Kế thúc--%>
+                                                                    <%--</c:if>--%>
+                                                                    <%--<c:if test="${classDtos.c_time_id == -2}">--%>
+                                                                        <%--Bị xóa--%>
+                                                                    <%--</c:if>--%>
+                                                                <%--</td>--%>
                                                                 <td class="text-center">
                                                                         ${classDtos.c_create_date}
                                                                 </td>
