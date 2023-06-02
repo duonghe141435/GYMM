@@ -48,7 +48,7 @@
 
                     <div class="card-body">
                         <div class="row">
-                            <div class="left card" style="margin-left: 21px;border-radius: 35px; text-align: center;">
+                            <div class="left card" style="margin-left: 21px;border-radius: 35px; text-align: center; height: 295px">
                                 <ul id="myMenu">
                                     <li><a href="<c:url value="/customer/activity-log/page=1"/>"> <p class="text-primary m-0 fw-bold">Lịch sử hoạt động</p></a></li>
                                     <li><a href="<c:url value="/customer/booking-ticket-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử đặt vé vào cửa</p></a></li>

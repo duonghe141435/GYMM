@@ -54,6 +54,8 @@ public interface TicketService {
 
     List<Ticket> findAddTicketOfAnCustomer(int ticketTypeId, int id_customer, int pagination);
 
+    List<Ticket> findTicketOfAnCustomer(int ticketTypeId, int id_customer);
+
     int getNumberTicketInSystemPage(int status_num);
 
     int getNumberTicketDeleteInSystemPage();
@@ -61,4 +63,8 @@ public interface TicketService {
     List<TicketDto> findAllDeleteTicketOfAdmin(int pagination_value);
 
     void deleteClass(String id_str);
+
+    void deleteTrainer(String id_str);
+
+    void undoTrainer(String id_str);
 }

@@ -59,6 +59,7 @@ public class ClassAPIOfAdmin {
             int max_member = Integer.parseInt(request.getParameter("_max_menber"));
 
             int id_class = classService.getMaxIdClassInSystem() + 1;
+            System.out.println("id_class: " + id_class);
 
             //lấy danh sách các ngày cũng lịch biểu của tất cả
             // lớp học vào slot time_id, của ticket_id của trainer_id
@@ -158,6 +159,31 @@ public class ClassAPIOfAdmin {
         }
     }
 
+
+    //Delete An Ticket
+    @PostMapping(value = URL_API+"/delete1", produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<String> delete1(HttpServletRequest request){
+        try{
+            String id_str = request.getParameter("_id");
+
+            ticketService.deleteTrainer(id_str);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    //undo An Ticket
+    @PostMapping(value = URL_API+"/undo", produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<String> undoTrainer(HttpServletRequest request){
+        try{
+            String id_str = request.getParameter("_id");
+            ticketService.undoTrainer(id_str);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
     //Delete An Ticket
     @PostMapping(value = URL_API+"/delete", produces = "text/plain;charset=UTF-8")

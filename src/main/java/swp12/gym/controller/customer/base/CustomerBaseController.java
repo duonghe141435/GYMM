@@ -108,7 +108,7 @@ public class CustomerBaseController {
     @RequestMapping(value = "/booking-ticket-log",method = RequestMethod.GET)
     public String goBookingTicketLog(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(1, id, 1);
+        List<Ticket> ticket = ticketService.findTicketOfAnCustomer(1, id);
         model.addAttribute("ticket",ticket);
         return "customer/log/ticket_log";
     }
@@ -116,7 +116,7 @@ public class CustomerBaseController {
     @RequestMapping(value = "/booking-trainer-log",method = RequestMethod.GET)
     public String goBookingTrainerLog(Model model, Authentication authentication) {
         int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
-        List<Ticket> ticket = ticketService.findAddTicketOfAnCustomer(2, id, 2);
+        List<Ticket> ticket = ticketService.findTicketOfAnCustomer(2, id);
         model.addAttribute("ticket",ticket);
         return "customer/log/trainer_log";
     }
@@ -231,10 +231,10 @@ public class CustomerBaseController {
         return "customer/profile_user";
     }
 
-    @RequestMapping(value = "/your-profile/update",method = RequestMethod.GET)
-    public String updateCustomer(@ModelAttribute("user") User user, Model model) {
-        System.out.println(user.toString());
-        return "customer/index_customer";
+    @RequestMapping(value = "/your-profile/update",method = RequestMethod.POST)
+    public String updateCustomer(@ModelAttribute("user") UserDto user, Model model) {
+        userService.updateUser(user);
+        return  "redirect:/customer/home";
     }
 
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
@@ -256,6 +256,7 @@ public class CustomerBaseController {
                 checkInService.insertCheckIn(userID, 0);
                 return new ResponseEntity<String>("NO", HttpStatus.OK);
             }else {
+                checkInService.insertCheckIn(userID, -1);
                 return new ResponseEntity<String>("NULL", HttpStatus.OK);
             }
         }catch (Exception e){

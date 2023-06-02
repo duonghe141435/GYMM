@@ -91,7 +91,7 @@
                                 </ul>
                             </nav>
                         </div>
-                        <div class="d-flex flex-wrap list-product-in" style="height: 320px;" id="product-list">
+                        <div class="d-flex flex-wrap list-product-in" style="height: auto;" id="product-list">
                             <div class="row">
                                 <c:if test="${not empty productDtos}">
                                     <c:forEach items="${productDtos}" var="productDtos">
@@ -172,7 +172,7 @@
                             <div class="row form-outline form-white mb-4">
                                 <div class="col-6">
                                     <label class="form-label mt-3" for="orderPrice">Tổng tiền hàng:</label>
-                                    <label class="mx-2 mt-3 bg-white text-dark text-center" id="totalOrder" style="display: inline-block;
+                                    <label class="mx-2 mt-3 bg-white text-dark text-center" id="totalOrder" style="display: none;
                                                             border-radius: 2px;"></label>
                                 </div>
                                 <div class="col-6">
@@ -261,9 +261,9 @@
                         console.log(response);
                         var productList = '';
                         $.each(response, function(index, productDtos) {
-                            productList += '<div class="col-lg-2 col-md-12 mb-4 mx-3">';
+                            productList += '<div class="col-lg-2 col-md-12 mb-4 mx-3" style="width: 18%;">';
                             productList += '<div class="bg-image hover-zoom ripple shadow-1-strong rounded">';
-                            productList += '<img src="' + productDtos.p_img + '" class="w-100" />';
+                            productList += '<img src="' + productDtos.p_img + '" class="w-100" style="height: 45%;"/>';
                             productList += '<div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">';
                             productList += '<div class="d-flex justify-content-start align-items-start h-30">';
                             productList += '<h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark pro_price">' + productDtos.p_price + '</span></h5>';

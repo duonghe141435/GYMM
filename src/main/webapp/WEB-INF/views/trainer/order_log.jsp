@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: a5nam
-  Date: 5/26/2023
-  Time: 7:06 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -56,25 +50,22 @@
 
                     <div class="card-body">
                         <div class="row">
-                            <div class="left card" style="margin-left: 21px;border-radius: 35px; text-align: center;">
+                            <div class="left card" style="margin-left: 21px;border-radius: 35px; text-align: center; height: 295px">
                                 <ul id="myMenu">
-                                    <li><a href="<c:url value="/customer/activity-log/page=1"/>"> <p class="text-primary m-0 fw-bold">Lịch sử hoạt động</p></a></li>
-                                    <li><a href="<c:url value="/customer/booking-ticket-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử đặt vé vào cửa</p></a></li>
-                                    <li><a href="<c:url value="/customer/booking-trainer-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử thuê huấn luyện viên</p></a></li>
-                                    <li><a href="<c:url value="/customer/booking-class-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử tham gia lớp học</p></a></li>
-                                    <li><a href="<c:url value="/customer/product-order-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử mua hàng</p></a></li>
+                                    <li><a href="<c:url value="/trainer/activity-log/page=1"/>"> <p class="text-primary m-0 fw-bold">Lịch sử hoạt động</p></a></li>
+                                    <li><a href="<c:url value="/trainer/product-order-log"/>"> <p class="text-primary m-0 fw-bold">Lịch sử mua hàng</p></a></li>
                                 </ul>
                             </div>
                             <div class="right">
                                 <div class="text-nowrap">
                                     <%--<div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">--%>
-                                        <%--<label class="form-label">Show&nbsp;--%>
-                                            <%--<select class="d-inline-block form-select form-select-sm">--%>
-                                                <%--<option value="10" selected="">10</option>--%>
-                                                <%--<option value="25">25</option>--%>
-                                                <%--<option value="50">50</option>--%>
-                                                <%--<option value="100">100</option>--%>
-                                            <%--</select>&nbsp;</label>--%>
+                                    <%--<label class="form-label">Show&nbsp;--%>
+                                    <%--<select class="d-inline-block form-select form-select-sm">--%>
+                                    <%--<option value="10" selected="">10</option>--%>
+                                    <%--<option value="25">25</option>--%>
+                                    <%--<option value="50">50</option>--%>
+                                    <%--<option value="100">100</option>--%>
+                                    <%--</select>&nbsp;</label>--%>
                                     <%--</div>--%>
                                     <div class="card-body" style="padding-top: 0;">
                                         <div class="card-body" style="padding-top: 0;">
@@ -159,7 +150,7 @@
             var ids = $(this).parent().siblings('.order_id').text();
             var totalAmount = $(this).parent().siblings('.total-amount').text();
             $.ajax({
-                url: '/customer/detail-order/'+ids,
+                url: '/trainer/detail-order/'+ids,
                 method: 'GET',
                 dataType : 'json',
                 success: function(response) {
@@ -177,6 +168,7 @@
                         tableData += '<td class="class-price">' + element.price_sale + '</td>';
                         tableData += '<td class="class-price">' + element.total_price + '</td>';
                         tableData += '</tr>';
+
                     });
                     tableData += '<tr><td colspan="3" class="text-right"><strong>Tổng số tiền hóa đơn:</strong></td><td class="class-price">' + totalAmount + '</td></tr>';
                     tableData += '</table>';

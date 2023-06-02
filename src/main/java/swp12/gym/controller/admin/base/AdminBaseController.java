@@ -110,14 +110,14 @@ public class AdminBaseController {
 
             return "redirect:/admin/employee";
 
-        } else if (user.getR_id() == 4) {
+        } else if (user.getR_id() == 0) {
             //kiểm tra xem người dùng này có phải là nhân viên hay không
 //            if (userService.isExistsStaff(user.getU_id())) {
 //                userService.deleteTrainer(user.getU_id());
 //                userService.createStaff(user.getU_id());
 //            }
 
-            return "redirect:/admin/customer";
+            return "redirect:/admin/customer/page=1-status=1";
 
         }
         return "redirect:/admin/dashboard";

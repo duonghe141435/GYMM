@@ -77,7 +77,7 @@
                                                         <tr>
                                                             <th class="text-center">#</th>
                                                             <th class="text-center">Tên huấn luyện viên</th>
-                                                            <th class="text-center">Loại hình</th> <!-- Cá nhân, theo lớp -->
+
                                                             <th class="text-center">Giá thuê</th>
                                                             <th class="text-center">Thời hạn</th>
                                                             <th class="text-center">Tình trạng thanh toán</th> <!-- Đã thanh toán, chưa thanh toán -->

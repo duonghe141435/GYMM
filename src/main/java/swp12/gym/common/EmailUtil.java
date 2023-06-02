@@ -9,9 +9,9 @@ import java.util.Properties;
 
 @Component
 public class EmailUtil {
-    private final String email_form = "gymmasterg12@gmail.com";
-    private final String username = "gymmasterg12";
-    private final String password = "tkizkludycmdbzwr";
+    private final String email_form = "thangnguyenvangym@gmail.com";
+    private final String username = "thangnguyenvangym";
+    private final String password = "cxocqoqszyjijcrn";
 
     private Properties properties = new Properties();
 

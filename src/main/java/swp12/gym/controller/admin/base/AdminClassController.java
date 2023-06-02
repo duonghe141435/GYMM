@@ -67,6 +67,7 @@ public class AdminClassController {
 
     }
 
+
     @RequestMapping(value = "/class/new-class",method = RequestMethod.GET)
     public String createNewClass(Model model) {
         List<User> trainer = userService.findAllTrainer();

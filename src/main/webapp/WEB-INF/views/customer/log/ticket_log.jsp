@@ -114,6 +114,9 @@
                                                     </table>
                                                 </div>
                                             </c:if>
+                                            <c:if test="${empty ticket}">
+                                                <p>Bạn chưa mua vé nào</p>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>

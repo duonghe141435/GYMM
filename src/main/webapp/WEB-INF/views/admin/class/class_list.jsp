@@ -18,6 +18,17 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <%--<div class="col-md-6 text-nowrap">--%>
+                                <%--<div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">--%>
+                                    <%--<label class="form-label">Show&nbsp;--%>
+                                        <%--<select class="d-inline-block form-select form-select-sm">--%>
+                                            <%--<option value="10" selected="">10</option>--%>
+                                            <%--<option value="25">25</option>--%>
+                                            <%--<option value="50">50</option>--%>
+                                            <%--<option value="100">100</option>--%>
+                                        <%--</select>&nbsp;</label>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                             <div class="col-md-6 text-nowrap">
                                 <div>
                                     <label class="form-label">Trạng thái&nbsp;
