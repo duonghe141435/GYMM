@@ -158,4 +158,18 @@ public class ClassAPIOfAdmin {
             return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
         }
     }
+
+
+    //Delete An Ticket
+    @PostMapping(value = URL_API+"/delete", produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<String> deleteTicket(HttpServletRequest request){
+        try{
+            String id_str = request.getParameter("_id");
+            System.out.println(id_str);
+            ticketService.deleteClass(id_str);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }

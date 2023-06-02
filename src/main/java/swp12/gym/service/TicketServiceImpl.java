@@ -20,7 +20,9 @@ public class TicketServiceImpl implements TicketService{
         return ticketDao.findAllTickets();
     }
 
-    public List<TicketTrainerDto> findAllTicketTrainer() { return ticketDao.findAllTicketTrainer(); }
+    public List<TicketTrainerDto> findAllTicketTrainer() {
+        return ticketDao.findAllTicketTrainer();
+    }
 
     public List<TicketTrainerDto> findAllTicketClassForCustomer() {
         return ticketDao.findAllTicketClassForCustomer();
@@ -84,6 +86,10 @@ public class TicketServiceImpl implements TicketService{
         return ticketDao.findAllDeleteTicketOfAdmin(pagination_value);
     }
 
+    public void deleteClass(String id_str) {
+        ticketDao.deleteClass(id_str);
+    }
+
     public List<Map<Integer, Integer>> getDataOfAnTicket(int id) {
         return ticketDao.getDataOfAnTicket(id);
     }
@@ -107,6 +113,4 @@ public class TicketServiceImpl implements TicketService{
     public int getNumberTicketOfAnCustomer(int i, int customer_id) {
         return ticketDao.getNumberTicketOfAnCustomer(i, customer_id);
     }
-
-
 }

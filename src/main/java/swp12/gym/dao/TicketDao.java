@@ -394,7 +394,7 @@ public class TicketDao {
     }
 
     public List<TicketDto> findAllDeleteTicketOfAdmin(int pagination_value) {
-        pagination_value = pagination_value*5-5;
+        pagination_value = pagination_value*8-8;
         try{
             sql = "SELECT t.id_t as ticket_id, t.tt_id as ticket_type,\n" +
                     "t.name as ticket_name, t.total_days as ticket_day,\n" +
@@ -412,6 +412,16 @@ public class TicketDao {
         }catch (Exception e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void deleteClass(String id_str) {
+        try{
+            sql = "UPDATE class SET state = -2 WHERE class_id = ?";
+            jdbcTemplate.update(sql, id_str);
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
