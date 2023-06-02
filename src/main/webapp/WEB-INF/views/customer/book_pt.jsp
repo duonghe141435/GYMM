@@ -76,7 +76,7 @@
         <label style=" font-weight: bold; font-size: 35px; color: blue;">Lịch Tập</label>
     </div>
     <div class="card-body">
-        <button class="btn-hover" id="myBook" style="box-shadow: 1px 3px;" type="button" title="Xem lịch tập với HLV của bản thân">Lịch huấn luyện</button>
+        <button class="btn-hover" id="myBook" style="box-shadow: 1px 3px;" type="button" title="Xem lịch tập với HLV của bản thân">Lịch tập</button>
 
         <%--<select name="typePt" id="ptType">--%>
             <%--<option value="">HLV cá nhân</option>--%>

@@ -92,7 +92,7 @@ public class OrderDao {
 
     public List<Order> getAllOrderOfAnUserById(int id) {
         try{
-            sql = "SELECT * FROM `order` o WHERE o.customer = ?";
+            sql = "SELECT * FROM `order` o WHERE o.customer = ? ORDER BY o.order_id DESC;";
             return jdbcTemplate.query(sql, new OrderMapper(), id);
         }catch (Exception e){
             return null;

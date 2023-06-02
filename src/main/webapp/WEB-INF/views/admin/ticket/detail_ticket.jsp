@@ -29,20 +29,20 @@
                                     <div class="card-header d-flex justify-content-between align-items-center">
                                         <h6 class="text-primary fw-bold m-0">Doanh thu của vé</h6>
                                         <div class="d-flex">
-                                            <div class="col-xs-3">
-                                                <select class="form-select" aria-label="Select month">
-                                                    <option selected>Select month</option>
-                                                    <option value="1">Tháng 1</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-xs-3 px-2">
-                                                <select class="form-select" aria-label="Select Year">
-                                                    <option selected>Select Year</option>
-                                                    <option value="1">One</option>
-                                                    <option value="2">Two</option>
-                                                    <option value="3">Three</option>
-                                                </select>
-                                            </div>
+                                            <%--<div class="col-xs-3">--%>
+                                                <%--<select class="form-select" aria-label="Select month">--%>
+                                                    <%--<option selected>Select month</option>--%>
+                                                    <%--<option value="1">Tháng 1</option>--%>
+                                                <%--</select>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="col-xs-3 px-2">--%>
+                                                <%--<select class="form-select" aria-label="Select Year">--%>
+                                                    <%--<option selected>Select Year</option>--%>
+                                                    <%--<option value="1">One</option>--%>
+                                                    <%--<option value="2">Two</option>--%>
+                                                    <%--<option value="3">Three</option>--%>
+                                                <%--</select>--%>
+                                            <%--</div>--%>
                                         </div>
                                     </div>
                                     <div class="card-body"  style="height: 500px">
@@ -159,8 +159,10 @@
                                             <c:if test="${ticket.t_status != 0}">
                                                 <td><a class="btn btn-danger delete-ticket">Hủy vé</a></td>
                                             </c:if>
-                                            <c:if test="${ticket.tt_id == 2}"> <td><a class="btn btn-info" href="<c:url value="/admin/trainer/page=1-status=1"/>">Xem danh sách huấn luyện viên</a></td></c:if>
-                                            <c:if test="${ticket.tt_id == 3}"> <td><a class="btn btn-info" href="<c:url value="/admin/class"/>">Xem danh sách lớp học</a></td></c:if>
+                                            <c:if test="${ticket.tt_id == 2}"> <td><a class="btn btn-info" data-bs-toggle="modal"
+                                                                                      data-bs-target="#list-trainer-of-ticket">Xem danh sách huấn luyện viên</a></td></c:if>
+                                            <c:if test="${ticket.tt_id == 3}"> <td><a class="btn btn-info" data-bs-toggle="modal"
+                                                                                      data-bs-target="#list-class">Xem danh sách lớp học</a></td></c:if>
 
                                         </tr>
                                     </table>
@@ -172,6 +174,62 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="list-trainer-of-ticket" tabindex="-1" role="dialog" aria-hidden="true" style="left: -6%;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="min-width: 980px; min-height: 620px">
+                    <div class="modal-header">
+                        <p class="text-primary m-0 fw-bold text-start">Danh sách HLV thuộc vé thuê HLV</p>
+                        <button id="close-list-trainer" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="py-4">
+                        <div class="container">
+                            <div class="row">
+                                <table class="table my-0" id="trainer-table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên HLV</th>
+                                        <th>Email</th>
+                                        <th>SDT</th>
+                                        <th>Giá</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="display: contents;width: 100%;overflow: auto;">
+                                    <c:if test="${not empty dtoList}">
+                                        <c:forEach items="${dtoList}" var="dtoList">
+                                            <tr>
+                                                <td><count></count></td>
+                                                <td>${dtoList.name_trainer}</td>
+                                                <td>${dtoList.email_trainer}</td>
+                                                <td>${dtoList.phone}</td>
+                                                <td class="class-price">${dtoList.price}</td>
+                                                <td class="text-center">
+                                                    <a class="class-view">
+                                                        <i class="fas fa-eye fa-lg fa-fw me-2 text-info"
+                                                           title="Thông tin chi tiết"
+                                                           onclick="viewDetailAnClass(${classDtos.class_id})"></i></a>
+
+                                                    <a class="class-delete">
+                                                        <i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${empty dtoList}">
+                                        <h3>Vé chưa có Huấn luyện viên</h3>
+                                    </c:if>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="modal fade" id="list-class" tabindex="-1" role="dialog" aria-hidden="true" style="left: -6%;">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content" style="min-width: 980px; min-height: 620px">
@@ -229,6 +287,7 @@
                 </div>
             </div>
         </div>
+
         <%@include file="/WEB-INF/views/layouts/admin/footer.jsp"%>
     </div>
 </div>

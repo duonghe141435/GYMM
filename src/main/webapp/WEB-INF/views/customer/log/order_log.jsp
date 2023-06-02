@@ -107,7 +107,7 @@
                                                                 <td class="text-center">
                                                                         ${logOrder.order_date}
                                                                 </td>
-                                                                <td class="text-center class-price">
+                                                                <td class="text-center class-price total-amount">
                                                                         ${logOrder.total_amount}
                                                                 </td>
                                                                 <td class="text-center">
@@ -157,6 +157,7 @@
         var list_order = $("#list-order");
         list_order.on('click', '.order_view', function () {
             var ids = $(this).parent().siblings('.order_id').text();
+            var totalAmount = $(this).parent().siblings('.total-amount').text();
             $.ajax({
                 url: '/customer/detail-order/'+ids,
                 method: 'GET',
@@ -177,6 +178,7 @@
                         tableData += '<td class="class-price">' + element.total_price + '</td>';
                         tableData += '</tr>';
                     });
+                    tableData += '<tr><td colspan="3" class="text-right"><strong>Tổng số tiền hóa đơn:</strong></td><td class="class-price">' + totalAmount + '</td></tr>';
                     tableData += '</table>';
                     Swal.fire({
                         title: 'Chi tiết hóa đơn',

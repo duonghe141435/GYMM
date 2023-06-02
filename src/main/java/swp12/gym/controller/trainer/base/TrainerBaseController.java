@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 
 import swp12.gym.dao.UsersDao;
@@ -25,6 +26,8 @@ public class TrainerBaseController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderService orderService;
     @Autowired
     private ClassService classService;
     @Autowired
@@ -205,6 +208,24 @@ public class TrainerBaseController {
             model.addAttribute("totalPages", totalPages);
             model.addAttribute("pagination", pagination_value);
             return "trainer/activity_log";
+        }
+    }
+
+    @RequestMapping(value = "/product-order-log",method = RequestMethod.GET)
+    public String goProductOrderLog(Model model, Authentication authentication) {
+        int id = userService.findIdByUsername(((UserDetails) authentication.getPrincipal()).getUsername());
+        List<Order> logOrder = orderService.findAllOrderOfAnUserById(id);
+        model.addAttribute("logOrder",logOrder);
+        return "trainer/order_log";
+    }
+
+    @GetMapping(value = "detail-order/{id}", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<OrderDetail>> createProductType(@PathVariable int id) {
+        try {
+            List<OrderDetail> orderDetail = orderService.getDetailOfAnOrder(id);
+            return new ResponseEntity<List<OrderDetail>>(orderDetail, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<List<OrderDetail>>(HttpStatus.BAD_REQUEST);
         }
     }
 

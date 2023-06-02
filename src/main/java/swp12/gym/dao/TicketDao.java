@@ -384,7 +384,7 @@ public class TicketDao {
 
     public int getNumberTicketDeleteInSystem() {
         try{
-            sql = "SELECT COUNT(*) FROM ticket JOIN ticket WHERE status = 0";
+            sql = "SELECT COUNT(*) FROM ticket WHERE status = 0";
             int number = jdbcTemplate.queryForObject(sql, Integer.class);
             return number;
         }catch (Exception e){

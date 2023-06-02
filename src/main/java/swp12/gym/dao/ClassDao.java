@@ -393,7 +393,10 @@ public class ClassDao {
 
     public int getMaxIdClassInSystem() {
             try{
-                sql = "SELECT MAX(class_id) FROM class";
+                sql = "SELECT class_id\n" +
+                        "FROM class\n" +
+                        "ORDER BY class_id DESC\n" +
+                        "LIMIT 1;";
                 int number = jdbcTemplate.queryForObject(sql, Integer.class);
                 return number;
             }catch (Exception e){

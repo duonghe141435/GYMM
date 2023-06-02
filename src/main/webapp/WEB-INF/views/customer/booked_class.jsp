@@ -60,15 +60,15 @@
 
                             <div class="right">
                                 <div class="text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                        <label class="form-label">Show&nbsp;
-                                            <select class="d-inline-block form-select form-select-sm">
-                                                <option value="10" selected="">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="100">100</option>
-                                            </select>&nbsp;</label>
-                                    </div>
+                                    <%--<div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">--%>
+                                        <%--<label class="form-label">Show&nbsp;--%>
+                                            <%--<select class="d-inline-block form-select form-select-sm">--%>
+                                                <%--<option value="10" selected="">10</option>--%>
+                                                <%--<option value="25">25</option>--%>
+                                                <%--<option value="50">50</option>--%>
+                                                <%--<option value="100">100</option>--%>
+                                            <%--</select>&nbsp;</label>--%>
+                                    <%--</div>--%>
                                     <div class="card-body" style="padding-top: 0;">
                                         <div class="card-body" style="padding-top: 0;">
                                             <c:if test="${not empty classDtos}">

@@ -33,7 +33,7 @@ public class TrainerServiceImpl implements TrainerService{
     }
 
     public List<TrainerDto> findAllTrainerByTicket(int id) {
-        return null;
+        return trainerDao.findAllTrainerByTicket(id);
     }
 
 }

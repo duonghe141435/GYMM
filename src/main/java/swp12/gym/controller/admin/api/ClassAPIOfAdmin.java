@@ -59,6 +59,7 @@ public class ClassAPIOfAdmin {
             int max_member = Integer.parseInt(request.getParameter("_max_menber"));
 
             int id_class = classService.getMaxIdClassInSystem() + 1;
+            System.out.println("id_class: " + id_class);
 
             //lấy danh sách các ngày cũng lịch biểu của tất cả
             // lớp học vào slot time_id, của ticket_id của trainer_id
