@@ -119,13 +119,13 @@
                                 <c:if test="${classDto.c_status == 0}"><span class="waiting" style="font-size: 15px;">Lớp chưa bắt đầu - Đang bán</span></c:if>
                             </p></br>
                                 <p style="font-weight: bold; display: inline-block;">- Lịch tập:&nbsp;<p style="display: inline-block; color: blue;">
-                                <c:if test="${classDto.monday == 1}"><span class="active" style="font-size: 16px !important;">monday</span> </c:if>
-                                <c:if test="${classDto.tuesday == 1}"><span class="waiting" style="font-size: 16px;">, tuesday</span> </c:if>
-                                <c:if test="${classDto.wednesday == 1}"><span class="waiting" style="font-size: 16px;">, wednesday</span> </c:if>
-                                <c:if test="${classDto.thursday == 1}"><span class="waiting" style="font-size: 16px;">, thursday</span> </c:if>
-                                <c:if test="${classDto.friday == 1}"><span class="waiting" style="font-size: 16px;">, friday</span> </c:if>
-                                <c:if test="${classDto.saturday == 1}"><span class="waiting" style="font-size: 16px;">, saturday</span></c:if>
-                                <c:if test="${classDto.sunday == 1}"><span class="waiting" style="font-size: 16px;">, sunday</span></c:if>
+                                <c:if test="${classDto.monday == 1}"><span class="active" style="font-size: 16px !important;">Thứ 2</span> </c:if>
+                                <c:if test="${classDto.tuesday == 1}"><span class="waiting" style="font-size: 16px;">, Thứ 3</span> </c:if>
+                                <c:if test="${classDto.wednesday == 1}"><span class="waiting" style="font-size: 16px;">, Thứ 4</span> </c:if>
+                                <c:if test="${classDto.thursday == 1}"><span class="waiting" style="font-size: 16px;">, Thứ 5</span> </c:if>
+                                <c:if test="${classDto.friday == 1}"><span class="waiting" style="font-size: 16px;">, Thứ 6</span> </c:if>
+                                <c:if test="${classDto.saturday == 1}"><span class="waiting" style="font-size: 16px;">, Thứ 7</span></c:if>
+                                <c:if test="${classDto.sunday == 1}"><span class="waiting" style="font-size: 16px;">, Chủ nhật</span></c:if>
                             </p></br>
                             </div>
                         </label>

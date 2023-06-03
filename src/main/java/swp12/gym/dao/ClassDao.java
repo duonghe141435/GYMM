@@ -129,14 +129,13 @@ public class ClassDao {
 
     public List<ClassDto> findAllScheduleClassOfAnTrainer(int user_id){
         sql = "SELECT c.class_id, c.name as c_name, c.start_date as c_start_date, c.end_date as c_end_date, u.name, c.time_id, tm.start_time, tm.end_time, w.id_weekdays, w.cn AS sunday, w.thu2 AS monday, w.thu3 AS tuesday, w.thu4 AS wednesday, w.thu5 AS thursday, w.thu6 AS friday, w.thu7 AS saturday\n" +
-                "FROM class c\n" +
-                "JOIN `time` tm ON c.time_id = tm.id_time\n" +
-                "JOIN trainer t ON c.trainer_id = t.trainer_id\n" +
-                "JOIN users u ON t.id_u = u.id_u\n" +
-                "JOIN weekdays w ON c.class_id = w.id_class\n" +
-                "LEFT JOIN user_class uc ON c.class_id = uc.class_id\n" +
-                "WHERE u.id_u = ?\n" +
-                "GROUP BY uc.class_id, uc.user_id";
+                "                FROM class c\n" +
+                "                JOIN `time` tm ON c.time_id = tm.id_time\n" +
+                "                JOIN trainer t ON c.trainer_id = t.trainer_id\n" +
+                "                JOIN users u ON t.id_u = u.id_u\n" +
+                "                JOIN weekdays w ON c.class_id = w.id_class\n" +
+                "                WHERE (c.state = 0 OR c.state = -1 OR c.state = 1) AND u.id_u = ?\n" +
+                "                GROUP BY c.class_id";
         return jdbcTemplate.query(sql, new RowMapper<ClassDto>() {
             public ClassDto mapRow(ResultSet resultSet, int i) throws SQLException {
                 ClassDto classDto = new ClassDto();

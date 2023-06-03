@@ -30,17 +30,17 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6 text-nowrap">
-                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">
-                                    <label class="form-label">Show&nbsp;
-                                        <select class="d-inline-block form-select form-select-sm">
-                                            <option value="10" selected="">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select>&nbsp;</label>
-                                </div>
-                            </div>
+                            <%--<div class="col-md-6 text-nowrap">--%>
+                                <%--<div id="dataTable_length" class="dataTables_length" aria-controls="dataTable">--%>
+                                    <%--<label class="form-label">Show&nbsp;--%>
+                                        <%--<select class="d-inline-block form-select form-select-sm">--%>
+                                            <%--<option value="10" selected="">10</option>--%>
+                                            <%--<option value="25">25</option>--%>
+                                            <%--<option value="50">50</option>--%>
+                                            <%--<option value="100">100</option>--%>
+                                        <%--</select>&nbsp;</label>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                         </div>
                         <div class="table-responsive table mt-2">
                             <table class="table my-0" id="class-table">
@@ -78,6 +78,9 @@
                                                 <c:if test="${class_list.c_status == -1}">
                                                     Kế thúc
                                                 </c:if>
+                                                <c:if test="${class_list.c_status == -2}">
+                                                    Đã xóa
+                                                </c:if>
                                             </td>
                                             <td>
                                                 <%--href="<c:url value="/trainer/attendance-an-class/${class_list.class_id}"/>"--%>
@@ -93,7 +96,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <a class="class-view" style="cursor: pointer"><i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
-                                                <a class="class-delete" style="cursor: pointer"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                                <a class="class-delete" style="cursor: pointer; display: none"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
                                             </td>
                                             <td class="CStatus" style="display: none">${class_list.c_status}</td>
                                         </tr>
@@ -103,9 +106,9 @@
                             </table>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 align-self-center">
-                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing
-                                    1 to 10 of 27</p></div>
+                            <%--<div class="col-md-6 align-self-center">--%>
+                                <%--<p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing--%>
+                                    <%--1 to 10 of 27</p></div>--%>
                             <div class="col-md-6">
                             </div>
                         </div>
@@ -156,7 +159,9 @@
             if (CStatus === "-1"){
                 Swal.fire("Không thể điểm danh", 'Lớp đã kết thúc', 'info');
             }
-
+            if (CStatus === "-2"){
+                Swal.fire("Không thể điểm danh", 'Lớp đã bị xóa', 'info');
+            }
 
 
             <%--window.location.href = '<c:url value="/trainer/attendance-an-class/" />'+ class_id--%>
