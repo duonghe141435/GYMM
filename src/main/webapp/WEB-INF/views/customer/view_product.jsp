@@ -19,19 +19,17 @@
 <%@include file="/WEB-INF/views/layouts/customer/header.jsp" %>
 <section class="py-5" style="background-color: #eee;">
     <div class="container py-5">
-        <h4 class="text-center mb-5"><strong>Product listing</strong></h4>
-
-
+        <h4 class="text-center mb-5"><strong>Danh sách sản phẩm</strong></h4>
 
         <div class="row d-flex justify-content-center align-items-center">
             <c:if test="${not empty productDtos}">
                 <c:forEach items="${productDtos}" var="productDto">
-                    <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
                         <div class="bg-image hover-zoom ripple shadow-1-strong rounded" >
-                            <img src="<c:url value="${productDto.p_img}"/> " class="w-100" style="width: 408px; height: 408px"/>
+                            <img src="<c:url value="${productDto.p_img}"/> " class="w-100" style="width: 350px; height: 350px"/>
                             <a class="text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#productModal" data-name="${productDto.p_name}" data-price="${productDto.p_price}" data-image="${productDto.p_img}"
                                data-description="${productDto.p_description}" data-kind="${productDto.p_kind_name}" data-quantity="${productDto.p_quantity}">
-                                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3); width: 408px; max-height: 150px">
+                                <div class="mask overflow-auto" style="background-color: rgba(0, 0, 0, 0.3); width: 350px; max-height: 90px">
                                     <div class="d-flex justify-content-start align-items-start h-30">
                                         <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark" style="margin-left: 5px">${productDto.p_name}</span></h5>
                                         <h5 style="margin-right: 10px; margin-left: auto"><span class="badge bg-light pt-2 mt-3 text-dark" >${productDto.p_price}</span></h5>
@@ -119,17 +117,12 @@
         content += '<p><strong>Mô tả:</strong> ' + description + '</p>';
         if (quantity == 0) {
             content += '<p>Hàng tạm thời đang hết, đang nhập hàng</p>';
-        } else {
-            content += '<p><strong>Số lượng:</strong> ' + quantity + '</p>';
         }
         // Thêm nội dung khác nếu cần thiết
         content += '</div></div>';
         modalBody.innerHTML = content;
     });
 </script>
-
-
-<%--<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>"></script>--%>
 <script src="<c:url value='/assets/js/theme.js'/>"></script>
 </body>
 </html>

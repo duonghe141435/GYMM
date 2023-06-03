@@ -22,21 +22,40 @@
             <strong>Danh sách sản phẩm</strong>
         </h4>
 
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="card shadow">
+        <div class="card shadow">
+            <%--<div class="row">--%>
+                <%--<div class="col-md-6 text-nowrap">--%>
+                    <%--<div>--%>
+                        <%--<label class="form-label">Các loại sản phẩm&nbsp;--%>
+                            <%--<select id="employee-status" class="d-inline-block form-select form-select-sm">--%>
+                                <%--<option value="1">Đồ uống</option>--%>
+                                <%--<option value="2">Đồ tập</option>--%>
+                            <%--</select>&nbsp;</label>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="col-md-6 text-nowrap">--%>
+                    <%--<div class="text-md-end w-25 float-end">--%>
+                        <%--<label class="form-label d-flex">--%>
+                            <%--<input type="search" class="form-control form-control-sm" placeholder="Tìm kiếm" id="input-search">--%>
+                            <%--<button id="btn-search-user" type="button" style="background: none; border: none"><i class="fa fa-search"></i></button>--%>
+                        <%--</label>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <div class="row d-flex justify-content-center align-items-center">
             <c:if test="${not empty productDtos}">
                 <c:forEach items="${productDtos}" var="productDto">
-                    <div class="col-lg-4 col-md-12 mb-4">
+                    <div class="col-md-4 col-sm-12 mb-4 mt-3">
                         <div class="bg-image hover-zoom ripple shadow-1-strong rounded" >
-                            <img src="<c:url value="${productDto.p_img}"/> " class="w-100" style="width: 408px; height: 408px"/>
+                            <img src="<c:url value="${productDto.p_img}"/> " class="w-100" style="width: 350px; height: 350px"/>
                             <a class="text-decoration-none" href="#" data-bs-toggle="modal"
                                data-bs-target="#productModal" data-name="${productDto.p_name}" data-price="${productDto.p_price}" data-image="${productDto.p_img}"
                                data-description="${productDto.p_description}" data-kind="${productDto.p_kind_name}" data-quantity="${productDto.p_quantity}">
 
-                                <div class="mask" style="background-color: rgba(0, 0, 0, 0.3); width: 408px; max-height: 150px">
+                                <div class="mask overflow-auto" style="background-color: rgba(0, 0, 0, 0.3); width: 350px; max-height: 100px">
                                     <div class="d-flex justify-content-start align-items-start h-30">
                                         <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark" style="margin-left: 5px">${productDto.p_name}</span></h5>
-                                        <h5 style="margin-right: 10px; margin-left: auto"><span class="badge bg-light pt-2 mt-3 text-dark" >${productDto.p_price}</span></h5>
+                                        <h5 style="margin-right: 10px; margin-left: auto"><span class="badge bg-light pt-2 mt-3 text-dark class-price" >${productDto.p_price}</span></h5>
                                     </div>
                                     <p class="text-light text-center fw-bold" >${productDto.p_description}</p>
                                 </div>
