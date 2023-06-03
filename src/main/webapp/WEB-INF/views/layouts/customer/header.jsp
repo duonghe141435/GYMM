@@ -10,6 +10,14 @@
                 <span style="font-weight: bold">GYM MASTER</span>
             </div>
         </a>
+        <style>
+            /* CSS media query for screens with a width less than 600px */
+            @media only screen and (max-width: 600px) {
+                #logo-name {
+                    display: none;
+                }
+            }
+        </style>
         <ul class="navbar-nav text-light" id="accordionSidebar" style="background-color: seagreen">
             <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="<c:url value="/customer/home" />">
@@ -20,28 +28,20 @@
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" href="#">
-                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Vé</span>
+                        <i class="fas fa-user-alt"></i><span>&nbsp;&nbsp;Phòng tập</span>
                     </a>
 
                     <div class="dropdown-menu shadow animated--grow-in">
                         <a class="dropdown-item" href="<c:url value="/customer/list-personal"/>">Vé tập với PT</a>
                         <a class="dropdown-item" href="<c:url value="/customer/list-class"/>">Vé lớp</a>
+                        <a class="dropdown-item" href="<c:url value="/customer/list-trainer"/>">Huấn Luyện Viên</a>
+                        <a class="dropdown-item" href="<c:url value="/customer/book-pt"/>">Lịch tập</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link" href="<c:url value="/customer/list-trainer"/>">
-                    <i class="fas fa-chalkboard-teacher"></i><span>&nbsp;&nbsp;Huấn Luyện Viên</span>
-                </a>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="<c:url value="/customer/list-class-of-you"/>">
                     <i class="fas fa-person-booth"></i><span>&nbsp;&nbsp;Lớp học</span>
-                </a>
-            </li>
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link" href="<c:url value="/customer/book-pt"/>">
-                    <i class="fas fa-calendar-alt"></i><span>&nbsp;&nbsp;Lịch tập</span>
                 </a>
             </li>
             <li class="nav-item dropdown no-arrow mx-1">
@@ -59,38 +59,38 @@
                 </a>
             </li>
 
-            <li class="nav-item dropdown no-arrow mx-1">
-                <div class="nav-item dropdown no-arrow">
-                    <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span
-                        class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                        <h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center"
-                                                                         href="#">
-                        <div class="me-3">
-                            <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                        </div>
-                        <div><span class="small text-gray-500">December 12, 2019</span>
-                            <p>A new monthly report is ready to download!</p>
-                        </div>
-                    </a><a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="me-3">
-                            <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
-                        </div>
-                        <div><span class="small text-gray-500">December 7, 2019</span>
-                            <p>$290.29 has been deposited into your account!</p>
-                        </div>
-                    </a><a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="me-3">
-                            <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i>
-                            </div>
-                        </div>
-                        <div><span class="small text-gray-500">December 2, 2019</span>
-                            <p>Spending Alert: We've noticed unusually high spending for your account.</p>
-                        </div>
-                    </a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                    </div>
-                </div>
-            </li>
+            <%--<li class="nav-item dropdown no-arrow mx-1">--%>
+                <%--<div class="nav-item dropdown no-arrow">--%>
+                    <%--<a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span--%>
+                        <%--class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>--%>
+                    <%--<div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">--%>
+                        <%--<h6 class="dropdown-header">alerts center</h6><a class="dropdown-item d-flex align-items-center"--%>
+                                                                         <%--href="#">--%>
+                        <%--<div class="me-3">--%>
+                            <%--<div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>--%>
+                        <%--</div>--%>
+                        <%--<div><span class="small text-gray-500">December 12, 2019</span>--%>
+                            <%--<p>A new monthly report is ready to download!</p>--%>
+                        <%--</div>--%>
+                    <%--</a><a class="dropdown-item d-flex align-items-center" href="#">--%>
+                        <%--<div class="me-3">--%>
+                            <%--<div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>--%>
+                        <%--</div>--%>
+                        <%--<div><span class="small text-gray-500">December 7, 2019</span>--%>
+                            <%--<p>$290.29 has been deposited into your account!</p>--%>
+                        <%--</div>--%>
+                    <%--</a><a class="dropdown-item d-flex align-items-center" href="#">--%>
+                        <%--<div class="me-3">--%>
+                            <%--<div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div><span class="small text-gray-500">December 2, 2019</span>--%>
+                            <%--<p>Spending Alert: We've noticed unusually high spending for your account.</p>--%>
+                        <%--</div>--%>
+                    <%--</a><a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</li>--%>
             <li class="nav-item dropdown no-arrow mx-1">
                 <div class="nav-item dropdown no-arrow">
                     <a class="dropdown-toggle nav-link" href="<c:url value="/CustomerUser/cart" />">
@@ -152,7 +152,26 @@
     </div>
 </nav>
 <script>
+    window.addEventListener('DOMContentLoaded', function() {
+        var logoName = document.getElementById('logo-name');
+
+        function toggleLogoName() {
+            if (window.innerWidth <= 600) {
+                logoName.style.display = 'none';
+            } else {
+                logoName.style.display = 'block';
+            }
+        }
+
+        // Gọi hàm toggleLogoName khi tải trang và khi kích thước của cửa sổ thay đổi
+        toggleLogoName();
+        window.addEventListener('resize', toggleLogoName);
+    });
+</script>
+
+<script>
     $(document).ready(function () {
+
         // Lấy CSRF token
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");

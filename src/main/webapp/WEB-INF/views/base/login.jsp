@@ -52,6 +52,7 @@
                                 </form>
                                 <div class="text-center"><a class="small" href="<c:url value="/forgot-password"/>">Bạn đã quên mật khẩu?</a></div>
                                 <div class="text-center"><a class="small" href="<c:url value='/register'/>">Tạo một tài khoản</a></div>
+                                <div class="text-center"><a class="small" href="<c:url value='/home'/>">Trở lại trang chủ</a></div>
                             </div>
                         </div>
                     </div>
