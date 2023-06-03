@@ -102,7 +102,7 @@
                     <span class="d-none d-lg-inline me-2 small" style="color: white">${display_name}</span>
                     <img class="border rounded-circle img-profile" src="<c:url value="${display_img}"/>"></a>
                     <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                        <a class="dropdown-item" href="<c:url value="/trainer/your-profile"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a>
+                        <a class="dropdown-item" href="<c:url value="/trainer/your-profile"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Thông tin cá nhân</a>
                         <a class="dropdown-item"  href="<c:url value="/trainer/activity-log/page=1"/>"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Lịch sử hoạt động</a>
                         <a class="dropdown-item" href="<c:url value="/trainer/change-pass"/>"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Đổi mật khẩu</a>
 
