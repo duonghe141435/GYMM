@@ -26,10 +26,10 @@
                 <c:forEach items="${productDtos}" var="productDto">
                     <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
                         <div class="bg-image hover-zoom ripple shadow-1-strong rounded" >
-                            <img src="<c:url value="${productDto.p_img}"/> " class="w-100" style="width: 350px; height: 350px"/>
+                            <img src="<c:url value="${productDto.p_img}"/> " class="w-80" style="width: 360px; height: 350px"/>
                             <a class="text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#productModal" data-name="${productDto.p_name}" data-price="${productDto.p_price}" data-image="${productDto.p_img}"
                                data-description="${productDto.p_description}" data-kind="${productDto.p_kind_name}" data-quantity="${productDto.p_quantity}">
-                                <div class="mask overflow-auto" style="background-color: rgba(0, 0, 0, 0.3); width: 350px; max-height: 90px">
+                                <div class="mask overflow-auto" style="background-color: rgba(0, 0, 0, 0.3); width: 360px; height: 130px">
                                     <div class="d-flex justify-content-start align-items-start h-30">
                                         <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark" style="margin-left: 5px">${productDto.p_name}</span></h5>
                                         <h5 style="margin-right: 10px; margin-left: auto"><span class="badge bg-light pt-2 mt-3 text-dark" >${productDto.p_price}</span></h5>
