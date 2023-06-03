@@ -29,7 +29,7 @@
                                                  class="rounded-circle" width="150" height="150">
                                             <div class="mt-2">
                                                 <label class="btn btn-primary">
-                                                    Change Photo
+                                                    Đổi ảnh
                                                     <input id="profile-image" type="file" name="file-up" hidden>
                                                 </label>
                                             </div>
@@ -53,7 +53,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="full-name"><strong>Tên đầy đủ</strong></label>
                                             <form:input class="form-control" type="text" id="full-name"
-                                                        placeholder="Enter your full name" name="full-name"
+                                                        placeholder="Nhập tên đầy đủ" name="full-name"
                                                         path="u_full_name" required="required" />
                                         </div>
                                         <div class="mb-3">
@@ -68,7 +68,7 @@
                                                    for="phone-number"><strong>Số điện thoại</strong></label>
                                             <form:input class="form-control" type="text"
                                                         id="phone-number"
-                                                        placeholder="Enter your phone number"
+                                                        placeholder="Nhập số điên thoại"
                                                         path="u_phone_number" name="phone-number" required="required" />
                                             <div class="invalid-feedback phone-error">
                                                 Xin vui lòng nhập một số điện thoại hợp lệ.
@@ -84,7 +84,7 @@
                                             <label class="form-label"
                                                    for="address"><strong>Địa chỉ</strong></label>
                                             <form:input class="form-control" type="text" id="address"
-                                                        placeholder="Enter your address" name="address"
+                                                        placeholder="Nhập địa chỉ" name="address"
                                                         path="u_address" required="required" />
                                         </div>
                                         <div class="mb-3">
