@@ -96,7 +96,7 @@
                                             </td>
                                             <td class="text-center">
                                                 <a class="class-view" style="cursor: pointer"><i class="fas fa-eye fa-lg fa-fw me-2 text-success"></i></a>
-                                                <a class="class-delete" style="cursor: pointer"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
+                                                <a class="class-delete" style="cursor: pointer; display: none"><i class="fas fa-trash fa-lg fa-fw me-2 text-danger" title="Xóa vé"></i></a>
                                             </td>
                                             <td class="CStatus" style="display: none">${class_list.c_status}</td>
                                         </tr>
