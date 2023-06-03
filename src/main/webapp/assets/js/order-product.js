@@ -1,3 +1,4 @@
+$(document).ready(function() {
 var productList = document.querySelectorAll('.list-product-in .col-lg-2');
 var orderPriceLabel = document.getElementById('orderPrice');
 var itemQuantityLabel = document.querySelector('.mx-2.mt-3.bg-white.text-dark.text-center');
@@ -173,22 +174,24 @@ salesTable.addEventListener('click', function(event) {
     }
 });
 
-var cancelBtn = document.getElementById('cancelBtn');
-cancelBtn.addEventListener('click', function() {
-    var rows = document.querySelectorAll('#sales_table tbody tr');
-    rows.forEach(function(row) {
-        row.remove();
-    });
+// var cancelBtn = document.getElementById('cancelBtn');
+// cancelBtn.addEventListener('click', function() {
+//     var rows = document.querySelectorAll('#sales_table tbody tr');
+//     rows.forEach(function(row) {
+//         row.remove();
+//     });
+//
+//     itemCount = 0;
+//     totalOrderPrice = 0;
+//     orderPriceLabel.innerHTML = totalOrderPrice;
+//     itemQuantityLabel.innerHTML = itemCount;
+//     cusPaidLabel.innerHTML = totalOrderPrice;
+//     discountInput.value = "";
+//
+//
+// });
 
-    itemCount = 0;
-    totalOrderPrice = 0;
-    orderPriceLabel.innerHTML = totalOrderPrice;
-    itemQuantityLabel.innerHTML = itemCount;
-    cusPaidLabel.innerHTML = totalOrderPrice;
-    discountInput.value = "";
-
-
-});
+})
 
 
 

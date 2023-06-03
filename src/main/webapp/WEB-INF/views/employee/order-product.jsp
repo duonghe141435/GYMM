@@ -1,5 +1,4 @@
 <%--suppress ALL --%>
-<%--suppress ALL --%>
 <%--
   Created by IntelliJ IDEA.
   User: HP
@@ -14,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Product</title>
+    <title>Bán Hàng</title>
     <%@include file="/WEB-INF/views/layouts/head_tag.jsp" %>
     <style>
         .fa-trash {
@@ -37,6 +36,7 @@
     </style>
 </head>
 <body>
+
 <%@include file="/WEB-INF/views/layouts/employee/header.jsp" %>
 <div class="col-lg-12">
     <div class="row d-flex justify-content-center align-items-center h-100" style="--bs-gutter-x: 0">
@@ -72,24 +72,24 @@
                                     </label>
                                 </div>
                             </div>
-                            <nav aria-label="Page navigation">
-                                <ul class="pagination py-2" id="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true">&laquo;</span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true">&raquo;</span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
+                            <%--<nav aria-label="Page navigation">--%>
+                                <%--<ul class="pagination py-2" id="pagination">--%>
+                                    <%--<li class="page-item">--%>
+                                        <%--<a class="page-link" href="#" aria-label="Previous">--%>
+                                            <%--<span aria-hidden="true">&laquo;</span>--%>
+                                            <%--<span class="sr-only">Previous</span>--%>
+                                        <%--</a>--%>
+                                    <%--</li>--%>
+                                    <%--<li class="page-item"><a class="page-link" href="#">1</a></li>--%>
+                                    <%--<li class="page-item"><a class="page-link" href="#">2</a></li>--%>
+                                    <%--<li class="page-item">--%>
+                                        <%--<a class="page-link" href="#" aria-label="Next">--%>
+                                            <%--<span aria-hidden="true">&raquo;</span>--%>
+                                            <%--<span class="sr-only">Next</span>--%>
+                                        <%--</a>--%>
+                                    <%--</li>--%>
+                                <%--</ul>--%>
+                            <%--</nav>--%>
                         </div>
                         <div class="d-flex flex-wrap list-product-in" style="height: auto;" id="product-list">
                             <div class="row">
@@ -101,7 +101,7 @@
                                                      class="w-100" style="width: 131px; height: 141px"/>
                                                 <div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">
                                                     <div class="d-flex justify-content-start align-items-start h-30">
-                                                        <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark pro_price">${productDtos.p_price}</span></h5>
+                                                        <h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark class-price pro_price">${productDtos.p_price}</span></h5>
                                                     </div>
                                                     <p class="text-light text-center fw-bold pro_name">${productDtos.p_name}</p>
                                                     <p class="d-none pro_id">${productDtos.p_id}</p>
@@ -251,70 +251,68 @@
         // Thực hiện hành động tìm kiếm tại Danh sách người dùng hệ thống
         input_search.on("input", function (){
             var input = $(this).val();
-            if(input.length >=3 ){
-                $.ajax({
-                    url: 'http://localhost:8080/employee/product-management/search',
-                    method: 'GET',
-                    data: {query: input},
-                    dataType : 'json',
-                    success: function(response) {
-                        console.log(response);
-                        var productList = '';
-                        $.each(response, function(index, productDtos) {
-                            productList += '<div class="col-lg-2 col-md-12 mb-4 mx-3" style="width: 18%;">';
-                            productList += '<div class="bg-image hover-zoom ripple shadow-1-strong rounded">';
-                            productList += '<img src="' + productDtos.p_img + '" class="w-100" style="height: 45%;"/>';
-                            productList += '<div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">';
-                            productList += '<div class="d-flex justify-content-start align-items-start h-30">';
-                            productList += '<h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark pro_price">' + productDtos.p_price + '</span></h5>';
-                            productList += '</div>';
-                            productList += '<p class="text-light text-center fw-bold pro_name">' + productDtos.p_name + '</p>';
-                            productList += '<p class="d-none pro_id">' + productDtos.p_id + '</p>';
-                            productList += '<p class="d-none pro_quantity">' + productDtos.p_quantity + '</p>';
-                            productList += '</div>';
-                            productList += '<div class="hover-overlay">';
-                            productList += '<div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>';
-                            productList += '</div>';
-                            productList += '</div>';
-                            productList += '</div>';
-                        });
-                        $('#product-list').html('<div class="row">' + productList + '</div>');
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            }
+            $.ajax({
+                url: 'http://localhost:8080/employee/product-management/search',
+                method: 'GET',
+                data: {query: input},
+                dataType : 'json',
+                success: function(response) {
+                    console.log(response);
+                    var productList = '';
+                    $.each(response, function(index, productDtos) {
+                        productList += '<div class="col-lg-2 col-md-12 mb-4 mx-3">';
+                        productList += '<div class="bg-image hover-zoom ripple shadow-1-strong rounded">';
+                        productList += '<img src="' + productDtos.p_img + '" class="w-100" style="width:131px !important;; height: 141px"/>';
+                        productList += '<div class="mask" style="background-color: rgba(0, 0, 0, 0.3);">';
+                        productList += '<div class="d-flex justify-content-start align-items-start h-30">';
+                        productList += '<h5><span class="badge bg-light pt-2 ms-3 mt-3 text-dark price">' + productDtos.p_price + '</span></h5>';
+                        productList += '</div>';
+                        productList += '<p class="text-light text-center fw-bold pro_name">' + productDtos.p_name + '</p>';
+                        productList += '<p class="d-none pro_id">' + productDtos.p_id + '</p>';
+                        productList += '<p class="d-none pro_quantity">' + productDtos.p_quantity + '</p>';
+                        productList += '</div>';
+                        productList += '<div class="hover-overlay">';
+                        productList += '<div class="mask" style="background-color: rgba(253, 253, 253, 0.15); width: 131px;"></div>';
+                        productList += '</div>';
+                        productList += '</div>';
+                        productList += '</div>';
+                    });
+                    $('#product-list').html('<div class="row">' + productList + '</div>');
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
         });
-        btn_search.click(function (e) {
-            var input = input_search.val();
-            // Thực hiện hành động khi thẻ input thay đổi
-            if(input === ''){
-                Swal.fire({
-                    title: 'Oops...',
-                    text: 'Bạn cần nhập thông tin vào ô tìm kiếm',
-                    icon: 'error'
-                })
-            }else if(input.length >= 3){
-                $.ajax({
-                    url: 'http://localhost:8080/employee/product-management/search',
-                    method: 'GET',
-                    data: {query: input},
-                    success: function(response) {
-                        window.location.href = "http://localhost:8080/employee/product-management/search/"+input;
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(error);
-                    }
-                });
-            }else {
-                Swal.fire({
-                    title: 'Oops...',
-                    text: 'Hãy nhập tối thiểu 3 ký tự vào ô tìm kiếm',
-                    icon: 'error'
-                })
-            }
-        });
+        // btn_search.click(function (e) {
+        //     var input = input_search.val();
+        //     // Thực hiện hành động khi thẻ input thay đổi
+        //     if(input === ''){
+        //         Swal.fire({
+        //             title: 'Oops...',
+        //             text: 'Bạn cần nhập thông tin vào ô tìm kiếm',
+        //             icon: 'error'
+        //         })
+        //     }else if(input.length >= 3){
+        //         $.ajax({
+        //             url: 'http://localhost:8080/employee/product-management/search',
+        //             method: 'GET',
+        //             data: {query: input},
+        //             success: function(response) {
+        //                 window.location.href = "http://localhost:8080/employee/product-management/search/"+input;
+        //             },
+        //             error: function(xhr, status, error) {
+        //                 console.log(error);
+        //             }
+        //         });
+        //     }else {
+        //         Swal.fire({
+        //             title: 'Oops...',
+        //             text: 'Hãy nhập tối thiểu 3 ký tự vào ô tìm kiếm',
+        //             icon: 'error'
+        //         })
+        //     }
+        // });
     });
 
     document.getElementById("date-order").readOnly = true;

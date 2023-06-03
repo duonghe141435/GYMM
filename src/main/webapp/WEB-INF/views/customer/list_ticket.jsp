@@ -46,7 +46,7 @@
                                             - Số người đã tham gia: <br/>
                                             - loại vé: vé tập và sử dụng phòng GYM <br/>
                                             - Thời gian sử dụng: ${tickets.t_total_days} Ngày<br/>
-                                        <h5 class="display-7 fw-bold mb-4 price">- Giá vé: ${tickets.t_price}</h5>
+                                        <h5 class="display-7 fw-bold mb-4">Giá vé: <span class="price">${tickets.t_price}</span></h5>
                                         </p>
                                     </div>
                                     <div class="card-read-more">
@@ -70,7 +70,6 @@
         // });
 
         function mess(id){
-            console.log("id: " + id);
             $.ajax(
                 {
                     type : "GET",
