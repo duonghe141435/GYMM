@@ -50,9 +50,9 @@ public class IndexController {
 
     @RequestMapping(value = "/product",method = RequestMethod.GET)
     public String productPage(Model model) {
+
         List<ProductDto> productDtos = productService.findAll();
         model.addAttribute("productDtos", productDtos);
-
         return "guest/view_product";
     }
 

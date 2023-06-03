@@ -188,6 +188,7 @@
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }});
+
             Swal.fire({
                 title: 'Bạn cần đăng nhập để mua vé?',
                 showDenyButton: true,
