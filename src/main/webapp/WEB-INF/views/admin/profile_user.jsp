@@ -44,11 +44,6 @@
                                                 <form:option value="2">Nữ</form:option>
                                             </form:select>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label"
-                                                   for="role_name"><strong>Chức vụ</strong></label>
-                                            <input id="role_name" class="form-control" value="Admin" readonly>
-                                        </div>
                                     </div>
                                     <div class="col-8">
                                         <div class="mb-3" style="display:none;">

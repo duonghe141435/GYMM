@@ -31,6 +31,7 @@ public interface UserService {
     void createUser(UserDto user);
     //Update Information of user in system
     void updateUser(UserDto user);
+    void updateUserProfile(UserDto userDto);
 
     //Create new staff in System
     void createStaff(int id_u);

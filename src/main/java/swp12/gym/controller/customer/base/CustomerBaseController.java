@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import swp12.gym.common.DataUtil;
+import swp12.gym.common.FileUtil;
 import swp12.gym.dao.UsersDao;
 import swp12.gym.dto.*;
 import swp12.gym.model.entity.*;
@@ -232,14 +234,25 @@ public class CustomerBaseController {
     }
 
     @RequestMapping(value = "/your-profile/update",method = RequestMethod.POST)
-    public String updateCustomer(@ModelAttribute("user") UserDto user, Model model) {
-        userService.updateUser(user);
+    public String updateCustomer(@ModelAttribute("user") UserDto user, HttpSession s,
+                                 @RequestParam("file-up") CommonsMultipartFile file)
+    {
+        System.out.println(file.getOriginalFilename());
+        if (!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null) {
+            String u_img = "/assets/img/avatars/" + file.getOriginalFilename();
+            if (!u_img.equalsIgnoreCase(user.getU_img())) {
+                FileUtil.doSaveImgToService(file,s,"avatars");
+                user.setU_img(u_img);
+            }
+        }
+
+        userService.updateUserProfile(user);
         return  "redirect:/customer/home";
     }
 
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
     public String goChangePassForCustomer() {
-        return "customer/change_pass";
+            return "customer/change_pass";
     }
 
     @RequestMapping(value = "/checkIn",method = RequestMethod.POST)
