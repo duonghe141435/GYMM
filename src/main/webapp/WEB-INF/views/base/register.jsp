@@ -62,12 +62,12 @@
                                        placeholder="Nhập lại mật khẩu" name="password_repeat">
                             </div>
                             <button class="btn btn-primary d-block btn-user w-100" id="btn-register" type="submit">Đăng ký tài khoản</button>
-                            <hr>
-                            <a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"
-                               href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/login-google&response_type=code
-    &client_id=183838572195-7pihdf1po39ofnqomot2iohs5ok5dmjf.apps.googleusercontent.com&approval_prompt=force">
-                                <i class="fab fa-google"></i>&nbsp; Đăng ký với Google
-                            </a>
+                            <%--<hr>--%>
+                            <%--<a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button"--%>
+                               <%--href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/login-google&response_type=code--%>
+    <%--&client_id=183838572195-7pihdf1po39ofnqomot2iohs5ok5dmjf.apps.googleusercontent.com&approval_prompt=force">--%>
+                                <%--<i class="fab fa-google"></i>&nbsp; Đăng ký với Google--%>
+                            <%--</a>--%>
                             <hr>
                         </form:form>
                         <div class="text-center"><a class="small" href="<c:url value='/forgot-password'/>">Bạn đã quên mật khẩu?</a></div>

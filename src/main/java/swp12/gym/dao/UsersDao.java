@@ -603,6 +603,17 @@ public class UsersDao {
         }
     }
 
+    public void updateUserProfile(UserDto user) {
+        try{
+            sql = "UPDATE users SET name = ?, gender = ?, phone = ?, address = ?, CMND = ?, DOB = ?, image = ? WHERE id_u = ?";
+            jdbcTemplate.update(sql, user.getU_full_name(),user.getU_gender(), user.getU_phone_number(),
+                    user.getU_address(), user.getU_identity_card(),user.getU_dob(),user.getU_img(),user.getU_id());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public List<UserDto> searchTrainer(String query) {
         try{
         sql = "SELECT users.id_u,users.name,users.email, users.gender,  users.image,\n" +

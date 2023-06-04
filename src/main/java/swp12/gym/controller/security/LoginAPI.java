@@ -62,14 +62,12 @@ public class LoginAPI {
             UserDto userDto = userService.getUserByEmail(email);
             if(userDto != null){
                 String new_pass = dataUtil.generatePassword();
-                System.out.println(new_pass);
                 userService.updatePasswordOfUser(email,
                         BCrypt.hashpw(new_pass, BCrypt.gensalt(10)));
 
                 boolean flag = emailUtil.sentMailRestPassWord(email,userDto.getU_full_name(),new_pass);
                 if(flag){
                     notify = "success-Mật khẩu mới đã được gửi đến Email của bạn";
-                    logUserService.saveLog(userDto.getU_id(),1,dataUtil.getIntToDate(),"Thay đổi mật khẩu");
                 }
             }else {
                 notify = "fail-Email của bạn không tồn tại trong hệ thống";

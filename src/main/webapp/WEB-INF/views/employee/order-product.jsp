@@ -64,14 +64,14 @@
                 <div class="list-product" style="background-color: #eee">
                     <div class="row">
                         <div class="d-flex justify-content-between align-items-center">
-                            <div class="col-md-6 text-nowrap">
-                                <div class="text-md-end w-50 float-start mx-1">
-                                    <label class="form-label d-flex">
-                                        <input type="search" class="form-control form-control-sm" placeholder="Search" id="search_product">
-                                        <button id="btn-search-product" type="button" style="background: none; border: none"><i class="fa fa-search"></i></button>
-                                    </label>
-                                </div>
-                            </div>
+                            <%--<div class="col-md-6 text-nowrap">--%>
+                                <%--<div class="text-md-end w-50 float-start mx-1">--%>
+                                    <%--<label class="form-label d-flex">--%>
+                                        <%--<input type="search" class="form-control form-control-sm" placeholder="Search" id="search_product">--%>
+                                        <%--<button id="btn-search-product" type="button" style="background: none; border: none"><i class="fa fa-search"></i></button>--%>
+                                    <%--</label>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                             <%--<nav aria-label="Page navigation">--%>
                                 <%--<ul class="pagination py-2" id="pagination">--%>
                                     <%--<li class="page-item">--%>

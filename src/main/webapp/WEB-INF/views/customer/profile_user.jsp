@@ -26,7 +26,7 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="text-center">
-                                            <img src="${user.u_img}"
+                                            <img id="img-avatar" src="${user.u_img}"
                                                  class="rounded-circle" width="150" height="150">
                                             <div class="mt-2">
                                                 <label class="btn btn-primary">
@@ -150,7 +150,7 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     // Cập nhật giá trị của thuộc tính src của thẻ img
-                    $('img').attr('src', e.target.result);
+                    $('#img-avatar').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(this.files[0]);
                 $('#save-btn').prop('disabled', false);

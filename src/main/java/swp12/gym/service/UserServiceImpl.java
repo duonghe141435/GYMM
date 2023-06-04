@@ -68,6 +68,10 @@ public class UserServiceImpl implements UserService{
         usersDao.updateUser(user);
     }
 
+    public void updateUserProfile(UserDto userDto) {
+        usersDao.updateUserProfile(userDto);
+    }
+
     public void createStaff(int id_u) {
         usersDao.createStaff(id_u);
     }

@@ -87,40 +87,8 @@ public class AdminBaseController {
                 user.setU_img(u_img);
             }
         }
-        userService.updateUser(user);
-//        roleService.updateRoleForUser(user.getU_id(), user.getR_id());
 
-        if (user.getR_id() == 3) {
-            //kiểm tra xem người dùng này có phải là trainer không
-//            year_experience = Integer.parseInt(request.getParameter("extra-info"));
-//            if (userService.isExistsTrainer(user.getU_id())) {
-//                userService.updateExperienceTrainer(user.getU_id(), year_experience);
-//            } else {
-//                userService.deleteStaff(user.getU_id());
-//                userService.createTrainer(user.getU_id(), year_experience);
-//            }
-            return "redirect:/admin/trainer";
-
-        } else if (user.getR_id() == 2) {
-//            //kiểm tra xem người dùng này có phải là nhân viên hay không
-//            if (userService.isExistsStaff(user.getU_id())) {
-//                userService.deleteTrainer(user.getU_id());
-//                userService.createStaff(user.getU_id());
-//            }
-
-            return "redirect:/admin/employee";
-
-        } else if (user.getR_id() == 0) {
-            //kiểm tra xem người dùng này có phải là nhân viên hay không
-//            if (userService.isExistsStaff(user.getU_id())) {
-//                userService.deleteTrainer(user.getU_id());
-//                userService.createStaff(user.getU_id());
-//            }
-
-            return "redirect:/admin/customer/page=1-status=1";
-
-        }
-        return "redirect:/admin/dashboard";
+        return "redirect:/admin/employee/page=1-status=1";
     }
 
     @RequestMapping(value = "/change-pass",method = RequestMethod.GET)
@@ -137,8 +105,8 @@ public class AdminBaseController {
     }
 
     @RequestMapping(value = "/your-profile/update",method = RequestMethod.GET)
-    public String updateCustomer(@ModelAttribute("user") User user, Model model) {
-        System.out.println(user.toString());
+    public String updateCustomer(@ModelAttribute("user") UserDto user, Model model) {
+        userService.updateUserProfile(user);
         return "customer/index_customer";
     }
 }
